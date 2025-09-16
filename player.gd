@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var movement_config: PlayerMovementConfig
 
 
-enum Action {NONE, IDLE, FALLING, WALKING, JUMPING}
+enum Action {NONE, IDLE, FALLING, WALKING, JUMPING, DOUBLE_JUMPING}
 func _action_name(action: Action) -> String: return Action.find_key(int(action))
 
 signal began_action(Action)
@@ -27,7 +27,7 @@ func _begin_action(action: Action) -> void:
 
 func _is_jumping() -> bool:
 	# return true for any jumping action (jumping, double jumping, wall jumping)
-	return _action == Action.JUMPING
+	return _action == Action.JUMPING or _action == Action.DOUBLE_JUMPING
 
 func _has_direction() -> bool:
 	return _direction != 0.0
@@ -57,13 +57,22 @@ func _determine_direction() -> void:
 		_last_direction = temp_direciton
 
 func _determine_has_jumped_or_stopped() -> void:
-	_has_jumped = Input.is_action_just_pressed("ui_accept") and is_on_floor()
+	if Input.is_action_just_pressed("ui_accept"):
+		_has_jumped = is_on_floor() or _action == Action.JUMPING
+	else:
+		_has_jumped = false
+	
+	
 	_has_stopped_jump = Input.is_action_just_released("ui_accept") and not is_on_floor()
 		
 func _determine_action() -> Action:
 	var on_floor = is_on_floor()
-	if _has_jumped or not on_floor and _is_jumping():
+	if _has_jumped and _action == Action.JUMPING:
+		return Action.DOUBLE_JUMPING
+	if _has_jumped:
 		return Action.JUMPING
+	if not is_on_floor() and _is_jumping():
+		return _action
 	if not on_floor and not _is_jumping():
 		return Action.FALLING
 	if on_floor and _has_direction():
@@ -85,6 +94,8 @@ func _handle_jump() -> void:
 		if is_on_floor() or $CoyoteJumpTimer.time_left > 0.0:
 			velocity.y = movement_config.JUMP_VELOCITY
 			velocity += get_platform_velocity()
+		elif not is_on_floor() and _action == Action.DOUBLE_JUMPING:
+			velocity.y = movement_config.JUMP_VELOCITY * movement_config.DOUBLE_JUMP_SCALE
 	elif _has_stopped_jump:
 		velocity.y *= movement_config.SHORT_JUMP_SCALE
 		# if is_on_wall_only():
@@ -123,6 +134,8 @@ func _animate_action() -> void:
 	match _action:
 		Action.WALKING:
 			$AnimatedSprite2D.play("walk")
+		Action.JUMPING, Action.DOUBLE_JUMPING:
+			$AnimatedSprite2D.play("jump")
 		_:
 			$AnimatedSprite2D.play("idle")
 
