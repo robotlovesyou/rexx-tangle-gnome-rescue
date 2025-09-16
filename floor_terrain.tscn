@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj8nksu43vylw"]
+
+[ext_resource type="Texture2D" uid="uid://8w3qhdj4tuwn" path="res://Brick.png" id="1_g4m68"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpwgn"]
+texture = ExtResource("1_g4m68")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[sub_resource type="TileSet" id="TileSet_gywsm"]
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "BrickWall 0"
+terrain_set_0/terrain_0/color = Color(0.500937, 0.592033, 0.94943, 1)
+sources/0 = SubResource("TileSetAtlasSource_qpwgn")
+
+[node name="FloorTerrain" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_gywsm")
