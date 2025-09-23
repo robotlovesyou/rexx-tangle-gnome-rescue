@@ -15,9 +15,21 @@ run/main_scene="uid://dn38w2ha0ewsy"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MovementHistory="*res://player_movement_history.gd"
+ActionMonitor="*res://player_action_monitor.gd"
+FollowersMonitor="*res://gnome_followers_monitor.gd"
+
 [display]
 
 window/stretch/scale=2.0
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Gnome"
+2d_physics/layer_3="Terrain"
 
 [physics]
 

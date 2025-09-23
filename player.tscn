@@ -166,6 +166,7 @@ animations = [{
 size = Vector2(25, 28)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 4
 safe_margin = 0.1
 script = ExtResource("1_onrkg")
 movement_config = ExtResource("2_hqtel")
