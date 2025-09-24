@@ -7,5 +7,5 @@ static func action_name(action: Action) -> String: return Action.find_key(int(ac
 enum GnomeAction{GROUNDED, AIRBORNE}
 static func gnome_action_name(action: GnomeAction) -> String: return GnomeAction.find_key(int(action))
 
-enum GnomeEvent{PLAYER_COLLECTED}
+enum GnomeEvent{PLAYER_COLLECTED, COLLECTION_DONE, LERP_FOLLOW_DONE}
 static func gnome_event_name(event: GnomeEvent) -> String: return GnomeEvent.find_key(int(event))

@@ -5,8 +5,15 @@ extends CharacterBody2D
 # const SPEED = 300.0
 # const JUMP_VELOCITY = -400.0
 
+@export var movement_config: PlayerMovementConfig
 var _action: Enums.GnomeAction
 var _state: GnomeState
+var _follow_index: int
+
+
+var follow_index: int:
+	get:
+		return _follow_index
 
 func _ready() -> void:
 	_begin_action(Enums.GnomeAction.GROUNDED)
@@ -31,11 +38,20 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 			match event:
 				Enums.GnomeEvent.PLAYER_COLLECTED:
 					_switch_to_state(GnomeCollectedState.new(self))
+		GnomeState.StateID.COLLECTED:
+			match event:
+				Enums.GnomeEvent.COLLECTION_DONE:
+					_switch_to_state(GnomeLerpFollowState.new(self))
+		GnomeState.StateID.LERP_FOLLOW:
+			match event:
+				Enums.GnomeEvent.LERP_FOLLOW_DONE:
+					_switch_to_state(GnomeFollowState.new(self))
 		
 
 
 func _physics_process(delta: float) -> void:
-	pass
+	_state.on_physics_process(delta)
+	_state.on_animate($AnimatedSprite2D)
 	# Add the gravity.
 	# if not is_on_floor():
 	# 	velocity += get_gravity() * delta
@@ -58,3 +74,10 @@ func _physics_process(delta: float) -> void:
 func _on_player_collection_body_entered(body:Node2D) -> void:
 	if body is Player:
 		_handle_gnome_event(Enums.GnomeEvent.PLAYER_COLLECTED)
+
+func collection_complete(index: int) -> void:
+	_follow_index = index
+	_handle_gnome_event(Enums.GnomeEvent.COLLECTION_DONE)
+
+func lerp_follow_complete():
+	_handle_gnome_event(Enums.GnomeEvent.LERP_FOLLOW_DONE)

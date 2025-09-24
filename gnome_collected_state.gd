@@ -11,6 +11,8 @@ func _init(gnome: Gnome):
 
 func on_enter_state() -> void:
 	print("entered collected state")
+	var i = FollowersMonitor.add(_gnome)
+	_gnome.collection_complete.call_deferred(i)
 
 func on_exit_state() -> void:
 	print("exited collected state")
