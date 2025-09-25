@@ -2,16 +2,19 @@
 
 # TO DO
 
-* Add double jumps
-* Add wall jumps
-* Add wall slides
+* ~~Add double jumps~~
+* ~~Add wall jumps~~
+* ~~Add wall slides~~
 * Add moving platforms
-* Add gnomes
-* Gnomes - Handle Wait
-* Gnomes - Handle Collection
-* Gnomes - Handle WALKING
-* Gnomes - Handle JUMPING
-* Gnomes - Handle STRAYING when the player is IDLE
+* ~~Add gnomes~~
+* ~~Gnomes - Handle Wait~~
+* ~~Gnomes - Handle Collection~~
+* ~~Gnomes - Handle WALKING~~
+* Gnomes - Handle JUMPING: partially done but needs animation
+* Gnomes - Handle STRAYING when the player is IDLE: partially done but needs further work.(see below)
+* new GnomeFollowState can sometimes get stuck and jump. Need to detect when stuck and react appropriately
+* Straying gnomes need to eventually enter wander state
+* Straying gnomes need to react to gravity in the event that they walk off a ledge.
 * Gnomes - Handle approaching platforms
 * Gnomes - Handle STRAYING on platforms when the player is IDLE
 
