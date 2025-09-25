@@ -3,8 +3,7 @@ extends GnomeState
 
 var _gnome: Gnome
 
-func state_id() -> StateID:
-	return StateID.COLLECTED
+func state_id() -> StateID: return StateID.COLLECTED
 
 func _init(gnome: Gnome):
 	_gnome = gnome

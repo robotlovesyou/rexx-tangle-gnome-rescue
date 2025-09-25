@@ -12,4 +12,6 @@ const DOUBLE_JUMP_SCALE = 0.8
 const WALL_SLIDE_SCALE = 1.0/6.0
 const OFFSET_PER_INDEX = 0.15
 const LERP_FRAME_COUNT = 15.0 #float to avoid constant float conversion
-# const OSCILLATION_WIDTH = 50.0
+const INITIAL_STRAY_AMPLITUDE = 5.0
+const STRAY_GROWTH_RATE_PER_SECOND = 0.5 
+const STRAY_OSCILLATION_FREQUENCY = 0.5

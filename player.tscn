@@ -167,6 +167,7 @@ size = Vector2(25, 28)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 4
+floor_snap_length = 4.0
 safe_margin = 0.1
 script = ExtResource("1_onrkg")
 movement_config = ExtResource("2_hqtel")
@@ -182,11 +183,12 @@ shape = SubResource("RectangleShape2D_1jxqw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+position_smoothing_speed = 20.0
 
 [node name="CoyoteJumpTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
 [node name="WallJumpTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true

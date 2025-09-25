@@ -1,10 +1,19 @@
 class_name GnomeState
 extends RefCounted
 
-enum StateID {NONE, WAITING, COLLECTED, LERP_FOLLOW}
+enum StateID {
+	COLLECTED, 
+	FOLLOW,
+	LERP_FOLLOW, 
+	NONE, 
+	STRAY,
+	WAITING, 
+}
 
 func state_id() -> StateID:
 	return StateID.NONE
+
+func state_name() -> String: return StateID.find_key(int(state_id()))
 
 func on_enter_state() -> void:
 	pass
