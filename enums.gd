@@ -22,7 +22,8 @@ static func gnome_action_name(action: GnomeAction) -> String: return GnomeAction
 
 enum GnomeEvent{
 	BECAME_AIRBORNE, 
-	BECAME_GROUNDED, 
+	BECAME_GROUNDED,
+	BECAME_STUCK, 
 	COLLECTION_DONE, 
 	LERP_FOLLOW_DONE,
 	PLAYER_BECAME_IDLE,

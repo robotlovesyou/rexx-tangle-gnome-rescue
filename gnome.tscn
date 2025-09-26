@@ -110,7 +110,7 @@ size = Vector2(10, 29)
 
 [node name="Gnome" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 12
 script = ExtResource("1_5vlar")
 movement_config = ExtResource("2_dt2vp")
 

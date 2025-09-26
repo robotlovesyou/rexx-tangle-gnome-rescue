@@ -16,11 +16,15 @@ func on_physics_process(_delta: float) -> void:
 	_frame_movement_data = MovementHistory.at_offset(float(_gnome.follow_index) + 1.0 * _gnome.movement_config.OFFSET_PER_INDEX)
 	var ideal_velocity = (_frame_movement_data.position - _gnome.position) * Engine.physics_ticks_per_second
 	_gnome.velocity = Vector2().lerp(ideal_velocity, _lerp_frame_count / _gnome.movement_config.LERP_FRAME_COUNT)
+	var _ideal_position = _gnome.position.lerp(_frame_movement_data.position, _lerp_frame_count / _gnome.movement_config.LERP_FRAME_COUNT)
 	# _gnome.position = _gnome.position.lerp(_frame_movement_data.position, _lerp_frame_count / _gnome.movement_config.LERP_FRAME_COUNT)
 	_gnome.move_and_slide()
 	_lerp_frame_count += 1.0
 	if _lerp_frame_count >= _gnome.movement_config.LERP_FRAME_COUNT:
 		_gnome.lerp_follow_complete.call_deferred()
+	if _gnome.position.distance_to(_ideal_position) > _gnome.movement_config.STUCK_THRESHOLD_DISTANCE:
+		printerr("I got stuck lerp following")
+		_gnome.follow_got_stuck.call_deferred()
 
 func on_animate(sprite: AnimatedSprite2D) -> void:
 	_animation_helper.on_animate(_frame_movement_data, sprite)

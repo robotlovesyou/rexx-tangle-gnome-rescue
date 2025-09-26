@@ -65,11 +65,15 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 						_switch_to_state(GnomeStrayState.new(self))
 					else:
 						_switch_to_state(GnomeFollowState.new(self))
+				Enums.GnomeEvent.BECAME_STUCK:
+					_switch_to_state(GnomeLerpFollowState.new(self))
 		GnomeState.StateID.FOLLOW:
 			match event:
 				Enums.GnomeEvent.BECAME_GROUNDED, Enums.GnomeEvent.PLAYER_COLLECTED, Enums.GnomeEvent.PLAYER_BECAME_IDLE:
 					if _should_enter_stray():
 						_switch_to_state(GnomeStrayState.new(self))
+				Enums.GnomeEvent.BECAME_STUCK:
+					_switch_to_state(GnomeLerpFollowState.new(self))
 		GnomeState.StateID.STRAY:
 			match event: 
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
@@ -115,6 +119,9 @@ func _on_player_collection_body_exited(body: Node2D) -> void:
 func collection_complete(index: int) -> void:
 	_follow_index = index
 	_handle_gnome_event(Enums.GnomeEvent.COLLECTION_DONE)
+
+func follow_got_stuck() -> void:
+	_handle_gnome_event(Enums.GnomeEvent.BECAME_STUCK)
 
 func lerp_follow_complete():
 	_handle_gnome_event(Enums.GnomeEvent.LERP_FOLLOW_DONE)

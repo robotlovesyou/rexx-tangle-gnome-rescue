@@ -15,3 +15,4 @@ const LERP_FRAME_COUNT = 15.0 #float to avoid constant float conversion
 const INITIAL_STRAY_AMPLITUDE = 5.0
 const STRAY_GROWTH_RATE_PER_SECOND = 0.5 
 const STRAY_OSCILLATION_FREQUENCY = 0.5
+const STUCK_THRESHOLD_DISTANCE = 20.0
