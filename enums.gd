@@ -21,6 +21,7 @@ enum GnomeAction{
 static func gnome_action_name(action: GnomeAction) -> String: return GnomeAction.find_key(int(action))
 
 enum GnomeEvent{
+	BECAME_ABANDONED,
 	BECAME_AIRBORNE, 
 	BECAME_GROUNDED,
 	BECAME_STUCK, 

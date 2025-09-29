@@ -7,7 +7,8 @@ enum StateID {
 	LERP_FOLLOW, 
 	NONE, 
 	STRAY,
-	WAITING, 
+	WAITING,
+	WANDER,
 }
 
 func state_id() -> StateID:

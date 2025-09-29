@@ -65,10 +65,14 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 						_switch_to_state(GnomeStrayState.new(self))
 					else:
 						_switch_to_state(GnomeFollowState.new(self))
+				Enums.GnomeEvent.BECAME_ABANDONED:
+					_switch_to_state(GnomeWanderState.new(self))
 				Enums.GnomeEvent.BECAME_STUCK:
 					_switch_to_state(GnomeLerpFollowState.new(self))
 		GnomeState.StateID.FOLLOW:
 			match event:
+				Enums.GnomeEvent.BECAME_ABANDONED:
+					_switch_to_state(GnomeWanderState.new(self))
 				Enums.GnomeEvent.BECAME_GROUNDED, Enums.GnomeEvent.PLAYER_COLLECTED, Enums.GnomeEvent.PLAYER_BECAME_IDLE:
 					if _should_enter_stray():
 						_switch_to_state(GnomeStrayState.new(self))
@@ -122,9 +126,26 @@ func collection_complete(index: int) -> void:
 
 func follow_got_stuck() -> void:
 	_handle_gnome_event(Enums.GnomeEvent.BECAME_STUCK)
+	$PlayerAbandoned.monitoring = true
+	await get_tree().physics_frame
+	var player_found = false
+	for body in $PlayerAbandoned.get_overlapping_bodies():
+		if body is Player:
+			player_found = true
+			break
+	if not player_found:
+		_handle_gnome_event(Enums.GnomeEvent.BECAME_ABANDONED)
+
+func follow_not_stuck() -> void:
+	$PlayerAbandoned.monitoring = false
 
 func lerp_follow_complete():
 	_handle_gnome_event(Enums.GnomeEvent.LERP_FOLLOW_DONE)
 
 func _should_enter_stray() -> bool:
 	return _action == Enums.GnomeAction.GROUNDED and _player_action == Enums.Action.IDLING and _touching_player
+
+func _on_player_abandoned_body_exited(body: Node2D) -> void:
+	# NTFM: we are checking $PlayerAbandoned.monitoring here because when it is turned off it calls this for everything overlapping, because of course it does...
+	if not $PlayerAbandoned.monitoring or not body is Player: return
+	_handle_gnome_event(Enums.GnomeEvent.BECAME_ABANDONED)
