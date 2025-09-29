@@ -82,6 +82,10 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 			match event: 
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
 					_switch_to_state(GnomeLerpFollowState.new(self))
+		GnomeState.StateID.WANDER:
+			match event:
+				Enums.GnomeEvent.PLAYER_COLLECTED:
+					_switch_to_state(GnomeCollectedState.new(self))
 		
 
 

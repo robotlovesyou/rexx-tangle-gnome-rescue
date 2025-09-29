@@ -14,7 +14,7 @@ func reset() -> void:
 	_followers_index.clear()
 
 func add(gnome: Gnome) -> int:
-	assert(not _followers_dict.has(gnome.get_instance_id()), "Gnome with instance id %d not in followers index" % gnome.get_instance_id())
+	assert(not _followers_dict.has(gnome.get_instance_id()), "Gnome with instance id %d already in followers index" % gnome.get_instance_id())
 	var offset = _followers_index.size()
 	_followers_dict[gnome.get_instance_id()] = offset
 	_followers_index.append(gnome)

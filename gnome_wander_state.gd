@@ -9,6 +9,9 @@ func _init(gnome: Gnome):
 
 func state_id() -> StateID: return StateID.WANDER
 
+func on_enter_state() -> void:
+	FollowersMonitor.remove(_gnome)
+
 func on_physics_process(delta: float) -> void:
 	if not _gnome.is_on_floor():
 		_gnome.velocity += _gnome.get_gravity() * delta
