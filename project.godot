@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 MovementHistory="*res://player_movement_history.gd"
 ActionMonitor="*res://player_action_monitor.gd"
 FollowersMonitor="*res://gnome_followers_monitor.gd"
+PMonitor="*res://player_monitor.gd"
 
 [display]
 

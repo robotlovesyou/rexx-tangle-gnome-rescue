@@ -19,6 +19,11 @@ func on_physics_process(_delta: float) -> void:
 	var _ideal_position = _gnome.position.lerp(_frame_movement_data.position, _lerp_frame_count / _gnome.movement_config.LERP_FRAME_COUNT)
 	_gnome.move_and_slide()
 	_lerp_frame_count += 1.0
+
+	if _gnome.has_player_abandoned():
+		_gnome.player_abandoned()
+		return
+
 	if _lerp_frame_count >= _gnome.movement_config.LERP_FRAME_COUNT:
 		_gnome.lerp_follow_complete.call_deferred()
 	if _gnome.position.distance_to(_ideal_position) > _gnome.movement_config.STUCK_THRESHOLD_DISTANCE:
