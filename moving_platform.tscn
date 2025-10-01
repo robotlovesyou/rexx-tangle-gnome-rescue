@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvqug7c3bild7"]
+
+[ext_resource type="Script" uid="uid://s42hre3vu5v1" path="res://moving_platform.gd" id="1_q06lf"]
+
+[sub_resource type="Curve2D" id="Curve2D_k1b7n"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -32)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q06lf"]
+size = Vector2(56, 8)
+
+[node name="MovingPlatform" type="Node2D"]
+script = ExtResource("1_q06lf")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_k1b7n")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = -1.5707964
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+rotation = -1.5707964
+remote_path = NodePath("../../../AnimatableBody2D")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+rotation = 3.1415925
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_q06lf")
+debug_color = Color(0.77236176, 0.44367224, 0, 0.41960785)
+
+[node name="ColorRect" type="ColorRect" parent="AnimatableBody2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -4.0
+offset_right = 28.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
