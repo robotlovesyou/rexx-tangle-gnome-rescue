@@ -56,16 +56,26 @@ func _determine_direction() -> void:
 
 func _determine_has_jumped_or_stopped() -> void:
 	_has_jumped = Input.is_action_just_pressed("ui_accept")
+	_has_stopped_jump = Input.is_action_just_released("ui_accept") and not is_on_floor()
 	# if Input.is_action_just_pressed("ui_accept"):
 	# 	_has_jumped = is_on_wall_only() or is_on_floor() or _action == Enums.Action.JUMPING or _action == Enums.Action.FALLING
 	# else:
 	# 	_has_jumped = false
-	
-	
-	_has_stopped_jump = Input.is_action_just_released("ui_accept") and not is_on_floor()
+
+func _is_on_platform() -> bool:
+	if not is_on_floor(): return false
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is Node:
+			if (collider as Node).is_in_group("MovingPlatform"):
+				if collision.get_normal().angle_to(Vector2.UP) <= floor_max_angle:
+					return true
+	return false
 		
 func _determine_action() -> Enums.Action:
 	var on_floor = is_on_floor()
+	var on_platform = _is_on_platform()
 	if is_on_wall_only() and _has_jumped:
 		return Enums.Action.WALL_JUMPING
 	if _has_jumped and _action == Enums.Action.JUMPING:
@@ -81,6 +91,10 @@ func _determine_action() -> Enums.Action:
 			return Enums.Action.JUMPING
 		else:
 			return Enums.Action.FALLING
+	if on_floor and on_platform and _has_direction():
+		return Enums.Action.PLATFORM_WALKING
+	if on_floor and on_platform:
+		return Enums.Action.PLATFORM_IDLING
 	if on_floor and _has_direction():
 		return Enums.Action.WALKING
 	if on_floor and not _has_direction():
@@ -130,8 +144,8 @@ func _animate_action() -> void:
 		$AnimatedSprite2D.flip_h = 	_last_direction > 0.0
 		
 	match _action:
-		Enums.Action.WALKING:
-			$AnimatedSprite2D.play("walk")
+		Enums.Action.WALKING, Enums.Action.PLATFORM_WALKING:
+			$AnimatedSprite2D.play( "walk")
 		Enums.Action.JUMPING, Enums.Action.DOUBLE_JUMPING, Enums.Action.FALLING:
 			$AnimatedSprite2D.play("jump")
 		Enums.Action.WALL_SLIDING_DOWN:

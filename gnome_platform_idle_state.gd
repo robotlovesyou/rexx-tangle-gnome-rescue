@@ -1,7 +1,8 @@
-class_name GnomeStrayState
+class_name GnomePlatformIdleState
 extends GnomeState
 
 var _gnome: Gnome
+var _animation_helper: GnomeFollowAnimationHelper
 var _phase: float
 var _center: float
 var _amplitude: float
@@ -10,8 +11,9 @@ var _growth: float
 var _limit: float
 var _time: float
 
-func _init(gnome: Gnome):
+func _init(gnome: Gnome, animation_helper: GnomeFollowAnimationHelper = GnomeFollowAnimationHelper.new()):
 	_gnome = gnome
+	_animation_helper = animation_helper
 	_phase = PI
 	_center = _gnome.position.x
 	_amplitude = _gnome.movement_config.INITIAL_STRAY_AMPLITUDE
@@ -20,12 +22,9 @@ func _init(gnome: Gnome):
 	_limit = _gnome.movement_config.STRAY_MAX_WIDTH
 	_time = 0.0
 
-func state_id() -> StateID: return StateID.STRAY
+func state_id() -> StateID: return StateID.PLATFORM_IDLE
 
 func on_enter_state() -> void:
-	pass
-
-func on_exit_state() -> void:
 	pass
 
 func on_physics_process(delta: float) -> void:
@@ -40,7 +39,3 @@ func on_physics_process(delta: float) -> void:
 	if _gnome.has_player_abandoned():
 		_gnome.player_abandoned()
 		return
-
-func on_animate(sprite: AnimatedSprite2D) -> void:
-	sprite.flip_h = _gnome.velocity.x > 0.0
-	sprite.play("walk")

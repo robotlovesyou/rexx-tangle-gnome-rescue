@@ -38,9 +38,16 @@ func _player_began_action(action: Enums.Action) -> void:
 	match _player_action:
 		Enums.Action.IDLING:
 			_handle_gnome_event(Enums.GnomeEvent.PLAYER_BECAME_IDLE)
+		Enums.Action.PLATFORM_IDLING, Enums.Action.PLATFORM_WALKING:
+			_handle_player_on_platform(_player_action)
 		_:
 			_handle_gnome_event(Enums.GnomeEvent.PLAYER_STOPPED_IDLING)
 
+func _handle_player_on_platform(player_action: Enums.Action) -> void:
+	if _action == Enums.GnomeAction.AIRBORNE:
+		_handle_gnome_event(Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM)
+	else:
+		print("other platform action")
 
 func _switch_to_state(state: GnomeState) -> void:
 	if _state: _state.on_exit_state()
@@ -69,6 +76,8 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					_switch_to_state(GnomeWanderState.new(self))
 				Enums.GnomeEvent.BECAME_STUCK:
 					_switch_to_state(GnomeLerpFollowState.new(self))
+				Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM:
+					_switch_to_state(GnomePlatformLerpState.new(self))
 		GnomeState.StateID.FOLLOW:
 			match event:
 				Enums.GnomeEvent.BECAME_ABANDONED:
@@ -78,6 +87,8 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 						_switch_to_state(GnomeStrayState.new(self))
 				Enums.GnomeEvent.BECAME_STUCK:
 					_switch_to_state(GnomeLerpFollowState.new(self))
+				Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM:
+					_switch_to_state(GnomePlatformLerpState.new(self))
 		GnomeState.StateID.STRAY:
 			match event: 
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
@@ -88,6 +99,14 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 			match event:
 				Enums.GnomeEvent.PLAYER_COLLECTED:
 					_switch_to_state(GnomeCollectedState.new(self))
+		GnomeState.StateID.PLATFORM_LERP:
+			match event:
+				Enums.GnomeEvent.LANDED_ON_PLATFORM:
+					_switch_to_state(GnomePlatformIdleState.new(self))
+		GnomeState.StateID.PLATFORM_IDLE:
+			match event:
+				Enums.GnomeEvent.BECAME_ABANDONED:
+					_switch_to_state(GnomeWanderState.new(self))
 		
 
 
@@ -138,6 +157,9 @@ func follow_not_stuck() -> void:
 
 func lerp_follow_complete():
 	_handle_gnome_event(Enums.GnomeEvent.LERP_FOLLOW_DONE)
+
+func platform_lerp_follow_complete():
+	_handle_gnome_event(Enums.GnomeEvent.LANDED_ON_PLATFORM)
 
 func _should_enter_stray() -> bool:
 	return _action == Enums.GnomeAction.GROUNDED and _player_action == Enums.Action.IDLING and _touching_player

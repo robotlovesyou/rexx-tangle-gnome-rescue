@@ -12,7 +12,7 @@
 * Add moving platforms: Done but gnomes need to correctly move while player is on them
 * Gnomes - Handle approaching platforms
 * Gnomes - Handle JUMPING: partially done but needs animation
-* Gnomes - Handle STRAYING when the player is IDLE: partially done but needs further work.(see below)
+* Gnomes - Handle STRAYING when the player is IDLE: partially done but needs to switch to wander state after a given time
 * ~~new GnomeFollowState can sometimes get stuck and jump. Need to detect when stuck and react appropriately~~
 * ~~Straying gnomes need to eventually enter wander state~~
 * ~~Straying gnomes need to react to gravity in the event that they walk off a ledge.~~
@@ -27,3 +27,7 @@
 * Add gnome panic state, triggered by falling off or missing a moving platform
 * Add a countdown timer
 * Add level completion / score
+
+# Possible better way to detect being abandoned
+If the gnome is in some kind of idle state (stray, platform_idle etc) for > a set time AND has greater than LIMIT y difference
+So basically, if the gnome is on a different bit of ground/platform and waiting for more than a second or so...

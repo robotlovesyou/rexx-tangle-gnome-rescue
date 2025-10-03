@@ -11,7 +11,7 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q06lf"]
 size = Vector2(56, 8)
 
-[node name="MovingPlatform" type="Node2D"]
+[node name="MovingPlatform" type="Node2D" groups=["MovingPlatform"]]
 script = ExtResource("1_q06lf")
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -24,7 +24,7 @@ rotation = -1.5707964
 rotation = -1.5707964
 remote_path = NodePath("../../../AnimatableBody2D")
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." groups=["MovingPlatform"]]
 rotation = 3.1415925
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]

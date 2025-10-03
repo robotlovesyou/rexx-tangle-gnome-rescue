@@ -26,6 +26,10 @@ PMonitor="*res://player_monitor.gd"
 
 window/stretch/scale=2.0
 
+[global_group]
+
+MovingPlatform="A Moving Platform"
+
 [layer_names]
 
 2d_physics/layer_1="Player"
