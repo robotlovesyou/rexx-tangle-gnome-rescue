@@ -56,6 +56,9 @@ position = Vector2(512, 320)
 [node name="Gnome" parent="." instance=ExtResource("4_aqk2v")]
 position = Vector2(152, 608)
 
+[node name="Gnome2" parent="." instance=ExtResource("4_aqk2v")]
+position = Vector2(417, 560)
+
 [node name="GnomeCatcher" type="TileMapLayer" parent="."]
 position = Vector2(1, 0)
 tile_map_data = PackedByteArray("AAAYACYAAAAAAAAAAAAZACYAAAAAAAAAAAAaACYAAAAAAAAAAAAbACYAAAAAAAAAAAAcACYAAAAAAAAAAAAdACYAAAAAAAAAAAAeACYAAAAAAAAAAAAfACYAAAAAAAAAAAAgACYAAAAAAAAAAAAhACYAAAAAAAAAAAAiACYAAAAAAAAAAAAxACYAAAAAAAAAAAA1ABcAAAAAAAAAAAA=")

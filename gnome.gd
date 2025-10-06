@@ -25,7 +25,6 @@ func _ready() -> void:
 func _begin_action(action: Enums.GnomeAction) -> void:
 	if action == _action: return
 	_action = action
-	print("Gnome Action: %s" % Enums.gnome_action_name(_action))
 	match _action:
 		Enums.GnomeAction.AIRBORNE:
 			_handle_gnome_event(Enums.GnomeEvent.BECAME_AIRBORNE)
@@ -33,7 +32,6 @@ func _begin_action(action: Enums.GnomeAction) -> void:
 			_handle_gnome_event(Enums.GnomeEvent.BECAME_GROUNDED)
 
 func _player_began_action(action: Enums.Action) -> void:
-	print("player began action: %s" % Enums.action_name(action))
 	_player_action = action
 	match _player_action:
 		Enums.Action.IDLING:
@@ -47,13 +45,13 @@ func _handle_player_on_platform(player_action: Enums.Action) -> void:
 	if _action == Enums.GnomeAction.AIRBORNE:
 		_handle_gnome_event(Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM)
 	else:
-		print("other platform action")
+		pass
 
 func _switch_to_state(state: GnomeState) -> void:
 	if _state: _state.on_exit_state()
+	if _state: print("%s ==> %s" % [_state.state_name(), state.state_name()])
 	_state = state
 	_state.on_enter_state()
-	print("Gnome switched to state: %s" % _state.state_name())
 
 func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 	match _state.state_id():
@@ -107,6 +105,8 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 			match event:
 				Enums.GnomeEvent.BECAME_ABANDONED:
 					_switch_to_state(GnomeWanderState.new(self))
+				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
+					_switch_to_state(GnomeLerpFollowState.new(self))
 		
 
 

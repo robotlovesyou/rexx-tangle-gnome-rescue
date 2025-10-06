@@ -15,7 +15,6 @@ var _wall_jump_normal: Vector2
 func _begin_action(action: Enums.Action) -> void:
 	if action == _action: return
 	_action = action
-	# print(Enums.action_name(_action))
 	ActionMonitor.action = _action
 
 func _is_jumping() -> bool:

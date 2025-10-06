@@ -6,7 +6,7 @@ signal began_action(action: Enums.Action)
 var _action: Enums.Action = Enums.Action.NONE
 
 func _ready() -> void:
-    print("action monitor ready")
+    pass
 
 var action: Enums.Action:
     get:
