@@ -28,9 +28,7 @@ func remove(gnome: Gnome) -> void:
 	_followers_index.remove_at(offset)
 	for i in range(offset, _followers_index.size()):
 		_followers_dict[_followers_index[i].get_instance_id()] = i
-
 		# todo: gnomes should handle changes in their follower index and react accordingly. 
-		# _followers_dict[_followers_index[i].get_instance_id()] = i
 		# _followers_index[i].has_new_follow_index(i)
 
 # func handle_player_on_moving_platform() -> void:

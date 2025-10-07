@@ -2,6 +2,7 @@
 
 # TO DO
 
+* When stuck, try adding a little hop _before_ starting the follow lerp
 * Gnomes need better abandonment detection. 
 * Gnomes may need better idle behaviour.
 * Idling gnomes should switch to wander after a time. 

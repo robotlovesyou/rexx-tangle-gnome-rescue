@@ -2,12 +2,12 @@ class_name GnomeLerpFollowState
 extends GnomeState
 
 var _gnome: Gnome
-var _lerp_frame_count: float = 0.0
-var _lerp_frame_limit: float = 0.0
+var _lerp_frame_count := 0.0
+var _lerp_frame_limit  := 0.0
 var _animation_helper: GnomeFollowAnimationHelper
 var _frame_movement_data: PlayerMovementData
-var _offset_per_index: float = 0.0
-var _stuck_threshold_distance: float = 0.0
+var _offset_per_index := 0.0
+var _stuck_threshold_distance := 0.0
 
 func _init(gnome: Gnome, animation_helper: GnomeFollowAnimationHelper = GnomeFollowAnimationHelper.new()):
 	_gnome = gnome
@@ -30,6 +30,8 @@ func on_physics_process(_delta: float) -> void:
 	if _gnome.has_player_abandoned():
 		_gnome.player_abandoned()
 		return
+
+	
 
 	if _lerp_frame_count >= _lerp_frame_limit:
 		_gnome.lerp_follow_complete.call_deferred()
