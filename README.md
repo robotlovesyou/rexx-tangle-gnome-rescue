@@ -2,7 +2,6 @@
 
 # TO DO
 
-* BUG: Followers Index is becoming corrupted and ending up with gnomes appearing > 1 times
 * Gnomes need better abandonment detection. 
 * Gnomes may need better idle behaviour.
 * Idling gnomes should switch to wander after a time. 
