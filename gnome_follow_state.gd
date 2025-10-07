@@ -17,7 +17,6 @@ func on_physics_process(_delta: float) -> void:
 	_gnome.move_and_slide()
 	# distance between where we ended up and where we wanted to be. use to check if gnome is stuck
 	if _gnome.position.distance_to(_frame_movement_data.position) > _gnome.movement_config.STUCK_THRESHOLD_DISTANCE:
-		printerr("I got stuck following")
 		_gnome.follow_got_stuck.call_deferred()
 	else:
 		_gnome.follow_not_stuck()

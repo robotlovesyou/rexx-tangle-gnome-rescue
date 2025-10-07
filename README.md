@@ -2,7 +2,7 @@
 
 # TO DO
 
-
+* BUG: Followers Index is becoming corrupted and ending up with gnomes appearing > 1 times
 * Gnomes need better abandonment detection. 
 * Gnomes may need better idle behaviour.
 * Idling gnomes should switch to wander after a time. 
@@ -29,6 +29,8 @@
 * ~~Straying gnomes need to react to gravity in the event that they walk off a ledge.~~
 * ~~Handle going into wander state if the player gets too far away after becoming stuck~~
 * ~~Gnomes - Handle STRAYING on platforms when the player is IDLE~~
+* ~~Alter number of follow lerp frames depending on gnome index~~
+* ~~Also lerp toward eventual offset to prevent giant leaps back in history~~
 
 # Possible better way to detect being abandoned
 If the gnome is in some kind of idle state (stray, platform_idle etc) for > a set time AND has greater than LIMIT y difference

@@ -3,20 +3,27 @@ extends GnomeState
 
 var _gnome: Gnome
 var _lerp_frame_count: float = 0.0
+var _lerp_frame_limit: float = 0.0
 var _animation_helper: GnomeFollowAnimationHelper
 var _frame_movement_data: PlayerMovementData
+var _offset_per_index: float = 0.0
+var _stuck_threshold_distance: float = 0.0
 
 func _init(gnome: Gnome, animation_helper: GnomeFollowAnimationHelper = GnomeFollowAnimationHelper.new()):
 	_gnome = gnome
 	_animation_helper = animation_helper
+	_lerp_frame_limit = (_gnome.follow_index + 1.0) * _gnome.movement_config.LERP_FRAME_COUNT
+	_offset_per_index = _gnome.movement_config.OFFSET_PER_INDEX
+	_stuck_threshold_distance = _gnome.movement_config.STUCK_THRESHOLD_DISTANCE
 
 func state_id() -> StateID: return StateID.LERP_FOLLOW
 
 func on_physics_process(_delta: float) -> void:
-	_frame_movement_data = MovementHistory.at_offset((float(_gnome.follow_index) + 1.0) * _gnome.movement_config.OFFSET_PER_INDEX)
+	var _target_offset = (float(_gnome.follow_index) + 1.0) * _offset_per_index
+	_frame_movement_data = MovementHistory.at_offset(lerpf(0.0, _target_offset, _lerp_frame_count / _lerp_frame_limit))
 	var ideal_velocity = (_frame_movement_data.position - _gnome.position) * Engine.physics_ticks_per_second
-	_gnome.velocity = Vector2().lerp(ideal_velocity, _lerp_frame_count / _gnome.movement_config.LERP_FRAME_COUNT)
-	var _ideal_position = _gnome.position.lerp(_frame_movement_data.position, _lerp_frame_count / _gnome.movement_config.LERP_FRAME_COUNT)
+	_gnome.velocity = Vector2().lerp(ideal_velocity, _lerp_frame_count / _lerp_frame_limit)
+	var _ideal_position = _gnome.position.lerp(_frame_movement_data.position, _lerp_frame_count /_lerp_frame_limit)
 	_gnome.move_and_slide()
 	_lerp_frame_count += 1.0
 
@@ -24,10 +31,9 @@ func on_physics_process(_delta: float) -> void:
 		_gnome.player_abandoned()
 		return
 
-	if _lerp_frame_count >= _gnome.movement_config.LERP_FRAME_COUNT:
+	if _lerp_frame_count >= _lerp_frame_limit:
 		_gnome.lerp_follow_complete.call_deferred()
-	if _gnome.position.distance_to(_ideal_position) > _gnome.movement_config.STUCK_THRESHOLD_DISTANCE:
-		printerr("I got stuck lerp following")
+	if _gnome.position.distance_to(_ideal_position) > _stuck_threshold_distance:
 		_gnome.follow_got_stuck.call_deferred()
 	else:
 		_gnome.follow_not_stuck()
