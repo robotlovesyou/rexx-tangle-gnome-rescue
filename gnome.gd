@@ -73,7 +73,7 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 				Enums.GnomeEvent.BECAME_ABANDONED:
 					_switch_to_state(GnomeWanderState.new(self))
 				Enums.GnomeEvent.BECAME_STUCK:
-					_switch_to_state(GnomeLerpFollowState.new(self))
+					_switch_to_state(GnomeStuckState.new(self))
 				Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM:
 					_switch_to_state(GnomePlatformLerpState.new(self))
 		GnomeState.StateID.FOLLOW:
@@ -84,7 +84,7 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					if _should_enter_stray():
 						_switch_to_state(GnomeStrayState.new(self))
 				Enums.GnomeEvent.BECAME_STUCK:
-					_switch_to_state(GnomeLerpFollowState.new(self))
+					_switch_to_state(GnomeStuckState.new(self))
 				Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM:
 					_switch_to_state(GnomePlatformLerpState.new(self))
 		GnomeState.StateID.STRAY:
@@ -106,6 +106,12 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 				Enums.GnomeEvent.BECAME_ABANDONED:
 					_switch_to_state(GnomeWanderState.new(self))
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
+					_switch_to_state(GnomeLerpFollowState.new(self))
+		GnomeState.StateID.STUCK:
+			match event:
+				Enums.GnomeEvent.BECAME_FREE:
+					_switch_to_state(GnomeLerpFollowState.new(self))
+				Enums.GnomeEvent.BECAME_STUCK:
 					_switch_to_state(GnomeLerpFollowState.new(self))
 		
 
@@ -169,3 +175,6 @@ func has_player_abandoned() -> float:
 
 func player_abandoned() -> void: 
 	_handle_gnome_event(Enums.GnomeEvent.BECAME_ABANDONED)
+
+func stuck_got_free():
+	_handle_gnome_event(Enums.GnomeEvent.BECAME_FREE)
