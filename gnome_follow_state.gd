@@ -16,10 +16,7 @@ func on_physics_process(_delta: float) -> void:
 	_gnome.velocity = (_frame_movement_data.position - _gnome.position) * Engine.physics_ticks_per_second
 	_gnome.move_and_slide()
 	# distance between where we ended up and where we wanted to be. use to check if gnome is stuck
-	if _gnome.position.distance_to(_frame_movement_data.position) > _gnome.movement_config.STUCK_THRESHOLD_DISTANCE:
-		_gnome.follow_got_stuck.call_deferred()
-	else:
-		_gnome.follow_not_stuck()
+	_gnome.check_stuck(_frame_movement_data.position)
 
 func on_animate(sprite: AnimatedSprite2D) -> void:
 	_animation_helper.on_animate(_frame_movement_data, sprite)

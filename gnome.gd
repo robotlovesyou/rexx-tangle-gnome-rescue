@@ -101,17 +101,22 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 			match event:
 				Enums.GnomeEvent.LANDED_ON_PLATFORM:
 					_switch_to_state(GnomePlatformIdleState.new(self))
+			match event: 
+				Enums.GnomeEvent.BECAME_STUCK:
+					_switch_to_state(GnomePlatformStuckState.new(self))
 		GnomeState.StateID.PLATFORM_IDLE:
 			match event:
 				Enums.GnomeEvent.BECAME_ABANDONED:
 					_switch_to_state(GnomeWanderState.new(self))
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
 					_switch_to_state(GnomeLerpFollowState.new(self))
+		GnomeState.StateID.PLATFORM_STUCK:
+			match event: 
+				Enums.GnomeEvent.BECAME_STUCK, Enums.GnomeEvent.BECAME_FREE:
+					_switch_to_state(GnomePlatformLerpState.new(self))
 		GnomeState.StateID.STUCK:
 			match event:
-				Enums.GnomeEvent.BECAME_FREE:
-					_switch_to_state(GnomeLerpFollowState.new(self))
-				Enums.GnomeEvent.BECAME_STUCK:
+				Enums.GnomeEvent.BECAME_FREE, Enums.GnomeEvent.BECAME_STUCK:
 					_switch_to_state(GnomeLerpFollowState.new(self))
 		
 
@@ -178,3 +183,9 @@ func player_abandoned() -> void:
 
 func stuck_got_free():
 	_handle_gnome_event(Enums.GnomeEvent.BECAME_FREE)
+
+func check_stuck(expected_position: Vector2) -> void:
+	if position.distance_to(expected_position) > movement_config.STUCK_THRESHOLD_DISTANCE:
+		follow_got_stuck.call_deferred()
+	else:
+		follow_not_stuck()

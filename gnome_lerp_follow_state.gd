@@ -35,10 +35,7 @@ func on_physics_process(_delta: float) -> void:
 
 	if _lerp_frame_count >= _lerp_frame_limit:
 		_gnome.lerp_follow_complete.call_deferred()
-	if _gnome.position.distance_to(_ideal_position) > _stuck_threshold_distance:
-		_gnome.follow_got_stuck.call_deferred()
-	else:
-		_gnome.follow_not_stuck()
+	_gnome.check_stuck(_ideal_position)
 
 func on_animate(sprite: AnimatedSprite2D) -> void:
 	_animation_helper.on_animate(_frame_movement_data, sprite)

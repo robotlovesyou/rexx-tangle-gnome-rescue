@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dn38w2ha0ewsy"]
+[gd_scene load_steps=14 format=4 uid="uid://dn38w2ha0ewsy"]
 
 [ext_resource type="PackedScene" uid="uid://bj8nksu43vylw" path="res://floor_terrain.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://bqo5wugngriaa" path="res://world.gd" id="1_tlwt5"]
@@ -41,6 +41,12 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="Curve2D" id="Curve2D_pkg7o"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -130)
+}
+point_count = 2
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_tlwt5")
 
@@ -64,7 +70,7 @@ position = Vector2(1139, 608)
 
 [node name="GnomeCatcher" type="TileMapLayer" parent="."]
 position = Vector2(1, 0)
-tile_map_data = PackedByteArray("AAAYACYAAAAAAAAAAAAZACYAAAAAAAAAAAAaACYAAAAAAAAAAAAbACYAAAAAAAAAAAAcACYAAAAAAAAAAAAdACYAAAAAAAAAAAAeACYAAAAAAAAAAAAfACYAAAAAAAAAAAAgACYAAAAAAAAAAAAhACYAAAAAAAAAAAAiACYAAAAAAAAAAAAxACYAAAAAAAAAAAA1ABcAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAYACYAAAAAAAAAAAAZACYAAAAAAAAAAAAaACYAAAAAAAAAAAAbACYAAAAAAAAAAAAcACYAAAAAAAAAAAAdACYAAAAAAAAAAAAeACYAAAAAAAAAAAAfACYAAAAAAAAAAAAgACYAAAAAAAAAAAAhACYAAAAAAAAAAAAiACYAAAAAAAAAAAAxACYAAAAAAAAAAAA1ABcAAAAAAAAAAAA1ACYAAAAAAAAAAAA1ACUAAAAAAAAAAAA1ACQAAAAAAAAAAAA1ACMAAAAAAAAAAAA1ACIAAAAAAAAAAAA1ACEAAAAAAAAAAAA1ACAAAAAAAAAAAAA1AB8AAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_pkg7o")
 
 [node name="MovingPlatform" parent="." instance=ExtResource("6_dwbse")]
@@ -76,5 +82,16 @@ curve = SubResource("Curve2D_dwbse")
 [node name="AnimatableBody2D" parent="MovingPlatform" index="1"]
 collision_layer = 4
 
+[node name="MovingPlatform2" parent="." instance=ExtResource("6_dwbse")]
+position = Vector2(881, 620)
+
+[node name="Path2D" parent="MovingPlatform2" index="0"]
+curve = SubResource("Curve2D_pkg7o")
+
+[node name="AnimatableBody2D" parent="MovingPlatform2" index="1"]
+collision_layer = 4
+collision_mask = 3
+
 [editable path="FloorTerrain"]
 [editable path="MovingPlatform"]
+[editable path="MovingPlatform2"]
