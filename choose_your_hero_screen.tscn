@@ -1,0 +1,213 @@
+[gd_scene load_steps=14 format=3 uid="uid://bpxbv6vv7cmj0"]
+
+[ext_resource type="Texture2D" uid="uid://chodoovskhqhh" path="res://walk_idle_atlas.png" id="1_qqpqe"]
+[ext_resource type="Script" uid="uid://b6cl6ndwe71cn" path="res://choose_your_hero_screen.gd" id="1_t4do2"]
+[ext_resource type="Texture2D" uid="uid://fie7prdoiky4" path="res://rexxi_walk_idle_atlas.png" id="3_4jidn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqpqe"]
+atlas = ExtResource("1_qqpqe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Animation" id="Animation_qqpqe"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RexxTexture:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32), Rect2(0, 32, 32, 32), Rect2(32, 32, 32, 32), Rect2(64, 32, 32, 32), Rect2(96, 32, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_t4do2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RexxTexture:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_4jidn"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RexxTexture:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 64, 32, 32), Rect2(32, 64, 32, 32), Rect2(64, 64, 32, 32), Rect2(96, 64, 32, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4jidn"]
+_data = {
+&"RESET": SubResource("Animation_t4do2"),
+&"idle": SubResource("Animation_4jidn"),
+&"walk": SubResource("Animation_qqpqe")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfvkn"]
+atlas = ExtResource("3_4jidn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Animation" id="Animation_v588i"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RexxiTexture:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32), Rect2(0, 32, 32, 32), Rect2(32, 32, 32, 32), Rect2(64, 32, 32, 32), Rect2(96, 32, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_g3sbn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RexxiTexture:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_f4ivv"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RexxiTexture:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 64, 32, 32), Rect2(32, 64, 32, 32), Rect2(64, 64, 32, 32), Rect2(96, 64, 32, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xfowv"]
+_data = {
+&"RESET": SubResource("Animation_g3sbn"),
+&"idle": SubResource("Animation_f4ivv"),
+&"walk": SubResource("Animation_v588i")
+}
+
+[node name="ChooseYourHeroScreen" type="Control" node_paths=PackedStringArray("rexx_button", "rexx_player", "player_description", "rexxi_player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t4do2")
+rexx_button = NodePath("OuterContainer/VBoxContainer/MenuRowContainer/RexxContainer/RexxButton")
+rexx_player = NodePath("OuterContainer/VBoxContainer/MenuRowContainer/RexxContainer/RexxPlayer")
+player_description = NodePath("OuterContainer/VBoxContainer/DescriptorLabel")
+rexx_description = "Our intrepid hero"
+rexxi_player = NodePath("OuterContainer/VBoxContainer/MenuRowContainer/RexxiContainer/RexxiPlayer")
+rexxi_description = "Our intrepid hero, but with a bow. Isn't it pretty!"
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="OuterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OuterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MenuRowContainer" type="HBoxContainer" parent="OuterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RexxContainer" type="VBoxContainer" parent="OuterContainer/VBoxContainer/MenuRowContainer"]
+layout_mode = 2
+
+[node name="RexxTexture" type="TextureRect" parent="OuterContainer/VBoxContainer/MenuRowContainer/RexxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = SubResource("AtlasTexture_qqpqe")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="RexxPlayer" type="AnimationPlayer" parent="OuterContainer/VBoxContainer/MenuRowContainer/RexxContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_4jidn")
+}
+
+[node name="RexxButton" type="Button" parent="OuterContainer/VBoxContainer/MenuRowContainer/RexxContainer"]
+layout_mode = 2
+text = "Rexx Tangle
+"
+
+[node name="RexxiContainer" type="VBoxContainer" parent="OuterContainer/VBoxContainer/MenuRowContainer"]
+layout_mode = 2
+
+[node name="RexxiTexture" type="TextureRect" parent="OuterContainer/VBoxContainer/MenuRowContainer/RexxiContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = SubResource("AtlasTexture_mfvkn")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="RexxiPlayer" type="AnimationPlayer" parent="OuterContainer/VBoxContainer/MenuRowContainer/RexxiContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_xfowv")
+}
+
+[node name="RexxiButton" type="Button" parent="OuterContainer/VBoxContainer/MenuRowContainer/RexxiContainer"]
+layout_mode = 2
+text = "Rexxi Tangle"
+
+[node name="DescriptorLabel" type="Label" parent="OuterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+text = "Hero Description"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="focus_entered" from="OuterContainer/VBoxContainer/MenuRowContainer/RexxContainer/RexxButton" to="." method="_on_rexx_button_focus_entered"]
+[connection signal="focus_entered" from="OuterContainer/VBoxContainer/MenuRowContainer/RexxiContainer/RexxiButton" to="." method="_on_rexxi_button_focus_entered"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://b32ptwvo8bbye"]
+
+[ext_resource type="Script" uid="uid://iwkycdaw1e8" path="res://launch_menu_screen.gd" id="1_4y2q8"]
+[ext_resource type="PackedScene" uid="uid://bpxbv6vv7cmj0" path="res://choose_your_hero_screen.tscn" id="2_8f3ja"]
+
+[node name="LaunchMenuScreen" type="Control" node_paths=PackedStringArray("first_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4y2q8")
+first_button = NodePath("OuterContainer/MenuStackContainer/NewGameButton")
+next_screen = ExtResource("2_8f3ja")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="OuterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuStackContainer" type="VBoxContainer" parent="OuterContainer"]
+layout_mode = 2
+
+[node name="NewGameButton" type="Button" parent="OuterContainer/MenuStackContainer"]
+layout_mode = 2
+text = "NEW GAME"
+
+[node name="QuitButton" type="Button" parent="OuterContainer/MenuStackContainer"]
+layout_mode = 2
+text = "QUIT TO DESKTOP"
+
+[connection signal="pressed" from="OuterContainer/MenuStackContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="OuterContainer/MenuStackContainer/QuitButton" to="." method="_on_quit_button_pressed"]

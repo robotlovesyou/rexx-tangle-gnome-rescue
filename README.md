@@ -2,6 +2,8 @@
 
 # TO DO
 
+* Add a fade between the menu screens
+* Switch to using file scenes instead of packed scenes
 * Gnomes need better abandonment detection. 
 * Gnomes may need better idle behaviour.
 * Idling gnomes should switch to wander after a time. 
