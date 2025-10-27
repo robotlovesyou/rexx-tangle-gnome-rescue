@@ -24,6 +24,8 @@ PMonitor="*res://player_monitor.gd"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=800
 window/stretch/scale=2.0
 
 [global_group]
