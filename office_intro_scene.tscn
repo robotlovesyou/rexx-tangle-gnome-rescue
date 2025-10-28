@@ -124,22 +124,6 @@ sources/0 = SubResource("TileSetAtlasSource_gbj7c")
 atlas = ExtResource("6_53ijw")
 region = Rect2(13, 284, 22, 24)
 
-[sub_resource type="Animation" id="Animation_gbj7c"]
-resource_name = "rexx_enters_stage_left"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CutsceneRexx:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-16, 368), Vector2(368, 368)]
-}
-
 [sub_resource type="Animation" id="Animation_qyf7s"]
 length = 0.001
 tracks/0/type = "value"
@@ -157,7 +141,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("NinePatchRect:visible")
+tracks/1/path = NodePath("CenterContainer/NinePatchRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -169,26 +153,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("NinePatchRect:size")
+tracks/2/path = NodePath("CenterContainer/NinePatchRect/Label:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(6, 6)]
+"update": 1,
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("NinePatchRect/Label:visible")
+tracks/3/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(172, 220)]
 }
 
 [sub_resource type="Animation" id="Animation_53ijw"]
@@ -197,7 +181,7 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("NinePatchRect:visible")
+tracks/0/path = NodePath("CenterContainer/NinePatchRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -209,26 +193,42 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("NinePatchRect:size")
+tracks/1/path = NodePath("CenterContainer/NinePatchRect/Label:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.01, 0.5),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(6, 6), Vector2(171, 212)]
+"update": 1,
+"values": [false, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("NinePatchRect/Label:visible")
+tracks/2/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"update": 0,
+"values": [Vector2(6, 6), Vector2(172, 220)]
+}
+
+[sub_resource type="Animation" id="Animation_gbj7c"]
+resource_name = "rexx_enters_stage_left"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutsceneRexx:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-16, 368), Vector2(368, 368)]
 }
 
 [sub_resource type="Animation" id="Animation_u6t2v"]
@@ -249,7 +249,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("NinePatchRect/Label:visible")
+tracks/1/path = NodePath("CenterContainer/NinePatchRect/Label:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -261,7 +261,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("NinePatchRect:visible")
+tracks/2/path = NodePath("CenterContainer/NinePatchRect:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -273,14 +273,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("NinePatchRect:size")
+tracks/3/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(171, 212), Vector2(6, 6)]
+"values": [Vector2(172, 220), Vector2(6, 6)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_53ijw"]
@@ -325,19 +325,25 @@ color = Color(0, 0, 0, 1)
 tile_map_data = PackedByteArray("AAAAABgAAAADAAMAAAAAABcAAAADAAIAAAAAABYAAAADAAIAAAAAABUAAAADAAIAAAAAABQAAAADAAEAAAAnABgAAAADAAMAAAAnABcAAAADAAIAAAAnABYAAAADAAIAAAAnABUAAAADAAIAAAAnABQAAAADAAEAAAAmABQAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_qyf7s")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 576.0
+offset_bottom = 336.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer"]
 visible = false
-offset_left = 332.0
-offset_top = 103.0
-offset_right = 338.0
-offset_bottom = 109.0
+custom_minimum_size = Vector2(172, 220)
+layout_mode = 2
 texture = SubResource("AtlasTexture_u6t2v")
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="Label" type="Label" parent="NinePatchRect"]
+[node name="Label" type="Label" parent="CenterContainer/NinePatchRect"]
 visible = false
 layout_mode = 0
 offset_left = 5.0
