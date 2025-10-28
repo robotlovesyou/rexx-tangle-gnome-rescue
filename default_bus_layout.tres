@@ -1,0 +1,34 @@
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://b375kt25cr6s8"]
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
+resource_name = "HighPassFilter"
+cutoff_hz = 1231.0
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
+resource_name = "LowPassFilter"
+cutoff_hz = 11352.0
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
+resource_name = "Distortion"
+drive = 0.15
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+room_size = 0.5
+hipass = 0.81
+
+[resource]
+bus/1/name = &"Lobby"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectHighPassFilter_j3pel")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectLowPassFilter_j3pel")
+bus/1/effect/1/enabled = true
+bus/1/effect/2/effect = SubResource("AudioEffectDistortion_j3pel")
+bus/1/effect/2/enabled = true
+bus/1/effect/3/effect = SubResource("AudioEffectReverb_j3pel")
+bus/1/effect/3/enabled = true

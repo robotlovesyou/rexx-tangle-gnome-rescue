@@ -22,3 +22,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		"open_text_dialog":
 			rexx.walk()
 			animation_player.play("rexx_exits_stage_right")
+		"rexx_exits_stage_right":
+			rexx.idle()

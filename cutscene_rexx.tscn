@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm3ja0664tlao"]
+[gd_scene load_steps=12 format=3 uid="uid://cm3ja0664tlao"]
 
 [ext_resource type="Script" uid="uid://bar570enundq2" path="res://cutscene_rexx.gd" id="1_peqok"]
+[ext_resource type="AudioStream" uid="uid://chjke586dxxd8" path="res://PitterPatter1.wav" id="2_eypla"]
 [ext_resource type="Texture2D" uid="uid://chodoovskhqhh" path="res://walk_idle_atlas.png" id="2_v8j72"]
+[ext_resource type="AudioStream" uid="uid://cbwioo434s4af" path="res://PitterPatter2.wav" id="3_bakug"]
+[ext_resource type="AudioStream" uid="uid://yctsc565lap2" path="res://PitterPatter3.wav" id="4_f6lok"]
+[ext_resource type="AudioStream" uid="uid://dtiircku5ee2r" path="res://PitterPatter4.wav" id="5_fwcon"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dj42s"]
 atlas = ExtResource("2_v8j72")
@@ -9,6 +13,7 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="Animation" id="Animation_fok4y"]
 resource_name = "walk"
+length = 0.7
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -17,7 +22,7 @@ tracks/0/path = NodePath("Sprite2D:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
+"times": PackedFloat32Array(0, 0.0875, 0.175, 0.2625, 0.35, 0.4375, 0.525, 0.6125),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32), Rect2(0, 32, 32, 32), Rect2(32, 32, 32, 32), Rect2(64, 32, 32, 32), Rect2(96, 32, 32, 32)]
@@ -62,9 +67,11 @@ _data = {
 &"walk": SubResource("Animation_fok4y")
 }
 
-[node name="CutsceneRexx" type="Node2D" node_paths=PackedStringArray("animation_player")]
+[node name="CutsceneRexx" type="Node2D" node_paths=PackedStringArray("animation_player", "pitter_patter_player")]
 script = ExtResource("1_peqok")
 animation_player = NodePath("AnimationPlayer")
+pitter_patter = Array[AudioStreamWAV]([ExtResource("2_eypla"), ExtResource("3_bakug"), ExtResource("4_f6lok"), ExtResource("5_fwcon")])
+pitter_patter_player = NodePath("PitterPatterPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_dj42s")
@@ -74,3 +81,10 @@ flip_h = true
 libraries = {
 &"": SubResource("AnimationLibrary_f6lok")
 }
+
+[node name="RexxEars" type="AudioListener2D" parent="."]
+current = true
+
+[node name="PitterPatterPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="finished" from="PitterPatterPlayer" to="." method="_on_pitter_patter_player_finished"]
