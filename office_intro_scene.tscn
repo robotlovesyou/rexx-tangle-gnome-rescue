@@ -356,9 +356,9 @@ theme_override_font_sizes/normal_font_size = 13
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
 text = "Good morning Mr Tangle. Welcome to [rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Gnomon Inc[/rainbow]. Please proceed through the door behind me to commence training as a 
-[b][color=#25255C]G[/color][/b]nome
-[b][color=#25255C]I[/color][/b]ntervention
-[b][color=#25255C]T[/color][/b]echnician. "
+[b][u][color=#25255C]G[/color][/u][/b]nome
+[b][u][color=#25255C]I[/color][/u][/b]ntervention
+[b][u][color=#25255C]T[/color][/u][/b]echnician. "
 
 [node name="MuzakPlayer" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(400, 368)

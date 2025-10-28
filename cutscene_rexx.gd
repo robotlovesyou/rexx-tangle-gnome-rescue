@@ -7,8 +7,8 @@ extends Node2D
 
 const MIN_PITCH := 1.4
 const MAX_PITCH := 1.6
-const MIN_VOLUME := -6.5
-const MAX_VOLUME := -3.5
+const MIN_VOLUME := -12.5
+const MAX_VOLUME := -9.5
 
 var _is_playing_pitter_patter: bool = false
 
