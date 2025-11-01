@@ -1,0 +1,91 @@
+[gd_scene load_steps=15 format=3 uid="uid://bi8c7unur6o3r"]
+
+[ext_resource type="Script" uid="uid://cvsupf734h3l5" path="res://office_intro_scene_v_2.gd" id="1_34rlo"]
+[ext_resource type="Script" uid="uid://d0e7ejqkfgg3x" path="res://outline.gd" id="2_wpj6i"]
+[ext_resource type="Texture2D" uid="uid://dwveg04727ykm" path="res://RexxArt/office_intro_far_background.png" id="3_qot5g"]
+[ext_resource type="Texture2D" uid="uid://d063wl75s2kuu" path="res://RexxArt/office_intro_skybox.png" id="3_sx04i"]
+[ext_resource type="Texture2D" uid="uid://c7dmq56c75tn1" path="res://RexxArt/office_intro_background.png" id="4_qot5g"]
+[ext_resource type="Texture2D" uid="uid://cv4espwhax5fk" path="res://RexxArt/office_intro_path.png" id="6_u1d18"]
+[ext_resource type="Texture2D" uid="uid://by8fuhmkwx6x5" path="res://RexxArt/office_intro_gnomon_interior.png" id="7_w4int"]
+[ext_resource type="Texture2D" uid="uid://vn3blowkm1vc" path="res://RexxArt/office_intro_plant_a.png" id="8_4l6wy"]
+[ext_resource type="Texture2D" uid="uid://dx1xx0i38ir1x" path="res://RexxArt/office_intro_plant_b.png" id="9_rv5hs"]
+[ext_resource type="Texture2D" uid="uid://cnkttrt4at5y5" path="res://RexxArt/office_intro_desk.png" id="10_8yugd"]
+[ext_resource type="PackedScene" uid="uid://d2uvdk8xc7job" path="res://receptionist.tscn" id="10_nctpv"]
+[ext_resource type="Texture2D" uid="uid://cw4wrxrw41lda" path="res://RexxArt/office_intro_interior_door.png" id="11_rv5hs"]
+[ext_resource type="Texture2D" uid="uid://demy7ni7t02kc" path="res://RexxArt/office_intro_gnomon_exterior.png" id="12_8yugd"]
+[ext_resource type="PackedScene" uid="uid://cm3ja0664tlao" path="res://cutscene_rexx.tscn" id="14_2ei2f"]
+
+[node name="OfficeIntroSceneV2" type="Node2D"]
+script = ExtResource("1_34rlo")
+
+[node name="Skybox" type="Sprite2D" parent="."]
+scale = Vector2(80, 25)
+texture = ExtResource("3_sx04i")
+centered = false
+
+[node name="FarBackground" type="Parallax2D" parent="."]
+
+[node name="Clouds" type="Sprite2D" parent="FarBackground"]
+texture = ExtResource("3_qot5g")
+centered = false
+
+[node name="Background" type="Parallax2D" parent="."]
+
+[node name="Hills" type="Sprite2D" parent="Background"]
+texture = ExtResource("4_qot5g")
+centered = false
+
+[node name="Outline" type="Node2D" parent="."]
+visible = false
+script = ExtResource("2_wpj6i")
+
+[node name="Path" type="Sprite2D" parent="."]
+position = Vector2(0, 384)
+texture = ExtResource("6_u1d18")
+centered = false
+
+[node name="GnomonInterior" type="Sprite2D" parent="."]
+position = Vector2(640, 224)
+texture = ExtResource("7_w4int")
+centered = false
+
+[node name="PlantA" type="Sprite2D" parent="."]
+position = Vector2(896, 352)
+texture = ExtResource("8_4l6wy")
+centered = false
+
+[node name="PlantB" type="Sprite2D" parent="."]
+position = Vector2(736, 352)
+texture = ExtResource("9_rv5hs")
+centered = false
+
+[node name="Receptionist" parent="." instance=ExtResource("10_nctpv")]
+position = Vector2(1024, 368)
+
+[node name="Desk" type="Sprite2D" parent="."]
+position = Vector2(992, 368)
+texture = ExtResource("10_8yugd")
+centered = false
+
+[node name="InteriorDoor" type="Sprite2D" parent="."]
+position = Vector2(1264, 304)
+scale = Vector2(1.0666667, 1)
+texture = ExtResource("11_rv5hs")
+centered = false
+
+[node name="GnomonExterior" type="Sprite2D" parent="."]
+position = Vector2(624, 192)
+texture = ExtResource("12_8yugd")
+centered = false
+
+[node name="Label" type="Label" parent="GnomonExterior"]
+offset_left = 58.0
+offset_top = 50.0
+offset_right = 326.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Gnomon Inc."
+
+[node name="CutsceneRexx" parent="." instance=ExtResource("14_2ei2f")]
+position = Vector2(16, 368)
