@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=4 uid="uid://bq4x3vy4q4bm8"]
+[gd_scene load_steps=15 format=4 uid="uid://bq4x3vy4q4bm8"]
 
 [ext_resource type="Script" uid="uid://d0e7ejqkfgg3x" path="res://outline.gd" id="1_mguca"]
 [ext_resource type="PackedScene" uid="uid://d2uvdk8xc7job" path="res://receptionist.tscn" id="1_o8pjn"]
 [ext_resource type="Script" uid="uid://dpyrqs3230hl8" path="res://office_intro_scene.gd" id="1_qyf7s"]
 [ext_resource type="Texture2D" uid="uid://c4rr7qe8enle5" path="res://Industrial_Tileset_1D_16.png" id="3_71efp"]
 [ext_resource type="PackedScene" uid="uid://cm3ja0664tlao" path="res://cutscene_rexx.tscn" id="4_gbj7c"]
-[ext_resource type="Texture2D" uid="uid://4bxgew5bs8ht" path="res://Modern_UI_Style_2.png" id="6_53ijw"]
+[ext_resource type="PackedScene" uid="uid://b8bkw4qsyvw48" path="res://office_intro_dialog.tscn" id="6_u6t2v"]
 [ext_resource type="AudioStream" uid="uid://cutmykwce6ilq" path="res://lobby_music.wav" id="7_u6t2v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbj7c"]
@@ -121,10 +121,6 @@ terrain_set_0/terrain_0/name = "Office"
 terrain_set_0/terrain_0/color = Color(0.9471124, 0.024951462, 0.41367528, 1)
 sources/0 = SubResource("TileSetAtlasSource_gbj7c")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u6t2v"]
-atlas = ExtResource("6_53ijw")
-region = Rect2(13, 284, 22, 24)
-
 [sub_resource type="Animation" id="Animation_qyf7s"]
 length = 0.001
 tracks/0/type = "value"
@@ -142,7 +138,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CenterContainer/NinePatchRect:visible")
+tracks/1/path = NodePath("OfficeIntroDialog/NinePatchRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -154,7 +150,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
+tracks/2/path = NodePath("OfficeIntroDialog/NinePatchRect:custom_minimum_size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -166,7 +162,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CenterContainer/NinePatchRect/RichTextLabel:visible")
+tracks/3/path = NodePath("OfficeIntroDialog/NinePatchRect/RichTextLabel:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -182,7 +178,7 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CenterContainer/NinePatchRect:visible")
+tracks/0/path = NodePath("OfficeIntroDialog/NinePatchRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -194,7 +190,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
+tracks/1/path = NodePath("OfficeIntroDialog/NinePatchRect:custom_minimum_size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -206,7 +202,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer/NinePatchRect/RichTextLabel:visible")
+tracks/2/path = NodePath("OfficeIntroDialog/NinePatchRect/RichTextLabel:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -250,7 +246,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CenterContainer/NinePatchRect:visible")
+tracks/1/path = NodePath("OfficeIntroDialog/NinePatchRect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -262,7 +258,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
+tracks/2/path = NodePath("OfficeIntroDialog/NinePatchRect:custom_minimum_size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -274,7 +270,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CenterContainer/NinePatchRect/RichTextLabel:visible")
+tracks/3/path = NodePath("OfficeIntroDialog/NinePatchRect/RichTextLabel:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -326,39 +322,7 @@ color = Color(0, 0, 0, 1)
 tile_map_data = PackedByteArray("AAAAABgAAAADAAMAAAAAABcAAAADAAIAAAAAABYAAAADAAIAAAAAABUAAAADAAIAAAAAABQAAAADAAEAAAAnABgAAAADAAMAAAAnABcAAAADAAIAAAAnABYAAAADAAIAAAAnABUAAAADAAIAAAAnABQAAAADAAEAAAAmABQAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_qyf7s")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-offset_left = 384.0
-offset_top = 128.0
-offset_right = 576.0
-offset_bottom = 336.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer"]
-visible = false
-custom_minimum_size = Vector2(172, 220)
-layout_mode = 2
-texture = SubResource("AtlasTexture_u6t2v")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/NinePatchRect"]
-visible = false
-layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 166.0
-offset_bottom = 208.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 13
-theme_override_font_sizes/bold_font_size = 18
-bbcode_enabled = true
-text = "Good morning Mr Tangle. Welcome to [rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Gnomon Inc[/rainbow]. Please proceed through the door behind me to commence training as a 
-[b][u][color=#25255C]G[/color][/u][/b]nome
-[b][u][color=#25255C]I[/color][/u][/b]ntervention
-[b][u][color=#25255C]T[/color][/u][/b]echnician. "
+[node name="OfficeIntroDialog" parent="." instance=ExtResource("6_u6t2v")]
 
 [node name="MuzakPlayer" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(400, 368)

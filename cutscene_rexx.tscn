@@ -87,4 +87,12 @@ current = true
 
 [node name="PitterPatterPlayer" type="AudioStreamPlayer2D" parent="."]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 400
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
+
 [connection signal="finished" from="PitterPatterPlayer" to="." method="_on_pitter_patter_player_finished"]
