@@ -76,12 +76,9 @@ tracks/2/path = NodePath("ExteriorPneumaticDoor")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3, 4, 11.1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(3, 4),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [],
-"method": &"play_door_sound"
-}, {
 "args": [],
 "method": &"play_door_sound"
 }, {
@@ -148,6 +145,20 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("InteriorPneumaticDoor")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(11.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_door_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_8fop7"]
@@ -345,10 +356,19 @@ theme_override_font_sizes/font_size = 24
 text = "Gnomon Inc."
 
 [node name="ExteriorPneumaticDoor" type="Node2D" parent="." node_paths=PackedStringArray("audio_player")]
+position = Vector2(640, 336)
 script = ExtResource("15_8fop7")
 audio_player = NodePath("AudioStreamPlayer2D")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="ExteriorPneumaticDoor"]
+stream = ExtResource("16_yd6wp")
+
+[node name="InteriorPneumaticDoor" type="Node2D" parent="." node_paths=PackedStringArray("audio_player")]
+position = Vector2(1280, 352)
+script = ExtResource("15_8fop7")
+audio_player = NodePath("AudioStreamPlayer2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="InteriorPneumaticDoor"]
 stream = ExtResource("16_yd6wp")
 
 [node name="MuzakPlayer" type="Node2D" parent="."]
