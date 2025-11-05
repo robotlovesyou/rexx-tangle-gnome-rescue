@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dtiircku5ee2r"
-path="res://.godot/imported/PitterPatter4.wav-6402b42fbab446a2ee2c4420fbe3b010.sample"
+path="res://.godot/imported/PitterPatter4.wav-a716693a8937e6ed5977a648ddc21867.sample"
 
 [deps]
 
-source_file="res://PitterPatter4.wav"
-dest_files=["res://.godot/imported/PitterPatter4.wav-6402b42fbab446a2ee2c4420fbe3b010.sample"]
+source_file="res://Sounds/FX/PitterPatter4.wav"
+dest_files=["res://.godot/imported/PitterPatter4.wav-a716693a8937e6ed5977a648ddc21867.sample"]
 
 [params]
 

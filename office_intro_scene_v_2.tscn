@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bi8c7unur6o3r"]
+[gd_scene load_steps=24 format=3 uid="uid://bi8c7unur6o3r"]
 
 [ext_resource type="Script" uid="uid://cvsupf734h3l5" path="res://office_intro_scene_v_2.gd" id="1_34rlo"]
 [ext_resource type="Script" uid="uid://d0e7ejqkfgg3x" path="res://outline.gd" id="2_wpj6i"]
@@ -15,9 +15,88 @@
 [ext_resource type="Texture2D" uid="uid://demy7ni7t02kc" path="res://RexxArt/office_intro_gnomon_exterior.png" id="12_8yugd"]
 [ext_resource type="PackedScene" uid="uid://cm3ja0664tlao" path="res://cutscene_rexx.tscn" id="14_2ei2f"]
 [ext_resource type="Script" uid="uid://d2iuoy4yw53o6" path="res://exterior_pneumatic_door.gd" id="15_8fop7"]
-[ext_resource type="AudioStream" uid="uid://bvfxby006qnp3" path="res://pneumatic_door.wav" id="16_yd6wp"]
-[ext_resource type="AudioStream" uid="uid://cutmykwce6ilq" path="res://lobby_music.wav" id="17_rpqhv"]
+[ext_resource type="AudioStream" uid="uid://bvfxby006qnp3" path="res://Sounds/FX/pneumatic_door.wav" id="16_yd6wp"]
+[ext_resource type="AudioStream" uid="uid://cutmykwce6ilq" path="res://Sounds/Music/lobby_music.wav" id="17_rpqhv"]
 [ext_resource type="Texture2D" uid="uid://4bxgew5bs8ht" path="res://Modern_UI_Style_2.png" id="18_laa64"]
+[ext_resource type="AudioStream" uid="uid://dmx0nvlowbsa1" path="res://Sounds/FX/ Birbs.wav" id="19_1i8h8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1i8h8"]
+size = Vector2(730, 160)
+
+[sub_resource type="Animation" id="Animation_8fop7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutsceneRexx:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 368)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GnomonExterior:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GnomonExterior:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OfficeIntroDialogContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OfficeIntroDialogContainer/NinePatchRect:custom_minimum_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 6)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OfficeIntroDialogContainer/NinePatchRect/RichTextLabel:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_2ei2f"]
 resource_name = "rexx_enters_stage_left"
@@ -161,90 +240,16 @@ tracks/8/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_8fop7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CutsceneRexx:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(16, 368)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GnomonExterior:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GnomonExterior:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("OfficeIntroDialogContainer:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("OfficeIntroDialogContainer/NinePatchRect:custom_minimum_size")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(6, 6)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("OfficeIntroDialogContainer/NinePatchRect/RichTextLabel:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yd6wp"]
 _data = {
 &"RESET": SubResource("Animation_8fop7"),
 &"rexx_enters_stage_left": SubResource("Animation_2ei2f")
 }
 
-[node name="OfficeIntroSceneV2" type="Node2D" node_paths=PackedStringArray("animation_player")]
+[node name="OfficeIntroSceneV2" type="Node2D" node_paths=PackedStringArray("animation_player", "birb_player")]
 script = ExtResource("1_34rlo")
 animation_player = NodePath("AnimationPlayer")
+birb_player = NodePath("BirbPlayer")
 
 [node name="Skybox" type="Sprite2D" parent="."]
 scale = Vector2(80, 25)
@@ -278,6 +283,13 @@ centered = false
 position = Vector2(640, 224)
 texture = ExtResource("7_w4int")
 centered = false
+
+[node name="MuffleExteriorSoundsArea" type="Area2D" parent="GnomonInterior"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GnomonInterior/MuffleExteriorSoundsArea"]
+position = Vector2(366, 80)
+shape = SubResource("RectangleShape2D_1i8h8")
 
 [node name="PlantA" type="Sprite2D" parent="."]
 position = Vector2(896, 352)
@@ -352,8 +364,8 @@ offset_top = 50.0
 offset_right = 326.0
 offset_bottom = 84.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-text = "Gnomon Inc."
+theme_override_font_sizes/font_size = 20
+text = "Gnomon Inc. G.I.T. Training"
 
 [node name="ExteriorPneumaticDoor" type="Node2D" parent="." node_paths=PackedStringArray("audio_player")]
 position = Vector2(640, 336)
@@ -382,7 +394,15 @@ max_distance = 368.0
 attenuation = 3.0314333
 bus = &"Lobby"
 
+[node name="BirbPlayer" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(682, 242)
+stream = ExtResource("19_1i8h8")
+autoplay = true
+bus = &"Outside"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_yd6wp")
 }
+
+[connection signal="area_entered" from="GnomonInterior/MuffleExteriorSoundsArea" to="." method="_on_muffle_exterior_sounds_area_area_entered"]

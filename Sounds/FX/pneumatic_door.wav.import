@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bvfxby006qnp3"
-path="res://.godot/imported/pneumatic_door.wav-c76632fa395640d6bf6e66eb223ce062.sample"
+path="res://.godot/imported/pneumatic_door.wav-6db9cf6d001d1d2fa7a61f11fd4a8c63.sample"
 
 [deps]
 
-source_file="res://pneumatic_door.wav"
-dest_files=["res://.godot/imported/pneumatic_door.wav-c76632fa395640d6bf6e66eb223ce062.sample"]
+source_file="res://Sounds/FX/pneumatic_door.wav"
+dest_files=["res://.godot/imported/pneumatic_door.wav-6db9cf6d001d1d2fa7a61f11fd4a8c63.sample"]
 
 [params]
 
