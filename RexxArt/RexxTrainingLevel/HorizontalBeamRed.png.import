@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7dmq56c75tn1"
-path="res://.godot/imported/office_intro_background.png-09d798dc8e162c9c4f3938f746e96348.ctex"
+uid="uid://1vlflq856bcb"
+path="res://.godot/imported/HorizontalBeamRed.png-6e6d95e1aa3881b637a5458f88413a72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RexxArt/office_intro_background.png"
-dest_files=["res://.godot/imported/office_intro_background.png-09d798dc8e162c9c4f3938f746e96348.ctex"]
+source_file="res://RexxArt/RexxTrainingLevel/HorizontalBeamRed.png"
+dest_files=["res://.godot/imported/HorizontalBeamRed.png-6e6d95e1aa3881b637a5458f88413a72.ctex"]
 
 [params]
 

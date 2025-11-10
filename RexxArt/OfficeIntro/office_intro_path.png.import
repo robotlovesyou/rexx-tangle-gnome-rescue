@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwveg04727ykm"
-path="res://.godot/imported/office_intro_far_background.png-d439831342cee564cd0decaa9d7ccec0.ctex"
+uid="uid://cv4espwhax5fk"
+path="res://.godot/imported/office_intro_path.png-d73453e6c89ee7a3c2d4cc2a7d81d0c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RexxArt/office_intro_far_background.png"
-dest_files=["res://.godot/imported/office_intro_far_background.png-d439831342cee564cd0decaa9d7ccec0.ctex"]
+source_file="res://RexxArt/OfficeIntro/office_intro_path.png"
+dest_files=["res://.godot/imported/office_intro_path.png-d73453e6c89ee7a3c2d4cc2a7d81d0c7.ctex"]
 
 [params]
 

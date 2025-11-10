@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv4espwhax5fk"
-path="res://.godot/imported/office_intro_path.png-65881ddb23fe6b54f65eb19fc31768e2.ctex"
+uid="uid://cb08ieuhtc37i"
+path="res://.godot/imported/FarBackgroundBuilding.png-4ee3aa5c3a6b251e41abffb8d8537772.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RexxArt/office_intro_path.png"
-dest_files=["res://.godot/imported/office_intro_path.png-65881ddb23fe6b54f65eb19fc31768e2.ctex"]
+source_file="res://RexxArt/RexxTrainingLevel/FarBackgroundBuilding.png"
+dest_files=["res://.godot/imported/FarBackgroundBuilding.png-4ee3aa5c3a6b251e41abffb8d8537772.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://demy7ni7t02kc"
-path="res://.godot/imported/office_intro_gnomon_exterior.png-ce83e48c944ddb73c60ae3b4c69023ec.ctex"
+uid="uid://cnkttrt4at5y5"
+path="res://.godot/imported/office_intro_desk.png-e7ea4b497c25db40c5c1b43a5e3d85dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RexxArt/office_intro_gnomon_exterior.png"
-dest_files=["res://.godot/imported/office_intro_gnomon_exterior.png-ce83e48c944ddb73c60ae3b4c69023ec.ctex"]
+source_file="res://RexxArt/OfficeIntro/office_intro_desk.png"
+dest_files=["res://.godot/imported/office_intro_desk.png-e7ea4b497c25db40c5c1b43a5e3d85dc.ctex"]
 
 [params]
 

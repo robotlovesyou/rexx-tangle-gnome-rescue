@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx1xx0i38ir1x"
-path="res://.godot/imported/office_intro_plant_b.png-4044a87c15739c1884edb2b1864f1b8e.ctex"
+uid="uid://kmdvo3o0h8qv"
+path="res://.godot/imported/UntitledArtwork21.png-ca49eb867175dea30605a3eb86c74ea6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RexxArt/office_intro_plant_b.png"
-dest_files=["res://.godot/imported/office_intro_plant_b.png-4044a87c15739c1884edb2b1864f1b8e.ctex"]
+source_file="res://RexxArt/RexxTrainingLevel/UntitledArtwork21.png"
+dest_files=["res://.godot/imported/UntitledArtwork21.png-ca49eb867175dea30605a3eb86c74ea6.ctex"]
 
 [params]
 
