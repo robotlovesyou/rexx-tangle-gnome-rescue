@@ -1,0 +1,326 @@
+[gd_scene load_steps=14 format=4 uid="uid://blsgxl7huyf5s"]
+
+[ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://training_level.gd" id="1_qwhf2"]
+[ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://player.tscn" id="2_bk3u3"]
+[ext_resource type="Texture2D" uid="uid://dshkqrm7map16" path="res://RexxArt/RexxTrainingLevel/training_level_atlas.png" id="3_bk3u3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk3u3"]
+texture = ExtResource("3_bk3u3")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0/terrains_peering_bit/right_side = 0
+4:0/0 = 0
+4:0/0/terrain_set = 0
+4:0/0/terrain = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0/terrains_peering_bit/right_side = 0
+4:0/0/terrains_peering_bit/left_side = 0
+5:0/0 = 0
+5:0/0/terrain_set = 0
+5:0/0/terrain = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0/terrains_peering_bit/left_side = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+5:5/0 = 0
+5:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_x7iho"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "YellowFloor"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/2 = SubResource("TileSetAtlasSource_bk3u3")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgroy"]
+texture = ExtResource("3_bk3u3")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0/terrains_peering_bit/right_side = 0
+4:1/0 = 0
+4:1/0/terrain_set = 0
+4:1/0/terrain = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0/terrains_peering_bit/right_side = 0
+4:1/0/terrains_peering_bit/left_side = 0
+5:1/0 = 0
+5:1/0/terrain_set = 0
+5:1/0/terrain = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0/terrains_peering_bit/left_side = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+5:5/0 = 0
+5:6/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xrid1"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "RedFloor"
+terrain_set_0/terrain_0/color = Color(0.18666747, 0.33690146, 0.79446703, 1)
+sources/0 = SubResource("TileSetAtlasSource_fgroy")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x7iho"]
+texture = ExtResource("3_bk3u3")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0/terrains_peering_bit/right_side = 0
+4:2/0 = 0
+4:2/0/terrain_set = 0
+4:2/0/terrain = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0/terrains_peering_bit/right_side = 0
+4:2/0/terrains_peering_bit/left_side = 0
+5:2/0 = 0
+5:2/0/terrain_set = 0
+5:2/0/terrain = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:2/0/terrains_peering_bit/left_side = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+5:5/0 = 0
+5:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bk3u3"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "GreenFloor"
+terrain_set_0/terrain_0/color = Color(0.16947395, 0.29727542, 0.88323724, 1)
+sources/0 = SubResource("TileSetAtlasSource_x7iho")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xrid1"]
+texture = ExtResource("3_bk3u3")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+3:3/0/terrain_set = 0
+3:3/0/terrain = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0/terrains_peering_bit/right_side = 0
+4:3/0 = 0
+4:3/0/terrain_set = 0
+4:3/0/terrain = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:3/0/terrains_peering_bit/right_side = 0
+4:3/0/terrains_peering_bit/left_side = 0
+5:3/0 = 0
+5:3/0/terrain_set = 0
+5:3/0/terrain = 0
+5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:3/0/terrains_peering_bit/left_side = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+5:5/0 = 0
+5:6/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6d1lw"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "BlueFloor"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_xrid1")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6d1lw"]
+texture = ExtResource("3_bk3u3")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+4:4/0/terrain_set = 0
+4:4/0/terrain = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:4/0 = 0
+5:4/0/terrain_set = 0
+5:4/0/terrain = 0
+5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:4/0/terrains_peering_bit/bottom_side = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+5:5/0 = 0
+5:5/0/terrain_set = 0
+5:5/0/terrain = 0
+5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:5/0/terrains_peering_bit/bottom_side = 0
+5:5/0/terrains_peering_bit/top_side = 0
+5:6/0 = 0
+5:6/0/terrain_set = 0
+5:6/0/terrain = 0
+5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:6/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSet" id="TileSet_xs5uq"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 3
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Girder"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_6d1lw")
+
+[node name="TrainingLevel" type="Node2D"]
+script = ExtResource("1_qwhf2")
+
+[node name="Player" parent="." instance=ExtResource("2_bk3u3")]
+position = Vector2(-54, 668)
+
+[node name="Floor" type="Node2D" parent="."]
+
+[node name="YellowFloor" type="TileMapLayer" parent="Floor"]
+tile_map_data = PackedByteArray("AAACACwAAgADAAAAAAADACwAAgAEAAAAAAAEACwAAgAEAAAAAAAFACwAAgAEAAAAAAAGACwAAgAEAAAAAAAHACwAAgAEAAAAAAAIACwAAgAEAAAAAAAJACwAAgAEAAAAAAAKACwAAgAEAAAAAAALACwAAgAFAAAAAAA=")
+tile_set = SubResource("TileSet_x7iho")
+
+[node name="RedFloor" type="TileMapLayer" parent="Floor"]
+tile_map_data = PackedByteArray("AAD4/ywAAAADAAEAAAD5/ywAAAAEAAEAAAD6/ywAAAAEAAEAAAD7/ywAAAAEAAEAAAD8/ywAAAAEAAEAAAD9/ywAAAAEAAEAAAD+/ywAAAAEAAEAAAD//ywAAAAEAAEAAAAAACwAAAAEAAEAAAABACwAAAAFAAEAAAA=")
+tile_set = SubResource("TileSet_xrid1")
+
+[node name="GreenFloor" type="TileMapLayer" parent="Floor"]
+tile_map_data = PackedByteArray("AAAMACwAAAADAAIAAAANACwAAAAEAAIAAAAOACwAAAAEAAIAAAAPACwAAAAEAAIAAAAQACwAAAAEAAIAAAARACwAAAAEAAIAAAASACwAAAAEAAIAAAATACwAAAAEAAIAAAAUACwAAAAEAAIAAAAVACwAAAAEAAIAAAAWACwAAAAEAAIAAAAXACwAAAAFAAIAAAALACcAAAADAAIAAAAMACcAAAAEAAIAAAANACcAAAAEAAIAAAAOACcAAAAEAAIAAAAPACcAAAAEAAIAAAAQACcAAAAEAAIAAAARACcAAAAEAAIAAAASACcAAAAEAAIAAAATACcAAAAEAAIAAAAUACcAAAAFAAIAAAA=")
+tile_set = SubResource("TileSet_bk3u3")
+
+[node name="BlueFloor" type="TileMapLayer" parent="Floor"]
+tile_map_data = PackedByteArray("AAAYACwAAAADAAMAAAAZACwAAAAEAAMAAAAaACwAAAAEAAMAAAAbACwAAAAEAAMAAAAcACwAAAAEAAMAAAAdACwAAAAEAAMAAAAeACwAAAAEAAMAAAAfACwAAAAEAAMAAAAgACwAAAAEAAMAAAAhACwAAAAEAAMAAAAiACwAAAAEAAMAAAAjACwAAAAEAAMAAAAkACwAAAAFAAMAAAALACkAAAADAAMAAAAMACkAAAAEAAMAAAANACkAAAAEAAMAAAAOACkAAAAEAAMAAAAPACkAAAAEAAMAAAAQACkAAAAEAAMAAAARACkAAAAEAAMAAAASACkAAAAEAAMAAAATACkAAAAEAAMAAAAUACkAAAAFAAMAAAA=")
+tile_set = SubResource("TileSet_6d1lw")
+
+[node name="Girder" type="TileMapLayer" parent="Floor"]
+tile_map_data = PackedByteArray("AAALACgAAAAEAAQAAAAUACgAAAAEAAQAAAA=")
+tile_set = SubResource("TileSet_xs5uq")

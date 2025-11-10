@@ -1,97 +1,14 @@
-[gd_scene load_steps=14 format=4 uid="uid://6cpiuqhka4p0"]
+[gd_scene load_steps=3 format=3 uid="uid://6cpiuqhka4p0"]
 
-[ext_resource type="Script" uid="uid://bqo5wugngriaa" path="res://world.gd" id="1_a617u"]
-[ext_resource type="PackedScene" uid="uid://bj8nksu43vylw" path="res://floor_terrain.tscn" id="2_0eplr"]
+[ext_resource type="Script" uid="uid://b5iuspefhqqgb" path="res://level_template.gd" id="1_a617u"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://player.tscn" id="3_gll4f"]
-[ext_resource type="PackedScene" uid="uid://y4tb8v4fvs66" path="res://gnome.tscn" id="4_eq15t"]
-[ext_resource type="Texture2D" uid="uid://4vps187bfj4v" path="res://GnomeNope.png" id="5_aragq"]
-[ext_resource type="PackedScene" uid="uid://cvqug7c3bild7" path="res://moving_platform.tscn" id="6_5h5s4"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fj7yv"]
-load_path = "res://.godot/imported/Brick.png-86a2cfd0e3bd8893356a06e9b84aa48c.ctex"
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tlwt5"]
-texture = SubResource("CompressedTexture2D_fj7yv")
-0:0/0 = 0
-0:0/0/terrain_set = 0
-0:0/0/terrain = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
-
-[sub_resource type="TileSet" id="TileSet_aqk2v"]
-physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 3
-terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "BrickWall 0"
-terrain_set_0/terrain_0/color = Color(0.500937, 0.592033, 0.94943, 1)
-sources/0 = SubResource("TileSetAtlasSource_tlwt5")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwbse"]
-texture = ExtResource("5_aragq")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
-
-[sub_resource type="TileSet" id="TileSet_pkg7o"]
-physics_layer_0/collision_layer = 8
-physics_layer_0/collision_mask = 2
-sources/0 = SubResource("TileSetAtlasSource_dwbse")
-
-[sub_resource type="Curve2D" id="Curve2D_dwbse"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -32, 0, 0, 0, 0, 0, -64, 0, 0, 0, 0, 0, -96, 0, 0, 0, 0, 0, -128)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_pkg7o"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -130)
-}
-point_count = 2
-
-[node name="World" type="Node2D"]
+[node name="LevelTemplate" type="Node2D"]
 script = ExtResource("1_a617u")
-
-[node name="FloorTerrain" parent="." instance=ExtResource("2_0eplr")]
-
-[node name="TileMapLayer" parent="FloorTerrain" index="0"]
-tile_map_data = PackedByteArray("AAAAACcAAAAAAAAAAAABACcAAAAAAAAAAAACACcAAAAAAAAAAAADACcAAAAAAAAAAAAEACcAAAAAAAAAAAAFACcAAAAAAAAAAAAGACcAAAAAAAAAAAAHACcAAAAAAAAAAAAIACcAAAAAAAAAAAAJACcAAAAAAAAAAAAKACcAAAAAAAAAAAALACcAAAAAAAAAAAAMACcAAAAAAAAAAAANACcAAAAAAAAAAAAOACcAAAAAAAAAAAAPACcAAAAAAAAAAAAQACcAAAAAAAAAAAARACcAAAAAAAAAAAASACcAAAAAAAAAAAATACcAAAAAAAAAAAAUACcAAAAAAAAAAAAVACcAAAAAAAAAAAAWACcAAAAAAAAAAAAXACcAAAAAAAAAAAAYACcAAAAAAAAAAAAZACcAAAAAAAAAAAAaACcAAAAAAAAAAAAbACcAAAAAAAAAAAAcACcAAAAAAAAAAAAdACcAAAAAAAAAAAAeACcAAAAAAAAAAAAfACcAAAAAAAAAAAAgACcAAAAAAAAAAAAhACcAAAAAAAAAAAAiACcAAAAAAAAAAAAjACcAAAAAAAAAAAAkACcAAAAAAAAAAAAlACcAAAAAAAAAAAAmACcAAAAAAAAAAAAnACcAAAAAAAAAAAAoACcAAAAAAAAAAAApACcAAAAAAAAAAAAqACcAAAAAAAAAAAArACcAAAAAAAAAAAAsACcAAAAAAAAAAAAtACcAAAAAAAAAAAAuACcAAAAAAAAAAAAvACcAAAAAAAAAAAAwACcAAAAAAAAAAAAxACcAAAAAAAAAAAAyACcAAAAAAAAAAAAzACcAAAAAAAAAAAA0ACcAAAAAAAAAAAA1ACcAAAAAAAAAAAA2ACcAAAAAAAAAAAA3ACcAAAAAAAAAAAA4ACcAAAAAAAAAAAA5ACcAAAAAAAAAAAA6ACcAAAAAAAAAAAA7ACcAAAAAAAAAAAA8ACcAAAAAAAAAAAA9ACcAAAAAAAAAAAA+ACcAAAAAAAAAAAA/ACcAAAAAAAAAAABAACcAAAAAAAAAAABBACcAAAAAAAAAAABCACcAAAAAAAAAAABDACcAAAAAAAAAAABEACcAAAAAAAAAAABFACcAAAAAAAAAAABGACcAAAAAAAAAAABHACcAAAAAAAAAAABCACYAAAAAAAAAAABCACUAAAAAAAAAAABCACQAAAAAAAAAAABCACMAAAAAAAAAAABCACIAAAAAAAAAAABCACEAAAAAAAAAAABCACAAAAAAAAAAAABCAB8AAAAAAAAAAABCAB4AAAAAAAAAAABCAB0AAAAAAAAAAABCABwAAAAAAAAAAABCABsAAAAAAAAAAABCABoAAAAAAAAAAABCABkAAAAAAAAAAABCABgAAAAAAAAAAABCABcAAAAAAAAAAABCABYAAAAAAAAAAABCABUAAAAAAAAAAABBABUAAAAAAAAAAABAABUAAAAAAAAAAAA/ABUAAAAAAAAAAAA+ABUAAAAAAAAAAAA9ABUAAAAAAAAAAAA8ABUAAAAAAAAAAAA7ABUAAAAAAAAAAAA1ABgAAAAAAAAAAAA0ABgAAAAAAAAAAAAzABgAAAAAAAAAAAAyABgAAAAAAAAAAAAxABgAAAAAAAAAAAAwABgAAAAAAAAAAAAsABwAAAAAAAAAAAArABwAAAAAAAAAAAAqABwAAAAAAAAAAAAnACAAAAAAAAAAAAAmACAAAAAAAAAAAAAlACAAAAAAAAAAAAAkACAAAAAAAAAAAAAjACAAAAAAAAAAAAAiACAAAAAAAAAAAAAhACAAAAAAAAAAAAAcACQAAAAAAAAAAAAbACQAAAAAAAAAAAAaACQAAAAAAAAAAAAZACQAAAAAAAAAAAAYACQAAAAAAAAAAABIACcAAAAAAAAAAABJACcAAAAAAAAAAABKACcAAAAAAAAAAABLACcAAAAAAAAAAABMACcAAAAAAAAAAABMACYAAAAAAAAAAABMACUAAAAAAAAAAABMACQAAAAAAAAAAABMACMAAAAAAAAAAABMACIAAAAAAAAAAABMACEAAAAAAAAAAABMACAAAAAAAAAAAABMAB8AAAAAAAAAAABMAB4AAAAAAAAAAABMAB0AAAAAAAAAAABMABwAAAAAAAAAAABMABsAAAAAAAAAAABMABoAAAAAAAAAAABMABkAAAAAAAAAAABMABgAAAAAAAAAAABMABcAAAAAAAAAAABMABYAAAAAAAAAAABMABUAAAAAAAAAAABNABUAAAAAAAAAAABOABUAAAAAAAAAAABPABUAAAAAAAAAAABQABUAAAAAAAAAAABRABUAAAAAAAAAAABSABUAAAAAAAAAAABTABUAAAAAAAAAAABUABUAAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_aqk2v")
 
 [node name="Player" parent="." instance=ExtResource("3_gll4f")]
 position = Vector2(512, 320)
 
-[node name="Gnome" parent="." instance=ExtResource("4_eq15t")]
-position = Vector2(152, 608)
+[node name="Floor" type="Node2D" parent="."]
 
-[node name="Gnome2" parent="." instance=ExtResource("4_eq15t")]
-position = Vector2(417, 560)
-
-[node name="Gnome3" parent="." instance=ExtResource("4_eq15t")]
-position = Vector2(1139, 608)
-
-[node name="GnomeCatcher" type="TileMapLayer" parent="."]
-position = Vector2(1, 0)
-tile_map_data = PackedByteArray("AAAYACYAAAAAAAAAAAAZACYAAAAAAAAAAAAaACYAAAAAAAAAAAAbACYAAAAAAAAAAAAcACYAAAAAAAAAAAAdACYAAAAAAAAAAAAeACYAAAAAAAAAAAAfACYAAAAAAAAAAAAgACYAAAAAAAAAAAAhACYAAAAAAAAAAAAiACYAAAAAAAAAAAAxACYAAAAAAAAAAAA1ABcAAAAAAAAAAAA1ACYAAAAAAAAAAAA1ACUAAAAAAAAAAAA1ACQAAAAAAAAAAAA1ACMAAAAAAAAAAAA1ACIAAAAAAAAAAAA1ACEAAAAAAAAAAAA1ACAAAAAAAAAAAAA1AB8AAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_pkg7o")
-
-[node name="MovingPlatform" parent="." instance=ExtResource("6_5h5s4")]
-position = Vector2(224, 576)
-
-[node name="Path2D" parent="MovingPlatform" index="0"]
-curve = SubResource("Curve2D_dwbse")
-
-[node name="AnimatableBody2D" parent="MovingPlatform" index="1"]
-collision_layer = 4
-
-[node name="MovingPlatform2" parent="." instance=ExtResource("6_5h5s4")]
-position = Vector2(881, 620)
-
-[node name="Path2D" parent="MovingPlatform2" index="0"]
-curve = SubResource("Curve2D_pkg7o")
-
-[node name="AnimatableBody2D" parent="MovingPlatform2" index="1"]
-collision_layer = 4
-collision_mask = 3
-
-[editable path="FloorTerrain"]
-[editable path="MovingPlatform"]
-[editable path="MovingPlatform2"]
+[node name="TileMapLayer" type="TileMapLayer" parent="Floor"]
