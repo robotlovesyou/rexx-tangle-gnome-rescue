@@ -239,6 +239,20 @@ tracks/8/keys = {
 "method": &"play_door_sound"
 }]
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(13),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_next_level"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yd6wp"]
 _data = {
@@ -250,6 +264,7 @@ _data = {
 script = ExtResource("1_34rlo")
 animation_player = NodePath("AnimationPlayer")
 birb_player = NodePath("BirbPlayer")
+next_screen = "res://training_level.tscn"
 
 [node name="Skybox" type="Sprite2D" parent="."]
 scale = Vector2(80, 25)
