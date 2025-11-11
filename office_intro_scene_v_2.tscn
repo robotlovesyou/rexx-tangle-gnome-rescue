@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" path="res://receptionist.tscn" id="10_nctpv"]
 [ext_resource type="Texture2D" uid="uid://cw4wrxrw41lda" path="res://RexxArt/OfficeIntro/office_intro_interior_door.png" id="11_rv5hs"]
 [ext_resource type="Texture2D" uid="uid://demy7ni7t02kc" path="res://RexxArt/OfficeIntro/office_intro_gnomon_exterior.png" id="12_8yugd"]
-[ext_resource type="PackedScene" path="res://cutscene_rexx.tscn" id="14_2ei2f"]
+[ext_resource type="PackedScene" uid="uid://cm3ja0664tlao" path="res://cutscene_rexx.tscn" id="14_2ei2f"]
 [ext_resource type="Script" path="res://exterior_pneumatic_door.gd" id="15_8fop7"]
 [ext_resource type="AudioStream" uid="uid://bvfxby006qnp3" path="res://Sounds/FX/pneumatic_door.wav" id="16_yd6wp"]
 [ext_resource type="AudioStream" uid="uid://cutmykwce6ilq" path="res://Sounds/Music/lobby_music.wav" id="17_rpqhv"]

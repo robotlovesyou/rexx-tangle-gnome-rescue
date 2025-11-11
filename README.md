@@ -22,6 +22,17 @@
 * Add user interaction to acknowledge text
 * Split text across > 1 dialog
 
+## Training Level
+
+* Add hazard blocks
+* Add enemies
+* Add jumping on enemies
+* Add vertical platforms
+* Add horizontal platforms
+* Add Gnomes
+* Add Gnome Rescue
+* Add the timer and rescue counter
+
 
 * ~~Add double jumps~~
 * ~~Add wall jumps~~
