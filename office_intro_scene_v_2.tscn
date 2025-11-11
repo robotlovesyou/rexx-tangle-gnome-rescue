@@ -338,7 +338,7 @@ offset_bottom = 193.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Good morning Mr Tangle. Welcome to [rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Gnomon Inc[/rainbow]. Please proceed through the door behind me to commence training as a 
+text = "Good morning Mr Tangle. Welcome to [rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Gnomenclature Inc[/rainbow]. Please proceed through the door behind me to commence training as a 
 [b][u][color=#25255C]G[/color][/u][/b]nome
 [b][u][color=#25255C]I[/color][/u][/b]ntervention
 [b][u][color=#25255C]T[/color][/u][/b]echnician. 
@@ -375,12 +375,12 @@ centered = false
 
 [node name="Label" type="Label" parent="GnomonExterior"]
 offset_left = 58.0
-offset_top = 50.0
-offset_right = 326.0
+offset_top = 45.0
+offset_right = 331.0
 offset_bottom = 84.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "Gnomon Inc. G.I.T. Training"
+theme_override_font_sizes/font_size = 28
+text = "Gnomenclature Inc. "
 
 [node name="ExteriorPneumaticDoor" type="Node2D" parent="." node_paths=PackedStringArray("audio_player")]
 position = Vector2(640, 336)
