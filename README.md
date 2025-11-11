@@ -2,6 +2,10 @@
 
 # TO DO
 
+## General
+
+* Add a fade between the menu screens
+* Switch to using file scenes instead of packed scenes
 * Gnomes need better abandonment detection. 
 * Gnomes may need better idle behaviour.
 * Idling gnomes should switch to wander after a time. 
@@ -12,6 +16,13 @@
 * Add gnome panic state, triggered by falling off or missing a moving platform
 * Add a countdown timer
 * Add level completion / score
+
+## Office Intro Scene
+
+* Add user interaction to acknowledge text
+* Split text across > 1 dialog
+
+
 * ~~Add double jumps~~
 * ~~Add wall jumps~~
 * ~~Add wall slides~~

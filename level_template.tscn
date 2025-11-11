@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://6cpiuqhka4p0"]
+
+[ext_resource type="Script" uid="uid://b5iuspefhqqgb" path="res://level_template.gd" id="1_a617u"]
+[ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://player.tscn" id="3_gll4f"]
+
+[node name="LevelTemplate" type="Node2D"]
+script = ExtResource("1_a617u")
+
+[node name="Player" parent="." instance=ExtResource("3_gll4f")]
+position = Vector2(512, 320)
+
+[node name="Floor" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Floor"]

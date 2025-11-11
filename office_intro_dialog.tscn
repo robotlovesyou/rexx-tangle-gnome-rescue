@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8bkw4qsyvw48"]
+
+[ext_resource type="Texture2D" uid="uid://4bxgew5bs8ht" path="res://Modern_UI_Style_2.png" id="1_4rimy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6t2v"]
+atlas = ExtResource("1_4rimy")
+region = Rect2(13, 284, 22, 24)
+
+[node name="OfficeIntroDialog" type="CenterContainer"]
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 576.0
+offset_bottom = 336.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(172, 220)
+layout_mode = 2
+texture = SubResource("AtlasTexture_u6t2v")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 166.0
+offset_bottom = 208.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Good morning Mr Tangle. Welcome to [rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Gnomon Inc[/rainbow]. Please proceed through the door behind me to commence training as a 
+[b][u][color=#25255C]G[/color][/u][/b]nome
+[b][u][color=#25255C]I[/color][/u][/b]ntervention
+[b][u][color=#25255C]T[/color][/u][/b]echnician. "

@@ -1,0 +1,342 @@
+[gd_scene load_steps=15 format=4 uid="uid://bq4x3vy4q4bm8"]
+
+[ext_resource type="Script" uid="uid://d0e7ejqkfgg3x" path="res://outline.gd" id="1_mguca"]
+[ext_resource type="PackedScene" uid="uid://d2uvdk8xc7job" path="res://receptionist.tscn" id="1_o8pjn"]
+[ext_resource type="Script" uid="uid://dpyrqs3230hl8" path="res://office_intro_scene.gd" id="1_qyf7s"]
+[ext_resource type="Texture2D" uid="uid://c4rr7qe8enle5" path="res://Industrial_Tileset_1D_16.png" id="3_71efp"]
+[ext_resource type="PackedScene" uid="uid://cm3ja0664tlao" path="res://cutscene_rexx.tscn" id="4_gbj7c"]
+[ext_resource type="PackedScene" uid="uid://b8bkw4qsyvw48" path="res://office_intro_dialog.tscn" id="6_u6t2v"]
+[ext_resource type="AudioStream" uid="uid://cutmykwce6ilq" path="res://Sounds/Music/lobby_music.wav" id="7_u6t2v"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gbj7c"]
+texture = ExtResource("3_71efp")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/left_side = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/right_side = 0
+0:1/0/terrains_peering_bit/bottom_right_corner = 0
+0:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_right_corner = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/bottom_left_corner = 0
+1:1/0/terrains_peering_bit/left_side = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/bottom_left_corner = 0
+2:1/0/terrains_peering_bit/left_side = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/terrains_peering_bit/bottom_side = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/bottom_right_corner = 0
+0:2/0/terrains_peering_bit/bottom_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+0:2/0/terrains_peering_bit/top_right_corner = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/bottom_right_corner = 0
+1:2/0/terrains_peering_bit/bottom_side = 0
+1:2/0/terrains_peering_bit/bottom_left_corner = 0
+1:2/0/terrains_peering_bit/left_side = 0
+1:2/0/terrains_peering_bit/top_left_corner = 0
+1:2/0/terrains_peering_bit/top_side = 0
+1:2/0/terrains_peering_bit/top_right_corner = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/bottom_side = 0
+2:2/0/terrains_peering_bit/bottom_left_corner = 0
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_left_corner = 0
+2:2/0/terrains_peering_bit/top_side = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 0
+3:2/0/terrains_peering_bit/bottom_side = 0
+3:2/0/terrains_peering_bit/top_side = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+0:3/0/terrain_set = 0
+0:3/0/terrain = 0
+0:3/0/terrains_peering_bit/right_side = 0
+0:3/0/terrains_peering_bit/top_side = 0
+0:3/0/terrains_peering_bit/top_right_corner = 0
+1:3/0 = 0
+1:3/0/terrain_set = 0
+1:3/0/terrain = 0
+1:3/0/terrains_peering_bit/right_side = 0
+1:3/0/terrains_peering_bit/left_side = 0
+1:3/0/terrains_peering_bit/top_left_corner = 0
+1:3/0/terrains_peering_bit/top_side = 0
+1:3/0/terrains_peering_bit/top_right_corner = 0
+2:3/0 = 0
+2:3/0/terrain_set = 0
+2:3/0/terrain = 0
+2:3/0/terrains_peering_bit/left_side = 0
+2:3/0/terrains_peering_bit/top_left_corner = 0
+2:3/0/terrains_peering_bit/top_side = 0
+3:3/0 = 0
+3:3/0/terrain_set = 0
+3:3/0/terrain = 0
+3:3/0/terrains_peering_bit/top_side = 0
+4:3/0 = 0
+5:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qyf7s"]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Office"
+terrain_set_0/terrain_0/color = Color(0.9471124, 0.024951462, 0.41367528, 1)
+sources/0 = SubResource("TileSetAtlasSource_gbj7c")
+
+[sub_resource type="Animation" id="Animation_qyf7s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutsceneRexx:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 368)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OfficeIntroDialog/NinePatchRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OfficeIntroDialog/NinePatchRect:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(172, 220)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OfficeIntroDialog/NinePatchRect/RichTextLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_53ijw"]
+resource_name = "open_text_dialog"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OfficeIntroDialog/NinePatchRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OfficeIntroDialog/NinePatchRect:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(6, 6), Vector2(172, 220)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OfficeIntroDialog/NinePatchRect/RichTextLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_gbj7c"]
+resource_name = "rexx_enters_stage_left"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutsceneRexx:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-16, 368), Vector2(368, 368)]
+}
+
+[sub_resource type="Animation" id="Animation_u6t2v"]
+resource_name = "rexx_exits_stage_right"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutsceneRexx:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(368, 368), Vector2(656, 368)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OfficeIntroDialog/NinePatchRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.51),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OfficeIntroDialog/NinePatchRect:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(172, 220), Vector2(6, 6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OfficeIntroDialog/NinePatchRect/RichTextLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_53ijw"]
+_data = {
+&"RESET": SubResource("Animation_qyf7s"),
+&"open_text_dialog": SubResource("Animation_53ijw"),
+&"rexx_enters_stage_left": SubResource("Animation_gbj7c"),
+&"rexx_exits_stage_right": SubResource("Animation_u6t2v")
+}
+
+[node name="OfficeIntroScene" type="Node2D" node_paths=PackedStringArray("animation_player", "rexx")]
+script = ExtResource("1_qyf7s")
+animation_player = NodePath("AnimationPlayer")
+rexx = NodePath("CutsceneRexx")
+
+[node name="Outline" type="Node2D" parent="."]
+script = ExtResource("1_mguca")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 400.0
+color = Color(0, 0, 0, 1)
+
+[node name="Receptionist" parent="." instance=ExtResource("1_o8pjn")]
+position = Vector2(432, 368)
+
+[node name="BackgroundOfficeTiles" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAABgAAAAAAAAAAAABABgAAAABAAAAAAACABgAAAABAAMAAAADABgAAAABAAAAAAAEABgAAAABAAAAAAAFABgAAAABAAAAAAAGABgAAAABAAAAAAAHABgAAAABAAAAAAAIABgAAAABAAAAAAAJABgAAAABAAAAAAAKABgAAAABAAAAAAALABgAAAABAAAAAAAMABgAAAABAAAAAAANABgAAAABAAAAAAAOABgAAAABAAAAAAAPABgAAAABAAAAAAAQABgAAAABAAAAAAARABgAAAABAAAAAAASABgAAAABAAAAAAATABgAAAABAAAAAAAUABgAAAABAAAAAAAVABgAAAABAAAAAAAWABgAAAABAAAAAAAXABgAAAABAAAAAAAYABgAAAABAAMAAAAZABgAAAABAAMAAAAaABgAAAABAAAAAAAbABgAAAABAAAAAAAcABgAAAABAAAAAAAdABgAAAABAAAAAAAeABgAAAABAAAAAAAfABgAAAABAAAAAAAgABgAAAABAAAAAAAhABgAAAABAAAAAAAiABgAAAABAAAAAAAjABgAAAABAAAAAAAkABgAAAABAAAAAAAlABgAAAABAAMAAAAmABgAAAABAAAAAAAnABgAAAACAAAAAAAYABcAAAAAAAEAAAAZABcAAAACAAEAAAAAABQAAAAAAAAAAAABABQAAAABAAAAAAACABQAAAACAAAAAAACABUAAAADAAIAAAACABYAAAADAAIAAAACABcAAAAAAAMAAAAlABQAAAADAAEAAAAlABUAAAADAAIAAAAlABYAAAADAAIAAAAlABcAAAAAAAMAAAA=")
+tile_set = SubResource("TileSet_qyf7s")
+
+[node name="CutsceneRexx" parent="." instance=ExtResource("4_gbj7c")]
+position = Vector2(-16, 368)
+
+[node name="MaskHolesInForegroundTiles" type="ColorRect" parent="."]
+offset_left = 624.0
+offset_top = 320.0
+offset_right = 640.0
+offset_bottom = 400.0
+color = Color(0, 0, 0, 1)
+
+[node name="ForegroundOfficeTiles" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAABgAAAADAAMAAAAAABcAAAADAAIAAAAAABYAAAADAAIAAAAAABUAAAADAAIAAAAAABQAAAADAAEAAAAnABgAAAADAAMAAAAnABcAAAADAAIAAAAnABYAAAADAAIAAAAnABUAAAADAAIAAAAnABQAAAADAAEAAAAmABQAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_qyf7s")
+
+[node name="OfficeIntroDialog" parent="." instance=ExtResource("6_u6t2v")]
+
+[node name="MuzakPlayer" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(400, 368)
+stream = ExtResource("7_u6t2v")
+volume_db = -6.0
+autoplay = true
+max_distance = 479.0
+attenuation = 4.756827
+max_polyphony = 2
+bus = &"Lobby"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_53ijw")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

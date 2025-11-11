@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RexxTangleGnomeRescue"
-run/main_scene="uid://dn38w2ha0ewsy"
+run/main_scene="uid://b32ptwvo8bbye"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -24,11 +24,16 @@ PMonitor="*res://player_monitor.gd"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=800
+window/stretch/mode="viewport"
 window/stretch/scale=2.0
+window/stretch/scale_mode="integer"
 
 [global_group]
 
 MovingPlatform="A Moving Platform"
+CutsceneRexx="The Rexx Used For Cutscenes"
 
 [layer_names]
 
