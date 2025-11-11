@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://blsgxl7huyf5s"]
+[gd_scene load_steps=90 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://training_level.gd" id="1_qwhf2"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://player.tscn" id="2_bk3u3"]
@@ -9,6 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://dwveg04727ykm" path="res://RexxArt/OfficeIntro/office_intro_far_background.png" id="3_xs5uq"]
 [ext_resource type="Texture2D" uid="uid://cfik8k37xr0nh" path="res://RexxArt/RexxTrainingLevel/VerticalArrow.png" id="4_xrid1"]
 [ext_resource type="Texture2D" uid="uid://d063wl75s2kuu" path="res://RexxArt/OfficeIntro/office_intro_skybox.png" id="7_6d1lw"]
+[ext_resource type="Script" uid="uid://dtwlyloiwys65" path="res://instruction_dialog.gd" id="9_1tf3w"]
+[ext_resource type="Texture2D" uid="uid://dxd8o8edkeas5" path="res://RexxArt/UI/DialogBox.png" id="9_h2l16"]
+[ext_resource type="AnimationLibrary" uid="uid://ghtnflrd4r3g" path="res://move_right_animations.tres" id="11_oanw6"]
+[ext_resource type="AnimationLibrary" uid="uid://cgrffdgesvnkp" path="res://move_left_animations.tres" id="12_chda1"]
+[ext_resource type="AnimationLibrary" uid="uid://cwssc7ln0lwyd" path="res://jump_animations.tres" id="13_16ymg"]
+[ext_resource type="AnimationLibrary" uid="uid://qq6ek46l6g00" path="res://double_jump_animations.tres" id="14_0s4s1"]
+[ext_resource type="AnimationLibrary" uid="uid://caj5c34qhwlqw" path="res://wall_jump_animations_a.tres" id="15_16ymg"]
+[ext_resource type="AnimationLibrary" uid="uid://db5accw4nabvb" path="res://wall_jump_animations_b.tres" id="16_0s4s1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xs5uq"]
 texture = ExtResource("3_bk3u3")
@@ -717,6 +725,12 @@ animations = [{
 "name": &"play",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tf3w"]
+size = Vector2(368, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0s4s1"]
+size = Vector2(112, 432)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk3u3"]
 texture = ExtResource("3_bk3u3")
@@ -1474,14 +1488,16 @@ terrain_set_0/terrain_0/name = "BlueFloor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_xrid1")
 
-[node name="TrainingLevel" type="Node2D"]
+[node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("initial_dialog")]
 script = ExtResource("1_qwhf2")
+initial_dialog = NodePath("Signs/MoveRightDialog")
 
 [node name="ParallaxBackgrounds" type="Node2D" parent="."]
 visible = false
 script = ExtResource("2_xpeg2")
 
 [node name="Skybox" type="Parallax2D" parent="ParallaxBackgrounds"]
+visible = false
 scroll_scale = Vector2(0, 0)
 scroll_offset = Vector2(0, 208)
 
@@ -1490,6 +1506,7 @@ scale = Vector2(80, 30)
 texture = ExtResource("7_6d1lw")
 
 [node name="Very Far Background" type="Parallax2D" parent="ParallaxBackgrounds"]
+visible = false
 scroll_scale = Vector2(0.3, 0)
 scroll_offset = Vector2(0, 169)
 repeat_times = 3
@@ -1498,6 +1515,7 @@ repeat_times = 3
 texture = ExtResource("3_xs5uq")
 
 [node name="FarBackground" type="Parallax2D" parent="ParallaxBackgrounds"]
+visible = false
 scroll_scale = Vector2(0.5, 0)
 
 [node name="Buildings" type="TileMapLayer" parent="ParallaxBackgrounds/FarBackground"]
@@ -1505,6 +1523,7 @@ tile_map_data = PackedByteArray("AADf/xsAAAACAAUAAADf/xoAAAACAAQAAADf/xkAAAACAAQ
 tile_set = SubResource("TileSet_xpeg2")
 
 [node name="Background" type="Parallax2D" parent="ParallaxBackgrounds"]
+visible = false
 scroll_scale = Vector2(0.6, 0)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="ParallaxBackgrounds/Background"]
@@ -1522,18 +1541,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0.5686275)
+color = Color(0, 0, 0, 1)
 
 [node name="Signs" type="Node2D" parent="."]
 
 [node name="HorizontalArrowRight" type="AnimatedSprite2D" parent="Signs"]
-position = Vector2(224, 752)
+position = Vector2(272, 752)
 sprite_frames = SubResource("SpriteFrames_bk3u3")
 animation = &"play"
 autoplay = "play"
 
 [node name="HorizontalArrowLeft" type="AnimatedSprite2D" parent="Signs"]
-position = Vector2(176, 832)
+position = Vector2(96, 832)
 sprite_frames = SubResource("SpriteFrames_bk3u3")
 animation = &"play"
 autoplay = "play"
@@ -1564,53 +1583,249 @@ animation = &"play"
 autoplay = "play"
 flip_h = true
 
-[node name="MoveRightLabel" type="RichTextLabel" parent="Signs"]
-offset_left = 48.0
+[node name="MoveRightDialog" type="CenterContainer" parent="Signs"]
+offset_left = 32.0
 offset_top = 720.0
-offset_right = 208.0
-offset_bottom = 760.0
+offset_right = 232.0
+offset_bottom = 780.0
+script = ExtResource("9_1tf3w")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Signs/MoveRightDialog"]
+visible = false
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+texture = ExtResource("9_h2l16")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="DialogLabel" type="RichTextLabel" parent="Signs/MoveRightDialog/NinePatchRect"]
+layout_mode = 0
+offset_left = 2.822998
+offset_top = 4.651184
+offset_right = 162.823
+offset_bottom = 44.651184
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
 bbcode_enabled = true
 text = "Move Right With [b]→[/b]"
 
-[node name="MoveLeftLabel" type="RichTextLabel" parent="Signs"]
-offset_left = 224.0
+[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/MoveRightDialog"]
+libraries = {
+&"": ExtResource("11_oanw6")
+}
+
+[node name="Activation" type="Area2D" parent="Signs/MoveRightDialog"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/MoveRightDialog/Activation"]
+position = Vector2(152, 35)
+shape = SubResource("RectangleShape2D_1tf3w")
+
+[node name="MoveLeftDialog" type="CenterContainer" parent="Signs"]
+offset_left = 160.0
 offset_top = 800.0
-offset_right = 368.0
-offset_bottom = 840.0
+offset_right = 360.0
+offset_bottom = 860.0
+script = ExtResource("9_1tf3w")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Signs/MoveLeftDialog"]
+visible = false
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+texture = ExtResource("9_h2l16")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="DialogLabel" type="RichTextLabel" parent="Signs/MoveLeftDialog/NinePatchRect"]
+layout_mode = 0
+offset_left = 2.822998
+offset_top = 4.651184
+offset_right = 162.823
+offset_bottom = 44.651184
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
 bbcode_enabled = true
 text = "Move Left With [b]←[/b]"
 
-[node name="JumpLabel" type="RichTextLabel" parent="Signs"]
-offset_left = -192.0
-offset_top = 800.0
-offset_right = -32.0
-offset_bottom = 840.0
-text = "Jump with [SPACE]"
+[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/MoveLeftDialog"]
+libraries = {
+&"": ExtResource("12_chda1")
+}
 
-[node name="DoubleJumpLabel" type="RichTextLabel" parent="Signs"]
+[node name="Activation" type="Area2D" parent="Signs/MoveLeftDialog"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/MoveLeftDialog/Activation"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_1tf3w")
+
+[node name="JumpDialog" type="CenterContainer" parent="Signs"]
+offset_left = -240.0
+offset_top = 800.0
+offset_right = -40.0
+offset_bottom = 860.0
+script = ExtResource("9_1tf3w")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Signs/JumpDialog"]
+visible = false
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+texture = ExtResource("9_h2l16")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="DialogLabel" type="RichTextLabel" parent="Signs/JumpDialog/NinePatchRect"]
+layout_mode = 0
+offset_left = 2.822998
+offset_top = 4.651184
+offset_right = 162.823
+offset_bottom = 44.651184
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+bbcode_enabled = true
+text = "Jump with [b][SPACE][/b]"
+
+[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/JumpDialog"]
+libraries = {
+&"": ExtResource("13_16ymg")
+}
+
+[node name="Activation" type="Area2D" parent="Signs/JumpDialog"]
+position = Vector2(128, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/JumpDialog/Activation"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_1tf3w")
+
+[node name="DoubleJumpDialog" type="CenterContainer" parent="Signs"]
 offset_left = -352.0
 offset_top = 672.0
-offset_right = -126.08469
-offset_bottom = 727.4618
-bbcode_enabled = true
-text = "Double Jump with [b][SPACE][/b] when already in the air
-"
+offset_right = -152.0
+offset_bottom = 732.0
+script = ExtResource("9_1tf3w")
 
-[node name="WallJumpLabel" type="RichTextLabel" parent="Signs"]
-offset_left = -717.0217
-offset_top = 624.0
-offset_right = -304.0
-offset_bottom = 683.8811
+[node name="NinePatchRect" type="NinePatchRect" parent="Signs/DoubleJumpDialog"]
+visible = false
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+texture = ExtResource("9_h2l16")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="DialogLabel" type="RichTextLabel" parent="Signs/DoubleJumpDialog/NinePatchRect"]
+layout_mode = 0
+offset_left = 2.822998
+offset_top = 4.651184
+offset_right = 192.0
+offset_bottom = 96.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+bbcode_enabled = true
+text = "Double Jump with [b][SPACE][/b] when already in the air"
+
+[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/DoubleJumpDialog"]
+libraries = {
+&"": ExtResource("14_0s4s1")
+}
+
+[node name="Activation" type="Area2D" parent="Signs/DoubleJumpDialog"]
+position = Vector2(96, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/DoubleJumpDialog/Activation"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_1tf3w")
+
+[node name="WallJumpDialogA" type="CenterContainer" parent="Signs"]
+offset_left = -768.0
+offset_top = 592.0
+offset_right = -348.0
+offset_bottom = 720.0
+script = ExtResource("9_1tf3w")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Signs/WallJumpDialogA"]
+visible = false
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+texture = ExtResource("9_h2l16")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="DialogLabel" type="RichTextLabel" parent="Signs/WallJumpDialogA/NinePatchRect"]
+layout_mode = 0
+offset_left = 2.822998
+offset_top = 4.651184
+offset_right = 416.0
+offset_bottom = 57.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
 bbcode_enabled = true
 text = "Jump into a wall with [b][SPACE][/b] and then hit [b][SPACE][/b] again while touching the wall to Wall Jump"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Signs"]
-offset_left = -624.0
-offset_top = 416.0
-offset_right = -467.0
-offset_bottom = 494.0
+[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/WallJumpDialogA"]
+libraries = {
+&"": ExtResource("15_16ymg")
+}
+
+[node name="Activation" type="Area2D" parent="Signs/WallJumpDialogA"]
+position = Vector2(144, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/WallJumpDialogA/Activation"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_1tf3w")
+
+[node name="WallJumpDialogB" type="CenterContainer" parent="Signs"]
+offset_left = -640.0
+offset_top = 368.0
+offset_right = -432.0
+offset_bottom = 496.0
+script = ExtResource("9_1tf3w")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Signs/WallJumpDialogB"]
+visible = false
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+texture = ExtResource("9_h2l16")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="DialogLabel" type="RichTextLabel" parent="Signs/WallJumpDialogB/NinePatchRect"]
+layout_mode = 0
+offset_left = 2.822998
+offset_top = 4.651184
+offset_right = 194.0
+offset_bottom = 108.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
 bbcode_enabled = true
 text = "Wall Jumps can be chained together to scale great heights"
+
+[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/WallJumpDialogB"]
+libraries = {
+&"": ExtResource("16_0s4s1")
+}
+
+[node name="Activation" type="Area2D" parent="Signs/WallJumpDialogB"]
+position = Vector2(144, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/WallJumpDialogB/Activation"]
+position = Vector2(-216, 8)
+shape = SubResource("RectangleShape2D_0s4s1")
 
 [node name="Player" parent="." instance=ExtResource("2_bk3u3")]
 position = Vector2(32, 768)
@@ -1633,3 +1848,16 @@ tile_set = SubResource("TileSet_bk3u3")
 [node name="BlueBoxes" type="TileMapLayer" parent="Floor"]
 tile_map_data = PackedByteArray("AAAWADYAAQAJAAQAAAAVADYAAQAIAAQAAAAUADYAAQAIAAQAAAATADYAAQAIAAQAAAASADYAAQAIAAQAAAARADYAAQAIAAQAAAAQADYAAQAIAAQAAAAPADYAAQAIAAQAAAAOADYAAQAIAAQAAAANADYAAQAIAAQAAAAMADYAAQAIAAQAAAALADYAAQAIAAQAAAAKADYAAQAIAAQAAAAJADYAAQAIAAQAAAAIADYAAQAIAAQAAAAHADYAAQAIAAQAAAAGADYAAQAIAAQAAAAFADYAAQAIAAQAAAAEADYAAQAIAAQAAAADADYAAQAIAAQAAAACADYAAQAIAAQAAAABADYAAQAIAAQAAAAAADYAAQAIAAQAAAD//zYAAQAIAAQAAAD+/zYAAQAIAAQAAAD9/zYAAQAIAAQAAAD8/zYAAQAIAAQAAAD7/zYAAQAIAAQAAAD6/zYAAQAIAAQAAAD5/zYAAQAIAAQAAAD4/zYAAQAIAAQAAAD3/zYAAQAIAAQAAAD2/zYAAQAIAAQAAAD1/zYAAQAIAAQAAAD0/zYAAQAIAAQAAADz/zYAAQAIAAQAAADy/zYAAQAIAAQAAADx/zYAAQAIAAQAAADw/zYAAQAHAAQAAADc/ysAAQAJAAQAAADb/ysAAQAIAAQAAADa/ysAAQAIAAQAAADZ/ysAAQAIAAQAAADY/ysAAQAIAAQAAADX/ysAAQAIAAQAAADW/ysAAQAIAAQAAADV/ysAAQAIAAQAAADU/ysAAQAIAAQAAADT/ysAAQAIAAQAAADS/ysAAQAIAAQAAADR/ysAAQAIAAQAAADQ/ysAAQAHAAQAAADX/yYAAQAKAAcAAADX/yUAAQAKAAYAAADX/yQAAQAKAAYAAADX/yMAAQAKAAYAAADX/yIAAQAKAAYAAADX/yEAAQAKAAYAAADX/yAAAQAKAAYAAADX/x8AAQAKAAYAAADX/x4AAQAKAAYAAADX/x0AAQAKAAYAAADX/xwAAQAKAAYAAADX/xsAAQAKAAYAAADX/xoAAQAKAAYAAADX/xkAAQAKAAYAAADX/xgAAQAKAAYAAADX/xcAAQAKAAYAAADX/xYAAQAKAAYAAADX/xUAAQAKAAYAAADX/xQAAQAKAAYAAADX/xMAAQAKAAYAAADX/xIAAQAKAAUAAAA=")
 tile_set = SubResource("TileSet_6d1lw")
+
+[connection signal="body_entered" from="Signs/MoveRightDialog/Activation" to="Signs/MoveRightDialog" method="_on_activation_body_entered"]
+[connection signal="body_exited" from="Signs/MoveRightDialog/Activation" to="Signs/MoveRightDialog" method="_on_activation_body_exited"]
+[connection signal="body_entered" from="Signs/MoveLeftDialog/Activation" to="Signs/MoveLeftDialog" method="_on_activation_body_entered"]
+[connection signal="body_exited" from="Signs/MoveLeftDialog/Activation" to="Signs/MoveLeftDialog" method="_on_activation_body_exited"]
+[connection signal="body_entered" from="Signs/JumpDialog/Activation" to="Signs/JumpDialog" method="_on_activation_body_entered"]
+[connection signal="body_exited" from="Signs/JumpDialog/Activation" to="Signs/JumpDialog" method="_on_activation_body_exited"]
+[connection signal="body_entered" from="Signs/DoubleJumpDialog/Activation" to="Signs/DoubleJumpDialog" method="_on_activation_body_entered"]
+[connection signal="body_exited" from="Signs/DoubleJumpDialog/Activation" to="Signs/DoubleJumpDialog" method="_on_activation_body_exited"]
+[connection signal="body_entered" from="Signs/WallJumpDialogA/Activation" to="Signs/WallJumpDialogA" method="_on_activation_body_entered"]
+[connection signal="body_exited" from="Signs/WallJumpDialogA/Activation" to="Signs/WallJumpDialogA" method="_on_activation_body_exited"]
+[connection signal="body_entered" from="Signs/WallJumpDialogB/Activation" to="Signs/WallJumpDialogB" method="_on_activation_body_entered"]
+[connection signal="body_exited" from="Signs/WallJumpDialogB/Activation" to="Signs/WallJumpDialogB" method="_on_activation_body_exited"]

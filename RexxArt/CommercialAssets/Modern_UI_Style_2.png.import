@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4bxgew5bs8ht"
-path="res://.godot/imported/Modern_UI_Style_2.png-e744355804ccf431281ae1663dad81f0.ctex"
+path="res://.godot/imported/Modern_UI_Style_2.png-5e559c5e29536fe1d6f2b35dc435bdb4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Modern_UI_Style_2.png"
-dest_files=["res://.godot/imported/Modern_UI_Style_2.png-e744355804ccf431281ae1663dad81f0.ctex"]
+source_file="res://RexxArt/CommercialAssets/Modern_UI_Style_2.png"
+dest_files=["res://.godot/imported/Modern_UI_Style_2.png-5e559c5e29536fe1d6f2b35dc435bdb4.ctex"]
 
 [params]
 
