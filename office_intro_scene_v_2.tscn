@@ -264,7 +264,7 @@ _data = {
 script = ExtResource("1_34rlo")
 animation_player = NodePath("AnimationPlayer")
 birb_player = NodePath("BirbPlayer")
-next_screen = "res://training_level.tscn"
+next_screen = "res://Level-0-Training/training_level.tscn"
 
 [node name="Skybox" type="Sprite2D" parent="."]
 scale = Vector2(80, 25)

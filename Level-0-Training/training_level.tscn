@@ -1,25 +1,26 @@
-[gd_scene load_steps=90 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=91 format=4 uid="uid://b5otshbvwmath"]
 
-[ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://training_level.gd" id="1_qwhf2"]
-[ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://player.tscn" id="2_bk3u3"]
-[ext_resource type="Texture2D" uid="uid://bdqrke8ou2tcr" path="res://RexxArt/RexxTrainingLevel/HorizontalArrow.png" id="2_fgroy"]
-[ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_xpeg2"]
-[ext_resource type="Texture2D" uid="uid://dshkqrm7map16" path="res://RexxArt/RexxTrainingLevel/training_level_atlas.png" id="3_bk3u3"]
-[ext_resource type="Texture2D" uid="uid://dc1lu1hjjrqnf" path="res://RexxArt/RexxTrainingLevel/CornerArrow.png" id="3_x7iho"]
-[ext_resource type="Texture2D" uid="uid://dwveg04727ykm" path="res://RexxArt/OfficeIntro/office_intro_far_background.png" id="3_xs5uq"]
-[ext_resource type="Texture2D" uid="uid://cfik8k37xr0nh" path="res://RexxArt/RexxTrainingLevel/VerticalArrow.png" id="4_xrid1"]
-[ext_resource type="Texture2D" uid="uid://d063wl75s2kuu" path="res://RexxArt/OfficeIntro/office_intro_skybox.png" id="7_6d1lw"]
-[ext_resource type="Script" uid="uid://dtwlyloiwys65" path="res://instruction_dialog.gd" id="9_1tf3w"]
-[ext_resource type="Texture2D" uid="uid://dxd8o8edkeas5" path="res://RexxArt/UI/DialogBox.png" id="9_h2l16"]
-[ext_resource type="AnimationLibrary" uid="uid://ghtnflrd4r3g" path="res://move_right_animations.tres" id="11_oanw6"]
-[ext_resource type="AnimationLibrary" uid="uid://cgrffdgesvnkp" path="res://move_left_animations.tres" id="12_chda1"]
-[ext_resource type="AnimationLibrary" uid="uid://cwssc7ln0lwyd" path="res://jump_animations.tres" id="13_16ymg"]
-[ext_resource type="AnimationLibrary" uid="uid://qq6ek46l6g00" path="res://double_jump_animations.tres" id="14_0s4s1"]
-[ext_resource type="AnimationLibrary" uid="uid://caj5c34qhwlqw" path="res://wall_jump_animations_a.tres" id="15_16ymg"]
-[ext_resource type="AnimationLibrary" uid="uid://db5accw4nabvb" path="res://wall_jump_animations_b.tres" id="16_0s4s1"]
+[ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
+[ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
+[ext_resource type="Texture2D" uid="uid://d063wl75s2kuu" path="res://RexxArt/OfficeIntro/office_intro_skybox.png" id="3_7ctbl"]
+[ext_resource type="Texture2D" uid="uid://dwveg04727ykm" path="res://RexxArt/OfficeIntro/office_intro_far_background.png" id="4_iouky"]
+[ext_resource type="Texture2D" uid="uid://dshkqrm7map16" path="res://RexxArt/RexxTrainingLevel/training_level_atlas.png" id="5_0wdl5"]
+[ext_resource type="Texture2D" uid="uid://bdqrke8ou2tcr" path="res://RexxArt/RexxTrainingLevel/HorizontalArrow.png" id="6_n3m5k"]
+[ext_resource type="Texture2D" uid="uid://dc1lu1hjjrqnf" path="res://RexxArt/RexxTrainingLevel/CornerArrow.png" id="7_q5fgu"]
+[ext_resource type="Texture2D" uid="uid://cfik8k37xr0nh" path="res://RexxArt/RexxTrainingLevel/VerticalArrow.png" id="8_cfsdc"]
+[ext_resource type="Script" uid="uid://dtwlyloiwys65" path="res://instruction_dialog.gd" id="9_og0sb"]
+[ext_resource type="Texture2D" uid="uid://dxd8o8edkeas5" path="res://RexxArt/UI/DialogBox.png" id="10_3crw2"]
+[ext_resource type="AnimationLibrary" uid="uid://ghtnflrd4r3g" path="res://Level-0-Training/move_right_animations.tres" id="11_daw8o"]
+[ext_resource type="AnimationLibrary" uid="uid://cgrffdgesvnkp" path="res://Level-0-Training/move_left_animations.tres" id="12_swwo2"]
+[ext_resource type="AnimationLibrary" uid="uid://cwssc7ln0lwyd" path="res://Level-0-Training/jump_animations.tres" id="13_c4lke"]
+[ext_resource type="AnimationLibrary" uid="uid://qq6ek46l6g00" path="res://Level-0-Training/double_jump_animations.tres" id="14_0jpfa"]
+[ext_resource type="AnimationLibrary" uid="uid://caj5c34qhwlqw" path="res://Level-0-Training/wall_jump_animations_a.tres" id="15_suax4"]
+[ext_resource type="AnimationLibrary" uid="uid://db5accw4nabvb" path="res://Level-0-Training/wall_jump_animations_b.tres" id="16_xsw0h"]
+[ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://player.tscn" id="17_2xdl0"]
+[ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="18_6p1ko"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xs5uq"]
-texture = ExtResource("3_bk3u3")
+texture = ExtResource("5_0wdl5")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -168,7 +169,7 @@ terrain_set_0/terrain_0/color = Color(1, 1, 1, 1)
 sources/0 = SubResource("TileSetAtlasSource_xs5uq")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xpeg2"]
-texture = ExtResource("3_bk3u3")
+texture = ExtResource("5_0wdl5")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -317,59 +318,59 @@ terrain_set_0/terrain_0/color = Color(1, 1, 1, 1)
 sources/0 = SubResource("TileSetAtlasSource_xpeg2")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7iho"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(0, 0, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrid1"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(128, 0, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6d1lw"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(256, 0, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xs5uq"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(384, 0, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpeg2"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(0, 48, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2l16"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(128, 48, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tf3w"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(256, 48, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oanw6"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(384, 48, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8xdsg"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(0, 96, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oac2r"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(128, 96, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_chda1"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(256, 96, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_16ymg"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(384, 96, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0s4s1"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(0, 144, 128, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6oqn"]
-atlas = ExtResource("2_fgroy")
+atlas = ExtResource("6_n3m5k")
 region = Rect2(128, 144, 128, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bk3u3"]
@@ -423,55 +424,55 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0207r"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(0, 0, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b06wm"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(64, 0, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xte7"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(128, 0, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dkitq"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(192, 0, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1joql"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(0, 96, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yt478"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(64, 96, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vcvhe"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(128, 96, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dcns4"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(192, 96, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q77kd"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(0, 192, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mh53m"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(64, 192, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pymjx"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(128, 192, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dv34p"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(192, 192, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4fqn"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(0, 288, 64, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wprm0"]
@@ -522,59 +523,59 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wprm0"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(0, 0, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gokdr"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(48, 0, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3mki"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(96, 0, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ih2e"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(144, 0, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5j8wq"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(0, 128, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h7k2p"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(48, 128, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tqs4b"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(96, 128, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fsy7t"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(144, 128, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jeny4"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(0, 256, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pvcyr"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(48, 256, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0686p"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(96, 256, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bfrtm"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(144, 256, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urqa6"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(0, 384, 48, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3gx8j"]
-atlas = ExtResource("4_xrid1")
+atlas = ExtResource("8_cfsdc")
 region = Rect2(48, 384, 48, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8tmwh"]
@@ -628,55 +629,55 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8tmwh"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(0, 0, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ac17l"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(64, 0, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ca71c"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(128, 0, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mblkj"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(192, 0, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jdntb"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(0, 96, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eham8"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(64, 96, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ny7su"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(128, 96, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6difg"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(192, 96, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ij5my"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(0, 192, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ke55d"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(64, 192, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_adytf"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(128, 192, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3si7y"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(192, 192, 64, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nop7c"]
-atlas = ExtResource("3_x7iho")
+atlas = ExtResource("7_q5fgu")
 region = Rect2(0, 288, 64, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrid1"]
@@ -733,7 +734,7 @@ size = Vector2(368, 58)
 size = Vector2(112, 432)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk3u3"]
-texture = ExtResource("3_bk3u3")
+texture = ExtResource("5_0wdl5")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -922,7 +923,7 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/3 = SubResource("TileSetAtlasSource_bk3u3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgroy"]
-texture = ExtResource("3_bk3u3")
+texture = ExtResource("5_0wdl5")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1111,7 +1112,7 @@ terrain_set_0/terrain_0/color = Color(0.18666747, 0.33690146, 0.79446703, 1)
 sources/2 = SubResource("TileSetAtlasSource_fgroy")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x7iho"]
-texture = ExtResource("3_bk3u3")
+texture = ExtResource("5_0wdl5")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1300,7 +1301,7 @@ terrain_set_0/terrain_0/color = Color(0.16947395, 0.29727542, 0.88323724, 1)
 sources/1 = SubResource("TileSetAtlasSource_x7iho")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xrid1"]
-texture = ExtResource("3_bk3u3")
+texture = ExtResource("5_0wdl5")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1489,12 +1490,12 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_xrid1")
 
 [node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("initial_dialog")]
-script = ExtResource("1_qwhf2")
+script = ExtResource("1_7wmsh")
 initial_dialog = NodePath("Signs/MoveRightDialog")
 
 [node name="ParallaxBackgrounds" type="Node2D" parent="."]
 visible = false
-script = ExtResource("2_xpeg2")
+script = ExtResource("2_6p1ko")
 
 [node name="Skybox" type="Parallax2D" parent="ParallaxBackgrounds"]
 visible = false
@@ -1503,7 +1504,7 @@ scroll_offset = Vector2(0, 208)
 
 [node name="Blue" type="Sprite2D" parent="ParallaxBackgrounds/Skybox"]
 scale = Vector2(80, 30)
-texture = ExtResource("7_6d1lw")
+texture = ExtResource("3_7ctbl")
 
 [node name="Very Far Background" type="Parallax2D" parent="ParallaxBackgrounds"]
 visible = false
@@ -1512,7 +1513,7 @@ scroll_offset = Vector2(0, 169)
 repeat_times = 3
 
 [node name="Clouds" type="Sprite2D" parent="ParallaxBackgrounds/Very Far Background"]
-texture = ExtResource("3_xs5uq")
+texture = ExtResource("4_iouky")
 
 [node name="FarBackground" type="Parallax2D" parent="ParallaxBackgrounds"]
 visible = false
@@ -1588,13 +1589,13 @@ offset_left = 32.0
 offset_top = 720.0
 offset_right = 232.0
 offset_bottom = 780.0
-script = ExtResource("9_1tf3w")
+script = ExtResource("9_og0sb")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Signs/MoveRightDialog"]
 visible = false
 custom_minimum_size = Vector2(4, 4)
 layout_mode = 2
-texture = ExtResource("9_h2l16")
+texture = ExtResource("10_3crw2")
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
@@ -1614,7 +1615,7 @@ text = "Move Right With [b]→[/b]"
 
 [node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/MoveRightDialog"]
 libraries = {
-&"": ExtResource("11_oanw6")
+&"": ExtResource("11_daw8o")
 }
 
 [node name="Activation" type="Area2D" parent="Signs/MoveRightDialog"]
@@ -1628,13 +1629,13 @@ offset_left = 160.0
 offset_top = 800.0
 offset_right = 360.0
 offset_bottom = 860.0
-script = ExtResource("9_1tf3w")
+script = ExtResource("9_og0sb")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Signs/MoveLeftDialog"]
 visible = false
 custom_minimum_size = Vector2(4, 4)
 layout_mode = 2
-texture = ExtResource("9_h2l16")
+texture = ExtResource("10_3crw2")
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
@@ -1654,7 +1655,7 @@ text = "Move Left With [b]←[/b]"
 
 [node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/MoveLeftDialog"]
 libraries = {
-&"": ExtResource("12_chda1")
+&"": ExtResource("12_swwo2")
 }
 
 [node name="Activation" type="Area2D" parent="Signs/MoveLeftDialog"]
@@ -1668,13 +1669,13 @@ offset_left = -240.0
 offset_top = 800.0
 offset_right = -40.0
 offset_bottom = 860.0
-script = ExtResource("9_1tf3w")
+script = ExtResource("9_og0sb")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Signs/JumpDialog"]
 visible = false
 custom_minimum_size = Vector2(4, 4)
 layout_mode = 2
-texture = ExtResource("9_h2l16")
+texture = ExtResource("10_3crw2")
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
@@ -1694,7 +1695,7 @@ text = "Jump with [b][SPACE][/b]"
 
 [node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/JumpDialog"]
 libraries = {
-&"": ExtResource("13_16ymg")
+&"": ExtResource("13_c4lke")
 }
 
 [node name="Activation" type="Area2D" parent="Signs/JumpDialog"]
@@ -1709,13 +1710,13 @@ offset_left = -352.0
 offset_top = 672.0
 offset_right = -152.0
 offset_bottom = 732.0
-script = ExtResource("9_1tf3w")
+script = ExtResource("9_og0sb")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Signs/DoubleJumpDialog"]
 visible = false
 custom_minimum_size = Vector2(4, 4)
 layout_mode = 2
-texture = ExtResource("9_h2l16")
+texture = ExtResource("10_3crw2")
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
@@ -1735,7 +1736,7 @@ text = "Double Jump with [b][SPACE][/b] when already in the air"
 
 [node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/DoubleJumpDialog"]
 libraries = {
-&"": ExtResource("14_0s4s1")
+&"": ExtResource("14_0jpfa")
 }
 
 [node name="Activation" type="Area2D" parent="Signs/DoubleJumpDialog"]
@@ -1750,13 +1751,13 @@ offset_left = -768.0
 offset_top = 592.0
 offset_right = -348.0
 offset_bottom = 720.0
-script = ExtResource("9_1tf3w")
+script = ExtResource("9_og0sb")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Signs/WallJumpDialogA"]
 visible = false
 custom_minimum_size = Vector2(4, 4)
 layout_mode = 2
-texture = ExtResource("9_h2l16")
+texture = ExtResource("10_3crw2")
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
@@ -1776,7 +1777,7 @@ text = "Jump into the wall with [b]←[SPACE][/b] and then hit [b][SPACE][/b] ag
 
 [node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/WallJumpDialogA"]
 libraries = {
-&"": ExtResource("15_16ymg")
+&"": ExtResource("15_suax4")
 }
 
 [node name="Activation" type="Area2D" parent="Signs/WallJumpDialogA"]
@@ -1791,13 +1792,13 @@ offset_left = -640.0
 offset_top = 368.0
 offset_right = -432.0
 offset_bottom = 496.0
-script = ExtResource("9_1tf3w")
+script = ExtResource("9_og0sb")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Signs/WallJumpDialogB"]
 visible = false
 custom_minimum_size = Vector2(4, 4)
 layout_mode = 2
-texture = ExtResource("9_h2l16")
+texture = ExtResource("10_3crw2")
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
@@ -1817,7 +1818,7 @@ text = "Wall Jumps can be chained together to scale great heights"
 
 [node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/WallJumpDialogB"]
 libraries = {
-&"": ExtResource("16_0s4s1")
+&"": ExtResource("16_xsw0h")
 }
 
 [node name="Activation" type="Area2D" parent="Signs/WallJumpDialogB"]
@@ -1827,7 +1828,7 @@ position = Vector2(144, 32)
 position = Vector2(-216, 8)
 shape = SubResource("RectangleShape2D_0s4s1")
 
-[node name="Player" parent="." instance=ExtResource("2_bk3u3")]
+[node name="Player" parent="." instance=ExtResource("17_2xdl0")]
 position = Vector2(32, 768)
 
 [node name="Floor" type="Node2D" parent="."]
@@ -1846,8 +1847,32 @@ tile_map_data = PackedByteArray("AAD//ywAAQAKAAEAAAD//y0AAQAKAAIAAAD//y4AAQAKAAI
 tile_set = SubResource("TileSet_bk3u3")
 
 [node name="BlueBoxes" type="TileMapLayer" parent="Floor"]
-tile_map_data = PackedByteArray("AAAWADYAAQAJAAQAAAAVADYAAQAIAAQAAAAUADYAAQAIAAQAAAATADYAAQAIAAQAAAASADYAAQAIAAQAAAARADYAAQAIAAQAAAAQADYAAQAIAAQAAAAPADYAAQAIAAQAAAAOADYAAQAIAAQAAAANADYAAQAIAAQAAAAMADYAAQAIAAQAAAALADYAAQAIAAQAAAAKADYAAQAIAAQAAAAJADYAAQAIAAQAAAAIADYAAQAIAAQAAAAHADYAAQAIAAQAAAAGADYAAQAIAAQAAAAFADYAAQAIAAQAAAAEADYAAQAIAAQAAAADADYAAQAIAAQAAAACADYAAQAIAAQAAAABADYAAQAIAAQAAAAAADYAAQAIAAQAAAD//zYAAQAIAAQAAAD+/zYAAQAIAAQAAAD9/zYAAQAIAAQAAAD8/zYAAQAIAAQAAAD7/zYAAQAIAAQAAAD6/zYAAQAIAAQAAAD5/zYAAQAIAAQAAAD4/zYAAQAIAAQAAAD3/zYAAQAIAAQAAAD2/zYAAQAIAAQAAAD1/zYAAQAIAAQAAAD0/zYAAQAIAAQAAADz/zYAAQAIAAQAAADy/zYAAQAIAAQAAADx/zYAAQAIAAQAAADw/zYAAQAHAAQAAADc/ysAAQAJAAQAAADb/ysAAQAIAAQAAADa/ysAAQAIAAQAAADZ/ysAAQAIAAQAAADY/ysAAQAIAAQAAADX/ysAAQAIAAQAAADW/ysAAQAIAAQAAADV/ysAAQAIAAQAAADU/ysAAQAIAAQAAADT/ysAAQAIAAQAAADS/ysAAQAIAAQAAADR/ysAAQAIAAQAAADQ/ysAAQAHAAQAAADX/yYAAQAKAAcAAADX/yUAAQAKAAYAAADX/yQAAQAKAAYAAADX/yMAAQAKAAYAAADX/yIAAQAKAAYAAADX/yEAAQAKAAYAAADX/yAAAQAKAAYAAADX/x8AAQAKAAYAAADX/x4AAQAKAAYAAADX/x0AAQAKAAYAAADX/xwAAQAKAAYAAADX/xsAAQAKAAYAAADX/xoAAQAKAAYAAADX/xkAAQAKAAYAAADX/xgAAQAKAAYAAADX/xcAAQAKAAYAAADX/xYAAQAKAAYAAADX/xUAAQAKAAYAAADX/xQAAQAKAAYAAADX/xMAAQAKAAYAAADX/xIAAQAKAAUAAAA=")
+tile_map_data = PackedByteArray("AAAWADYAAQAJAAQAAAAVADYAAQAIAAQAAAAUADYAAQAIAAQAAAATADYAAQAIAAQAAAASADYAAQAIAAQAAAARADYAAQAIAAQAAAAQADYAAQAIAAQAAAAPADYAAQAIAAQAAAAOADYAAQAIAAQAAAANADYAAQAIAAQAAAAMADYAAQAIAAQAAAALADYAAQAIAAQAAAAKADYAAQAIAAQAAAAJADYAAQAIAAQAAAAIADYAAQAIAAQAAAAHADYAAQAIAAQAAAAGADYAAQAIAAQAAAAFADYAAQAIAAQAAAAEADYAAQAIAAQAAAADADYAAQAIAAQAAAACADYAAQAIAAQAAAABADYAAQAIAAQAAAAAADYAAQAIAAQAAAD//zYAAQAIAAQAAAD+/zYAAQAIAAQAAAD9/zYAAQAIAAQAAAD8/zYAAQAIAAQAAAD7/zYAAQAIAAQAAAD6/zYAAQAIAAQAAAD5/zYAAQAIAAQAAAD4/zYAAQAIAAQAAAD3/zYAAQAIAAQAAAD2/zYAAQAIAAQAAAD1/zYAAQAIAAQAAAD0/zYAAQAIAAQAAADz/zYAAQAIAAQAAADy/zYAAQAIAAQAAADx/zYAAQAIAAQAAADw/zYAAQAHAAQAAADc/ysAAQAJAAQAAADb/ysAAQAIAAQAAADa/ysAAQAIAAQAAADZ/ysAAQAIAAQAAADY/ysAAQAIAAQAAADX/ysAAQAIAAQAAADW/ysAAQAIAAQAAADV/ysAAQAIAAQAAADU/ysAAQAIAAQAAADT/ysAAQAIAAQAAADS/ysAAQAIAAQAAADR/ysAAQAIAAQAAADQ/ysAAQAHAAQAAADX/yYAAQAKAAcAAADX/yUAAQAKAAYAAADX/yQAAQAKAAYAAADX/yMAAQAKAAYAAADX/yIAAQAKAAYAAADX/yEAAQAKAAYAAADX/yAAAQAKAAYAAADX/x8AAQAKAAYAAADX/x4AAQAKAAYAAADX/x0AAQAKAAYAAADX/xwAAQAKAAYAAADX/xsAAQAKAAYAAADX/xoAAQAKAAYAAADX/xkAAQAKAAYAAADX/xgAAQAKAAYAAADX/xcAAQAKAAYAAADX/xYAAQAKAAYAAADX/xUAAQAKAAYAAADX/xQAAQAKAAYAAADX/xMAAQAKAAYAAADX/xIAAQAKAAUAAADy/xIAAQAIAAQAAADx/xIAAQAIAAQAAADw/xIAAQAIAAQAAADv/xIAAQAIAAQAAADu/xIAAQAIAAQAAADt/xIAAQAIAAQAAADs/xIAAQAIAAQAAADr/xIAAQAIAAQAAADq/xIAAQAIAAQAAADp/xIAAQAIAAQAAADo/xIAAQAHAAQAAAD2/xIAAQAJAAQAAAD1/xIAAQAIAAQAAAD0/xIAAQAIAAQAAADz/xIAAQAIAAQAAAA=")
 tile_set = SubResource("TileSet_6d1lw")
+
+[node name="SpikeTrap" parent="." instance=ExtResource("18_6p1ko")]
+position = Vector2(-368, 272)
+
+[node name="SpikeTrap8" parent="." instance=ExtResource("18_6p1ko")]
+position = Vector2(-384, 272)
+
+[node name="SpikeTrap2" parent="." instance=ExtResource("18_6p1ko")]
+position = Vector2(-352, 272)
+
+[node name="SpikeTrap3" parent="." instance=ExtResource("18_6p1ko")]
+position = Vector2(-336, 272)
+
+[node name="SpikeTrap4" parent="." instance=ExtResource("18_6p1ko")]
+position = Vector2(-320, 272)
+
+[node name="SpikeTrap5" parent="." instance=ExtResource("18_6p1ko")]
+position = Vector2(-304, 272)
+
+[node name="SpikeTrap6" parent="." instance=ExtResource("18_6p1ko")]
+position = Vector2(-288, 272)
+
+[node name="SpikeTrap7" parent="." instance=ExtResource("18_6p1ko")]
+position = Vector2(-272, 272)
 
 [connection signal="body_entered" from="Signs/MoveRightDialog/Activation" to="Signs/MoveRightDialog" method="_on_activation_body_entered"]
 [connection signal="body_exited" from="Signs/MoveRightDialog/Activation" to="Signs/MoveRightDialog" method="_on_activation_body_exited"]
