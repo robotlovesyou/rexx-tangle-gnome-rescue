@@ -461,13 +461,12 @@ particles_anim_loop = true
 [sub_resource type="CurveTexture" id="CurveTexture_ouej6"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fd7bo"]
-lifetime_randomness = 0.5
+lifetime_randomness = 0.1
 particle_flag_disable_z = true
-gravity = Vector3(0, -98, 0)
 linear_accel_min = -2.2351742e-06
 linear_accel_max = 50.549995
-tangential_accel_min = -33.7
-tangential_accel_max = 19.779997
+tangential_accel_min = -5.000002
+tangential_accel_max = 4.9999976
 scale_min = 0.5
 scale_max = 0.7
 alpha_curve = SubResource("CurveTexture_ouej6")
@@ -506,7 +505,7 @@ material = SubResource("CanvasItemMaterial_ouej6")
 position = Vector2(12, 4)
 amount = 20
 texture = ExtResource("2_ouej6")
-lifetime = 0.7
+lifetime = 3.0
 randomness = 0.5
 fixed_fps = 60
 trail_lifetime = 0.97

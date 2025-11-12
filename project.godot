@@ -17,10 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MovementHistory="*res://player_movement_history.gd"
-ActionMonitor="*res://player_action_monitor.gd"
-FollowersMonitor="*res://gnome_followers_monitor.gd"
-PMonitor="*res://player_monitor.gd"
+MovementHistory="*res://Globals/player_movement_history.gd"
+ActionMonitor="*res://Globals/player_action_monitor.gd"
+FollowersMonitor="*res://Globals/gnome_followers_monitor.gd"
+PMonitor="*res://Globals/player_monitor.gd"
 
 [display]
 

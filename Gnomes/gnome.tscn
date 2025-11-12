@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://y4tb8v4fvs66"]
 
-[ext_resource type="Script" uid="uid://bua5ful6l310d" path="res://gnome.gd" id="1_5vlar"]
+[ext_resource type="Script" uid="uid://bua5ful6l310d" path="res://Gnomes/gnome.gd" id="1_5vlar"]
 [ext_resource type="Texture2D" uid="uid://cs3aooemb044i" path="res://BigGnomeIdle.png" id="1_qe4o5"]
 [ext_resource type="Texture2D" uid="uid://i5mk3qey4bdj" path="res://BigGnomeWalk.png" id="2_5vlar"]
 [ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://player_movement_config.gd" id="2_dt2vp"]
