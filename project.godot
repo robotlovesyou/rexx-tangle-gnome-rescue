@@ -21,6 +21,8 @@ MovementHistory="*res://Globals/player_movement_history.gd"
 ActionMonitor="*res://Globals/player_action_monitor.gd"
 FollowersMonitor="*res://Globals/gnome_followers_monitor.gd"
 PMonitor="*res://Globals/player_monitor.gd"
+Level="*res://Globals/level_manager.gd"
+Events="*res://Globals/level_event_bus.gd"
 
 [display]
 
@@ -34,6 +36,7 @@ window/stretch/scale_mode="integer"
 
 MovingPlatform="A Moving Platform"
 CutsceneRexx="The Rexx Used For Cutscenes"
+Player="The Player"
 
 [layer_names]
 

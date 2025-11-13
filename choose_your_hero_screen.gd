@@ -25,4 +25,4 @@ func _on_rexxi_button_focus_entered() -> void:
 
 
 func _on_rexx_button_pressed() -> void:
-	get_tree().change_scene_to_file(next_screen)
+	Level.replace_level_with(next_screen)

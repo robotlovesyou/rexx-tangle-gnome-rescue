@@ -156,3 +156,6 @@ func _animate_action() -> void:
 
 func _append_to_history(delta: float) -> void:
 	MovementHistory.append(position, get_platform_velocity() * delta, _action, $AnimatedSprite2D.flip_h)
+
+func get_camera() -> Camera2D:
+	return $Camera2D

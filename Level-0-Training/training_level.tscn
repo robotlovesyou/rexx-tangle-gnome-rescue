@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=94 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
@@ -18,6 +18,8 @@
 [ext_resource type="AnimationLibrary" uid="uid://db5accw4nabvb" path="res://Level-0-Training/wall_jump_animations_b.tres" id="16_xsw0h"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://player.tscn" id="17_2xdl0"]
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="18_6p1ko"]
+[ext_resource type="PackedScene" uid="uid://djgyhguij8ueu" path="res://spawn_point.tscn" id="19_7ctbl"]
+[ext_resource type="Script" uid="uid://b1c7pmiu4kgif" path="res://Level-0-Training/activate_spike_trap_spawn_point.gd" id="19_iouky"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xs5uq"]
 texture = ExtResource("5_0wdl5")
@@ -732,6 +734,9 @@ size = Vector2(368, 58)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0s4s1"]
 size = Vector2(112, 432)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wdl5"]
+size = Vector2(256, 96)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bk3u3"]
 texture = ExtResource("5_0wdl5")
@@ -1831,6 +1836,22 @@ shape = SubResource("RectangleShape2D_0s4s1")
 [node name="Player" parent="." instance=ExtResource("17_2xdl0")]
 position = Vector2(32, 768)
 
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="InitialSpawnPoint" parent="SpawnPoints" instance=ExtResource("19_7ctbl")]
+position = Vector2(16, 752)
+active = true
+
+[node name="SpikeTrapSpawnPoint" parent="SpawnPoints" instance=ExtResource("19_7ctbl")]
+position = Vector2(-576, 256)
+
+[node name="ActivateSpikeTrapSpawnPoint" type="Area2D" parent="SpawnPoints/SpikeTrapSpawnPoint"]
+script = ExtResource("19_iouky")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint"]
+position = Vector2(64, -16)
+shape = SubResource("RectangleShape2D_0wdl5")
+
 [node name="Floor" type="Node2D" parent="."]
 
 [node name="YellowBoxes" type="TileMapLayer" parent="Floor"]
@@ -1886,3 +1907,4 @@ position = Vector2(-272, 272)
 [connection signal="body_exited" from="Signs/WallJumpDialogA/Activation" to="Signs/WallJumpDialogA" method="_on_activation_body_exited"]
 [connection signal="body_entered" from="Signs/WallJumpDialogB/Activation" to="Signs/WallJumpDialogB" method="_on_activation_body_entered"]
 [connection signal="body_exited" from="Signs/WallJumpDialogB/Activation" to="Signs/WallJumpDialogB" method="_on_activation_body_exited"]
+[connection signal="body_entered" from="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" to="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" method="_on_body_entered"]

@@ -165,7 +165,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jxqw"]
 size = Vector2(25, 28)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 4
 floor_snap_length = 4.0
 safe_margin = 0.1

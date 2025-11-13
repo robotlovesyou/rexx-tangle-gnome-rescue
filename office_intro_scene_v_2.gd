@@ -16,4 +16,4 @@ func _on_muffle_exterior_sounds_area_area_entered(area: Area2D) -> void:
 		birb_player.bus = "OutsideFromInside"
 
 func start_next_level() -> void:
-	get_tree().change_scene_to_file(next_screen)
+	Level.replace_level_with(next_screen)
