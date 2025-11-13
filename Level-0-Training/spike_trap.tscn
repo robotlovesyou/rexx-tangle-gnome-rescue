@@ -34,7 +34,7 @@ animations = [{
 }]
 
 [sub_resource type="Curve" id="Curve_ouej6"]
-_data = [Vector2(0.012765951, 1), 0.0, 0.0, 0, 0, Vector2(0.87234044, 1), 0.0, -7.8333383, 0, 1, Vector2(0.99999994, 0), -7.8333383, 0.0, 1, 0]
+_data = [Vector2(0, 0.30337077), 0.0, 0.0, 0, 0, Vector2(0.8425532, 0.31460673), 0.0, -1.9981786, 0, 1, Vector2(0.99999994, 0), -1.9981786, 0.0, 1, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_ouej6"]
@@ -79,7 +79,7 @@ position = Vector2(8, 8)
 polygon = PackedVector2Array(-8, 8, -8, 4, -6, -4, -5, -8, -3, -8, -2, -4, -1, 0, 0, 4, 1, 0, 2, -4, 3, -8, 5, -8, 6, -4, 7, 0, 8, 4, 8, 8)
 
 [node name="SpikeParticles" type="GPUParticles2D" parent="."]
-position = Vector2(4, 3)
+position = Vector2(4, 16)
 amount = 20
 texture = ExtResource("2_fd7bo")
 lifetime = 1.4
@@ -89,7 +89,7 @@ trail_lifetime = 0.97
 process_material = SubResource("ParticleProcessMaterial_fd7bo")
 
 [node name="SpikeParticles2" type="GPUParticles2D" parent="."]
-position = Vector2(12, 3)
+position = Vector2(12, 16)
 amount = 20
 texture = ExtResource("2_fd7bo")
 lifetime = 1.4

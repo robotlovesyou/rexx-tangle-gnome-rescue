@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=95 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
@@ -15,6 +15,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://cwssc7ln0lwyd" path="res://Level-0-Training/jump_animations.tres" id="13_c4lke"]
 [ext_resource type="AnimationLibrary" uid="uid://qq6ek46l6g00" path="res://Level-0-Training/double_jump_animations.tres" id="14_0jpfa"]
 [ext_resource type="AnimationLibrary" uid="uid://caj5c34qhwlqw" path="res://Level-0-Training/wall_jump_animations_a.tres" id="15_suax4"]
+[ext_resource type="AnimationLibrary" uid="uid://c3gy0o4d1fxlg" path="res://Level-0-Training/spike_trap_animations.tres" id="16_0wdl5"]
 [ext_resource type="AnimationLibrary" uid="uid://db5accw4nabvb" path="res://Level-0-Training/wall_jump_animations_b.tres" id="16_xsw0h"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://player.tscn" id="17_2xdl0"]
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="18_6p1ko"]
@@ -1497,6 +1498,7 @@ sources/1 = SubResource("TileSetAtlasSource_xrid1")
 [node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("initial_dialog")]
 script = ExtResource("1_7wmsh")
 initial_dialog = NodePath("Signs/MoveRightDialog")
+player_scene = ExtResource("17_2xdl0")
 
 [node name="ParallaxBackgrounds" type="Node2D" parent="."]
 visible = false
@@ -1792,6 +1794,47 @@ position = Vector2(144, 32)
 position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_1tf3w")
 
+[node name="SpikeTrapDialog" type="CenterContainer" parent="Signs"]
+offset_left = -640.0
+offset_top = 160.0
+offset_right = -220.0
+offset_bottom = 288.0
+script = ExtResource("9_og0sb")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Signs/SpikeTrapDialog"]
+visible = false
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+texture = ExtResource("10_3crw2")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="DialogLabel" type="RichTextLabel" parent="Signs/SpikeTrapDialog/NinePatchRect"]
+layout_mode = 0
+offset_left = 2.822998
+offset_top = 4.651184
+offset_right = 416.0
+offset_bottom = 57.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+bbcode_enabled = true
+text = "This is a spike trap. Don't touch it. It hurts"
+
+[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/SpikeTrapDialog"]
+libraries = {
+&"": ExtResource("16_0wdl5")
+}
+
+[node name="Activation" type="Area2D" parent="Signs/SpikeTrapDialog"]
+position = Vector2(144, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/SpikeTrapDialog/Activation"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_1tf3w")
+
 [node name="WallJumpDialogB" type="CenterContainer" parent="Signs"]
 offset_left = -640.0
 offset_top = 368.0
@@ -1832,9 +1875,6 @@ position = Vector2(144, 32)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/WallJumpDialogB/Activation"]
 position = Vector2(-216, 8)
 shape = SubResource("RectangleShape2D_0s4s1")
-
-[node name="Player" parent="." instance=ExtResource("17_2xdl0")]
-position = Vector2(32, 768)
 
 [node name="SpawnPoints" type="Node" parent="."]
 
@@ -1905,6 +1945,8 @@ position = Vector2(-272, 272)
 [connection signal="body_exited" from="Signs/DoubleJumpDialog/Activation" to="Signs/DoubleJumpDialog" method="_on_activation_body_exited"]
 [connection signal="body_entered" from="Signs/WallJumpDialogA/Activation" to="Signs/WallJumpDialogA" method="_on_activation_body_entered"]
 [connection signal="body_exited" from="Signs/WallJumpDialogA/Activation" to="Signs/WallJumpDialogA" method="_on_activation_body_exited"]
+[connection signal="body_entered" from="Signs/SpikeTrapDialog/Activation" to="Signs/SpikeTrapDialog" method="_on_activation_body_entered"]
+[connection signal="body_exited" from="Signs/SpikeTrapDialog/Activation" to="Signs/SpikeTrapDialog" method="_on_activation_body_exited"]
 [connection signal="body_entered" from="Signs/WallJumpDialogB/Activation" to="Signs/WallJumpDialogB" method="_on_activation_body_entered"]
 [connection signal="body_exited" from="Signs/WallJumpDialogB/Activation" to="Signs/WallJumpDialogB" method="_on_activation_body_exited"]
 [connection signal="body_entered" from="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" to="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" method="_on_body_entered"]
