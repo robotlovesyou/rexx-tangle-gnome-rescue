@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=96 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="18_6p1ko"]
 [ext_resource type="PackedScene" uid="uid://djgyhguij8ueu" path="res://spawn_point.tscn" id="19_7ctbl"]
 [ext_resource type="Script" uid="uid://b1c7pmiu4kgif" path="res://Level-0-Training/activate_spike_trap_spawn_point.gd" id="19_iouky"]
+[ext_resource type="PackedScene" uid="uid://bn3fwtg8kxfwp" path="res://Enemies/PathFollower/path_follower_enemy.tscn" id="21_n3m5k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xs5uq"]
 texture = ExtResource("5_0wdl5")
@@ -922,7 +923,7 @@ texture = ExtResource("5_0wdl5")
 
 [sub_resource type="TileSet" id="TileSet_x7iho"]
 physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_mask = 19
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "YellowFloor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -1111,7 +1112,7 @@ texture = ExtResource("5_0wdl5")
 
 [sub_resource type="TileSet" id="TileSet_xrid1"]
 physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_mask = 19
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "RedFloor"
 terrain_set_0/terrain_0/color = Color(0.18666747, 0.33690146, 0.79446703, 1)
@@ -1300,7 +1301,7 @@ texture = ExtResource("5_0wdl5")
 
 [sub_resource type="TileSet" id="TileSet_bk3u3"]
 physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_mask = 19
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "GreenFloor"
 terrain_set_0/terrain_0/color = Color(0.16947395, 0.29727542, 0.88323724, 1)
@@ -1489,7 +1490,7 @@ texture = ExtResource("5_0wdl5")
 
 [sub_resource type="TileSet" id="TileSet_6d1lw"]
 physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_mask = 19
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "BlueFloor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -1879,7 +1880,7 @@ shape = SubResource("RectangleShape2D_0s4s1")
 [node name="SpawnPoints" type="Node" parent="."]
 
 [node name="InitialSpawnPoint" parent="SpawnPoints" instance=ExtResource("19_7ctbl")]
-position = Vector2(16, 752)
+position = Vector2(64, 736)
 active = true
 
 [node name="SpikeTrapSpawnPoint" parent="SpawnPoints" instance=ExtResource("19_7ctbl")]
@@ -1900,7 +1901,7 @@ tile_set = SubResource("TileSet_x7iho")
 
 [node name="RedBoxes" type="TileMapLayer" parent="Floor"]
 position = Vector2(1, 0)
-tile_map_data = PackedByteArray("AAAAACwAAgADAAQAAAABACwAAgAEAAQAAAACACwAAgAEAAQAAAADACwAAgAEAAQAAAAEACwAAgAEAAQAAAAFACwAAgAEAAQAAAAGACwAAgAEAAQAAAAHACwAAgAEAAQAAAAIACwAAgAEAAQAAAAJACwAAgAEAAQAAAAKACwAAgAEAAQAAAALACwAAgAEAAQAAAAMACwAAgAEAAQAAAANACwAAgAEAAQAAAAOACwAAgAEAAQAAAAPACwAAgAEAAQAAAAQACwAAgAEAAQAAAARACwAAgAEAAQAAAASACwAAgAEAAQAAAATACwAAgAEAAQAAAAUACwAAgAEAAQAAAAVACwAAgAEAAQAAAAWACwAAgAEAAQAAAAXACwAAgAEAAQAAAAYACwAAgAFAAQAAADj/zEAAgAFAAcAAADj/zAAAgAFAAYAAADj/y8AAgAFAAYAAADj/y4AAgAFAAYAAADj/y0AAgAFAAYAAADj/ywAAgAFAAYAAADj/ysAAgAFAAUAAADi/zEAAgAEAAcAAADi/zAAAgAEAAYAAADi/y8AAgAEAAYAAADi/y4AAgAEAAYAAADi/y0AAgAEAAYAAADi/ywAAgAEAAYAAADi/ysAAgAEAAUAAADh/zEAAgAEAAcAAADh/zAAAgAEAAYAAADh/y8AAgAEAAYAAADh/y4AAgAEAAYAAADh/y0AAgAEAAYAAADh/ywAAgAEAAYAAADh/ysAAgAEAAUAAADg/zEAAgAEAAcAAADg/zAAAgAEAAYAAADg/y8AAgAEAAYAAADg/y4AAgAEAAYAAADg/y0AAgAEAAYAAADg/ywAAgAEAAYAAADg/ysAAgAEAAUAAADf/zEAAgAEAAcAAADf/zAAAgAEAAYAAADf/y8AAgAEAAYAAADf/y4AAgAEAAYAAADf/y0AAgAEAAYAAADf/ywAAgAEAAYAAADf/ysAAgAEAAUAAADe/zEAAgAEAAcAAADe/zAAAgAEAAYAAADe/y8AAgAEAAYAAADe/y4AAgAEAAYAAADe/y0AAgAEAAYAAADe/ywAAgAEAAYAAADe/ysAAgAEAAUAAADd/zEAAgADAAcAAADd/zAAAgADAAYAAADd/y8AAgADAAYAAADd/y4AAgADAAYAAADd/y0AAgADAAYAAADd/ywAAgADAAYAAADd/ysAAgADAAUAAADd/yUAAgAGAAcAAADd/yQAAgAGAAYAAADd/yMAAgAGAAYAAADd/yIAAgAGAAYAAADd/yEAAgAGAAYAAADd/yAAAgAGAAUAAAA=")
+tile_map_data = PackedByteArray("AAAAACwAAgADAAQAAAABACwAAgAEAAQAAAACACwAAgAEAAQAAAADACwAAgAEAAQAAAAEACwAAgAEAAQAAAAFACwAAgAEAAQAAAAGACwAAgAEAAQAAAAHACwAAgAEAAQAAAAIACwAAgAEAAQAAAAJACwAAgAEAAQAAAAKACwAAgAEAAQAAAALACwAAgAEAAQAAAAMACwAAgAEAAQAAAANACwAAgAEAAQAAAAOACwAAgAEAAQAAAAPACwAAgAEAAQAAAAQACwAAgAEAAQAAAARACwAAgAEAAQAAAASACwAAgAEAAQAAAATACwAAgAEAAQAAAAUACwAAgAEAAQAAAAVACwAAgAEAAQAAAAWACwAAgAEAAQAAAAXACwAAgAEAAQAAAAYACwAAgAFAAQAAADj/zEAAgAFAAcAAADj/zAAAgAFAAYAAADj/y8AAgAFAAYAAADj/y4AAgAFAAYAAADj/y0AAgAFAAYAAADj/ywAAgAFAAYAAADj/ysAAgAFAAUAAADi/zEAAgAEAAcAAADi/zAAAgAEAAYAAADi/y8AAgAEAAYAAADi/y4AAgAEAAYAAADi/y0AAgAEAAYAAADi/ywAAgAEAAYAAADi/ysAAgAEAAUAAADh/zEAAgAEAAcAAADh/zAAAgAEAAYAAADh/y8AAgAEAAYAAADh/y4AAgAEAAYAAADh/y0AAgAEAAYAAADh/ywAAgAEAAYAAADh/ysAAgAEAAUAAADg/zEAAgAEAAcAAADg/zAAAgAEAAYAAADg/y8AAgAEAAYAAADg/y4AAgAEAAYAAADg/y0AAgAEAAYAAADg/ywAAgAEAAYAAADg/ysAAgAEAAUAAADf/zEAAgAEAAcAAADf/zAAAgAEAAYAAADf/y8AAgAEAAYAAADf/y4AAgAEAAYAAADf/y0AAgAEAAYAAADf/ywAAgAEAAYAAADf/ysAAgAEAAUAAADe/zEAAgAEAAcAAADe/zAAAgAEAAYAAADe/y8AAgAEAAYAAADe/y4AAgAEAAYAAADe/y0AAgAEAAYAAADe/ywAAgAEAAYAAADe/ysAAgAEAAUAAADd/zEAAgADAAcAAADd/zAAAgADAAYAAADd/y8AAgADAAYAAADd/y4AAgADAAYAAADd/y0AAgADAAYAAADd/ywAAgADAAYAAADd/ysAAgADAAUAAADd/yUAAgAGAAcAAADd/yQAAgAGAAYAAADd/yMAAgAGAAYAAADd/yIAAgAGAAYAAADd/yEAAgAGAAYAAADd/yAAAgAGAAUAAAD3/xIAAgADAAQAAAD4/xIAAgAEAAQAAAD5/xIAAgAEAAQAAAD6/xIAAgAEAAQAAAD7/xIAAgAEAAQAAAD8/xIAAgAEAAQAAAD9/xIAAgAEAAQAAAD+/xIAAgAEAAQAAAD//xIAAgAEAAQAAAAAABIAAgAEAAQAAAABABIAAgAEAAQAAAACABIAAgAEAAQAAAADABIAAgAEAAQAAAAEABIAAgAEAAQAAAAFABIAAgAEAAQAAAAGABIAAgAEAAQAAAAHABIAAgAEAAQAAAAIABIAAgAEAAQAAAAJABIAAgAEAAQAAAAKABIAAgAEAAQAAAALABIAAgAEAAQAAAAMABIAAgAEAAQAAAANABIAAgAEAAQAAAAOABIAAgAEAAQAAAAPABIAAgAEAAQAAAAQABIAAgAEAAQAAAARABIAAgAEAAQAAAASABIAAgAEAAQAAAATABIAAgAEAAQAAAAUABIAAgAEAAQAAAAVABIAAgAEAAQAAAAWABIAAgAEAAQAAAAXABIAAgAEAAQAAAAYABIAAgAEAAQAAAAZABIAAgAEAAQAAAAaABIAAgAEAAQAAAAbABIAAgAEAAQAAAAcABIAAgAEAAQAAAAdABIAAgAFAAQAAAA=")
 tile_set = SubResource("TileSet_xrid1")
 
 [node name="GreenBoxes" type="TileMapLayer" parent="Floor"]
@@ -1910,6 +1911,9 @@ tile_set = SubResource("TileSet_bk3u3")
 [node name="BlueBoxes" type="TileMapLayer" parent="Floor"]
 tile_map_data = PackedByteArray("AAAWADYAAQAJAAQAAAAVADYAAQAIAAQAAAAUADYAAQAIAAQAAAATADYAAQAIAAQAAAASADYAAQAIAAQAAAARADYAAQAIAAQAAAAQADYAAQAIAAQAAAAPADYAAQAIAAQAAAAOADYAAQAIAAQAAAANADYAAQAIAAQAAAAMADYAAQAIAAQAAAALADYAAQAIAAQAAAAKADYAAQAIAAQAAAAJADYAAQAIAAQAAAAIADYAAQAIAAQAAAAHADYAAQAIAAQAAAAGADYAAQAIAAQAAAAFADYAAQAIAAQAAAAEADYAAQAIAAQAAAADADYAAQAIAAQAAAACADYAAQAIAAQAAAABADYAAQAIAAQAAAAAADYAAQAIAAQAAAD//zYAAQAIAAQAAAD+/zYAAQAIAAQAAAD9/zYAAQAIAAQAAAD8/zYAAQAIAAQAAAD7/zYAAQAIAAQAAAD6/zYAAQAIAAQAAAD5/zYAAQAIAAQAAAD4/zYAAQAIAAQAAAD3/zYAAQAIAAQAAAD2/zYAAQAIAAQAAAD1/zYAAQAIAAQAAAD0/zYAAQAIAAQAAADz/zYAAQAIAAQAAADy/zYAAQAIAAQAAADx/zYAAQAIAAQAAADw/zYAAQAHAAQAAADc/ysAAQAJAAQAAADb/ysAAQAIAAQAAADa/ysAAQAIAAQAAADZ/ysAAQAIAAQAAADY/ysAAQAIAAQAAADX/ysAAQAIAAQAAADW/ysAAQAIAAQAAADV/ysAAQAIAAQAAADU/ysAAQAIAAQAAADT/ysAAQAIAAQAAADS/ysAAQAIAAQAAADR/ysAAQAIAAQAAADQ/ysAAQAHAAQAAADX/yYAAQAKAAcAAADX/yUAAQAKAAYAAADX/yQAAQAKAAYAAADX/yMAAQAKAAYAAADX/yIAAQAKAAYAAADX/yEAAQAKAAYAAADX/yAAAQAKAAYAAADX/x8AAQAKAAYAAADX/x4AAQAKAAYAAADX/x0AAQAKAAYAAADX/xwAAQAKAAYAAADX/xsAAQAKAAYAAADX/xoAAQAKAAYAAADX/xkAAQAKAAYAAADX/xgAAQAKAAYAAADX/xcAAQAKAAYAAADX/xYAAQAKAAYAAADX/xUAAQAKAAYAAADX/xQAAQAKAAYAAADX/xMAAQAKAAYAAADX/xIAAQAKAAUAAADy/xIAAQAIAAQAAADx/xIAAQAIAAQAAADw/xIAAQAIAAQAAADv/xIAAQAIAAQAAADu/xIAAQAIAAQAAADt/xIAAQAIAAQAAADs/xIAAQAIAAQAAADr/xIAAQAIAAQAAADq/xIAAQAIAAQAAADp/xIAAQAIAAQAAADo/xIAAQAHAAQAAAD2/xIAAQAJAAQAAAD1/xIAAQAIAAQAAAD0/xIAAQAIAAQAAADz/xIAAQAIAAQAAAA=")
 tile_set = SubResource("TileSet_6d1lw")
+
+[node name="PathFollowerEnemy" parent="." instance=ExtResource("21_n3m5k")]
+position = Vector2(-96, 256)
 
 [node name="SpikeTrap" parent="." instance=ExtResource("18_6p1ko")]
 position = Vector2(-368, 272)
@@ -1950,3 +1954,5 @@ position = Vector2(-272, 272)
 [connection signal="body_entered" from="Signs/WallJumpDialogB/Activation" to="Signs/WallJumpDialogB" method="_on_activation_body_entered"]
 [connection signal="body_exited" from="Signs/WallJumpDialogB/Activation" to="Signs/WallJumpDialogB" method="_on_activation_body_exited"]
 [connection signal="body_entered" from="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" to="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" method="_on_body_entered"]
+
+[editable path="PathFollowerEnemy"]
