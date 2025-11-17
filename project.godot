@@ -37,6 +37,7 @@ window/stretch/scale_mode="integer"
 MovingPlatform="A Moving Platform"
 CutsceneRexx="The Rexx Used For Cutscenes"
 Player="The Player"
+Enemy="An Enemy"
 
 [layer_names]
 

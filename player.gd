@@ -39,9 +39,22 @@ func _physics_process(delta: float) -> void:
 	_handle_lateral_movement(delta)
 	
 	move_and_slide()
+	_check_for_enemy_collision()
 	_handle_coyote_timer(was_on_floor)
 	_animate_action()
 	_append_to_history(delta)
+
+func _check_for_enemy_collision():
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider.is_in_group("Enemy"):
+			var angle = collision.get_normal().angle_to(Vector2.UP)
+			if abs(angle) < 0.5: #45º
+				Events.player_killed_enemy_async(collider as CharacterBody2D)
+			else:
+				Events.player_hit_enemy_async(collider as CharacterBody2D)
+			
 
 func _determine_direction() -> void:
 	var temp_direciton = _direction

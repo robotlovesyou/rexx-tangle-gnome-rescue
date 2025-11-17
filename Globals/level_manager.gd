@@ -27,3 +27,6 @@ func spawn_player(player_scene: PackedScene, root: Node, immediate_sibling: Node
 	player.global_position = _spawn_point.global_position
 	player.get_camera().make_current()
 	return player
+
+func kill_enemy(enemy: CharacterBody2D) -> void:
+	enemy.queue_free()

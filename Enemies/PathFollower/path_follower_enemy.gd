@@ -26,7 +26,12 @@ func _physics_process(delta: float) -> void:
 	animated_sprite.flip_h = velocity.x > 0.0
 
 	move_and_slide()
-	print("%f, %f" % [path_follower.position.x, position.x])
+	# for i in range(get_slide_collision_count()):
+	# 	var collision = get_slide_collision(i)
+	# 	var collider = collision.get_collider()
+	# 	if collider.is_in_group("Player"):
+	# 		Events.player_hit_enemy_async(self)
+	# 		break
 
 func advance_path(t: float) -> void:
 	path_follower.progress_ratio = 0.5 * sin(t) + 0.5
