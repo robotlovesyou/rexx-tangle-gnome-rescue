@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://bn3fwtg8kxfwp"]
+[gd_scene load_steps=36 format=3 uid="uid://bn3fwtg8kxfwp"]
 
 [ext_resource type="Texture2D" uid="uid://dtcxisu7nbql3" path="res://Enemies/PathFollower/EnemyWalk.png" id="1_gke5b"]
 [ext_resource type="Script" uid="uid://dqpeve6od1png" path="res://Enemies/PathFollower/path_follower_enemy.gd" id="1_jh8ke"]
+[ext_resource type="Texture2D" uid="uid://fe1cpffrnptr" path="res://Enemies/PathFollower/EnemyDeath.png" id="2_lb5sl"]
 
 [sub_resource type="Curve2D" id="Curve2D_jh8ke"]
 _data = {
@@ -11,6 +12,30 @@ point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh8ke"]
 size = Vector2(25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smnrf"]
+atlas = ExtResource("2_lb5sl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp4oa"]
+atlas = ExtResource("2_lb5sl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6ata"]
+atlas = ExtResource("2_lb5sl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s40j"]
+atlas = ExtResource("2_lb5sl")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnnsg"]
+atlas = ExtResource("2_lb5sl")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wujqc"]
+atlas = ExtResource("2_lb5sl")
+region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lb5sl"]
 atlas = ExtResource("1_gke5b")
@@ -80,6 +105,29 @@ region = Rect2(96, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_smnrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp4oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6ata")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s40j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnnsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wujqc")
+}],
+"loop": false,
+"name": &"die",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lb5sl")
 }, {
 "duration": 1.0,
@@ -132,6 +180,41 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="Curve" id="Curve_lb5sl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2255319, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_j6uth"]
+curve = SubResource("Curve_lb5sl")
+
+[sub_resource type="Gradient" id="Gradient_224he"]
+colors = PackedColorArray(0.54388326, 0.7851973, 0.9984177, 1, 0, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rns71"]
+gradient = SubResource("Gradient_224he")
+
+[sub_resource type="Curve" id="Curve_yfj2h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7659574, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u17ix"]
+curve = SubResource("Curve_yfj2h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sj4f2"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(15, 1, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 37.0
+initial_velocity_max = 75.0
+gravity = Vector3(0, -98, 0)
+color_ramp = SubResource("GradientTexture1D_rns71")
+alpha_curve = SubResource("CurveTexture_j6uth")
+emission_curve = SubResource("CurveTexture_u17ix")
+turbulence_enabled = true
+turbulence_noise_strength = 9.99
+turbulence_noise_scale = 1.159
+
 [node name="Node2D" type="Node2D"]
 
 [node name="PathToFollow" type="Path2D" parent="."]
@@ -140,12 +223,13 @@ curve = SubResource("Curve2D_jh8ke")
 [node name="PathFollow2D" type="PathFollow2D" parent="PathToFollow"]
 position = Vector2(16, 16)
 
-[node name="PathFollowerEnemy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("path_follower", "animated_sprite") groups=["Enemy"]]
+[node name="PathFollowerEnemy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("path_follower", "animated_sprite", "death_particles") groups=["Enemy"]]
 collision_layer = 16
 collision_mask = 7
 script = ExtResource("1_jh8ke")
 path_follower = NodePath("../PathToFollow/PathFollow2D")
 animated_sprite = NodePath("AnimatedSprite2D")
+death_particles = NodePath("DeathParticles")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollowerEnemy"]
 position = Vector2(16.5, 17)
@@ -153,7 +237,13 @@ shape = SubResource("RectangleShape2D_jh8ke")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollowerEnemy"]
 sprite_frames = SubResource("SpriteFrames_smnrf")
-animation = &"walk"
+animation = &"die"
 autoplay = "walk"
-frame_progress = 0.48264962
 centered = false
+
+[node name="DeathParticles" type="GPUParticles2D" parent="PathFollowerEnemy"]
+position = Vector2(16, 32)
+emitting = false
+amount = 25
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_sj4f2")

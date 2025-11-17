@@ -24,9 +24,9 @@
 
 ## Training Level
 
-* Add hazard blocks
-* Add enemies
-* Add jumping on enemies
+* ~~Add hazard blocks~~
+* ~~Add enemies~~
+* ~~Add jumping on enemies~~
 * Add vertical platforms
 * Add horizontal platforms
 * Add Gnomes
