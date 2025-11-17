@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ivo03bmmws15"
-path="res://.godot/imported/gradient_256x1.png-e5212f5b3a23afdd72c2c8f0e6e416a8.ctex"
+uid="uid://dgpukijuxi4vw"
+path="res://.godot/imported/AltArrowRight.png-d6aae396cdec2cdde02c111facf491d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RexxArt/Curves/gradient_256x1.png"
-dest_files=["res://.godot/imported/gradient_256x1.png-e5212f5b3a23afdd72c2c8f0e6e416a8.ctex"]
+source_file="res://RexxArt/RexxTrainingLevel/AltArrowRight.png"
+dest_files=["res://.godot/imported/AltArrowRight.png-d6aae396cdec2cdde02c111facf491d2.ctex"]
 
 [params]
 

@@ -10,6 +10,7 @@ var _last_direction: float = 1.0
 var _has_jumped: bool = false
 var _has_stopped_jump: bool = false
 var _wall_jump_normal: Vector2
+var _killed_enemy_last_frame := false
 
 
 func _begin_action(action: Enums.Action) -> void:
@@ -51,6 +52,7 @@ func _check_for_enemy_collision():
 		if collider.is_in_group("Enemy"):
 			var angle = collision.get_normal().angle_to(Vector2.UP)
 			if abs(angle) < 0.5: #45º
+				_killed_enemy_last_frame = true
 				Events.player_killed_enemy_async(collider as CharacterBody2D)
 			else:
 				Events.player_hit_enemy_async(collider as CharacterBody2D)
@@ -135,6 +137,9 @@ func _handle_jump() -> void:
 			velocity.y = movement_config.JUMP_VELOCITY * movement_config.DOUBLE_JUMP_SCALE
 	elif _has_stopped_jump:
 		velocity.y *= movement_config.SHORT_JUMP_SCALE
+	elif _killed_enemy_last_frame:
+		velocity.y = movement_config.JUMP_VELOCITY * movement_config.DOUBLE_JUMP_SCALE
+		_killed_enemy_last_frame = false
 		
 
 func _handle_coyote_timer(was_on_floor: bool) -> void:

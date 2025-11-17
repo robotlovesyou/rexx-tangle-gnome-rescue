@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=99 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
@@ -22,7 +22,9 @@
 [ext_resource type="AnimationLibrary" uid="uid://clpl1lh0nli41" path="res://Level-0-Training/enemy_animations.tres" id="18_q5fgu"]
 [ext_resource type="PackedScene" uid="uid://djgyhguij8ueu" path="res://spawn_point.tscn" id="19_7ctbl"]
 [ext_resource type="Script" uid="uid://b1c7pmiu4kgif" path="res://Level-0-Training/activate_spike_trap_spawn_point.gd" id="19_iouky"]
+[ext_resource type="PackedScene" uid="uid://vv8glwdbp2lb" path="res://Level-0-Training/arrow_right.tscn" id="20_og0sb"]
 [ext_resource type="PackedScene" uid="uid://bn3fwtg8kxfwp" path="res://Enemies/PathFollower/path_follower_enemy.tscn" id="21_n3m5k"]
+[ext_resource type="PackedScene" uid="uid://bn7ceaefnx300" path="res://Level-0-Training/arrow_left.tscn" id="21_og0sb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xs5uq"]
 texture = ExtResource("5_0wdl5")
@@ -1556,12 +1558,14 @@ color = Color(0, 0, 0, 1)
 [node name="Signs" type="Node2D" parent="."]
 
 [node name="HorizontalArrowRight" type="AnimatedSprite2D" parent="Signs"]
+visible = false
 position = Vector2(272, 752)
 sprite_frames = SubResource("SpriteFrames_bk3u3")
 animation = &"play"
 autoplay = "play"
 
 [node name="HorizontalArrowLeft" type="AnimatedSprite2D" parent="Signs"]
+visible = false
 position = Vector2(96, 832)
 sprite_frames = SubResource("SpriteFrames_bk3u3")
 animation = &"play"
@@ -1593,11 +1597,171 @@ animation = &"play"
 autoplay = "play"
 flip_h = true
 
+[node name="RightArrow1" type="Node2D" parent="Signs"]
+position = Vector2(16, 752)
+
+[node name="ArrowRight" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+
+[node name="ArrowRight2" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(16, 0)
+
+[node name="ArrowRight3" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(32, 0)
+
+[node name="ArrowRight4" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(48, 0)
+
+[node name="ArrowRight5" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(64, 0)
+
+[node name="ArrowRight6" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(80, 0)
+
+[node name="ArrowRight7" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(96, 0)
+
+[node name="ArrowRight8" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(112, 0)
+
+[node name="ArrowRight9" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(128, 0)
+
+[node name="ArrowRight10" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(144, 0)
+
+[node name="ArrowRight11" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(160, 0)
+
+[node name="ArrowRight12" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(176, 0)
+
+[node name="ArrowRight13" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(192, 0)
+
+[node name="ArrowRight14" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(208, 0)
+
+[node name="ArrowRight15" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(224, 0)
+
+[node name="ArrowRight16" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(240, 0)
+
+[node name="ArrowRight17" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(256, 0)
+
+[node name="ArrowRight18" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(272, 0)
+
+[node name="ArrowRight19" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(288, 0)
+
+[node name="ArrowRight20" parent="Signs/RightArrow1" instance=ExtResource("20_og0sb")]
+position = Vector2(304, 0)
+
+[node name="LeftArrow1" type="Node2D" parent="Signs"]
+position = Vector2(-176, 832)
+
+[node name="ArrowLeft" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(304, 0)
+
+[node name="ArrowLeft21" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(320, 0)
+
+[node name="ArrowLeft22" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(336, 0)
+
+[node name="ArrowLeft23" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(352, 0)
+
+[node name="ArrowLeft24" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(368, 0)
+
+[node name="ArrowLeft25" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(384, 0)
+
+[node name="ArrowLeft26" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(400, 0)
+
+[node name="ArrowLeft27" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(416, 0)
+
+[node name="ArrowLeft28" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(432, 0)
+
+[node name="ArrowLeft29" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(448, 0)
+
+[node name="ArrowLeft30" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(464, 0)
+
+[node name="ArrowLeft31" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(480, 0)
+
+[node name="ArrowLeft32" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(496, 0)
+
+[node name="ArrowLeft2" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(288, 0)
+
+[node name="ArrowLeft3" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(272, 0)
+
+[node name="ArrowLeft4" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(256, 0)
+
+[node name="ArrowLeft5" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(240, 0)
+
+[node name="ArrowLeft6" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(224, 0)
+
+[node name="ArrowLeft7" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(208, 0)
+
+[node name="ArrowLeft8" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(192, 0)
+
+[node name="ArrowLeft9" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(176, 0)
+
+[node name="ArrowLeft10" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(160, 0)
+
+[node name="ArrowLeft11" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(144, 0)
+
+[node name="ArrowLeft12" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(128, 0)
+
+[node name="ArrowLeft13" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(112, 0)
+
+[node name="ArrowLeft14" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(96, 0)
+
+[node name="ArrowLeft15" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(80, 0)
+
+[node name="ArrowLeft16" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(64, 0)
+
+[node name="ArrowLeft17" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(48, 0)
+
+[node name="ArrowLeft18" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(32, 0)
+
+[node name="ArrowLeft19" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+position = Vector2(16, 0)
+
+[node name="ArrowLeft20" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
+
 [node name="MoveRightDialog" type="CenterContainer" parent="Signs"]
 offset_left = 32.0
-offset_top = 720.0
+offset_top = 705.0
 offset_right = 232.0
-offset_bottom = 780.0
+offset_bottom = 765.0
 script = ExtResource("9_og0sb")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Signs/MoveRightDialog"]
@@ -1612,10 +1776,10 @@ patch_margin_bottom = 2
 
 [node name="DialogLabel" type="RichTextLabel" parent="Signs/MoveRightDialog/NinePatchRect"]
 layout_mode = 0
-offset_left = 2.822998
-offset_top = 4.651184
-offset_right = 162.823
-offset_bottom = 44.651184
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 163.0
+offset_bottom = 41.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -1628,16 +1792,17 @@ libraries = {
 }
 
 [node name="Activation" type="Area2D" parent="Signs/MoveRightDialog"]
+position = Vector2(0, 15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/MoveRightDialog/Activation"]
 position = Vector2(152, 35)
 shape = SubResource("RectangleShape2D_1tf3w")
 
 [node name="MoveLeftDialog" type="CenterContainer" parent="Signs"]
-offset_left = 160.0
-offset_top = 800.0
-offset_right = 360.0
-offset_bottom = 860.0
+offset_left = 162.0
+offset_top = 786.0
+offset_right = 362.0
+offset_bottom = 846.0
 script = ExtResource("9_og0sb")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Signs/MoveLeftDialog"]
@@ -1668,6 +1833,7 @@ libraries = {
 }
 
 [node name="Activation" type="Area2D" parent="Signs/MoveLeftDialog"]
+position = Vector2(-2, 17)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/MoveLeftDialog/Activation"]
 position = Vector2(32, 32)
