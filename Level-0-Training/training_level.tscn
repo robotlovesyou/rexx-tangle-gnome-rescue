@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=102 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
@@ -8,23 +8,17 @@
 [ext_resource type="Texture2D" uid="uid://bdqrke8ou2tcr" path="res://RexxArt/RexxTrainingLevel/HorizontalArrow.png" id="6_n3m5k"]
 [ext_resource type="Texture2D" uid="uid://dc1lu1hjjrqnf" path="res://RexxArt/RexxTrainingLevel/CornerArrow.png" id="7_q5fgu"]
 [ext_resource type="Texture2D" uid="uid://cfik8k37xr0nh" path="res://RexxArt/RexxTrainingLevel/VerticalArrow.png" id="8_cfsdc"]
-[ext_resource type="Script" uid="uid://dtwlyloiwys65" path="res://instruction_dialog.gd" id="9_og0sb"]
 [ext_resource type="Texture2D" uid="uid://dxd8o8edkeas5" path="res://RexxArt/UI/DialogBox.png" id="10_3crw2"]
-[ext_resource type="AnimationLibrary" uid="uid://ghtnflrd4r3g" path="res://Level-0-Training/move_right_animations.tres" id="11_daw8o"]
-[ext_resource type="AnimationLibrary" uid="uid://cgrffdgesvnkp" path="res://Level-0-Training/move_left_animations.tres" id="12_swwo2"]
-[ext_resource type="AnimationLibrary" uid="uid://cwssc7ln0lwyd" path="res://Level-0-Training/jump_animations.tres" id="13_c4lke"]
-[ext_resource type="AnimationLibrary" uid="uid://qq6ek46l6g00" path="res://Level-0-Training/double_jump_animations.tres" id="14_0jpfa"]
-[ext_resource type="AnimationLibrary" uid="uid://caj5c34qhwlqw" path="res://Level-0-Training/wall_jump_animations_a.tres" id="15_suax4"]
-[ext_resource type="AnimationLibrary" uid="uid://c3gy0o4d1fxlg" path="res://Level-0-Training/spike_trap_animations.tres" id="16_0wdl5"]
-[ext_resource type="AnimationLibrary" uid="uid://db5accw4nabvb" path="res://Level-0-Training/wall_jump_animations_b.tres" id="16_xsw0h"]
+[ext_resource type="PackedScene" uid="uid://bjyksojvvw5mv" path="res://Level-0-Training/training_dialog.tscn" id="14_daw8o"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://player.tscn" id="17_2xdl0"]
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="18_6p1ko"]
-[ext_resource type="AnimationLibrary" uid="uid://clpl1lh0nli41" path="res://Level-0-Training/enemy_animations.tres" id="18_q5fgu"]
 [ext_resource type="PackedScene" uid="uid://djgyhguij8ueu" path="res://spawn_point.tscn" id="19_7ctbl"]
 [ext_resource type="Script" uid="uid://b1c7pmiu4kgif" path="res://Level-0-Training/activate_spike_trap_spawn_point.gd" id="19_iouky"]
 [ext_resource type="PackedScene" uid="uid://vv8glwdbp2lb" path="res://Level-0-Training/arrow_right.tscn" id="20_og0sb"]
 [ext_resource type="PackedScene" uid="uid://bn3fwtg8kxfwp" path="res://Enemies/PathFollower/path_follower_enemy.tscn" id="21_n3m5k"]
 [ext_resource type="PackedScene" uid="uid://bn7ceaefnx300" path="res://Level-0-Training/arrow_left.tscn" id="21_og0sb"]
+[ext_resource type="Script" uid="uid://bewuveafc4hke" path="res://Level-0-Training/training_dialogs_layer.gd" id="26_3crw2"]
+[ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="28_swwo2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xs5uq"]
 texture = ExtResource("5_0wdl5")
@@ -734,11 +728,26 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tf3w"]
-size = Vector2(368, 58)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3crw2"]
+size = Vector2(256, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0s4s1"]
-size = Vector2(112, 432)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_daw8o"]
+size = Vector2(400, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_og0sb"]
+size = Vector2(208, 176)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfsdc"]
+size = Vector2(192, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5fgu"]
+size = Vector2(320, 384)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3m5k"]
+size = Vector2(394, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ctbl"]
+size = Vector2(368, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wdl5"]
 size = Vector2(256, 96)
@@ -1499,9 +1508,135 @@ terrain_set_0/terrain_0/name = "BlueFloor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_xrid1")
 
-[node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("initial_dialog")]
+[sub_resource type="Animation" id="Animation_3crw2"]
+resource_name = "open_dialog"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/TrainingDialogLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/NinePatchRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(640, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_daw8o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/TrainingDialogLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/NinePatchRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_swwo2"]
+resource_name = "close_dialog"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, 100), Vector2(4, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/NinePatchRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/TrainingDialogLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_swwo2"]
+_data = {
+&"RESET": SubResource("Animation_daw8o"),
+&"close_dialog": SubResource("Animation_swwo2"),
+&"open_dialog": SubResource("Animation_3crw2")
+}
+
+[node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("training_dialogs_layer")]
 script = ExtResource("1_7wmsh")
-initial_dialog = NodePath("Signs/MoveRightDialog")
+training_dialogs_layer = NodePath("TrainingDialogsLayer")
 player_scene = ExtResource("17_2xdl0")
 
 [node name="ParallaxBackgrounds" type="Node2D" parent="."]
@@ -1757,333 +1892,62 @@ position = Vector2(16, 0)
 
 [node name="ArrowLeft20" parent="Signs/LeftArrow1" instance=ExtResource("21_og0sb")]
 
-[node name="MoveRightDialog" type="CenterContainer" parent="Signs"]
-offset_left = 32.0
-offset_top = 705.0
-offset_right = 232.0
-offset_bottom = 765.0
-script = ExtResource("9_og0sb")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Signs/MoveRightDialog"]
-visible = false
-custom_minimum_size = Vector2(4, 4)
-layout_mode = 2
-texture = ExtResource("10_3crw2")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-
-[node name="DialogLabel" type="RichTextLabel" parent="Signs/MoveRightDialog/NinePatchRect"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 1.0
-offset_right = 163.0
-offset_bottom = 41.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-bbcode_enabled = true
+[node name="MoveRightTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
+position = Vector2(48, 752)
 text = "Move Right With [b]→[/b]"
 
-[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/MoveRightDialog"]
-libraries = {
-&"": ExtResource("11_daw8o")
-}
+[node name="ActivationShape" parent="Signs/MoveRightTrainingDialog/ActivationArea" index="0"]
+position = Vector2(112, 0)
+shape = SubResource("RectangleShape2D_3crw2")
 
-[node name="Activation" type="Area2D" parent="Signs/MoveRightDialog"]
-position = Vector2(0, 15)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/MoveRightDialog/Activation"]
-position = Vector2(152, 35)
-shape = SubResource("RectangleShape2D_1tf3w")
-
-[node name="MoveLeftDialog" type="CenterContainer" parent="Signs"]
-offset_left = 162.0
-offset_top = 786.0
-offset_right = 362.0
-offset_bottom = 846.0
-script = ExtResource("9_og0sb")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Signs/MoveLeftDialog"]
-visible = false
-custom_minimum_size = Vector2(4, 4)
-layout_mode = 2
-texture = ExtResource("10_3crw2")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-
-[node name="DialogLabel" type="RichTextLabel" parent="Signs/MoveLeftDialog/NinePatchRect"]
-layout_mode = 0
-offset_left = 2.822998
-offset_top = 4.651184
-offset_right = 162.823
-offset_bottom = 44.651184
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-bbcode_enabled = true
+[node name="MoveLeftTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
+position = Vector2(144, 832)
 text = "Move Left With [b]←[/b]"
 
-[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/MoveLeftDialog"]
-libraries = {
-&"": ExtResource("12_swwo2")
-}
+[node name="ActivationShape" parent="Signs/MoveLeftTrainingDialog/ActivationArea" index="0"]
+position = Vector2(24, 0)
+shape = SubResource("RectangleShape2D_daw8o")
 
-[node name="Activation" type="Area2D" parent="Signs/MoveLeftDialog"]
-position = Vector2(-2, 17)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/MoveLeftDialog/Activation"]
-position = Vector2(32, 32)
-shape = SubResource("RectangleShape2D_1tf3w")
-
-[node name="JumpDialog" type="CenterContainer" parent="Signs"]
-offset_left = -240.0
-offset_top = 800.0
-offset_right = -40.0
-offset_bottom = 860.0
-script = ExtResource("9_og0sb")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Signs/JumpDialog"]
-visible = false
-custom_minimum_size = Vector2(4, 4)
-layout_mode = 2
-texture = ExtResource("10_3crw2")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-
-[node name="DialogLabel" type="RichTextLabel" parent="Signs/JumpDialog/NinePatchRect"]
-layout_mode = 0
-offset_left = 2.822998
-offset_top = 4.651184
-offset_right = 162.823
-offset_bottom = 44.651184
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-bbcode_enabled = true
+[node name="JumpTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
+position = Vector2(-80, 832)
 text = "Jump with [b][SPACE][/b]"
 
-[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/JumpDialog"]
-libraries = {
-&"": ExtResource("13_c4lke")
-}
+[node name="ActivationShape" parent="Signs/JumpTrainingDialog/ActivationArea" index="0"]
+position = Vector2(-56, -56)
+shape = SubResource("RectangleShape2D_og0sb")
 
-[node name="Activation" type="Area2D" parent="Signs/JumpDialog"]
-position = Vector2(128, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/JumpDialog/Activation"]
-position = Vector2(32, 32)
-shape = SubResource("RectangleShape2D_1tf3w")
-
-[node name="DoubleJumpDialog" type="CenterContainer" parent="Signs"]
-offset_left = -352.0
-offset_top = 672.0
-offset_right = -152.0
-offset_bottom = 732.0
-script = ExtResource("9_og0sb")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Signs/DoubleJumpDialog"]
-visible = false
-custom_minimum_size = Vector2(4, 4)
-layout_mode = 2
-texture = ExtResource("10_3crw2")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-
-[node name="DialogLabel" type="RichTextLabel" parent="Signs/DoubleJumpDialog/NinePatchRect"]
-layout_mode = 0
-offset_left = 2.822998
-offset_top = 4.651184
-offset_right = 192.0
-offset_bottom = 96.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-bbcode_enabled = true
+[node name="DoubleJumpTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
+position = Vector2(-400, 752)
 text = "Double Jump with [b][SPACE][/b] when already in the air"
 
-[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/DoubleJumpDialog"]
-libraries = {
-&"": ExtResource("14_0jpfa")
-}
+[node name="ActivationShape" parent="Signs/DoubleJumpTrainingDialog/ActivationArea" index="0"]
+position = Vector2(48, -8)
+shape = SubResource("RectangleShape2D_cfsdc")
 
-[node name="Activation" type="Area2D" parent="Signs/DoubleJumpDialog"]
-position = Vector2(96, 64)
+[node name="WallJumpTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
+position = Vector2(-576, 656)
+text = "Jump into the wall with [b]←[SPACE][/b] and then hit [b][SPACE][/b] again while touching the wall to Wall Jump.
+Wall Jumps can be chained to scale great heights,"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/DoubleJumpDialog/Activation"]
-position = Vector2(32, 32)
-shape = SubResource("RectangleShape2D_1tf3w")
+[node name="ActivationShape" parent="Signs/WallJumpTrainingDialog/ActivationArea" index="0"]
+position = Vector2(-32, -160)
+shape = SubResource("RectangleShape2D_q5fgu")
 
-[node name="WallJumpDialogA" type="CenterContainer" parent="Signs"]
-offset_left = -768.0
-offset_top = 592.0
-offset_right = -348.0
-offset_bottom = 720.0
-script = ExtResource("9_og0sb")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Signs/WallJumpDialogA"]
-visible = false
-custom_minimum_size = Vector2(4, 4)
-layout_mode = 2
-texture = ExtResource("10_3crw2")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-
-[node name="DialogLabel" type="RichTextLabel" parent="Signs/WallJumpDialogA/NinePatchRect"]
-layout_mode = 0
-offset_left = 2.822998
-offset_top = 4.651184
-offset_right = 416.0
-offset_bottom = 57.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-bbcode_enabled = true
-text = "Jump into the wall with [b]←[SPACE][/b] and then hit [b][SPACE][/b] again while touching the wall to Wall Jump"
-
-[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/WallJumpDialogA"]
-libraries = {
-&"": ExtResource("15_suax4")
-}
-
-[node name="Activation" type="Area2D" parent="Signs/WallJumpDialogA"]
-position = Vector2(144, 32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/WallJumpDialogA/Activation"]
-position = Vector2(32, 32)
-shape = SubResource("RectangleShape2D_1tf3w")
-
-[node name="SpikeTrapDialog" type="CenterContainer" parent="Signs"]
-offset_left = -640.0
-offset_top = 160.0
-offset_right = -220.0
-offset_bottom = 288.0
-script = ExtResource("9_og0sb")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Signs/SpikeTrapDialog"]
-visible = false
-custom_minimum_size = Vector2(4, 4)
-layout_mode = 2
-texture = ExtResource("10_3crw2")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-
-[node name="DialogLabel" type="RichTextLabel" parent="Signs/SpikeTrapDialog/NinePatchRect"]
-layout_mode = 0
-offset_left = 2.822998
-offset_top = 4.651184
-offset_right = 416.0
-offset_bottom = 57.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-bbcode_enabled = true
+[node name="SpikeTrapTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
+position = Vector2(-640, 240)
 text = "This is a spike trap. Don't touch it. It hurts"
 
-[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/SpikeTrapDialog"]
-libraries = {
-&"": ExtResource("16_0wdl5")
-}
+[node name="ActivationShape" parent="Signs/SpikeTrapTrainingDialog/ActivationArea" index="0"]
+position = Vector2(187, -16)
+shape = SubResource("RectangleShape2D_n3m5k")
 
-[node name="Activation" type="Area2D" parent="Signs/SpikeTrapDialog"]
-position = Vector2(144, 64)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/SpikeTrapDialog/Activation"]
-position = Vector2(32, 32)
-shape = SubResource("RectangleShape2D_1tf3w")
-
-[node name="Enemy Dialog" type="CenterContainer" parent="Signs"]
-offset_left = -208.0
-offset_top = 160.0
-offset_right = 212.0
-offset_bottom = 288.0
-script = ExtResource("9_og0sb")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Signs/Enemy Dialog"]
-visible = false
-custom_minimum_size = Vector2(4, 4)
-layout_mode = 2
-texture = ExtResource("10_3crw2")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-
-[node name="DialogLabel" type="RichTextLabel" parent="Signs/Enemy Dialog/NinePatchRect"]
-layout_mode = 0
-offset_left = 2.822998
-offset_top = 4.651184
-offset_right = 416.0
-offset_bottom = 57.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-bbcode_enabled = true
+[node name="EnemyTrainingDialog" parent="." instance=ExtResource("14_daw8o")]
+position = Vector2(-144, 224)
 text = "This is an enemy. If it hits you it hurts but you can jump on its head to kill it. "
 
-[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/Enemy Dialog"]
-libraries = {
-&"": ExtResource("18_q5fgu")
-}
-
-[node name="Activation" type="Area2D" parent="Signs/Enemy Dialog"]
-position = Vector2(144, 64)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/Enemy Dialog/Activation"]
-position = Vector2(32, 32)
-shape = SubResource("RectangleShape2D_1tf3w")
-
-[node name="WallJumpDialogB" type="CenterContainer" parent="Signs"]
-offset_left = -640.0
-offset_top = 368.0
-offset_right = -432.0
-offset_bottom = 496.0
-script = ExtResource("9_og0sb")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Signs/WallJumpDialogB"]
-visible = false
-custom_minimum_size = Vector2(4, 4)
-layout_mode = 2
-texture = ExtResource("10_3crw2")
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
-
-[node name="DialogLabel" type="RichTextLabel" parent="Signs/WallJumpDialogB/NinePatchRect"]
-layout_mode = 0
-offset_left = 2.822998
-offset_top = 4.651184
-offset_right = 194.0
-offset_bottom = 108.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-bbcode_enabled = true
-text = "Wall Jumps can be chained together to scale great heights"
-
-[node name="ExpandAndContract" type="AnimationPlayer" parent="Signs/WallJumpDialogB"]
-libraries = {
-&"": ExtResource("16_xsw0h")
-}
-
-[node name="Activation" type="Area2D" parent="Signs/WallJumpDialogB"]
-position = Vector2(144, 32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Signs/WallJumpDialogB/Activation"]
-position = Vector2(-216, 8)
-shape = SubResource("RectangleShape2D_0s4s1")
+[node name="ActivationShape" parent="EnemyTrainingDialog/ActivationArea" index="0"]
+position = Vector2(88, 0)
+shape = SubResource("RectangleShape2D_7ctbl")
 
 [node name="SpawnPoints" type="Node" parent="."]
 
@@ -2248,22 +2112,80 @@ position = Vector2(608, 304)
 [node name="SpikeTrap41" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
 position = Vector2(624, 304)
 
-[connection signal="body_entered" from="Signs/MoveRightDialog/Activation" to="Signs/MoveRightDialog" method="_on_activation_body_entered"]
-[connection signal="body_exited" from="Signs/MoveRightDialog/Activation" to="Signs/MoveRightDialog" method="_on_activation_body_exited"]
-[connection signal="body_entered" from="Signs/MoveLeftDialog/Activation" to="Signs/MoveLeftDialog" method="_on_activation_body_entered"]
-[connection signal="body_exited" from="Signs/MoveLeftDialog/Activation" to="Signs/MoveLeftDialog" method="_on_activation_body_exited"]
-[connection signal="body_entered" from="Signs/JumpDialog/Activation" to="Signs/JumpDialog" method="_on_activation_body_entered"]
-[connection signal="body_exited" from="Signs/JumpDialog/Activation" to="Signs/JumpDialog" method="_on_activation_body_exited"]
-[connection signal="body_entered" from="Signs/DoubleJumpDialog/Activation" to="Signs/DoubleJumpDialog" method="_on_activation_body_entered"]
-[connection signal="body_exited" from="Signs/DoubleJumpDialog/Activation" to="Signs/DoubleJumpDialog" method="_on_activation_body_exited"]
-[connection signal="body_entered" from="Signs/WallJumpDialogA/Activation" to="Signs/WallJumpDialogA" method="_on_activation_body_entered"]
-[connection signal="body_exited" from="Signs/WallJumpDialogA/Activation" to="Signs/WallJumpDialogA" method="_on_activation_body_exited"]
-[connection signal="body_entered" from="Signs/SpikeTrapDialog/Activation" to="Signs/SpikeTrapDialog" method="_on_activation_body_entered"]
-[connection signal="body_exited" from="Signs/SpikeTrapDialog/Activation" to="Signs/SpikeTrapDialog" method="_on_activation_body_exited"]
-[connection signal="body_entered" from="Signs/Enemy Dialog/Activation" to="Signs/Enemy Dialog" method="_on_activation_body_entered"]
-[connection signal="body_exited" from="Signs/Enemy Dialog/Activation" to="Signs/Enemy Dialog" method="_on_activation_body_exited"]
-[connection signal="body_entered" from="Signs/WallJumpDialogB/Activation" to="Signs/WallJumpDialogB" method="_on_activation_body_entered"]
-[connection signal="body_exited" from="Signs/WallJumpDialogB/Activation" to="Signs/WallJumpDialogB" method="_on_activation_body_exited"]
-[connection signal="body_entered" from="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" to="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" method="_on_body_entered"]
+[node name="TrainingDialogsLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("animation_player", "label")]
+script = ExtResource("26_3crw2")
+animation_player = NodePath("AnimationPlayer")
+label = NodePath("CenterContainer/NinePatchRect/MarginContainer/TrainingDialogLabel")
 
+[node name="CenterContainer" type="CenterContainer" parent="TrainingDialogsLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TrainingDialogsLayer/CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+texture = ExtResource("10_3crw2")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TrainingDialogsLayer/CenterContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TrainingDialogLabel" type="RichTextLabel" parent="TrainingDialogsLayer/CenterContainer/NinePatchRect/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("28_swwo2")
+theme_override_fonts/bold_font = ExtResource("28_swwo2")
+theme_override_fonts/mono_font = ExtResource("28_swwo2")
+bbcode_enabled = true
+text = "Hello [b]Mum[/b]"
+fit_content = true
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TrainingDialogsLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_swwo2")
+}
+
+[connection signal="training_dialog_freed" from="Signs/MoveRightTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/MoveRightTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="Signs/MoveLeftTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/MoveLeftTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="Signs/JumpTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/JumpTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="Signs/DoubleJumpTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/DoubleJumpTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="Signs/WallJumpTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/WallJumpTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="Signs/SpikeTrapTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/SpikeTrapTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="EnemyTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="EnemyTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="body_entered" from="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" to="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" method="_on_body_entered"]
+[connection signal="animation_finished" from="TrainingDialogsLayer/AnimationPlayer" to="TrainingDialogsLayer" method="_on_animation_finished"]
+
+[editable path="Signs/MoveRightTrainingDialog"]
+[editable path="Signs/MoveLeftTrainingDialog"]
+[editable path="Signs/JumpTrainingDialog"]
+[editable path="Signs/DoubleJumpTrainingDialog"]
+[editable path="Signs/WallJumpTrainingDialog"]
+[editable path="Signs/SpikeTrapTrainingDialog"]
+[editable path="EnemyTrainingDialog"]
 [editable path="PathFollowerEnemy"]

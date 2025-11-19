@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjyksojvvw5mv"]
+
+[ext_resource type="Script" uid="uid://bydb7ffnvgpr5" path="res://Level-0-Training/training_dialog.gd" id="1_iu5vt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iu5vt"]
+
+[node name="TrainingDialog" type="Node2D"]
+script = ExtResource("1_iu5vt")
+text = "Default Text"
+
+[node name="ActivationArea" type="Area2D" parent="."]
+
+[node name="ActivationShape" type="CollisionShape2D" parent="ActivationArea"]
+shape = SubResource("RectangleShape2D_iu5vt")
+
+[connection signal="body_entered" from="ActivationArea" to="." method="_on_activation_area_body_entered"]
+[connection signal="body_exited" from="ActivationArea" to="." method="_on_activation_area_body_exited"]
