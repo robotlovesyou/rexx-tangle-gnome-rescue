@@ -1678,9 +1678,10 @@ _data = {
 &"open_dialog": SubResource("Animation_3crw2")
 }
 
-[node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("training_dialogs_layer")]
+[node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("training_dialogs_layer", "enemy_training_dialog")]
 script = ExtResource("1_7wmsh")
 training_dialogs_layer = NodePath("TrainingDialogsLayer")
+enemy_training_dialog = NodePath("Signs/EnemyTrainingDialog")
 player_scene = ExtResource("17_2xdl0")
 
 [node name="ParallaxBackgrounds" type="Node2D" parent="."]
@@ -2263,6 +2264,7 @@ libraries = {
 [connection signal="training_dialog_freed" from="VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_freed"]
 [connection signal="training_dialog_requested" from="VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_requested"]
 [connection signal="body_entered" from="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" to="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" method="_on_body_entered"]
+[connection signal="died" from="PathFollowerEnemy/PathFollowerEnemy" to="." method="_on_training_enemy_died"]
 [connection signal="animation_finished" from="TrainingDialogsLayer/AnimationPlayer" to="TrainingDialogsLayer" method="_on_animation_finished"]
 
 [editable path="Signs/MoveRightTrainingDialog"]

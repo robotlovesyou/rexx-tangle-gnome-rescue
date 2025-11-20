@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var training_dialogs_layer: TrainingDialogsLayer
+@export var enemy_training_dialog: TrainingDialog
 @export var player_scene: PackedScene
 
 
@@ -29,3 +30,7 @@ func _on_training_dialog_requested(text: String) -> void:
 
 func _on_training_dialog_freed(text: String) -> void:
 	training_dialogs_layer.close(text)
+
+
+func _on_training_enemy_died() -> void:
+	enemy_training_dialog.active = false

@@ -1,6 +1,8 @@
 class_name PathFollowerEnemy
 extends Enemy
 
+signal died
+
 @export var path_follower: PathFollow2D
 @export var animated_sprite: AnimatedSprite2D
 @export var death_particles: GPUParticles2D
@@ -52,3 +54,4 @@ func die() -> void:
 	collision_layer = 0 # stop colliding with the player
 	animated_sprite.play("die")
 	death_particles.emitting = true
+	died.emit()
