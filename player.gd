@@ -15,12 +15,13 @@ var _killed_enemy_last_frame := false
 
 func _begin_action(action: Enums.Action) -> void:
 	if action == _action: return
+	print(Enums.action_name(action))
 	_action = action
 	ActionMonitor.action = _action
 
 func _is_jumping() -> bool:
 	# return true for any jumping action (jumping, double jumping, wall jumping)
-	return _action == Enums.Action.JUMPING or _action == Enums.Action.DOUBLE_JUMPING or _action == Enums.Action.WALL_JUMPING
+	return _action == Enums.Action.JUMPING or _action == Enums.Action.DOUBLE_JUMPING or _action == Enums.Action.DOUBLE_JUMPED or _action == Enums.Action.WALL_JUMPING
 
 func _has_direction() -> bool:
 	return _direction != 0.0
@@ -94,11 +95,13 @@ func _determine_action() -> Enums.Action:
 		return Enums.Action.WALL_JUMPING
 	if _has_jumped and _action == Enums.Action.JUMPING:
 		return Enums.Action.DOUBLE_JUMPING
-	if _has_jumped:
+	if _is_jumping() and _action == Enums.Action.DOUBLE_JUMPING: 
+		return Enums.Action.DOUBLE_JUMPED
+	if _has_jumped and !_is_jumping():
 		return Enums.Action.JUMPING
 	if is_on_wall_only():
 		return Enums.Action.WALL_SLIDING_DOWN if velocity.y > 0.0 else Enums.Action.WALL_SLIDING_UP
-	if not is_on_floor() and _is_jumping():
+	if not on_floor and _is_jumping():
 		return _action
 	if not on_floor and not _is_jumping():
 		if velocity.x > 0.0:

@@ -27,8 +27,8 @@
 * ~~Add hazard blocks~~
 * ~~Add enemies~~
 * ~~Add jumping on enemies~~
-* Add vertical platforms
-* Add horizontal platforms
+* ~~Add vertical platforms~~
+* ~~Add horizontal platforms~~
 * Add Gnomes
 * Add Gnome Rescue
 * Add the timer and rescue counter

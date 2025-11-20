@@ -31,6 +31,8 @@ func on_physics_process(delta: float) -> void:
 	if not _gnome.is_on_floor():
 		_gnome.velocity += _gnome.get_gravity() * delta
 
+	_center = MovementHistory.at_offset(0).position.x
+
 	var target_x = _center + (_amplitude * sin(2.0 * PI * _frequency * _time + _phase))
 	_time += delta
 	_amplitude = min(_limit, _amplitude * (1.0 + (_growth * delta)))
