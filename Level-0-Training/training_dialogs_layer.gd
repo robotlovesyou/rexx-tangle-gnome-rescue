@@ -8,6 +8,7 @@ var _current_text := ""
 
 func open(text: String) -> void:
 	label.text = text
+	_current_text = text
 	animation_player.play("open_dialog")
 
 func close(text: String) -> void:

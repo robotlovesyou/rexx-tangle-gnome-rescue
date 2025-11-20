@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=4 uid="uid://c0glnm06qaeix"]
+
+[ext_resource type="Script" uid="uid://dq7mhv1as5lij" path="res://Level-0-Training/vertical_platform.gd" id="1_gs5rt"]
+[ext_resource type="Texture2D" uid="uid://1vlflq856bcb" path="res://RexxArt/RexxTrainingLevel/HorizontalBeamRed.png" id="2_ayor4"]
+
+[sub_resource type="Curve2D" id="Curve2D_0jm8m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 384)
+}
+point_count = 2
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g8fv8"]
+texture = ExtResource("2_ayor4")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/left_side = 0
+
+[sub_resource type="TileSet" id="TileSet_v2emg"]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Red"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_g8fv8")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtfni"]
+size = Vector2(96, 16)
+
+[node name="VerticalPlatform" type="Node2D" node_paths=PackedStringArray("path_follow", "platform")]
+script = ExtResource("1_gs5rt")
+cycle_time_seconds = 5.0
+path_follow = NodePath("Path2D/PathFollow2D")
+platform = NodePath("Platform")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0jm8m")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = 1.5707964
+
+[node name="Platform" type="AnimatableBody2D" parent="." groups=["MovingPlatform"]]
+collision_layer = 4
+collision_mask = 3
+
+[node name="RedPlatform" type="TileMapLayer" parent="Platform"]
+tile_map_data = PackedByteArray("AAD9/wAAAAAAAAAAAAD+/wAAAAABAAAAAAD//wAAAAABAAAAAAAAAAAAAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_v2emg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_mtfni")

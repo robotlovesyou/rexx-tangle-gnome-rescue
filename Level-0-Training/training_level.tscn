@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=111 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
@@ -9,7 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://dc1lu1hjjrqnf" path="res://RexxArt/RexxTrainingLevel/CornerArrow.png" id="7_q5fgu"]
 [ext_resource type="Texture2D" uid="uid://cfik8k37xr0nh" path="res://RexxArt/RexxTrainingLevel/VerticalArrow.png" id="8_cfsdc"]
 [ext_resource type="Texture2D" uid="uid://dxd8o8edkeas5" path="res://RexxArt/UI/DialogBox.png" id="10_3crw2"]
+[ext_resource type="PackedScene" uid="uid://coyjee3c84087" path="res://Level-0-Training/horizontal_platform.tscn" id="13_iouky"]
+[ext_resource type="Texture2D" uid="uid://1vlflq856bcb" path="res://RexxArt/RexxTrainingLevel/HorizontalBeamRed.png" id="14_0wdl5"]
 [ext_resource type="PackedScene" uid="uid://bjyksojvvw5mv" path="res://Level-0-Training/training_dialog.tscn" id="14_daw8o"]
+[ext_resource type="PackedScene" uid="uid://c0glnm06qaeix" path="res://Level-0-Training/vertical_platform.tscn" id="15_n3m5k"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://player.tscn" id="17_2xdl0"]
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="18_6p1ko"]
 [ext_resource type="PackedScene" uid="uid://djgyhguij8ueu" path="res://spawn_point.tscn" id="19_7ctbl"]
@@ -747,7 +750,47 @@ size = Vector2(320, 384)
 size = Vector2(394, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ctbl"]
-size = Vector2(368, 128)
+size = Vector2(352, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swwo2"]
+size = Vector2(250, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4lke"]
+size = Vector2(250, 160)
+
+[sub_resource type="Curve2D" id="Curve2D_0wdl5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 384, 0)
+}
+point_count = 2
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n3m5k"]
+texture = ExtResource("14_0wdl5")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/left_side = 0
+
+[sub_resource type="TileSet" id="TileSet_q5fgu"]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Red"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_n3m5k")
+
+[sub_resource type="Curve2D" id="Curve2D_q5fgu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 544)
+}
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wdl5"]
 size = Vector2(256, 96)
@@ -1941,13 +1984,46 @@ text = "This is a spike trap. Don't touch it. It hurts"
 position = Vector2(187, -16)
 shape = SubResource("RectangleShape2D_n3m5k")
 
-[node name="EnemyTrainingDialog" parent="." instance=ExtResource("14_daw8o")]
+[node name="EnemyTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
 position = Vector2(-144, 224)
 text = "This is an enemy. If it hits you it hurts but you can jump on its head to kill it. "
 
-[node name="ActivationShape" parent="EnemyTrainingDialog/ActivationArea" index="0"]
-position = Vector2(88, 0)
+[node name="ActivationShape" parent="Signs/EnemyTrainingDialog/ActivationArea" index="0"]
+position = Vector2(80, 0)
 shape = SubResource("RectangleShape2D_7ctbl")
+
+[node name="HorizontalPlatformTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
+position = Vector2(144, 240)
+text = "Platforms can be used to cross hazardous terrain. "
+
+[node name="ActivationShape" parent="Signs/HorizontalPlatformTrainingDialog/ActivationArea" index="0"]
+position = Vector2(115, -16)
+shape = SubResource("RectangleShape2D_swwo2")
+
+[node name="VerticalPlatformTrainingDialog" parent="." instance=ExtResource("14_daw8o")]
+position = Vector2(912, 224)
+text = "Platforms can also be used to reach great heights. "
+
+[node name="ActivationShape" parent="VerticalPlatformTrainingDialog/ActivationArea" index="0"]
+position = Vector2(115, -16)
+shape = SubResource("RectangleShape2D_c4lke")
+
+[node name="HorizontalPlatform" parent="." instance=ExtResource("13_iouky")]
+position = Vector2(384, 256)
+cycle_time_seconds = 5.0
+
+[node name="Path2D" parent="HorizontalPlatform" index="0"]
+curve = SubResource("Curve2D_0wdl5")
+
+[node name="RedPlatform" parent="HorizontalPlatform/Platform" index="0"]
+tile_set = SubResource("TileSet_q5fgu")
+
+[node name="VerticalPlatform" parent="." instance=ExtResource("15_n3m5k")]
+position = Vector2(1104, -272)
+cycle_time_seconds = 7.0
+
+[node name="Path2D" parent="VerticalPlatform" index="0"]
+curve = SubResource("Curve2D_q5fgu")
 
 [node name="SpawnPoints" type="Node" parent="."]
 
@@ -1968,20 +2044,20 @@ shape = SubResource("RectangleShape2D_0wdl5")
 [node name="Floor" type="Node2D" parent="."]
 
 [node name="YellowBoxes" type="TileMapLayer" parent="Floor"]
-tile_map_data = PackedByteArray("AAAAADEAAwADAAAAAAABADEAAwAEAAAAAAACADEAAwAEAAAAAAADADEAAwAEAAAAAAAEADEAAwAEAAAAAAAFADEAAwAEAAAAAAAGADEAAwAEAAAAAAAHADEAAwAEAAAAAAAIADEAAwAEAAAAAAAJADEAAwAEAAAAAAAKADEAAwAEAAAAAAALADEAAwAEAAAAAAAMADEAAwAEAAAAAAANADEAAwAEAAAAAAAOADEAAwAEAAAAAAAPADEAAwAEAAAAAAAQADEAAwAEAAAAAAARADEAAwAFAAAAAADv/zUAAwAFAAMAAADv/zQAAwAFAAIAAADv/zMAAwAFAAIAAADv/zIAAwAFAAEAAADu/zUAAwAEAAMAAADu/zQAAwAEAAIAAADu/zMAAwAEAAIAAADu/zIAAwAEAAEAAADt/zUAAwAEAAMAAADt/zQAAwAEAAIAAADt/zMAAwAEAAIAAADt/zIAAwAEAAEAAADs/zUAAwAEAAMAAADs/zQAAwAEAAIAAADs/zMAAwAEAAIAAADs/zIAAwAEAAEAAADr/zUAAwAEAAMAAADr/zQAAwAEAAIAAADr/zMAAwAEAAIAAADr/zIAAwAEAAEAAADq/zUAAwAEAAMAAADq/zQAAwAEAAIAAADq/zMAAwAEAAIAAADq/zIAAwAEAAEAAADp/zUAAwAEAAMAAADp/zQAAwAEAAIAAADp/zMAAwAEAAIAAADp/zIAAwAEAAEAAADo/zUAAwAEAAMAAADo/zQAAwAEAAIAAADo/zMAAwAEAAIAAADo/zIAAwAEAAEAAADn/zUAAwAEAAMAAADn/zQAAwAEAAIAAADn/zMAAwAEAAIAAADn/zIAAwAEAAEAAADm/zUAAwAEAAMAAADm/zQAAwAEAAIAAADm/zMAAwAEAAIAAADm/zIAAwAEAAEAAADn/xIAAwAFAAAAAADm/xIAAwAEAAAAAADl/xIAAwAEAAAAAADk/xIAAwAEAAAAAADj/xIAAwAEAAAAAADi/xIAAwAEAAAAAADh/xIAAwAEAAAAAADg/xIAAwAEAAAAAADf/xIAAwAEAAAAAADe/xIAAwAEAAAAAADd/xIAAwAEAAAAAADc/xIAAwAEAAAAAADb/xIAAwAEAAAAAADa/xIAAwAEAAAAAADZ/xIAAwAEAAAAAADY/xIAAwADAAAAAADd/yYAAwAFAAAAAADc/yYAAwAEAAAAAADb/yYAAwAEAAAAAADa/yYAAwAEAAAAAADZ/yYAAwAEAAAAAADY/yYAAwADAAAAAADl/zUAAwAEAAMAAADl/zQAAwAEAAIAAADl/zMAAwAEAAIAAADl/zIAAwAEAAEAAADk/zUAAwADAAMAAADk/zQAAwADAAIAAADk/zMAAwADAAIAAADk/zIAAwADAAEAAAAHABMAAwAGAAEAAAAHABQAAwAGAAMAAAAoABMAAwAGAAEAAAAoABQAAwAGAAMAAAA=")
+tile_map_data = PackedByteArray("AAAAADEAAwADAAAAAAABADEAAwAEAAAAAAACADEAAwAEAAAAAAADADEAAwAEAAAAAAAEADEAAwAEAAAAAAAFADEAAwAEAAAAAAAGADEAAwAEAAAAAAAHADEAAwAEAAAAAAAIADEAAwAEAAAAAAAJADEAAwAEAAAAAAAKADEAAwAEAAAAAAALADEAAwAEAAAAAAAMADEAAwAEAAAAAAANADEAAwAEAAAAAAAOADEAAwAEAAAAAAAPADEAAwAEAAAAAAAQADEAAwAEAAAAAAARADEAAwAFAAAAAADv/zUAAwAFAAMAAADv/zQAAwAFAAIAAADv/zMAAwAFAAIAAADv/zIAAwAFAAEAAADu/zUAAwAEAAMAAADu/zQAAwAEAAIAAADu/zMAAwAEAAIAAADu/zIAAwAEAAEAAADt/zUAAwAEAAMAAADt/zQAAwAEAAIAAADt/zMAAwAEAAIAAADt/zIAAwAEAAEAAADs/zUAAwAEAAMAAADs/zQAAwAEAAIAAADs/zMAAwAEAAIAAADs/zIAAwAEAAEAAADr/zUAAwAEAAMAAADr/zQAAwAEAAIAAADr/zMAAwAEAAIAAADr/zIAAwAEAAEAAADq/zUAAwAEAAMAAADq/zQAAwAEAAIAAADq/zMAAwAEAAIAAADq/zIAAwAEAAEAAADp/zUAAwAEAAMAAADp/zQAAwAEAAIAAADp/zMAAwAEAAIAAADp/zIAAwAEAAEAAADo/zUAAwAEAAMAAADo/zQAAwAEAAIAAADo/zMAAwAEAAIAAADo/zIAAwAEAAEAAADn/zUAAwAEAAMAAADn/zQAAwAEAAIAAADn/zMAAwAEAAIAAADn/zIAAwAEAAEAAADm/zUAAwAEAAMAAADm/zQAAwAEAAIAAADm/zMAAwAEAAIAAADm/zIAAwAEAAEAAADn/xIAAwAFAAAAAADm/xIAAwAEAAAAAADl/xIAAwAEAAAAAADk/xIAAwAEAAAAAADj/xIAAwAEAAAAAADi/xIAAwAEAAAAAADh/xIAAwAEAAAAAADg/xIAAwAEAAAAAADf/xIAAwAEAAAAAADe/xIAAwAEAAAAAADd/xIAAwAEAAAAAADc/xIAAwAEAAAAAADb/xIAAwAEAAAAAADa/xIAAwAEAAAAAADZ/xIAAwAEAAAAAADY/xIAAwADAAAAAADd/yYAAwAFAAAAAADc/yYAAwAEAAAAAADb/yYAAwAEAAAAAADa/yYAAwAEAAAAAADZ/yYAAwAEAAAAAADY/yYAAwADAAAAAADl/zUAAwAEAAMAAADl/zQAAwAEAAIAAADl/zMAAwAEAAIAAADl/zIAAwAEAAEAAADk/zUAAwADAAMAAADk/zQAAwADAAIAAADk/zMAAwADAAIAAADk/zIAAwADAAEAAAAXABMAAwAGAAEAAAAXABQAAwAGAAMAAAA4ABMAAwAGAAEAAAA4ABQAAwAGAAMAAABIAPD/AwAGAAEAAABIAPH/AwAGAAIAAABIAPL/AwAGAAIAAABIAPP/AwAGAAIAAABIAPT/AwAGAAIAAABIAPX/AwAGAAIAAABIAPb/AwAGAAIAAABIAPf/AwAGAAIAAABIAPj/AwAGAAIAAABIAPn/AwAGAAIAAABIAPr/AwAGAAIAAABIAPv/AwAGAAIAAABIAPz/AwAGAAIAAABIAP3/AwAGAAIAAABIAP7/AwAGAAIAAABIAP//AwAGAAIAAABIAAAAAwAGAAIAAABIAAEAAwAGAAIAAABIAAIAAwAGAAIAAABIAAMAAwAGAAIAAABIAAQAAwAGAAIAAABIAAUAAwAGAAIAAABIAAYAAwAGAAIAAABIAAcAAwAGAAIAAABIAAgAAwAGAAIAAABIAAkAAwAGAAIAAABIAAoAAwAGAAIAAABIAAsAAwAGAAIAAABIAAwAAwAGAAIAAABIAA4AAwAGAAIAAABIAA8AAwAGAAIAAABIAA0AAwAGAAIAAABIABAAAwAGAAIAAABIABEAAwAGAAIAAABIABIAAwAGAAMAAAA=")
 tile_set = SubResource("TileSet_x7iho")
 
 [node name="RedBoxes" type="TileMapLayer" parent="Floor"]
 position = Vector2(1, 0)
-tile_map_data = PackedByteArray("AAAAACwAAgADAAQAAAABACwAAgAEAAQAAAACACwAAgAEAAQAAAADACwAAgAEAAQAAAAEACwAAgAEAAQAAAAFACwAAgAEAAQAAAAGACwAAgAEAAQAAAAHACwAAgAEAAQAAAAIACwAAgAEAAQAAAAJACwAAgAEAAQAAAAKACwAAgAEAAQAAAALACwAAgAEAAQAAAAMACwAAgAEAAQAAAANACwAAgAEAAQAAAAOACwAAgAEAAQAAAAPACwAAgAEAAQAAAAQACwAAgAEAAQAAAARACwAAgAEAAQAAAASACwAAgAEAAQAAAATACwAAgAEAAQAAAAUACwAAgAEAAQAAAAVACwAAgAEAAQAAAAWACwAAgAEAAQAAAAXACwAAgAEAAQAAAAYACwAAgAFAAQAAADj/zEAAgAFAAcAAADj/zAAAgAFAAYAAADj/y8AAgAFAAYAAADj/y4AAgAFAAYAAADj/y0AAgAFAAYAAADj/ywAAgAFAAYAAADj/ysAAgAFAAUAAADi/zEAAgAEAAcAAADi/zAAAgAEAAYAAADi/y8AAgAEAAYAAADi/y4AAgAEAAYAAADi/y0AAgAEAAYAAADi/ywAAgAEAAYAAADi/ysAAgAEAAUAAADh/zEAAgAEAAcAAADh/zAAAgAEAAYAAADh/y8AAgAEAAYAAADh/y4AAgAEAAYAAADh/y0AAgAEAAYAAADh/ywAAgAEAAYAAADh/ysAAgAEAAUAAADg/zEAAgAEAAcAAADg/zAAAgAEAAYAAADg/y8AAgAEAAYAAADg/y4AAgAEAAYAAADg/y0AAgAEAAYAAADg/ywAAgAEAAYAAADg/ysAAgAEAAUAAADf/zEAAgAEAAcAAADf/zAAAgAEAAYAAADf/y8AAgAEAAYAAADf/y4AAgAEAAYAAADf/y0AAgAEAAYAAADf/ywAAgAEAAYAAADf/ysAAgAEAAUAAADe/zEAAgAEAAcAAADe/zAAAgAEAAYAAADe/y8AAgAEAAYAAADe/y4AAgAEAAYAAADe/y0AAgAEAAYAAADe/ywAAgAEAAYAAADe/ysAAgAEAAUAAADd/zEAAgADAAcAAADd/zAAAgADAAYAAADd/y8AAgADAAYAAADd/y4AAgADAAYAAADd/y0AAgADAAYAAADd/ywAAgADAAYAAADd/ysAAgADAAUAAADd/yUAAgAGAAcAAADd/yQAAgAGAAYAAADd/yMAAgAGAAYAAADd/yIAAgAGAAYAAADd/yEAAgAGAAYAAADd/yAAAgAGAAUAAAD4/xIAAgADAAQAAAD5/xIAAgAEAAQAAAD6/xIAAgAEAAQAAAD7/xIAAgAEAAQAAAD8/xIAAgAEAAQAAAD9/xIAAgAEAAQAAAD+/xIAAgAEAAQAAAD//xIAAgAEAAQAAAAAABIAAgAEAAQAAAABABIAAgAEAAQAAAACABIAAgAEAAQAAAADABIAAgAEAAQAAAAEABIAAgAEAAQAAAAFABIAAgAEAAQAAAAGABIAAgAEAAQAAAAHABIAAgAFAAQAAAAoABIAAgADAAQAAAApABIAAgAEAAQAAAAqABIAAgAEAAQAAAArABIAAgAEAAQAAAAsABIAAgAEAAQAAAAtABIAAgAEAAQAAAAuABIAAgAEAAQAAAAvABIAAgAEAAQAAAAwABIAAgAEAAQAAAAxABIAAgAEAAQAAAAyABIAAgAEAAQAAAAzABIAAgAEAAQAAAA0ABIAAgAEAAQAAAA1ABIAAgAEAAQAAAA2ABIAAgAEAAQAAAA3ABIAAgAFAAQAAAA=")
+tile_map_data = PackedByteArray("AAAAACwAAgADAAQAAAABACwAAgAEAAQAAAACACwAAgAEAAQAAAADACwAAgAEAAQAAAAEACwAAgAEAAQAAAAFACwAAgAEAAQAAAAGACwAAgAEAAQAAAAHACwAAgAEAAQAAAAIACwAAgAEAAQAAAAJACwAAgAEAAQAAAAKACwAAgAEAAQAAAALACwAAgAEAAQAAAAMACwAAgAEAAQAAAANACwAAgAEAAQAAAAOACwAAgAEAAQAAAAPACwAAgAEAAQAAAAQACwAAgAEAAQAAAARACwAAgAEAAQAAAASACwAAgAEAAQAAAATACwAAgAEAAQAAAAUACwAAgAEAAQAAAAVACwAAgAEAAQAAAAWACwAAgAEAAQAAAAXACwAAgAEAAQAAAAYACwAAgAFAAQAAADj/zEAAgAFAAcAAADj/zAAAgAFAAYAAADj/y8AAgAFAAYAAADj/y4AAgAFAAYAAADj/y0AAgAFAAYAAADj/ywAAgAFAAYAAADj/ysAAgAFAAUAAADi/zEAAgAEAAcAAADi/zAAAgAEAAYAAADi/y8AAgAEAAYAAADi/y4AAgAEAAYAAADi/y0AAgAEAAYAAADi/ywAAgAEAAYAAADi/ysAAgAEAAUAAADh/zEAAgAEAAcAAADh/zAAAgAEAAYAAADh/y8AAgAEAAYAAADh/y4AAgAEAAYAAADh/y0AAgAEAAYAAADh/ywAAgAEAAYAAADh/ysAAgAEAAUAAADg/zEAAgAEAAcAAADg/zAAAgAEAAYAAADg/y8AAgAEAAYAAADg/y4AAgAEAAYAAADg/y0AAgAEAAYAAADg/ywAAgAEAAYAAADg/ysAAgAEAAUAAADf/zEAAgAEAAcAAADf/zAAAgAEAAYAAADf/y8AAgAEAAYAAADf/y4AAgAEAAYAAADf/y0AAgAEAAYAAADf/ywAAgAEAAYAAADf/ysAAgAEAAUAAADe/zEAAgAEAAcAAADe/zAAAgAEAAYAAADe/y8AAgAEAAYAAADe/y4AAgAEAAYAAADe/y0AAgAEAAYAAADe/ywAAgAEAAYAAADe/ysAAgAEAAUAAADd/zEAAgADAAcAAADd/zAAAgADAAYAAADd/y8AAgADAAYAAADd/y4AAgADAAYAAADd/y0AAgADAAYAAADd/ywAAgADAAYAAADd/ysAAgADAAUAAADd/yUAAgAGAAcAAADd/yQAAgAGAAYAAADd/yMAAgAGAAYAAADd/yIAAgAGAAYAAADd/yEAAgAGAAYAAADd/yAAAgAGAAUAAAD4/xIAAgADAAQAAAD5/xIAAgAEAAQAAAD6/xIAAgAEAAQAAAD7/xIAAgAEAAQAAAD8/xIAAgAEAAQAAAD9/xIAAgAEAAQAAAD+/xIAAgAEAAQAAAD//xIAAgAEAAQAAAAAABIAAgAEAAQAAAABABIAAgAEAAQAAAACABIAAgAEAAQAAAADABIAAgAEAAQAAAAEABIAAgAEAAQAAAAFABIAAgAEAAQAAAAGABIAAgAEAAQAAAAHABIAAgAFAAQAAAA=")
 tile_set = SubResource("TileSet_xrid1")
 
 [node name="GreenBoxes" type="TileMapLayer" parent="Floor"]
-tile_map_data = PackedByteArray("AAD//ywAAQAKAAEAAAD//y0AAQAKAAIAAAD//y4AAQAKAAIAAAD//y8AAQAKAAIAAAD//zAAAQAKAAMAAAAYADUAAQAJAAIAAAAYADQAAQAJAAIAAAAYADMAAQAJAAIAAAAYADIAAQAJAAIAAAAYADEAAQAJAAIAAAAYADAAAQAJAAIAAAAYAC8AAQAJAAIAAAAYAC4AAQAJAAIAAAAYAC0AAQAJAAEAAAAXADUAAQAHAAIAAAAXADQAAQAHAAIAAAAXADMAAQAHAAIAAAAXADIAAQAHAAIAAAAXADEAAQAHAAIAAAAXADAAAQAHAAIAAAAXAC8AAQAHAAIAAAAXAC4AAQAHAAIAAAAXAC0AAQAHAAEAAAAYADYAAQAJAAMAAAAXADYAAQAHAAMAAADP/yoAAQAKAAMAAADP/ykAAQAKAAIAAADP/ygAAQAKAAIAAADP/ycAAQAKAAIAAADP/yYAAQAKAAIAAADP/yUAAQAKAAIAAADP/yQAAQAKAAIAAADP/yMAAQAKAAIAAADP/yIAAQAKAAIAAADP/yEAAQAKAAIAAADP/yAAAQAKAAIAAADP/x8AAQAKAAIAAADP/x4AAQAKAAIAAADP/x0AAQAKAAIAAADP/xwAAQAKAAIAAADP/xsAAQAKAAIAAADP/xoAAQAKAAIAAADP/xkAAQAKAAIAAADP/xgAAQAKAAIAAADP/xcAAQAKAAIAAADP/xYAAQAKAAIAAADP/xUAAQAKAAIAAADP/xQAAQAKAAIAAADP/xMAAQAKAAIAAADP/xIAAQAKAAIAAADP/xEAAQAKAAIAAADP/xAAAQAKAAIAAADP/w8AAQAKAAIAAADP/w4AAQAKAAIAAADP/w0AAQAKAAIAAADP/wwAAQAKAAEAAADd/x8AAQAJAAAAAADc/x8AAQAIAAAAAADb/x8AAQAIAAAAAADa/x8AAQAIAAAAAADZ/x8AAQAIAAAAAADY/x8AAQAHAAAAAAAIABQAAQAHAAAAAAAJABQAAQAIAAAAAAAKABQAAQAIAAAAAAALABQAAQAIAAAAAAAMABQAAQAIAAAAAAANABQAAQAIAAAAAAAOABQAAQAIAAAAAAAPABQAAQAIAAAAAAAQABQAAQAIAAAAAAARABQAAQAIAAAAAAASABQAAQAIAAAAAAATABQAAQAIAAAAAAAUABQAAQAIAAAAAAAVABQAAQAIAAAAAAAWABQAAQAIAAAAAAAXABQAAQAIAAAAAAAYABQAAQAIAAAAAAAZABQAAQAIAAAAAAAaABQAAQAIAAAAAAAbABQAAQAIAAAAAAAcABQAAQAIAAAAAAAdABQAAQAIAAAAAAAeABQAAQAIAAAAAAAfABQAAQAIAAAAAAAgABQAAQAIAAAAAAAhABQAAQAIAAAAAAAiABQAAQAIAAAAAAAjABQAAQAIAAAAAAAkABQAAQAIAAAAAAAlABQAAQAIAAAAAAAmABQAAQAIAAAAAAAnABQAAQAJAAAAAAA=")
+tile_map_data = PackedByteArray("AAD//ywAAQAKAAEAAAD//y0AAQAKAAIAAAD//y4AAQAKAAIAAAD//y8AAQAKAAIAAAD//zAAAQAKAAMAAAAYADUAAQAJAAIAAAAYADQAAQAJAAIAAAAYADMAAQAJAAIAAAAYADIAAQAJAAIAAAAYADEAAQAJAAIAAAAYADAAAQAJAAIAAAAYAC8AAQAJAAIAAAAYAC4AAQAJAAIAAAAYAC0AAQAJAAEAAAAXADUAAQAHAAIAAAAXADQAAQAHAAIAAAAXADMAAQAHAAIAAAAXADIAAQAHAAIAAAAXADEAAQAHAAIAAAAXADAAAQAHAAIAAAAXAC8AAQAHAAIAAAAXAC4AAQAHAAIAAAAXAC0AAQAHAAEAAAAYADYAAQAJAAMAAAAXADYAAQAHAAMAAADP/yoAAQAKAAMAAADP/ykAAQAKAAIAAADP/ygAAQAKAAIAAADP/ycAAQAKAAIAAADP/yYAAQAKAAIAAADP/yUAAQAKAAIAAADP/yQAAQAKAAIAAADP/yMAAQAKAAIAAADP/yIAAQAKAAIAAADP/yEAAQAKAAIAAADP/yAAAQAKAAIAAADP/x8AAQAKAAIAAADP/x4AAQAKAAIAAADP/x0AAQAKAAIAAADP/xwAAQAKAAIAAADP/xsAAQAKAAIAAADP/xoAAQAKAAIAAADP/xkAAQAKAAIAAADP/xgAAQAKAAIAAADP/xcAAQAKAAIAAADP/xYAAQAKAAIAAADP/xUAAQAKAAIAAADP/xQAAQAKAAIAAADP/xMAAQAKAAIAAADP/xIAAQAKAAIAAADP/xEAAQAKAAIAAADP/xAAAQAKAAIAAADP/w8AAQAKAAIAAADP/w4AAQAKAAIAAADP/w0AAQAKAAIAAADP/wwAAQAKAAEAAADd/x8AAQAJAAAAAADc/x8AAQAIAAAAAADb/x8AAQAIAAAAAADa/x8AAQAIAAAAAADZ/x8AAQAIAAAAAADY/x8AAQAHAAAAAAAXABUAAQAHAAAAAAAYABUAAQAIAAAAAAAZABUAAQAIAAAAAAAaABUAAQAIAAAAAAAbABUAAQAIAAAAAAAcABUAAQAIAAAAAAAdABUAAQAIAAAAAAAeABUAAQAIAAAAAAAfABUAAQAIAAAAAAAgABUAAQAIAAAAAAAhABUAAQAIAAAAAAAiABUAAQAIAAAAAAAjABUAAQAIAAAAAAAkABUAAQAIAAAAAAAlABUAAQAIAAAAAAAmABUAAQAIAAAAAAAnABUAAQAIAAAAAAAoABUAAQAIAAAAAAApABUAAQAIAAAAAAAqABUAAQAIAAAAAAArABUAAQAIAAAAAAAsABUAAQAIAAAAAAAtABUAAQAIAAAAAAAuABUAAQAIAAAAAAAvABUAAQAIAAAAAAAwABUAAQAIAAAAAAAxABUAAQAIAAAAAAAyABUAAQAIAAAAAAAzABUAAQAIAAAAAAA0ABUAAQAIAAAAAAA1ABUAAQAIAAAAAAA2ABUAAQAIAAAAAAA3ABUAAQAIAAAAAAA4ABUAAQAJAAAAAAA=")
 tile_set = SubResource("TileSet_bk3u3")
 
 [node name="BlueBoxes" type="TileMapLayer" parent="Floor"]
-tile_map_data = PackedByteArray("AAAWADYAAQAJAAQAAAAVADYAAQAIAAQAAAAUADYAAQAIAAQAAAATADYAAQAIAAQAAAASADYAAQAIAAQAAAARADYAAQAIAAQAAAAQADYAAQAIAAQAAAAPADYAAQAIAAQAAAAOADYAAQAIAAQAAAANADYAAQAIAAQAAAAMADYAAQAIAAQAAAALADYAAQAIAAQAAAAKADYAAQAIAAQAAAAJADYAAQAIAAQAAAAIADYAAQAIAAQAAAAHADYAAQAIAAQAAAAGADYAAQAIAAQAAAAFADYAAQAIAAQAAAAEADYAAQAIAAQAAAADADYAAQAIAAQAAAACADYAAQAIAAQAAAABADYAAQAIAAQAAAAAADYAAQAIAAQAAAD//zYAAQAIAAQAAAD+/zYAAQAIAAQAAAD9/zYAAQAIAAQAAAD8/zYAAQAIAAQAAAD7/zYAAQAIAAQAAAD6/zYAAQAIAAQAAAD5/zYAAQAIAAQAAAD4/zYAAQAIAAQAAAD3/zYAAQAIAAQAAAD2/zYAAQAIAAQAAAD1/zYAAQAIAAQAAAD0/zYAAQAIAAQAAADz/zYAAQAIAAQAAADy/zYAAQAIAAQAAADx/zYAAQAIAAQAAADw/zYAAQAHAAQAAADc/ysAAQAJAAQAAADb/ysAAQAIAAQAAADa/ysAAQAIAAQAAADZ/ysAAQAIAAQAAADY/ysAAQAIAAQAAADX/ysAAQAIAAQAAADW/ysAAQAIAAQAAADV/ysAAQAIAAQAAADU/ysAAQAIAAQAAADT/ysAAQAIAAQAAADS/ysAAQAIAAQAAADR/ysAAQAIAAQAAADQ/ysAAQAHAAQAAADX/yYAAQAKAAcAAADX/yUAAQAKAAYAAADX/yQAAQAKAAYAAADX/yMAAQAKAAYAAADX/yIAAQAKAAYAAADX/yEAAQAKAAYAAADX/yAAAQAKAAYAAADX/x8AAQAKAAYAAADX/x4AAQAKAAYAAADX/x0AAQAKAAYAAADX/xwAAQAKAAYAAADX/xsAAQAKAAYAAADX/xoAAQAKAAYAAADX/xkAAQAKAAYAAADX/xgAAQAKAAYAAADX/xcAAQAKAAYAAADX/xYAAQAKAAYAAADX/xUAAQAKAAYAAADX/xQAAQAKAAYAAADX/xMAAQAKAAYAAADX/xIAAQAKAAUAAADy/xIAAQAIAAQAAADx/xIAAQAIAAQAAADw/xIAAQAIAAQAAADv/xIAAQAIAAQAAADu/xIAAQAIAAQAAADt/xIAAQAIAAQAAADs/xIAAQAIAAQAAADr/xIAAQAIAAQAAADq/xIAAQAIAAQAAADp/xIAAQAIAAQAAADo/xIAAQAHAAQAAAD2/xIAAQAIAAQAAAD1/xIAAQAIAAQAAAD0/xIAAQAIAAQAAADz/xIAAQAIAAQAAAD3/xIAAQAJAAQAAAA=")
+tile_map_data = PackedByteArray("AAAWADYAAQAJAAQAAAAVADYAAQAIAAQAAAAUADYAAQAIAAQAAAATADYAAQAIAAQAAAASADYAAQAIAAQAAAARADYAAQAIAAQAAAAQADYAAQAIAAQAAAAPADYAAQAIAAQAAAAOADYAAQAIAAQAAAANADYAAQAIAAQAAAAMADYAAQAIAAQAAAALADYAAQAIAAQAAAAKADYAAQAIAAQAAAAJADYAAQAIAAQAAAAIADYAAQAIAAQAAAAHADYAAQAIAAQAAAAGADYAAQAIAAQAAAAFADYAAQAIAAQAAAAEADYAAQAIAAQAAAADADYAAQAIAAQAAAACADYAAQAIAAQAAAABADYAAQAIAAQAAAAAADYAAQAIAAQAAAD//zYAAQAIAAQAAAD+/zYAAQAIAAQAAAD9/zYAAQAIAAQAAAD8/zYAAQAIAAQAAAD7/zYAAQAIAAQAAAD6/zYAAQAIAAQAAAD5/zYAAQAIAAQAAAD4/zYAAQAIAAQAAAD3/zYAAQAIAAQAAAD2/zYAAQAIAAQAAAD1/zYAAQAIAAQAAAD0/zYAAQAIAAQAAADz/zYAAQAIAAQAAADy/zYAAQAIAAQAAADx/zYAAQAIAAQAAADw/zYAAQAHAAQAAADc/ysAAQAJAAQAAADb/ysAAQAIAAQAAADa/ysAAQAIAAQAAADZ/ysAAQAIAAQAAADY/ysAAQAIAAQAAADX/ysAAQAIAAQAAADW/ysAAQAIAAQAAADV/ysAAQAIAAQAAADU/ysAAQAIAAQAAADT/ysAAQAIAAQAAADS/ysAAQAIAAQAAADR/ysAAQAIAAQAAADQ/ysAAQAHAAQAAADX/yYAAQAKAAcAAADX/yUAAQAKAAYAAADX/yQAAQAKAAYAAADX/yMAAQAKAAYAAADX/yIAAQAKAAYAAADX/yEAAQAKAAYAAADX/yAAAQAKAAYAAADX/x8AAQAKAAYAAADX/x4AAQAKAAYAAADX/x0AAQAKAAYAAADX/xwAAQAKAAYAAADX/xsAAQAKAAYAAADX/xoAAQAKAAYAAADX/xkAAQAKAAYAAADX/xgAAQAKAAYAAADX/xcAAQAKAAYAAADX/xYAAQAKAAYAAADX/xUAAQAKAAYAAADX/xQAAQAKAAYAAADX/xMAAQAKAAYAAADX/xIAAQAKAAUAAADy/xIAAQAIAAQAAADx/xIAAQAIAAQAAADw/xIAAQAIAAQAAADv/xIAAQAIAAQAAADu/xIAAQAIAAQAAADt/xIAAQAIAAQAAADs/xIAAQAIAAQAAADr/xIAAQAIAAQAAADq/xIAAQAIAAQAAADp/xIAAQAIAAQAAADo/xIAAQAHAAQAAAD2/xIAAQAIAAQAAAD1/xIAAQAIAAQAAAD0/xIAAQAIAAQAAADz/xIAAQAIAAQAAAD3/xIAAQAJAAQAAAAIABIAAQAHAAQAAAAJABIAAQAIAAQAAAAKABIAAQAIAAQAAAALABIAAQAIAAQAAAAMABIAAQAIAAQAAAANABIAAQAIAAQAAAAOABIAAQAIAAQAAAAPABIAAQAIAAQAAAAQABIAAQAIAAQAAAARABIAAQAIAAQAAAASABIAAQAIAAQAAAATABIAAQAIAAQAAAAUABIAAQAIAAQAAAAVABIAAQAIAAQAAAAWABIAAQAIAAQAAAAXABIAAQAJAAQAAAA4ABIAAQAHAAQAAAA5ABIAAQAIAAQAAAA6ABIAAQAIAAQAAAA7ABIAAQAIAAQAAAA8ABIAAQAIAAQAAAA9ABIAAQAIAAQAAAA+ABIAAQAIAAQAAAA/ABIAAQAIAAQAAABAABIAAQAIAAQAAABBABIAAQAIAAQAAABCABIAAQAIAAQAAABDABIAAQAIAAQAAABEABIAAQAIAAQAAABFABIAAQAIAAQAAABGABIAAQAIAAQAAABHABIAAQAJAAQAAAA=")
 tile_set = SubResource("TileSet_6d1lw")
 
 [node name="PathFollowerEnemy" parent="." instance=ExtResource("21_n3m5k")]
@@ -2014,103 +2090,103 @@ position = Vector2(-288, 272)
 position = Vector2(-272, 272)
 
 [node name="SpikeTrap9" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(128, 304)
+position = Vector2(384, 320)
 
 [node name="SpikeTrap10" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(144, 304)
+position = Vector2(400, 320)
 
 [node name="SpikeTrap11" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(160, 304)
+position = Vector2(416, 320)
 
 [node name="SpikeTrap12" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(176, 304)
+position = Vector2(432, 320)
 
 [node name="SpikeTrap13" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(192, 304)
+position = Vector2(448, 320)
 
 [node name="SpikeTrap14" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(208, 304)
+position = Vector2(464, 320)
 
 [node name="SpikeTrap15" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(224, 304)
+position = Vector2(480, 320)
 
 [node name="SpikeTrap16" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(240, 304)
+position = Vector2(496, 320)
 
 [node name="SpikeTrap17" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(256, 304)
+position = Vector2(512, 320)
 
 [node name="SpikeTrap18" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(272, 304)
+position = Vector2(528, 320)
 
 [node name="SpikeTrap19" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(288, 304)
+position = Vector2(544, 320)
 
 [node name="SpikeTrap20" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(304, 304)
+position = Vector2(560, 320)
 
 [node name="SpikeTrap21" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(320, 304)
+position = Vector2(576, 320)
 
 [node name="SpikeTrap22" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(336, 304)
+position = Vector2(592, 320)
 
 [node name="SpikeTrap23" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(352, 304)
+position = Vector2(608, 320)
 
 [node name="SpikeTrap24" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(368, 304)
+position = Vector2(624, 320)
 
 [node name="SpikeTrap25" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(368, 304)
+position = Vector2(624, 320)
 
 [node name="SpikeTrap26" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(384, 304)
+position = Vector2(640, 320)
 
 [node name="SpikeTrap27" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(400, 304)
+position = Vector2(656, 320)
 
 [node name="SpikeTrap28" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(416, 304)
+position = Vector2(672, 320)
 
 [node name="SpikeTrap29" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(432, 304)
+position = Vector2(688, 320)
 
 [node name="SpikeTrap30" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(448, 304)
+position = Vector2(704, 320)
 
 [node name="SpikeTrap31" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(464, 304)
+position = Vector2(720, 320)
 
 [node name="SpikeTrap32" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(480, 304)
+position = Vector2(736, 320)
 
 [node name="SpikeTrap33" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(496, 304)
+position = Vector2(752, 320)
 
 [node name="SpikeTrap34" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(512, 304)
+position = Vector2(768, 320)
 
 [node name="SpikeTrap35" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(528, 304)
+position = Vector2(784, 320)
 
 [node name="SpikeTrap36" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(544, 304)
+position = Vector2(800, 320)
 
 [node name="SpikeTrap37" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(560, 304)
+position = Vector2(816, 320)
 
 [node name="SpikeTrap38" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(576, 304)
+position = Vector2(832, 320)
 
 [node name="SpikeTrap39" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(592, 304)
+position = Vector2(848, 320)
 
 [node name="SpikeTrap40" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(608, 304)
+position = Vector2(864, 320)
 
 [node name="SpikeTrap41" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(624, 304)
+position = Vector2(880, 320)
 
 [node name="TrainingDialogsLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("animation_player", "label")]
 script = ExtResource("26_3crw2")
@@ -2176,8 +2252,12 @@ libraries = {
 [connection signal="training_dialog_requested" from="Signs/WallJumpTrainingDialog" to="." method="_on_training_dialog_requested"]
 [connection signal="training_dialog_freed" from="Signs/SpikeTrapTrainingDialog" to="." method="_on_training_dialog_freed"]
 [connection signal="training_dialog_requested" from="Signs/SpikeTrapTrainingDialog" to="." method="_on_training_dialog_requested"]
-[connection signal="training_dialog_freed" from="EnemyTrainingDialog" to="." method="_on_training_dialog_freed"]
-[connection signal="training_dialog_requested" from="EnemyTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="Signs/EnemyTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/EnemyTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="Signs/HorizontalPlatformTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/HorizontalPlatformTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_requested"]
 [connection signal="body_entered" from="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" to="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" method="_on_body_entered"]
 [connection signal="animation_finished" from="TrainingDialogsLayer/AnimationPlayer" to="TrainingDialogsLayer" method="_on_animation_finished"]
 
@@ -2187,5 +2267,9 @@ libraries = {
 [editable path="Signs/DoubleJumpTrainingDialog"]
 [editable path="Signs/WallJumpTrainingDialog"]
 [editable path="Signs/SpikeTrapTrainingDialog"]
-[editable path="EnemyTrainingDialog"]
+[editable path="Signs/EnemyTrainingDialog"]
+[editable path="Signs/HorizontalPlatformTrainingDialog"]
+[editable path="VerticalPlatformTrainingDialog"]
+[editable path="HorizontalPlatform"]
+[editable path="VerticalPlatform"]
 [editable path="PathFollowerEnemy"]
