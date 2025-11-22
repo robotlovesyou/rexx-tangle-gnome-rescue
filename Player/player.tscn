@@ -1,8 +1,8 @@
 [gd_scene load_steps=28 format=3 uid="uid://cenujiplxkpem"]
 
 [ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://BigIdle.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://player_movement_config.gd" id="2_hqtel"]
+[ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://Player/player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="2_hqtel"]
 [ext_resource type="Texture2D" uid="uid://6otakl13iyku" path="res://BigWalkSmooth.png" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://tmng73cxraa6" path="res://BigJump.png" id="4_sweqy"]
 [ext_resource type="Texture2D" uid="uid://bcd5nrbdd6rmb" path="res://BigWallSlideDown.png" id="6_1jxqw"]

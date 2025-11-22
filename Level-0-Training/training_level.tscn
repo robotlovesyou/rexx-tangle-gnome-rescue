@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://s7ry261r5xym" path="res://Level-0-Training/right_arrow_raised_end.tscn" id="15_c4lke"]
 [ext_resource type="PackedScene" uid="uid://c0glnm06qaeix" path="res://Level-0-Training/vertical_platform.tscn" id="15_n3m5k"]
 [ext_resource type="PackedScene" uid="uid://bix6n3guv2xvp" path="res://Level-0-Training/raised_arrow_up_beginning.tscn" id="15_suax4"]
-[ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://player.tscn" id="17_2xdl0"]
+[ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="17_2xdl0"]
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="18_6p1ko"]
 [ext_resource type="PackedScene" uid="uid://y4tb8v4fvs66" path="res://Gnomes/gnome.tscn" id="18_q5fgu"]
 [ext_resource type="PackedScene" uid="uid://djgyhguij8ueu" path="res://spawn_point.tscn" id="19_7ctbl"]
@@ -1888,7 +1888,7 @@ position = Vector2(1104, -112)
 position = Vector2(0, -192)
 
 [node name="RaisedArrowUpMiddle" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 17.334015)
+position = Vector2(0, 16)
 
 [node name="RaisedArrowUpMiddle20" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
 
@@ -1929,61 +1929,61 @@ position = Vector2(0, -176)
 position = Vector2(0, -176)
 
 [node name="RaisedArrowUpMiddle2" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 33.334015)
+position = Vector2(0, 32)
 
 [node name="RaisedArrowUpMiddle3" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 49.334015)
+position = Vector2(0, 48)
 
 [node name="RaisedArrowUpMiddle4" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 65.334015)
+position = Vector2(0, 64)
 
 [node name="RaisedArrowUpMiddle5" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 81.334015)
+position = Vector2(0, 80)
 
 [node name="RaisedArrowUpMiddle6" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 97.334015)
+position = Vector2(0, 96)
 
 [node name="RaisedArrowUpMiddle7" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 113.334015)
+position = Vector2(0, 112)
 
 [node name="RaisedArrowUpMiddle8" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 129.33401)
+position = Vector2(0, 128)
 
 [node name="RaisedArrowUpMiddle9" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 145.33401)
+position = Vector2(0, 144)
 
 [node name="RaisedArrowUpMiddle10" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 161.33401)
+position = Vector2(0, 160)
 
 [node name="RaisedArrowUpMiddle11" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 177.33401)
+position = Vector2(0, 176)
 
 [node name="RaisedArrowUpMiddle12" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 193.33401)
+position = Vector2(0, 192)
 
 [node name="RaisedArrowUpMiddle13" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 209.33401)
+position = Vector2(0, 208)
 
 [node name="RaisedArrowUpMiddle14" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 225.33401)
+position = Vector2(0, 224)
 
 [node name="RaisedArrowUpMiddle15" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 241.33401)
+position = Vector2(0, 240)
 
 [node name="RaisedArrowUpMiddle16" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 257.334)
+position = Vector2(0, 256)
 
 [node name="RaisedArrowUpMiddle17" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 273.334)
+position = Vector2(0, 272)
 
 [node name="RaisedArrowUpMiddle18" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 305.334)
+position = Vector2(0, 304)
 
 [node name="RaisedArrowUpMiddle19" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 289.334)
+position = Vector2(0, 288)
 
 [node name="RaisedArrowUpBeginning" parent="Signs/UpArrowRaised2" instance=ExtResource("15_suax4")]
-position = Vector2(0.19360352, 321.334)
+position = Vector2(0, 320)
 
 [node name="MoveRightTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
 position = Vector2(48, 752)
