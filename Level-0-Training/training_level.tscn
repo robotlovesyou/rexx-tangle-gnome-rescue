@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=61 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
@@ -7,10 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dshkqrm7map16" path="res://RexxArt/RexxTrainingLevel/training_level_atlas.png" id="5_0wdl5"]
 [ext_resource type="Texture2D" uid="uid://dxd8o8edkeas5" path="res://RexxArt/UI/DialogBox.png" id="10_3crw2"]
 [ext_resource type="PackedScene" uid="uid://wqp0pyi44pis" path="res://Level-0-Training/right_arrow_raised_begin.tscn" id="13_3crw2"]
-[ext_resource type="PackedScene" uid="uid://bdsfyccq00rm3" path="res://Level-0-Training/raised_arrow_up_end.tscn" id="13_daw8o"]
+[ext_resource type="PackedScene" uid="uid://bdsfyccq00rm3" path="res://Level-0-Training/up_arrow_raised_end.tscn" id="13_daw8o"]
 [ext_resource type="PackedScene" uid="uid://coyjee3c84087" path="res://Level-0-Training/horizontal_platform.tscn" id="13_iouky"]
 [ext_resource type="PackedScene" uid="uid://vkl5vtqyfw37" path="res://Level-0-Training/left_arrow_raised_begin.tscn" id="13_swwo2"]
-[ext_resource type="PackedScene" uid="uid://3tv1xksfa8xb" path="res://Level-0-Training/raised_arrow_up_middle.tscn" id="14_0jpfa"]
+[ext_resource type="PackedScene" uid="uid://3tv1xksfa8xb" path="res://Level-0-Training/up_arrow_raised_middle.tscn" id="14_0jpfa"]
 [ext_resource type="Texture2D" uid="uid://1vlflq856bcb" path="res://RexxArt/RexxTrainingLevel/HorizontalBeamRed.png" id="14_0wdl5"]
 [ext_resource type="PackedScene" uid="uid://boxi6m3eb70cm" path="res://Level-0-Training/left_arrow_raised_end.tscn" id="14_c4lke"]
 [ext_resource type="PackedScene" uid="uid://bjyksojvvw5mv" path="res://Level-0-Training/training_dialog.tscn" id="14_daw8o"]
@@ -18,12 +18,15 @@
 [ext_resource type="PackedScene" uid="uid://cqgqhp1gjch7x" path="res://Level-0-Training/left_arrow_raised_middle.tscn" id="15_0jpfa"]
 [ext_resource type="PackedScene" uid="uid://s7ry261r5xym" path="res://Level-0-Training/right_arrow_raised_end.tscn" id="15_c4lke"]
 [ext_resource type="PackedScene" uid="uid://c0glnm06qaeix" path="res://Level-0-Training/vertical_platform.tscn" id="15_n3m5k"]
-[ext_resource type="PackedScene" uid="uid://bix6n3guv2xvp" path="res://Level-0-Training/raised_arrow_up_beginning.tscn" id="15_suax4"]
+[ext_resource type="PackedScene" uid="uid://bix6n3guv2xvp" path="res://Level-0-Training/up_arrow_raised_beginning.tscn" id="15_suax4"]
+[ext_resource type="PackedScene" uid="uid://b2o3i46ibefxt" path="res://Level-0-Training/down_arrow_raised_beginning.tscn" id="17_0jpfa"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="17_2xdl0"]
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="18_6p1ko"]
 [ext_resource type="PackedScene" uid="uid://y4tb8v4fvs66" path="res://Gnomes/gnome.tscn" id="18_q5fgu"]
+[ext_resource type="PackedScene" uid="uid://cf3cdfhc41ane" path="res://Level-0-Training/down_arrow_raised_middle.tscn" id="18_suax4"]
 [ext_resource type="PackedScene" uid="uid://djgyhguij8ueu" path="res://spawn_point.tscn" id="19_7ctbl"]
 [ext_resource type="Script" uid="uid://b1c7pmiu4kgif" path="res://Level-0-Training/activate_spike_trap_spawn_point.gd" id="19_iouky"]
+[ext_resource type="PackedScene" uid="uid://bqvlkpxn0reap" path="res://Level-0-Training/down_arrow_raised_end.tscn" id="19_xsw0h"]
 [ext_resource type="PackedScene" uid="uid://bn3fwtg8kxfwp" path="res://Enemies/PathFollower/path_follower_enemy.tscn" id="21_n3m5k"]
 [ext_resource type="Script" uid="uid://bewuveafc4hke" path="res://Level-0-Training/training_dialogs_layer.gd" id="26_3crw2"]
 [ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="28_swwo2"]
@@ -1332,7 +1335,7 @@ color = Color(0, 0, 0, 1)
 [node name="Signs" type="Node2D" parent="."]
 
 [node name="RightArrowRaised" type="Node2D" parent="Signs"]
-position = Vector2(64, 752)
+position = Vector2(128, 752)
 
 [node name="RightArrowRaisedBegin" parent="Signs/RightArrowRaised" instance=ExtResource("13_3crw2")]
 
@@ -1342,44 +1345,11 @@ position = Vector2(16, 0)
 [node name="RightArrowRaisedMiddle2" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
 position = Vector2(32, 0)
 
-[node name="RightArrowRaisedMiddle3" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
+[node name="RightArrowRaisedEnd" parent="Signs/RightArrowRaised" instance=ExtResource("15_c4lke")]
 position = Vector2(48, 0)
 
-[node name="RightArrowRaisedMiddle4" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
-position = Vector2(64, 0)
-
-[node name="RightArrowRaisedMiddle5" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
-position = Vector2(80, 0)
-
-[node name="RightArrowRaisedMiddle6" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
-position = Vector2(96, 0)
-
-[node name="RightArrowRaisedMiddle7" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
-position = Vector2(112, 0)
-
-[node name="RightArrowRaisedMiddle8" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
-position = Vector2(128, 0)
-
-[node name="RightArrowRaisedMiddle9" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
-position = Vector2(144, 0)
-
-[node name="RightArrowRaisedMiddle10" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
-position = Vector2(160, 0)
-
-[node name="RightArrowRaisedMiddle11" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
-position = Vector2(176, 0)
-
-[node name="RightArrowRaisedMiddle12" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
-position = Vector2(192, 0)
-
-[node name="RightArrowRaisedMiddle13" parent="Signs/RightArrowRaised" instance=ExtResource("14_swwo2")]
-position = Vector2(208, 0)
-
-[node name="RightArrowRaisedEnd" parent="Signs/RightArrowRaised" instance=ExtResource("15_c4lke")]
-position = Vector2(224, 0)
-
 [node name="RightArrowRaised2" type="Node2D" parent="Signs"]
-position = Vector2(-640, 240)
+position = Vector2(-624, 256)
 
 [node name="RightArrowRaisedBegin" parent="Signs/RightArrowRaised2" instance=ExtResource("13_3crw2")]
 
@@ -1389,296 +1359,70 @@ position = Vector2(16, 0)
 [node name="RightArrowRaisedMiddle2" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
 position = Vector2(32, 0)
 
-[node name="RightArrowRaisedMiddle3" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
+[node name="RightArrowRaisedEnd" parent="Signs/RightArrowRaised2" instance=ExtResource("15_c4lke")]
 position = Vector2(48, 0)
 
-[node name="RightArrowRaisedMiddle4" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(64, 0)
+[node name="RightArrowRaised3" type="Node2D" parent="Signs"]
+position = Vector2(-128, 256)
 
-[node name="RightArrowRaisedMiddle5" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(80, 0)
+[node name="RightArrowRaisedBegin" parent="Signs/RightArrowRaised3" instance=ExtResource("13_3crw2")]
 
-[node name="RightArrowRaisedMiddle6" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(96, 0)
+[node name="RightArrowRaisedMiddle" parent="Signs/RightArrowRaised3" instance=ExtResource("14_swwo2")]
+position = Vector2(16, 0)
 
-[node name="RightArrowRaisedMiddle7" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(112, 0)
+[node name="RightArrowRaisedMiddle2" parent="Signs/RightArrowRaised3" instance=ExtResource("14_swwo2")]
+position = Vector2(32, 0)
 
-[node name="RightArrowRaisedMiddle8" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(128, 0)
+[node name="RightArrowRaisedEnd" parent="Signs/RightArrowRaised3" instance=ExtResource("15_c4lke")]
+position = Vector2(48, 0)
 
-[node name="RightArrowRaisedMiddle9" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(144, 0)
+[node name="RightArrowRaised4" type="Node2D" parent="Signs"]
+position = Vector2(384, 256)
 
-[node name="RightArrowRaisedMiddle10" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(160, 0)
+[node name="RightArrowRaisedBegin" parent="Signs/RightArrowRaised4" instance=ExtResource("13_3crw2")]
 
-[node name="RightArrowRaisedMiddle11" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(176, 0)
+[node name="RightArrowRaisedMiddle" parent="Signs/RightArrowRaised4" instance=ExtResource("14_swwo2")]
+position = Vector2(16, 0)
 
-[node name="RightArrowRaisedMiddle12" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(192, 0)
+[node name="RightArrowRaisedMiddle2" parent="Signs/RightArrowRaised4" instance=ExtResource("14_swwo2")]
+position = Vector2(32, 0)
 
-[node name="RightArrowRaisedMiddle13" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(208, 0)
+[node name="RightArrowRaisedEnd" parent="Signs/RightArrowRaised4" instance=ExtResource("15_c4lke")]
+position = Vector2(48, 0)
 
-[node name="RightArrowRaisedMiddle14" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(224, 0)
+[node name="RightArrowRaised5" type="Node2D" parent="Signs"]
+position = Vector2(384, 256)
 
-[node name="RightArrowRaisedMiddle15" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(240, 0)
+[node name="RightArrowRaisedBegin" parent="Signs/RightArrowRaised5" instance=ExtResource("13_3crw2")]
 
-[node name="RightArrowRaisedMiddle16" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(256, 0)
+[node name="RightArrowRaisedMiddle" parent="Signs/RightArrowRaised5" instance=ExtResource("14_swwo2")]
+position = Vector2(16, 0)
 
-[node name="RightArrowRaisedMiddle17" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(272, 0)
+[node name="RightArrowRaisedMiddle2" parent="Signs/RightArrowRaised5" instance=ExtResource("14_swwo2")]
+position = Vector2(32, 0)
 
-[node name="RightArrowRaisedMiddle18" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(288, 0)
+[node name="RightArrowRaisedEnd" parent="Signs/RightArrowRaised5" instance=ExtResource("15_c4lke")]
+position = Vector2(48, 0)
 
-[node name="RightArrowRaisedMiddle19" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(304, 0)
+[node name="DownArrowRaised" type="Node2D" parent="Signs"]
+position = Vector2(320, 752)
 
-[node name="RightArrowRaisedMiddle20" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(320, 0)
+[node name="DownArrowRaisedBeginning" parent="Signs/DownArrowRaised" instance=ExtResource("17_0jpfa")]
 
-[node name="RightArrowRaisedMiddle21" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(336, 0)
+[node name="DownArrowRaisedMiddle" parent="Signs/DownArrowRaised" instance=ExtResource("18_suax4")]
+position = Vector2(0, 16)
 
-[node name="RightArrowRaisedMiddle22" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(352, 0)
+[node name="DownArrowRaisedMiddle2" parent="Signs/DownArrowRaised" instance=ExtResource("18_suax4")]
+position = Vector2(0, 32)
 
-[node name="RightArrowRaisedMiddle23" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(368, 0)
-
-[node name="RightArrowRaisedMiddle24" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(384, 0)
-
-[node name="RightArrowRaisedMiddle25" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(400, 0)
-
-[node name="RightArrowRaisedMiddle26" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(416, 0)
-
-[node name="RightArrowRaisedMiddle27" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(432, 0)
-
-[node name="RightArrowRaisedMiddle28" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(448, 0)
-
-[node name="RightArrowRaisedMiddle29" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(464, 0)
-
-[node name="RightArrowRaisedMiddle30" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(480, 0)
-
-[node name="RightArrowRaisedMiddle31" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(496, 0)
-
-[node name="RightArrowRaisedMiddle32" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(512, 0)
-
-[node name="RightArrowRaisedMiddle33" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(528, 0)
-
-[node name="RightArrowRaisedMiddle34" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(544, 0)
-
-[node name="RightArrowRaisedMiddle35" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(560, 0)
-
-[node name="RightArrowRaisedMiddle36" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(576, 0)
-
-[node name="RightArrowRaisedMiddle37" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(592, 0)
-
-[node name="RightArrowRaisedMiddle38" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(608, 0)
-
-[node name="RightArrowRaisedMiddle39" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(624, 0)
-
-[node name="RightArrowRaisedMiddle40" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(640, 0)
-
-[node name="RightArrowRaisedMiddle41" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(656, 0)
-
-[node name="RightArrowRaisedMiddle42" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(672, 0)
-
-[node name="RightArrowRaisedMiddle43" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(688, 0)
-
-[node name="RightArrowRaisedMiddle44" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(704, 0)
-
-[node name="RightArrowRaisedMiddle45" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(720, 0)
-
-[node name="RightArrowRaisedMiddle46" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(736, 0)
-
-[node name="RightArrowRaisedMiddle47" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(752, 0)
-
-[node name="RightArrowRaisedMiddle48" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(768, 0)
-
-[node name="RightArrowRaisedMiddle49" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(784, 0)
-
-[node name="RightArrowRaisedMiddle50" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(800, 0)
-
-[node name="RightArrowRaisedMiddle51" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(816, 0)
-
-[node name="RightArrowRaisedMiddle52" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(832, 0)
-
-[node name="RightArrowRaisedMiddle53" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(848, 0)
-
-[node name="RightArrowRaisedMiddle54" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(864, 0)
-
-[node name="RightArrowRaisedMiddle55" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(880, 0)
-
-[node name="RightArrowRaisedMiddle56" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(896, 0)
-
-[node name="RightArrowRaisedMiddle57" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(912, 0)
-
-[node name="RightArrowRaisedMiddle58" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(928, 0)
-
-[node name="RightArrowRaisedMiddle59" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(944, 0)
-
-[node name="RightArrowRaisedMiddle60" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(960, 0)
-
-[node name="RightArrowRaisedMiddle61" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(976, 0)
-
-[node name="RightArrowRaisedMiddle62" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(992, 0)
-
-[node name="RightArrowRaisedMiddle63" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1008, 0)
-
-[node name="RightArrowRaisedMiddle64" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1024, 0)
-
-[node name="RightArrowRaisedMiddle65" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1040, 0)
-
-[node name="RightArrowRaisedMiddle66" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1056, 0)
-
-[node name="RightArrowRaisedMiddle67" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1072, 0)
-
-[node name="RightArrowRaisedMiddle68" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1088, 0)
-
-[node name="RightArrowRaisedMiddle69" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1104, 0)
-
-[node name="RightArrowRaisedMiddle70" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1120, 0)
-
-[node name="RightArrowRaisedMiddle71" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1136, 0)
-
-[node name="RightArrowRaisedMiddle72" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1152, 0)
-
-[node name="RightArrowRaisedMiddle73" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1168, 0)
-
-[node name="RightArrowRaisedMiddle74" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1184, 0)
-
-[node name="RightArrowRaisedMiddle75" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1200, 0)
-
-[node name="RightArrowRaisedMiddle76" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1216, 0)
-
-[node name="RightArrowRaisedMiddle77" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1232, 0)
-
-[node name="RightArrowRaisedMiddle78" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1248, 0)
-
-[node name="RightArrowRaisedMiddle79" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1264, 0)
-
-[node name="RightArrowRaisedMiddle80" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1280, 0)
-
-[node name="RightArrowRaisedMiddle81" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1296, 0)
-
-[node name="RightArrowRaisedMiddle82" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1312, 0)
-
-[node name="RightArrowRaisedMiddle83" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1328, 0)
-
-[node name="RightArrowRaisedMiddle84" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1344, 0)
-
-[node name="RightArrowRaisedMiddle85" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1360, 0)
-
-[node name="RightArrowRaisedMiddle86" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1376, 0)
-
-[node name="RightArrowRaisedMiddle87" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1392, 0)
-
-[node name="RightArrowRaisedMiddle88" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1408, 0)
-
-[node name="RightArrowRaisedMiddle89" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1424, 0)
-
-[node name="RightArrowRaisedMiddle90" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1440, 0)
-
-[node name="RightArrowRaisedMiddle91" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1456, 0)
-
-[node name="RightArrowRaisedMiddle92" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1472, 0)
-
-[node name="RightArrowRaisedMiddle93" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1488, 0)
-
-[node name="RightArrowRaisedMiddle94" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1504, 0)
-
-[node name="RightArrowRaisedMiddle95" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1520, 0)
-
-[node name="RightArrowRaisedMiddle96" parent="Signs/RightArrowRaised2" instance=ExtResource("14_swwo2")]
-position = Vector2(1536, 0)
-
-[node name="RightArrowRaisedEnd" parent="Signs/RightArrowRaised2" instance=ExtResource("15_c4lke")]
-position = Vector2(1552, 0)
+[node name="DownArrowRaisedEnd" parent="Signs/DownArrowRaised" instance=ExtResource("19_xsw0h")]
+position = Vector2(0, 48)
 
 [node name="LeftArrowRaised" type="Node2D" parent="Signs"]
-position = Vector2(64, 832)
+position = Vector2(128, 832)
 
 [node name="LeftArrowRaisedBegin" parent="Signs/LeftArrowRaised" instance=ExtResource("13_swwo2")]
-position = Vector2(224, 0)
+position = Vector2(48, 0)
 
 [node name="LeftArrowRaisedEnd" parent="Signs/LeftArrowRaised" instance=ExtResource("14_c4lke")]
 
@@ -1688,135 +1432,8 @@ position = Vector2(16, 0)
 [node name="LeftArrowRaisedMiddle2" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
 position = Vector2(32, 0)
 
-[node name="LeftArrowRaisedMiddle3" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
-position = Vector2(48, 0)
-
-[node name="LeftArrowRaisedMiddle4" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
-position = Vector2(64, 0)
-
-[node name="LeftArrowRaisedMiddle5" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
-position = Vector2(80, 0)
-
-[node name="LeftArrowRaisedMiddle6" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
-position = Vector2(96, 0)
-
-[node name="LeftArrowRaisedMiddle7" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
-position = Vector2(112, 0)
-
-[node name="LeftArrowRaisedMiddle8" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
-position = Vector2(128, 0)
-
-[node name="LeftArrowRaisedMiddle9" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
-position = Vector2(144, 0)
-
-[node name="LeftArrowRaisedMiddle10" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
-position = Vector2(160, 0)
-
-[node name="LeftArrowRaisedMiddle11" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
-position = Vector2(176, 0)
-
-[node name="LeftArrowRaisedMiddle12" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
-position = Vector2(192, 0)
-
-[node name="LeftArrowRaisedMiddle13" parent="Signs/LeftArrowRaised" instance=ExtResource("15_0jpfa")]
-position = Vector2(208, 0)
-
-[node name="LeftArrowRaised2" type="Node2D" parent="Signs"]
-position = Vector2(-384, 736)
-
-[node name="LeftArrowRaisedBegin" parent="Signs/LeftArrowRaised2" instance=ExtResource("13_swwo2")]
-position = Vector2(224, 0)
-
-[node name="LeftArrowRaisedEnd" parent="Signs/LeftArrowRaised2" instance=ExtResource("14_c4lke")]
-
-[node name="LeftArrowRaisedMiddle" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(16, 0)
-
-[node name="LeftArrowRaisedMiddle2" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(32, 0)
-
-[node name="LeftArrowRaisedMiddle3" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(48, 0)
-
-[node name="LeftArrowRaisedMiddle4" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(64, 0)
-
-[node name="LeftArrowRaisedMiddle5" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(80, 0)
-
-[node name="LeftArrowRaisedMiddle6" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(96, 0)
-
-[node name="LeftArrowRaisedMiddle7" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(112, 0)
-
-[node name="LeftArrowRaisedMiddle8" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(128, 0)
-
-[node name="LeftArrowRaisedMiddle9" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(144, 0)
-
-[node name="LeftArrowRaisedMiddle10" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(160, 0)
-
-[node name="LeftArrowRaisedMiddle11" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(176, 0)
-
-[node name="LeftArrowRaisedMiddle12" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(192, 0)
-
-[node name="LeftArrowRaisedMiddle13" parent="Signs/LeftArrowRaised2" instance=ExtResource("15_0jpfa")]
-position = Vector2(208, 0)
-
-[node name="LeftArrowRaised3" type="Node2D" parent="Signs"]
-position = Vector2(-608, 656)
-
-[node name="LeftArrowRaisedBegin" parent="Signs/LeftArrowRaised3" instance=ExtResource("13_swwo2")]
-position = Vector2(224, 0)
-
-[node name="LeftArrowRaisedEnd" parent="Signs/LeftArrowRaised3" instance=ExtResource("14_c4lke")]
-
-[node name="LeftArrowRaisedMiddle" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(16, 0)
-
-[node name="LeftArrowRaisedMiddle2" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(32, 0)
-
-[node name="LeftArrowRaisedMiddle3" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(48, 0)
-
-[node name="LeftArrowRaisedMiddle4" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(64, 0)
-
-[node name="LeftArrowRaisedMiddle5" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(80, 0)
-
-[node name="LeftArrowRaisedMiddle6" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(96, 0)
-
-[node name="LeftArrowRaisedMiddle7" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(112, 0)
-
-[node name="LeftArrowRaisedMiddle8" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(128, 0)
-
-[node name="LeftArrowRaisedMiddle9" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(144, 0)
-
-[node name="LeftArrowRaisedMiddle10" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(160, 0)
-
-[node name="LeftArrowRaisedMiddle11" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(176, 0)
-
-[node name="LeftArrowRaisedMiddle12" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(192, 0)
-
-[node name="LeftArrowRaisedMiddle13" parent="Signs/LeftArrowRaised3" instance=ExtResource("15_0jpfa")]
-position = Vector2(208, 0)
-
 [node name="UpArrowRaised" type="Node2D" parent="Signs"]
-position = Vector2(-720.1936, 286.666)
+position = Vector2(-400, 656)
 
 [node name="RaisedArrowUpEnd" parent="Signs/UpArrowRaised" instance=ExtResource("13_daw8o")]
 position = Vector2(0.19360352, 1.3340149)
@@ -1827,163 +1444,98 @@ position = Vector2(0.19360352, 17.334015)
 [node name="RaisedArrowUpMiddle2" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
 position = Vector2(0.19360352, 33.334015)
 
-[node name="RaisedArrowUpMiddle3" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
+[node name="RaisedArrowUpBeginning" parent="Signs/UpArrowRaised" instance=ExtResource("15_suax4")]
 position = Vector2(0.19360352, 49.334015)
 
-[node name="RaisedArrowUpMiddle4" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 65.334015)
+[node name="UpArrowRaised4" type="Node2D" parent="Signs"]
+position = Vector2(-720, 608)
 
-[node name="RaisedArrowUpMiddle5" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 81.334015)
+[node name="RaisedArrowUpEnd" parent="Signs/UpArrowRaised4" instance=ExtResource("13_daw8o")]
+position = Vector2(0.19360352, 1.3340149)
 
-[node name="RaisedArrowUpMiddle6" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 97.334015)
+[node name="RaisedArrowUpMiddle" parent="Signs/UpArrowRaised4" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 17.334015)
 
-[node name="RaisedArrowUpMiddle7" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 113.334015)
+[node name="RaisedArrowUpMiddle2" parent="Signs/UpArrowRaised4" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 33.334015)
 
-[node name="RaisedArrowUpMiddle8" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 129.33401)
+[node name="RaisedArrowUpBeginning" parent="Signs/UpArrowRaised4" instance=ExtResource("15_suax4")]
+position = Vector2(0.19360352, 49.334015)
 
-[node name="RaisedArrowUpMiddle9" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 145.33401)
+[node name="UpArrowRaised5" type="Node2D" parent="Signs"]
+position = Vector2(-720, 320)
 
-[node name="RaisedArrowUpMiddle10" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 161.33401)
+[node name="RaisedArrowUpEnd" parent="Signs/UpArrowRaised5" instance=ExtResource("13_daw8o")]
+position = Vector2(0.19360352, 1.3340149)
 
-[node name="RaisedArrowUpMiddle11" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 177.33401)
+[node name="RaisedArrowUpMiddle" parent="Signs/UpArrowRaised5" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 17.334015)
 
-[node name="RaisedArrowUpMiddle12" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 193.33401)
+[node name="RaisedArrowUpMiddle2" parent="Signs/UpArrowRaised5" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 33.334015)
 
-[node name="RaisedArrowUpMiddle13" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 209.33401)
+[node name="RaisedArrowUpBeginning" parent="Signs/UpArrowRaised5" instance=ExtResource("15_suax4")]
+position = Vector2(0.19360352, 49.334015)
 
-[node name="RaisedArrowUpMiddle14" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 225.33401)
+[node name="UpArrowRaised6" type="Node2D" parent="Signs"]
+position = Vector2(-720, 320)
 
-[node name="RaisedArrowUpMiddle15" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 241.33401)
+[node name="RaisedArrowUpEnd" parent="Signs/UpArrowRaised6" instance=ExtResource("13_daw8o")]
+position = Vector2(0.19360352, 1.3340149)
 
-[node name="RaisedArrowUpMiddle16" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 257.334)
+[node name="RaisedArrowUpMiddle" parent="Signs/UpArrowRaised6" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 17.334015)
 
-[node name="RaisedArrowUpMiddle17" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 273.334)
+[node name="RaisedArrowUpMiddle2" parent="Signs/UpArrowRaised6" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 33.334015)
 
-[node name="RaisedArrowUpMiddle18" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 305.334)
+[node name="RaisedArrowUpBeginning" parent="Signs/UpArrowRaised6" instance=ExtResource("15_suax4")]
+position = Vector2(0.19360352, 49.334015)
 
-[node name="RaisedArrowUpMiddle19" parent="Signs/UpArrowRaised" instance=ExtResource("14_0jpfa")]
-position = Vector2(0.19360352, 289.334)
+[node name="UpArrowRaised3" type="Node2D" parent="Signs"]
+position = Vector2(-224, 768)
 
-[node name="RaisedArrowUpBeginning" parent="Signs/UpArrowRaised" instance=ExtResource("15_suax4")]
-position = Vector2(0.19360352, 321.334)
+[node name="RaisedArrowUpEnd" parent="Signs/UpArrowRaised3" instance=ExtResource("13_daw8o")]
+position = Vector2(0.19360352, 1.3340149)
 
-[node name="UpArrowRaised2" type="Node2D" parent="Signs"]
-position = Vector2(1104, -112)
+[node name="RaisedArrowUpMiddle" parent="Signs/UpArrowRaised3" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 17.334015)
 
-[node name="RaisedArrowUpEnd" parent="Signs/UpArrowRaised2" instance=ExtResource("13_daw8o")]
-position = Vector2(0, -192)
+[node name="RaisedArrowUpMiddle2" parent="Signs/UpArrowRaised3" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 33.334015)
 
-[node name="RaisedArrowUpMiddle" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 16)
+[node name="RaisedArrowUpBeginning" parent="Signs/UpArrowRaised3" instance=ExtResource("15_suax4")]
+position = Vector2(0.19360352, 49.334015)
 
-[node name="RaisedArrowUpMiddle20" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
+[node name="UpArrowRaised7" type="Node2D" parent="Signs"]
+position = Vector2(1104, 208)
 
-[node name="RaisedArrowUpMiddle21" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -16)
+[node name="RaisedArrowUpEnd" parent="Signs/UpArrowRaised7" instance=ExtResource("13_daw8o")]
+position = Vector2(0.19360352, 1.3340149)
 
-[node name="RaisedArrowUpMiddle22" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -32)
+[node name="RaisedArrowUpMiddle" parent="Signs/UpArrowRaised7" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 17.334015)
 
-[node name="RaisedArrowUpMiddle23" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -48)
+[node name="RaisedArrowUpMiddle2" parent="Signs/UpArrowRaised7" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 33.334015)
 
-[node name="RaisedArrowUpMiddle24" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -64)
+[node name="RaisedArrowUpBeginning" parent="Signs/UpArrowRaised7" instance=ExtResource("15_suax4")]
+position = Vector2(0.19360352, 49.334015)
 
-[node name="RaisedArrowUpMiddle25" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -80)
+[node name="UpArrowRaised8" type="Node2D" parent="Signs"]
+position = Vector2(1104, -48)
 
-[node name="RaisedArrowUpMiddle26" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -96)
+[node name="RaisedArrowUpEnd" parent="Signs/UpArrowRaised8" instance=ExtResource("13_daw8o")]
+position = Vector2(0.19360352, 1.3340149)
 
-[node name="RaisedArrowUpMiddle27" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -112)
+[node name="RaisedArrowUpMiddle" parent="Signs/UpArrowRaised8" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 17.334015)
 
-[node name="RaisedArrowUpMiddle28" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -128)
+[node name="RaisedArrowUpMiddle2" parent="Signs/UpArrowRaised8" instance=ExtResource("14_0jpfa")]
+position = Vector2(0.19360352, 33.334015)
 
-[node name="RaisedArrowUpMiddle29" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -144)
-
-[node name="RaisedArrowUpMiddle30" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -160)
-
-[node name="RaisedArrowUpMiddle31" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -176)
-
-[node name="RaisedArrowUpMiddle32" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, -176)
-
-[node name="RaisedArrowUpMiddle2" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 32)
-
-[node name="RaisedArrowUpMiddle3" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 48)
-
-[node name="RaisedArrowUpMiddle4" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 64)
-
-[node name="RaisedArrowUpMiddle5" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 80)
-
-[node name="RaisedArrowUpMiddle6" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 96)
-
-[node name="RaisedArrowUpMiddle7" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 112)
-
-[node name="RaisedArrowUpMiddle8" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 128)
-
-[node name="RaisedArrowUpMiddle9" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 144)
-
-[node name="RaisedArrowUpMiddle10" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 160)
-
-[node name="RaisedArrowUpMiddle11" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 176)
-
-[node name="RaisedArrowUpMiddle12" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 192)
-
-[node name="RaisedArrowUpMiddle13" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 208)
-
-[node name="RaisedArrowUpMiddle14" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 224)
-
-[node name="RaisedArrowUpMiddle15" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 240)
-
-[node name="RaisedArrowUpMiddle16" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 256)
-
-[node name="RaisedArrowUpMiddle17" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 272)
-
-[node name="RaisedArrowUpMiddle18" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 304)
-
-[node name="RaisedArrowUpMiddle19" parent="Signs/UpArrowRaised2" instance=ExtResource("14_0jpfa")]
-position = Vector2(0, 288)
-
-[node name="RaisedArrowUpBeginning" parent="Signs/UpArrowRaised2" instance=ExtResource("15_suax4")]
-position = Vector2(0, 320)
+[node name="RaisedArrowUpBeginning" parent="Signs/UpArrowRaised8" instance=ExtResource("15_suax4")]
+position = Vector2(0.19360352, 49.334015)
 
 [node name="MoveRightTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
 position = Vector2(48, 752)
