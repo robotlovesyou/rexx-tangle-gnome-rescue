@@ -217,6 +217,9 @@ class AppearState:
 	func on_physics_process(delta: float) -> void:
 		_time += delta
 		_parent.appear_particles.position.y = (PARTICLES_FINAL_Y - PARTICLES_INITIAL_Y) * (_time / EXIT_STATE_AFTER_SECONDS) + PARTICLES_INITIAL_Y
+		_parent.velocity += _parent.get_gravity() * delta
+		_parent.move_and_slide()
+		print(_parent.velocity)
 		if _time > EXIT_STATE_AFTER_SECONDS:
 			_parent.done_appearing()
 

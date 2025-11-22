@@ -1630,7 +1630,7 @@ curve = SubResource("Curve2D_q5fgu")
 [node name="SpawnPoints" type="Node" parent="."]
 
 [node name="InitialSpawnPoint" parent="SpawnPoints" instance=ExtResource("19_7ctbl")]
-position = Vector2(64, 736)
+position = Vector2(64, 752)
 active = true
 
 [node name="SpikeTrapSpawnPoint" parent="SpawnPoints" instance=ExtResource("19_7ctbl")]
