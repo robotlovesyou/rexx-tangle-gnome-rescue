@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dim5o8tvmtjrm"
-path="res://.godot/imported/BigIdle.png-d7e1a7eabd1e4457fd4fee8a358e4a23.ctex"
+uid="uid://6otakl13iyku"
+path="res://.godot/imported/BigWalkSmooth.png-b95e81559e3e579ca5bb435bc7d417a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BigIdle.png"
-dest_files=["res://.godot/imported/BigIdle.png-d7e1a7eabd1e4457fd4fee8a358e4a23.ctex"]
+source_file="res://RexxArt/Rexx/BigWalkSmooth.png"
+dest_files=["res://.godot/imported/BigWalkSmooth.png-b95e81559e3e579ca5bb435bc7d417a1.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

@@ -1,12 +1,77 @@
-[gd_scene load_steps=28 format=3 uid="uid://cenujiplxkpem"]
+[gd_scene load_steps=52 format=3 uid="uid://cenujiplxkpem"]
 
-[ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://BigIdle.png" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="2_hqtel"]
-[ext_resource type="Texture2D" uid="uid://6otakl13iyku" path="res://BigWalkSmooth.png" id="3_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://tmng73cxraa6" path="res://BigJump.png" id="4_sweqy"]
-[ext_resource type="Texture2D" uid="uid://bcd5nrbdd6rmb" path="res://BigWallSlideDown.png" id="6_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://ct2sfxbja5fn7" path="res://BigWallSlideUp.png" id="7_dw050"]
+[ext_resource type="Texture2D" uid="uid://6otakl13iyku" path="res://RexxArt/Rexx/BigWalkSmooth.png" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://bhyb6mxnhy7qs" path="res://RexxArt/Rexx/BigAppear.png" id="3_od3ui"]
+[ext_resource type="Texture2D" uid="uid://tmng73cxraa6" path="res://RexxArt/Rexx/BigJump.png" id="4_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bcd5nrbdd6rmb" path="res://RexxArt/Rexx/BigWallSlideDown.png" id="6_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://ct2sfxbja5fn7" path="res://RexxArt/Rexx/BigWallSlideUp.png" id="7_dw050"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00tjw"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3vf3"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apopc"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5htga"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5o4e"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu6f8"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkpta"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfmf2"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pisgm"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1ygp"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o28un"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n471f"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7emwf"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hshwv"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpjlu"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mwp6"]
+atlas = ExtResource("3_od3ui")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_4flbx")
@@ -82,6 +147,64 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2hs0m"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00tjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3vf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apopc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5htga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5o4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu6f8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkpta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfmf2")
+}],
+"loop": false,
+"name": &"appear",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pisgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1ygp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o28un")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n471f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7emwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hshwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpjlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mwp6")
+}],
+"loop": false,
+"name": &"disappear",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_onrkg")
@@ -165,6 +288,37 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jxqw"]
 size = Vector2(25, 28)
 
+[sub_resource type="Curve" id="Curve_od3ui"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7319149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_00tjw"]
+curve = SubResource("Curve_od3ui")
+
+[sub_resource type="Gradient" id="Gradient_x3vf3"]
+colors = PackedColorArray(0.19310254, 0.30628648, 0.7774328, 1, 0.49, 0.6854999, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_apopc"]
+gradient = SubResource("Gradient_x3vf3")
+
+[sub_resource type="Curve" id="Curve_5htga"]
+_data = [Vector2(0, 0.9438202), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_p5o4e"]
+curve = SubResource("Curve_5htga")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gu6f8"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 0, 0)
+gravity = Vector3(0, -98, 0)
+scale_min = 2.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_apopc")
+alpha_curve = SubResource("CurveTexture_00tjw")
+emission_curve = SubResource("CurveTexture_p5o4e")
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 20
 floor_snap_length = 4.0
@@ -174,7 +328,7 @@ movement_config = ExtResource("2_hqtel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"wall_slide_down"
+animation = &"appear"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -192,3 +346,10 @@ one_shot = true
 [node name="WallJumpTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="AppearParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, -12)
+emitting = false
+amount = 32
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_gu6f8")

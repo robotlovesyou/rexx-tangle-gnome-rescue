@@ -196,6 +196,31 @@ class AliveState:
 	func _append_to_history(delta: float) -> void:
 		MovementHistory.append(_parent.position, _parent.get_platform_velocity() * delta, _action, _parent.animated_sprite.flip_h)
 
+class AppearState:
+	extends PlayerState
+
+	const EXIT_STATE_AFTER_SECONDS := 1.0
+	const PARTICLES_INITIAL_Y = -12
+	const PARTICLES_FINAL_Y = 15
+
+	var _time := 0.0
+
+	func on_enter() -> void:
+		_parent.animated_sprite.flip_h = true
+		_parent.animated_sprite.play("appear")
+		_parent.appear_particles.emitting = true
+		_parent.appear_particles.position.y = PARTICLES_INITIAL_Y
+
+	func on_exit() -> void:
+		_parent.appear_particles.emitting = false
+
+	func on_physics_process(delta: float) -> void:
+		_time += delta
+		_parent.appear_particles.position.y = (PARTICLES_FINAL_Y - PARTICLES_INITIAL_Y) * (_time / EXIT_STATE_AFTER_SECONDS) + PARTICLES_INITIAL_Y
+		if _time > EXIT_STATE_AFTER_SECONDS:
+			_parent.done_appearing()
+
+
 var _state: PlayerState
 
 var wall_jump_timer: Timer:
@@ -207,7 +232,13 @@ var coyote_jump_timer: Timer:
 var animated_sprite: AnimatedSprite2D:
 	get: return $AnimatedSprite2D
 
+var appear_particles: GPUParticles2D:
+	get: return $AppearParticles
+
 func _ready() -> void:
+	_switch_to_state(AppearState.new(self))
+
+func done_appearing() -> void:
 	_switch_to_state(AliveState.new(self))
 
 func _switch_to_state(state: PlayerState) -> void:

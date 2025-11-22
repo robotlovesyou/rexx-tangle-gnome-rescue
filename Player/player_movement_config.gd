@@ -4,7 +4,7 @@ extends Resource
 
 const SPEED = 300.0
 const WALL_SLIDE_MAX_SPEED = 150.0
-const ACCELERATION = 1000.0
+const ACCELERATION = 500
 const AIR_RESISTANCE = 350.0
 const JUMP_VELOCITY = -425.0
 const SHORT_JUMP_SCALE = 0.5
