@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+signal done_dying
+
 @export var movement_config: PlayerMovementConfig
 
 class PlayerState:
@@ -219,9 +221,35 @@ class AppearState:
 		_parent.appear_particles.position.y = (PARTICLES_FINAL_Y - PARTICLES_INITIAL_Y) * (_time / EXIT_STATE_AFTER_SECONDS) + PARTICLES_INITIAL_Y
 		_parent.velocity += _parent.get_gravity() * delta
 		_parent.move_and_slide()
-		print(_parent.velocity)
 		if _time > EXIT_STATE_AFTER_SECONDS:
 			_parent.done_appearing()
+
+class DyingState:
+	extends PlayerState
+
+	const EXIT_STATE_AFTER_SECONDS := 1.0
+	# const PARTICLES_INITIAL_Y = 15
+	# const PARTICLES_FINAL_Y = -12
+
+	var _time := 0.0
+
+	func on_enter() -> void:
+		_parent.animated_sprite.flip_h = true
+		_parent.animated_sprite.play("disappear")
+		_parent.disappear_particles.emitting = true
+		_parent.velocity = Vector2()
+		# _parent.disappear_particles.position.y = PARTICLES_INITIAL_Y
+
+	func on_exit() -> void:
+		_parent.disappear_particles.emitting = false
+
+	func on_physics_process(delta: float) -> void:
+		_time += delta
+		# _parent.disappear_particles.position.y = (PARTICLES_FINAL_Y - PARTICLES_INITIAL_Y) * (_time / EXIT_STATE_AFTER_SECONDS) + PARTICLES_INITIAL_Y
+		_parent.velocity += _parent.get_gravity() * delta
+		_parent.move_and_slide()
+		if _time > EXIT_STATE_AFTER_SECONDS:
+			_parent.done_disappearing()
 
 
 var _state: PlayerState
@@ -238,11 +266,20 @@ var animated_sprite: AnimatedSprite2D:
 var appear_particles: GPUParticles2D:
 	get: return $AppearParticles
 
+var disappear_particles: GPUParticles2D:
+	get: return $DisappearParticles
+
+func die() -> void:
+	_switch_to_state(DyingState.new(self))
+
 func _ready() -> void:
 	_switch_to_state(AppearState.new(self))
 
 func done_appearing() -> void:
 	_switch_to_state(AliveState.new(self))
+
+func done_disappearing() -> void:
+	done_dying.emit()
 
 func _switch_to_state(state: PlayerState) -> void:
 	if _state: _state.on_exit()

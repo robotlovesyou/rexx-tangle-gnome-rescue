@@ -14,10 +14,13 @@ func _ready() -> void:
 	Events.player_killed_enemy.connect(_on_player_killed_enemy)
 
 func _on_player_hit_spike_trap(_trap: SpikeTrap) -> void:
-	Level.despawn_player()
-	Level.spawn_player(player_scene, self, $Signs)
+	_kill_player()
 
 func _on_player_hit_emeny(_enemy: Enemy) -> void:
+	_kill_player()
+
+func _kill_player() -> void:
+	await Level.kill_player()
 	Level.despawn_player()
 	Level.spawn_player(player_scene, self, $Signs)
 

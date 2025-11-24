@@ -23,5 +23,9 @@ func spawn_player(player_scene: PackedScene, root: Node, immediate_sibling: Node
 	PMonitor.player = player
 	return player
 
+func kill_player() -> void:
+	PMonitor.player.die()
+	await PMonitor.player.done_dying
+
 func kill_enemy(enemy: Enemy) -> void:
 	enemy.die()
