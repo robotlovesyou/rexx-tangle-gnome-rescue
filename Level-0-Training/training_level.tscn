@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=62 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://b1c7pmiu4kgif" path="res://Level-0-Training/activate_spike_trap_spawn_point.gd" id="19_iouky"]
 [ext_resource type="PackedScene" uid="uid://bqvlkpxn0reap" path="res://Level-0-Training/down_arrow_raised_end.tscn" id="19_xsw0h"]
 [ext_resource type="PackedScene" uid="uid://bn3fwtg8kxfwp" path="res://Enemies/PathFollower/path_follower_enemy.tscn" id="21_n3m5k"]
+[ext_resource type="PackedScene" uid="uid://coddaxr46wspv" path="res://Player/broken_rexx.tscn" id="25_suax4"]
 [ext_resource type="Script" uid="uid://bewuveafc4hke" path="res://Level-0-Training/training_dialogs_layer.gd" id="26_3crw2"]
 [ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="28_swwo2"]
 
@@ -1280,6 +1281,7 @@ script = ExtResource("1_7wmsh")
 training_dialogs_layer = NodePath("TrainingDialogsLayer")
 enemy_training_dialog = NodePath("Signs/EnemyTrainingDialog")
 player_scene = ExtResource("17_2xdl0")
+broken_player_scene = ExtResource("25_suax4")
 
 [node name="ParallaxBackgrounds" type="Node2D" parent="."]
 visible = false

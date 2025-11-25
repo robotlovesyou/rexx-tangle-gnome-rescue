@@ -3,6 +3,7 @@ extends Node2D
 @export var training_dialogs_layer: TrainingDialogsLayer
 @export var enemy_training_dialog: TrainingDialog
 @export var player_scene: PackedScene
+@export var broken_player_scene: PackedScene
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,6 +21,7 @@ func _on_player_hit_emeny(_enemy: Enemy) -> void:
 	_kill_player()
 
 func _kill_player() -> void:
+	Level.spawn_broken_player(PMonitor.player.global_position, broken_player_scene, self, $Signs).set_initial_velocity(PMonitor.player.velocity)
 	await Level.kill_player()
 	Level.despawn_player()
 	Level.spawn_player(player_scene, self, $Signs)

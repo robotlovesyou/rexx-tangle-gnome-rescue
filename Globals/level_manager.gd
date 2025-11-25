@@ -29,3 +29,10 @@ func kill_player() -> void:
 
 func kill_enemy(enemy: Enemy) -> void:
 	enemy.die()
+
+func spawn_broken_player(at: Vector2, broken_player_scene: PackedScene, root: Node, immediate_sibling: Node) -> BrokenRexx:
+	var broken_player = broken_player_scene.instantiate()
+	root.add_child(broken_player)
+	root.move_child(broken_player, immediate_sibling.get_index() + 1)
+	broken_player.global_position = at
+	return broken_player

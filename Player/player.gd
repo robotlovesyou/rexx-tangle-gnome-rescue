@@ -234,20 +234,22 @@ class DyingState:
 	var _time := 0.0
 
 	func on_enter() -> void:
-		_parent.animated_sprite.flip_h = true
-		_parent.animated_sprite.play("disappear")
-		_parent.disappear_particles.emitting = true
-		_parent.velocity = Vector2()
+		_parent.visible = false
+		# _parent.animated_sprite.flip_h = true
+		# _parent.animated_sprite.play("disappear")
+		# _parent.disappear_particles.emitting = true
+		# _parent.velocity = Vector2()
 		# _parent.disappear_particles.position.y = PARTICLES_INITIAL_Y
 
 	func on_exit() -> void:
-		_parent.disappear_particles.emitting = false
+		pass
+		# _parent.disappear_particles.emitting = false
 
 	func on_physics_process(delta: float) -> void:
 		_time += delta
 		# _parent.disappear_particles.position.y = (PARTICLES_FINAL_Y - PARTICLES_INITIAL_Y) * (_time / EXIT_STATE_AFTER_SECONDS) + PARTICLES_INITIAL_Y
-		_parent.velocity += _parent.get_gravity() * delta
-		_parent.move_and_slide()
+		# _parent.velocity += _parent.get_gravity() * delta
+		# _parent.move_and_slide()
 		if _time > EXIT_STATE_AFTER_SECONDS:
 			_parent.done_disappearing()
 
