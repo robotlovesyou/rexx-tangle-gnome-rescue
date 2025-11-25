@@ -17,6 +17,12 @@ var follow_index: int:
 	get:
 		return _follow_index
 
+var safe_teleport_particles: GPUParticles2D:
+	get: return $SafeTeleportParticles
+
+var animated_sprite: AnimatedSprite2D:
+	get: return $AnimatedSprite2D
+
 func _ready() -> void:
 	_begin_action(Enums.GnomeAction.GROUNDED)
 	_switch_to_state(GnomeWaitState.new(self))
@@ -87,6 +93,8 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					_switch_to_state(GnomeStuckState.new(self))
 				Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM:
 					_switch_to_state(GnomePlatformLerpState.new(self))
+				Enums.GnomeEvent.HIT_SAFE_SPOT:
+					_switch_to_state(GnomeSafeTeleportState.new(self))
 		GnomeState.StateID.STRAY:
 			match event: 
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
@@ -118,6 +126,7 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 			match event:
 				Enums.GnomeEvent.BECAME_FREE, Enums.GnomeEvent.BECAME_STUCK:
 					_switch_to_state(GnomeLerpFollowState.new(self))
+				
 		
 
 
@@ -183,6 +192,9 @@ func player_abandoned() -> void:
 
 func stuck_got_free():
 	_handle_gnome_event(Enums.GnomeEvent.BECAME_FREE)
+
+func hit_safe_spot():
+	_handle_gnome_event(Enums.GnomeEvent.HIT_SAFE_SPOT)
 
 func check_stuck(expected_position: Vector2) -> void:
 	if position.distance_to(expected_position) > movement_config.STUCK_THRESHOLD_DISTANCE:

@@ -1,9 +1,42 @@
-[gd_scene load_steps=20 format=3 uid="uid://y4tb8v4fvs66"]
+[gd_scene load_steps=36 format=3 uid="uid://y4tb8v4fvs66"]
 
 [ext_resource type="Script" uid="uid://bua5ful6l310d" path="res://Gnomes/gnome.gd" id="1_5vlar"]
 [ext_resource type="Texture2D" uid="uid://cs3aooemb044i" path="res://BigGnomeIdle.png" id="1_qe4o5"]
 [ext_resource type="Texture2D" uid="uid://i5mk3qey4bdj" path="res://BigGnomeWalk.png" id="2_5vlar"]
 [ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="2_dt2vp"]
+[ext_resource type="Texture2D" uid="uid://c0lcgpdyebu7u" path="res://BigGnomeDisappear.png" id="3_csjxl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unp4v"]
+atlas = ExtResource("3_csjxl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyug2"]
+atlas = ExtResource("3_csjxl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8sqo"]
+atlas = ExtResource("3_csjxl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7edk"]
+atlas = ExtResource("3_csjxl")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8kr0"]
+atlas = ExtResource("3_csjxl")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41rew"]
+atlas = ExtResource("3_csjxl")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0twa"]
+atlas = ExtResource("3_csjxl")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5r3t"]
+atlas = ExtResource("3_csjxl")
+region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dt2vp"]
 atlas = ExtResource("1_qe4o5")
@@ -57,6 +90,35 @@ region = Rect2(32, 64, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_unp4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyug2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8sqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7edk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8kr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41rew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0twa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5r3t")
+}],
+"loop": false,
+"name": &"disappear",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dt2vp")
 }, {
 "duration": 1.0,
@@ -108,6 +170,38 @@ size = Vector2(10, 29)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vlar"]
 size = Vector2(10, 29)
 
+[sub_resource type="Curve" id="Curve_csjxl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7489362, 0.988764), 0.0, 0.0, 0, 0, Vector2(0.99574465, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_unp4v"]
+curve = SubResource("Curve_csjxl")
+
+[sub_resource type="Gradient" id="Gradient_gyug2"]
+colors = PackedColorArray(0, 0.33333334, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t8sqo"]
+gradient = SubResource("Gradient_gyug2")
+
+[sub_resource type="Curve" id="Curve_n7edk"]
+_data = [Vector2(0.008510634, 0.49438202), 0.0, 0.0, 0, 0, Vector2(0.52340424, 0.505618), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u8kr0"]
+curve = SubResource("Curve_n7edk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_41rew"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(8, 2, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, -98, 0)
+scale_min = 1.5
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_t8sqo")
+alpha_curve = SubResource("CurveTexture_unp4v")
+emission_curve = SubResource("CurveTexture_u8kr0")
+
 [node name="Gnome" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 12
@@ -117,9 +211,8 @@ movement_config = ExtResource("2_dt2vp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_ttdt0")
-animation = &"walk"
+animation = &"disappear"
 autoplay = "idle"
-frame_progress = 0.62272
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
@@ -132,6 +225,12 @@ collision_layer = 2
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_5vlar")
 debug_color = Color(0.164514, 0.644205, 0, 0.42)
+
+[node name="SafeTeleportParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 16)
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_41rew")
 
 [connection signal="body_entered" from="PlayerCollection" to="." method="_on_player_collection_body_entered"]
 [connection signal="body_exited" from="PlayerCollection" to="." method="_on_player_collection_body_exited"]
