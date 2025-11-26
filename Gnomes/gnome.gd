@@ -11,6 +11,7 @@ var _player_action: Enums.Action
 var _touching_player: bool = false
 var _state: GnomeState
 var _follow_index: int
+var _safe_spot: GnomeSafeSpot
 
 
 var follow_index: int:
@@ -22,6 +23,9 @@ var safe_teleport_particles: GPUParticles2D:
 
 var animated_sprite: AnimatedSprite2D:
 	get: return $AnimatedSprite2D
+
+var safe_spot: GnomeSafeSpot:
+	get: return _safe_spot
 
 func _ready() -> void:
 	_begin_action(Enums.GnomeAction.GROUNDED)
@@ -94,7 +98,8 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 				Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM:
 					_switch_to_state(GnomePlatformLerpState.new(self))
 				Enums.GnomeEvent.HIT_SAFE_SPOT:
-					_switch_to_state(GnomeSafeTeleportState.new(self))
+					if is_on_floor():
+						_switch_to_state(GnomeSafeTeleportState.new(self))
 		GnomeState.StateID.STRAY:
 			match event: 
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
@@ -193,8 +198,13 @@ func player_abandoned() -> void:
 func stuck_got_free():
 	_handle_gnome_event(Enums.GnomeEvent.BECAME_FREE)
 
-func hit_safe_spot():
+func hit_safe_spot(safe_spot_hit: GnomeSafeSpot) -> void:
+	_safe_spot = safe_spot_hit
 	_handle_gnome_event(Enums.GnomeEvent.HIT_SAFE_SPOT)
+
+func move_behind_safe_spot() -> void:
+	# Assumes that the safe spot and the gnome have the same parent. 
+	get_parent().move_child(self, _safe_spot.get_index())
 
 func check_stuck(expected_position: Vector2) -> void:
 	if position.distance_to(expected_position) > movement_config.STUCK_THRESHOLD_DISTANCE:

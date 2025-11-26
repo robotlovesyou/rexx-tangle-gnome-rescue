@@ -29,9 +29,11 @@
 * ~~Add jumping on enemies~~
 * ~~Add vertical platforms~~
 * ~~Add horizontal platforms~~
-* Add Gnomes
-* Add Gnome Rescue
+* ~~Add Gnomes~~
+* ~~Add Player Death~~
+* Add Gnome Rescue: In progress
 * Add the timer and rescue counter
+* Add Gnome death
 
 
 * ~~Add double jumps~~

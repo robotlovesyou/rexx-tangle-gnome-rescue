@@ -23,7 +23,6 @@ func add(gnome: Gnome) -> int:
 func remove(gnome: Gnome) -> void:
 	assert(_followers_dict.has(gnome.get_instance_id()), "Gnome with instance id %d is not a follower" % gnome.get_instance_id())
 	var offset = _followers_dict[gnome.get_instance_id()]
-	print(offset)
 	_followers_dict.erase(gnome.get_instance_id())
 	_followers_index.remove_at(offset)
 	for i in range(offset, _followers_index.size()):
