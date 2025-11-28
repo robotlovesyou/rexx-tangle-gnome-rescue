@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://cepvnfljrn4by"]
+
+[ext_resource type="Texture2D" uid="uid://dxd8o8edkeas5" path="res://RexxArt/UI/DialogBox.png" id="1_qypgx"]
+[ext_resource type="Texture2D" uid="uid://cs3aooemb044i" path="res://BigGnomeIdle.png" id="2_eooyv"]
+[ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="3_ylxdp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylxdp"]
+atlas = ExtResource("2_eooyv")
+region = Rect2(0, 0, 32, 32)
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="background" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(0, 20)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+texture = ExtResource("1_qypgx")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="background/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 4
+
+[node name="GnomeCount" type="HBoxContainer" parent="background/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Gnome" type="TextureRect" parent="background/HBoxContainer/MarginContainer/GnomeCount"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ylxdp")
+expand_mode = 4
+flip_h = true
+
+[node name="Current" type="RichTextLabel" parent="background/HBoxContainer/MarginContainer/GnomeCount"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_ylxdp")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=\"red\"]0/1 (1)[/color]"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1

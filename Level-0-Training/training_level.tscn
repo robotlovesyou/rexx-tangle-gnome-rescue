@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=65 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
@@ -32,6 +32,7 @@
 [ext_resource type="Script" uid="uid://bewuveafc4hke" path="res://Level-0-Training/training_dialogs_layer.gd" id="26_3crw2"]
 [ext_resource type="PackedScene" uid="uid://d1d8b4dpydja5" path="res://Shared/gnome_safe_spot.tscn" id="27_xsw0h"]
 [ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="28_swwo2"]
+[ext_resource type="PackedScene" uid="uid://cepvnfljrn4by" path="res://Shared/hud.tscn" id="31_j0lek"]
 [ext_resource type="PackedScene" uid="uid://xk5iw48kpmxo" path="res://Level-0-Training/door.tscn" id="33_2xdl0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xs5uq"]
@@ -1802,6 +1803,8 @@ position = Vector2(864, 320)
 
 [node name="SpikeTrap41" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
 position = Vector2(880, 320)
+
+[node name="HUD" parent="." instance=ExtResource("31_j0lek")]
 
 [node name="TrainingDialogsLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("animation_player", "label")]
 script = ExtResource("26_3crw2")
