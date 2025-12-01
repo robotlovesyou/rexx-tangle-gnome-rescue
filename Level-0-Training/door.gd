@@ -1,7 +1,7 @@
 class_name Door
 extends Node2D
 
-enum Phase {CLOSED, OPENING, OPEN}
+enum Phase {CLOSED, OPENING, OPEN, CLOSING}
 
 var _phase := Phase.CLOSED
 
@@ -20,8 +20,18 @@ func open_door() -> void:
 	_door_animation.play("opening")
 	_door_sound.play()
 
+func close_door() -> void:
+	_phase = Phase.CLOSING
+	_door_animation.play("closing")
+	_door_sound.play()
+
 
 func _on_door_animation_animation_finished() -> void:
-	if _phase == Phase.OPENING:
-		_phase = Phase.OPEN
-		_door_collision_shape.disabled = true
+	match _phase:
+		Phase.OPENING:
+			_phase = Phase.OPEN
+			_door_collision_shape.disabled = true
+		Phase.CLOSING:
+			_phase = Phase.CLOSED
+			_door_collision_shape.disabled = false
+

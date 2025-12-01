@@ -1,14 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://cepvnfljrn4by"]
+[gd_scene load_steps=7 format=3 uid="uid://cepvnfljrn4by"]
 
 [ext_resource type="Texture2D" uid="uid://dxd8o8edkeas5" path="res://RexxArt/UI/DialogBox.png" id="1_qypgx"]
-[ext_resource type="Texture2D" uid="uid://cs3aooemb044i" path="res://BigGnomeIdle.png" id="2_eooyv"]
+[ext_resource type="Script" uid="uid://dgqa7e383q0hg" path="res://Shared/hud.gd" id="1_ysegd"]
+[ext_resource type="Texture2D" uid="uid://bikmu83t21586" path="res://RexxArt/UI/GnomeIdle.png" id="2_ylxdp"]
 [ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="3_ylxdp"]
+[ext_resource type="Texture2D" uid="uid://d4cgopgng8wrf" path="res://RexxArt/UI/ClockIcon.png" id="4_hj8c4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ylxdp"]
-atlas = ExtResource("2_eooyv")
-region = Rect2(0, 0, 32, 32)
+atlas = ExtResource("2_ylxdp")
+region = Rect2(0, 0, 16, 16)
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("gnome_count", "gnome_label", "flash_gnome_count", "timer", "timer_label", "flash_timer")]
+script = ExtResource("1_ysegd")
+gnome_count = NodePath("background/HBoxContainer/MarginContainer/GnomeCount")
+gnome_label = NodePath("background/HBoxContainer/MarginContainer/GnomeCount/Current")
+flash_gnome_count = NodePath("background/HBoxContainer/MarginContainer/FlashRect")
+timer = NodePath("background/HBoxContainer/MarginContainer2/Timer")
+timer_label = NodePath("background/HBoxContainer/MarginContainer2/Timer/Current")
+flash_timer = NodePath("background/HBoxContainer/MarginContainer2/FlashRect")
 
 [node name="background" type="NinePatchRect" parent="."]
 custom_minimum_size = Vector2(0, 20)
@@ -36,12 +45,16 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_bottom = 4
 
+[node name="FlashRect" type="ColorRect" parent="background/HBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
 [node name="GnomeCount" type="HBoxContainer" parent="background/HBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
 [node name="Gnome" type="TextureRect" parent="background/HBoxContainer/MarginContainer/GnomeCount"]
-custom_minimum_size = Vector2(16, 0)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -50,12 +63,46 @@ expand_mode = 4
 flip_h = true
 
 [node name="Current" type="RichTextLabel" parent="background/HBoxContainer/MarginContainer/GnomeCount"]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_ylxdp")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "[color=\"red\"]0/1 (1)[/color]"
+text = "Rescued: [color=\"red\"]0/1[/color] Remaining: 1"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="background/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 4
+
+[node name="FlashRect" type="ColorRect" parent="background/HBoxContainer/MarginContainer2"]
+visible = false
+layout_mode = 2
+
+[node name="Timer" type="HBoxContainer" parent="background/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Clock" type="TextureRect" parent="background/HBoxContainer/MarginContainer2/Timer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_hj8c4")
+expand_mode = 4
+flip_h = true
+
+[node name="Current" type="RichTextLabel" parent="background/HBoxContainer/MarginContainer2/Timer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_ylxdp")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=\"green\"]3:55[/color]"
 fit_content = true
 scroll_active = false
 vertical_alignment = 1

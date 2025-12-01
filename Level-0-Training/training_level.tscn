@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=67 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
@@ -356,6 +356,12 @@ size = Vector2(352, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swwo2"]
 size = Vector2(250, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j0lek"]
+size = Vector2(224, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnv6w"]
+size = Vector2(224, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c4lke"]
 size = Vector2(250, 160)
@@ -1279,12 +1285,17 @@ _data = {
 &"open_dialog": SubResource("Animation_3crw2")
 }
 
-[node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("training_dialogs_layer", "enemy_training_dialog")]
+[node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("training_dialogs_layer", "enemy_training_dialog", "hud", "gnome_count_door", "timer_door")]
 script = ExtResource("1_7wmsh")
 training_dialogs_layer = NodePath("TrainingDialogsLayer")
 enemy_training_dialog = NodePath("Signs/EnemyTrainingDialog")
 player_scene = ExtResource("17_2xdl0")
 broken_player_scene = ExtResource("25_suax4")
+hud = NodePath("HUD")
+minimum_gnomes = 1
+timer_seconds = 300
+gnome_count_door = NodePath("GnomeCountDoor")
+timer_door = NodePath("TimerDoor")
 
 [node name="ParallaxBackgrounds" type="Node2D" parent="."]
 visible = false
@@ -1610,6 +1621,22 @@ text = "Platforms can be used to cross hazardous terrain. "
 position = Vector2(115, -16)
 shape = SubResource("RectangleShape2D_swwo2")
 
+[node name="GnomeCountTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
+position = Vector2(1456, -304)
+text = "The number of gnomes you have rescued, the minimum you need to rescue, and the total number of gnomes remaining in the mission are shown at the top of the screen."
+
+[node name="ActivationShape" parent="Signs/GnomeCountTrainingDialog/ActivationArea" index="0"]
+position = Vector2(64, 8)
+shape = SubResource("RectangleShape2D_j0lek")
+
+[node name="TimerTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
+position = Vector2(1776, -304)
+text = "This shows the time remaining for the mission. If the time runs out before you collect the minimum number of gnomes then the mission is failed. "
+
+[node name="ActivationShape" parent="Signs/TimerTrainingDialog/ActivationArea" index="0"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_rnv6w")
+
 [node name="Gnome" parent="." instance=ExtResource("18_q5fgu")]
 position = Vector2(2016, -384)
 
@@ -1673,8 +1700,11 @@ tile_set = SubResource("TileSet_bk3u3")
 tile_map_data = PackedByteArray("AAAWADYAAQAJAAQAAAAVADYAAQAIAAQAAAAUADYAAQAIAAQAAAATADYAAQAIAAQAAAASADYAAQAIAAQAAAARADYAAQAIAAQAAAAQADYAAQAIAAQAAAAPADYAAQAIAAQAAAAOADYAAQAIAAQAAAANADYAAQAIAAQAAAAMADYAAQAIAAQAAAALADYAAQAIAAQAAAAKADYAAQAIAAQAAAAJADYAAQAIAAQAAAAIADYAAQAIAAQAAAAHADYAAQAIAAQAAAAGADYAAQAIAAQAAAAFADYAAQAIAAQAAAAEADYAAQAIAAQAAAADADYAAQAIAAQAAAACADYAAQAIAAQAAAABADYAAQAIAAQAAAAAADYAAQAIAAQAAAD//zYAAQAIAAQAAAD+/zYAAQAIAAQAAAD9/zYAAQAIAAQAAAD8/zYAAQAIAAQAAAD7/zYAAQAIAAQAAAD6/zYAAQAIAAQAAAD5/zYAAQAIAAQAAAD4/zYAAQAIAAQAAAD3/zYAAQAIAAQAAAD2/zYAAQAIAAQAAAD1/zYAAQAIAAQAAAD0/zYAAQAIAAQAAADz/zYAAQAIAAQAAADy/zYAAQAIAAQAAADx/zYAAQAIAAQAAADw/zYAAQAHAAQAAADc/ysAAQAJAAQAAADb/ysAAQAIAAQAAADa/ysAAQAIAAQAAADZ/ysAAQAIAAQAAADY/ysAAQAIAAQAAADX/ysAAQAIAAQAAADW/ysAAQAIAAQAAADV/ysAAQAIAAQAAADU/ysAAQAIAAQAAADT/ysAAQAIAAQAAADS/ysAAQAIAAQAAADR/ysAAQAIAAQAAADQ/ysAAQAHAAQAAADX/yYAAQAKAAcAAADX/yUAAQAKAAYAAADX/yQAAQAKAAYAAADX/yMAAQAKAAYAAADX/yIAAQAKAAYAAADX/yEAAQAKAAYAAADX/yAAAQAKAAYAAADX/x8AAQAKAAYAAADX/x4AAQAKAAYAAADX/x0AAQAKAAYAAADX/xwAAQAKAAYAAADX/xsAAQAKAAYAAADX/xoAAQAKAAYAAADX/xkAAQAKAAYAAADX/xgAAQAKAAYAAADX/xcAAQAKAAYAAADX/xYAAQAKAAYAAADX/xUAAQAKAAYAAADX/xQAAQAKAAYAAADX/xMAAQAKAAYAAADX/xIAAQAKAAUAAADy/xIAAQAIAAQAAADx/xIAAQAIAAQAAADw/xIAAQAIAAQAAADv/xIAAQAIAAQAAADu/xIAAQAIAAQAAADt/xIAAQAIAAQAAADs/xIAAQAIAAQAAADr/xIAAQAIAAQAAADq/xIAAQAIAAQAAADp/xIAAQAIAAQAAADo/xIAAQAHAAQAAAD2/xIAAQAIAAQAAAD1/xIAAQAIAAQAAAD0/xIAAQAIAAQAAADz/xIAAQAIAAQAAAD3/xIAAQAJAAQAAAAIABIAAQAHAAQAAAAJABIAAQAIAAQAAAAKABIAAQAIAAQAAAALABIAAQAIAAQAAAAMABIAAQAIAAQAAAANABIAAQAIAAQAAAAOABIAAQAIAAQAAAAPABIAAQAIAAQAAAAQABIAAQAIAAQAAAARABIAAQAIAAQAAAASABIAAQAIAAQAAAATABIAAQAIAAQAAAAUABIAAQAIAAQAAAAVABIAAQAIAAQAAAAWABIAAQAIAAQAAAAXABIAAQAJAAQAAAA4ABIAAQAHAAQAAAA5ABIAAQAIAAQAAAA6ABIAAQAIAAQAAAA7ABIAAQAIAAQAAAA8ABIAAQAIAAQAAAA9ABIAAQAIAAQAAAA+ABIAAQAIAAQAAAA/ABIAAQAIAAQAAABAABIAAQAIAAQAAABBABIAAQAIAAQAAABCABIAAQAIAAQAAABDABIAAQAIAAQAAABEABIAAQAIAAQAAABFABIAAQAIAAQAAABGABIAAQAIAAQAAABHABIAAQAJAAQAAAA=")
 tile_set = SubResource("TileSet_6d1lw")
 
-[node name="Door" parent="." instance=ExtResource("33_2xdl0")]
+[node name="GnomeCountDoor" parent="." instance=ExtResource("33_2xdl0")]
 position = Vector2(1632, -320)
+
+[node name="TimerDoor" parent="." instance=ExtResource("33_2xdl0")]
+position = Vector2(1888, -320)
 
 [node name="PathFollowerEnemy" parent="." instance=ExtResource("21_n3m5k")]
 position = Vector2(-96, 256)
@@ -1874,10 +1904,16 @@ libraries = {
 [connection signal="training_dialog_requested" from="Signs/EnemyTrainingDialog" to="." method="_on_training_dialog_requested"]
 [connection signal="training_dialog_freed" from="Signs/HorizontalPlatformTrainingDialog" to="." method="_on_training_dialog_freed"]
 [connection signal="training_dialog_requested" from="Signs/HorizontalPlatformTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="Signs/GnomeCountTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/GnomeCountTrainingDialog" to="." method="on_gnome_count_dialog_requested"]
+[connection signal="training_dialog_freed" from="Signs/TimerTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/TimerTrainingDialog" to="." method="_on_timer_training_dialog_training_dialog_requested"]
 [connection signal="training_dialog_freed" from="VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_freed"]
 [connection signal="training_dialog_requested" from="VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_requested"]
 [connection signal="body_entered" from="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" to="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" method="_on_body_entered"]
 [connection signal="died" from="PathFollowerEnemy/PathFollowerEnemy" to="." method="_on_training_enemy_died"]
+[connection signal="hilight_gnome_count_done" from="HUD" to="." method="_on_hud_hilight_gnome_count_done"]
+[connection signal="hilight_timer_done" from="HUD" to="." method="_on_hud_hilight_timer_done"]
 [connection signal="animation_finished" from="TrainingDialogsLayer/AnimationPlayer" to="TrainingDialogsLayer" method="_on_animation_finished"]
 
 [editable path="Signs/MoveRightTrainingDialog"]
@@ -1888,6 +1924,8 @@ libraries = {
 [editable path="Signs/SpikeTrapTrainingDialog"]
 [editable path="Signs/EnemyTrainingDialog"]
 [editable path="Signs/HorizontalPlatformTrainingDialog"]
+[editable path="Signs/GnomeCountTrainingDialog"]
+[editable path="Signs/TimerTrainingDialog"]
 [editable path="VerticalPlatformTrainingDialog"]
 [editable path="HorizontalPlatform"]
 [editable path="VerticalPlatform"]
