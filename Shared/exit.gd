@@ -11,7 +11,9 @@ var active: bool:
 		_active = value
 		visible = true
 		exit_collision_shape.disabled = false
-		
+
+var center: Vector2:
+	get: return position + Vector2(24, 24)
 
 var exit_collision_shape: CollisionShape2D:
 	get: return $ExitInteraction/CollisionShape2D
@@ -19,8 +21,6 @@ var exit_collision_shape: CollisionShape2D:
 func _ready() -> void:
 	visible = false
 	exit_collision_shape.disabled = true
-
-
 
 func _on_exit_interaction_body_exited(body: Node2D) -> void:
 	if body is Player:

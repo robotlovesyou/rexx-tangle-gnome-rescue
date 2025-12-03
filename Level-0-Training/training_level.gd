@@ -15,7 +15,7 @@ extends Node2D
 
 var _t := 0.0
 var _rescue_count := 0
-var _player_over_exit := true
+var _player_over_exit := false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	_t += delta
 	hud.update_timer(timer_seconds - floor(_t))
 	if _player_over_exit and Input.is_action_just_pressed("ui_accept"):
-		print("Exit Level")
+		PMonitor.player.exit(exit)
 
 func _on_player_hit_spike_trap(_trap: SpikeTrap) -> void:
 	_kill_player()
@@ -101,10 +101,9 @@ func _on_gnome_rescued() -> void:
 func _on_player_entered_exit() -> void:
 	_player_over_exit = true
 	_on_training_dialog_requested(exit_training_dialog.text)
-	print(_player_over_exit)
 
 
 func _on_player_exited_exit() -> void:
 	_player_over_exit = false
 	_on_training_dialog_freed(exit_training_dialog.text)
-	print(_player_over_exit)
+	
