@@ -24,6 +24,21 @@
 
 ## Training Level
 
+* Add walking sound to player
+* Add jump sound to player
+* Add double jump sound to player
+* Add wall jump sound to player
+* Add death sound to player (broken crockery?)
+* Add skid sound and effect to player
+* Add exit sound effect for player
+* Add rescue sound for gnome
+* Add exit sound for gnome
+* Add death sound for path follower enemy
+* Add proper exit handling (don't just free the player)
+* Create a base class for the level
+* Move the level manager code into the base class
+* Make signal handling consistent (events bus vs whatever else)
+* Tidy code for consistency (how to access child nodes. how to access config, etc)
 * ~~Add hazard blocks~~
 * ~~Add enemies~~
 * ~~Add jumping on enemies~~
@@ -31,9 +46,8 @@
 * ~~Add horizontal platforms~~
 * ~~Add Gnomes~~
 * ~~Add Player Death~~
-* Add Gnome Rescue: In progress
-* Add the timer and rescue counter
-* Add Gnome death
+* ~~Add Gnome Rescue: In progress~~
+* ~~Add the timer and rescue counter~~
 
 
 * ~~Add double jumps~~
