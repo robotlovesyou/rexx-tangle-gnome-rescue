@@ -3,6 +3,7 @@ extends Node2D
 @export var training_dialogs_layer: TrainingDialogsLayer
 @export var enemy_training_dialog: TrainingDialog
 @export var gnome_training_dialog: TrainingDialog
+@export var exit_training_dialog: TrainingDialog
 @export var player_scene: PackedScene
 @export var broken_player_scene: PackedScene
 @export var hud: HUD
@@ -10,9 +11,11 @@ extends Node2D
 @export var timer_seconds: int
 @export var gnome_count_door: Door
 @export var timer_door: Door
+@export var exit: Exit
 
 var _t := 0.0
 var _rescue_count := 0
+var _player_over_exit := true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,6 +34,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_t += delta
 	hud.update_timer(timer_seconds - floor(_t))
+	if _player_over_exit and Input.is_action_just_pressed("ui_accept"):
+		print("Exit Level")
 
 func _on_player_hit_spike_trap(_trap: SpikeTrap) -> void:
 	_kill_player()
@@ -89,3 +94,17 @@ func _on_gnome_rescued() -> void:
 	_rescue_count += 1
 	await get_tree().create_timer(0).timeout
 	_update_gnome_count_in_hud()
+	if _rescue_count >= minimum_gnomes:
+		exit.active = true
+
+
+func _on_player_entered_exit() -> void:
+	_player_over_exit = true
+	_on_training_dialog_requested(exit_training_dialog.text)
+	print(_player_over_exit)
+
+
+func _on_player_exited_exit() -> void:
+	_player_over_exit = false
+	_on_training_dialog_freed(exit_training_dialog.text)
+	print(_player_over_exit)
