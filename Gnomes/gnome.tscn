@@ -192,9 +192,8 @@ curve = SubResource("Curve_n7edk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_41rew"]
 particle_flag_disable_z = true
-emission_shape_scale = Vector3(8, 2, 1)
 emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
+emission_box_extents = Vector3(8, 16, 1)
 gravity = Vector3(0, -98, 0)
 scale_min = 2.0
 scale_max = 3.0
@@ -202,7 +201,7 @@ color_ramp = SubResource("GradientTexture1D_t8sqo")
 alpha_curve = SubResource("CurveTexture_unp4v")
 emission_curve = SubResource("CurveTexture_u8kr0")
 
-[node name="Gnome" type="CharacterBody2D"]
+[node name="Gnome" type="CharacterBody2D" groups=["Gnome"]]
 collision_layer = 2
 collision_mask = 12
 script = ExtResource("1_5vlar")
@@ -227,7 +226,6 @@ shape = SubResource("RectangleShape2D_5vlar")
 debug_color = Color(0.164514, 0.644205, 0, 0.42)
 
 [node name="SafeTeleportParticles" type="GPUParticles2D" parent="."]
-position = Vector2(0, 16)
 emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_41rew")

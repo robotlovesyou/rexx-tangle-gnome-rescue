@@ -2,6 +2,7 @@ extends Node2D
 
 @export var training_dialogs_layer: TrainingDialogsLayer
 @export var enemy_training_dialog: TrainingDialog
+@export var gnome_training_dialog: TrainingDialog
 @export var player_scene: PackedScene
 @export var broken_player_scene: PackedScene
 @export var hud: HUD
@@ -11,6 +12,7 @@ extends Node2D
 @export var timer_door: Door
 
 var _t := 0.0
+var _rescue_count := 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +22,8 @@ func _ready() -> void:
 	Events.player_hit_spike_trap.connect(_on_player_hit_spike_trap)
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
 	Events.player_killed_enemy.connect(_on_player_killed_enemy)
-	hud.update_gnome_count(0, 1, 1)
+	Level.gnome_rescued.connect(_on_gnome_rescued)
+	_update_gnome_count_in_hud()
 	hud.update_timer(300)
 	hud.hide_gnome_count()
 	hud.hide_timer()
@@ -74,3 +77,15 @@ func _on_timer_training_dialog_training_dialog_requested(text: String) -> void:
 
 func _on_hud_hilight_timer_done() -> void:
 	timer_door.open_door()
+
+func _on_gnome_dialog_freed(text: String) -> void:
+	_on_training_dialog_freed(text)
+	gnome_training_dialog.active = false
+
+func _update_gnome_count_in_hud() -> void:
+	hud.update_gnome_count(_rescue_count, minimum_gnomes, get_tree().get_nodes_in_group("Gnome").size())
+
+func _on_gnome_rescued() -> void:
+	_rescue_count += 1
+	await get_tree().create_timer(0).timeout
+	_update_gnome_count_in_hud()

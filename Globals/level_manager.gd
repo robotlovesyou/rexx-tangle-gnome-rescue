@@ -1,6 +1,8 @@
 class_name LevelManager
 extends Node
 
+signal gnome_rescued
+
 var _spawn_point: SpawnPoint
 
 func replace_level_with(path: String) -> void:
@@ -36,3 +38,7 @@ func spawn_broken_player(at: Vector2, broken_player_scene: PackedScene, root: No
 	root.move_child(broken_player, immediate_sibling.get_index() + 1)
 	broken_player.global_position = at
 	return broken_player
+
+func rescue(gnome: Gnome) -> void:
+	FollowersMonitor.remove(gnome)
+	gnome_rescued.emit()
