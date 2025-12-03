@@ -1397,6 +1397,34 @@ position = Vector2(32, 0)
 [node name="RightArrowRaisedEnd" parent="Signs/RightArrowRaised6" instance=ExtResource("15_c4lke")]
 position = Vector2(48, 0)
 
+[node name="RightArrowRaised9" type="Node2D" parent="Signs"]
+position = Vector2(1728, -304)
+
+[node name="RightArrowRaisedBegin" parent="Signs/RightArrowRaised9" instance=ExtResource("13_3crw2")]
+
+[node name="RightArrowRaisedMiddle" parent="Signs/RightArrowRaised9" instance=ExtResource("14_swwo2")]
+position = Vector2(16, 0)
+
+[node name="RightArrowRaisedMiddle2" parent="Signs/RightArrowRaised9" instance=ExtResource("14_swwo2")]
+position = Vector2(32, 0)
+
+[node name="RightArrowRaisedEnd" parent="Signs/RightArrowRaised9" instance=ExtResource("15_c4lke")]
+position = Vector2(48, 0)
+
+[node name="RightArrowRaised10" type="Node2D" parent="Signs"]
+position = Vector2(1456, -304)
+
+[node name="RightArrowRaisedBegin" parent="Signs/RightArrowRaised10" instance=ExtResource("13_3crw2")]
+
+[node name="RightArrowRaisedMiddle" parent="Signs/RightArrowRaised10" instance=ExtResource("14_swwo2")]
+position = Vector2(16, 0)
+
+[node name="RightArrowRaisedMiddle2" parent="Signs/RightArrowRaised10" instance=ExtResource("14_swwo2")]
+position = Vector2(32, 0)
+
+[node name="RightArrowRaisedEnd" parent="Signs/RightArrowRaised10" instance=ExtResource("15_c4lke")]
+position = Vector2(48, 0)
+
 [node name="RightArrowRaised7" type="Node2D" parent="Signs"]
 position = Vector2(2944, -304)
 
