@@ -1,0 +1,14 @@
+AudioStreamPlayer2D
+AudioListener2D
+CollisionShape2D
+Area2D
+AnimatedSprite2D
+ColorRect
+MarginContainer
+CenterContainer
+RichTextLabel
+TextureRect
+HBoxContainer
+VBoxContainer
+NinePatchRect
+CanvasLayer

@@ -24,7 +24,7 @@ func update_gnome_count(rescued: int, minimum: int, remaining: int) -> void:
 
 func update_timer(seconds: int) -> void:
 	var timer_color = "green" if seconds >= 60 else "red"
-	var minutes := int(floor(seconds / 60))
+	var minutes := int(floor(seconds / 60.0))
 	var remaining_seconds = seconds - (minutes * 60)
 	timer_label.text = "[color=\"%s\"]%d:%02d[/color]" % [timer_color, minutes, remaining_seconds]
 

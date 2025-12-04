@@ -1,8 +1,7 @@
-[gd_scene load_steps=72 format=3 uid="uid://cenujiplxkpem"]
+[gd_scene load_steps=71 format=3 uid="uid://cenujiplxkpem"]
 
 [ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://Player/player.gd" id="1_onrkg"]
-[ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="2_hqtel"]
+[ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://Player/player.gd" id="1_vtle1"]
 [ext_resource type="AudioStream" uid="uid://chjke586dxxd8" path="res://Sounds/FX/PitterPatter1.wav" id="3_5htga"]
 [ext_resource type="Texture2D" uid="uid://6otakl13iyku" path="res://RexxArt/Rexx/BigWalkSmooth.png" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://bhyb6mxnhy7qs" path="res://RexxArt/Rexx/BigAppear.png" id="3_od3ui"]
@@ -363,12 +362,11 @@ alpha_curve = SubResource("CurveTexture_x3vf3")
 collision_mask = 20
 floor_snap_length = 4.0
 safe_margin = 0.1
-script = ExtResource("1_onrkg")
+script = ExtResource("1_vtle1")
 steps = Array[AudioStreamWAV]([ExtResource("3_5htga"), ExtResource("4_p5o4e"), ExtResource("5_gu6f8"), ExtResource("6_dkpta")])
 jumps = Array[AudioStreamWAV]([ExtResource("6_n471f"), ExtResource("7_7emwf"), ExtResource("8_hshwv"), ExtResource("9_gpjlu"), ExtResource("10_8mwp6"), ExtResource("11_qemgg"), ExtResource("12_8viyr"), ExtResource("13_sm0op")])
 deaths = Array[AudioStreamWAV]([ExtResource("14_hshwv"), ExtResource("15_gpjlu")])
 exits = Array[AudioStreamWAV]([ExtResource("16_gpjlu")])
-movement_config = ExtResource("2_hqtel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2hs0m")
