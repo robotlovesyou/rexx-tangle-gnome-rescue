@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bk50f4y5p6khl"
+path="res://.godot/imported/pitched_jump 7-Audio (Bounce).wav-d7b9a6fba2ed411be6333e2885cd987b.sample"
+
+[deps]
+
+source_file="res://Sounds/FX/pitched_jump 7-Audio (Bounce).wav"
+dest_files=["res://.godot/imported/pitched_jump 7-Audio (Bounce).wav-d7b9a6fba2ed411be6333e2885cd987b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

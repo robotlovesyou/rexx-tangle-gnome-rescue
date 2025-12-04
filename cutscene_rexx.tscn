@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cm3ja0664tlao"]
 
-[ext_resource type="Script" uid="uid://bar570enundq2" path="res://cutscene_rexx.gd" id="1_peqok"]
+[ext_resource type="Script" path="res://cutscene_rexx.gd" id="1_peqok"]
 [ext_resource type="AudioStream" uid="uid://chjke586dxxd8" path="res://Sounds/FX/PitterPatter1.wav" id="2_eypla"]
 [ext_resource type="Texture2D" uid="uid://chodoovskhqhh" path="res://walk_idle_atlas.png" id="2_v8j72"]
 [ext_resource type="AudioStream" uid="uid://cbwioo434s4af" path="res://Sounds/FX/PitterPatter2.wav" id="3_bakug"]

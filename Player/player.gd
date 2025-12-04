@@ -3,9 +3,8 @@ extends CharacterBody2D
 
 signal done_dying
 
-@export var movement_config: PlayerMovementConfig
-
 class PlayerState:
+	extends RefCounted
 	var _parent: Player
 
 	func _init(parent: Player):
@@ -27,6 +26,7 @@ class AliveState:
 	extends PlayerState
 
 	var _action: Enums.Action = Enums.Action.NONE
+	var _action_did_change := false
 	var _direction: float = 1.0
 	var _last_direction: float = 1.0
 	var _has_jumped: bool = false
@@ -42,6 +42,7 @@ class AliveState:
 		_determine_direction()
 		_determine_has_jumped_or_stopped()
 		_begin_action(_determine_action())
+		_play_action()
 		_apply_gravity(delta)
 
 		_handle_jump()
@@ -50,13 +51,14 @@ class AliveState:
 		_parent.move_and_slide()
 		_check_for_enemy_collision()
 		_handle_coyote_timer(was_on_floor)
-		# _animate_action()
 		_append_to_history(delta)
+		_action_did_change = false
 
 	func _begin_action(action: Enums.Action) -> void:
 		if action == _action: return
 		print(Enums.action_name(action))
 		_action = action
+		_action_did_change = true
 		ActionMonitor.action = _action
 
 	func _is_jumping() -> bool:
@@ -198,6 +200,15 @@ class AliveState:
 	func _append_to_history(delta: float) -> void:
 		MovementHistory.append(_parent.position, _parent.get_platform_velocity() * delta, _action, _parent.animated_sprite.flip_h)
 
+	func _play_action() -> void:
+		if !_action_did_change: return
+		_parent.stop_playing_walk()
+		match _action:
+			Enums.Action.WALKING:
+				_parent.play_walk()
+			Enums.Action.JUMPING, Enums.Action.DOUBLE_JUMPED, Enums.Action.WALL_JUMPING:
+				_parent.play_jump()
+				
 class AppearState:
 	extends PlayerState
 
@@ -245,8 +256,8 @@ class DyingState:
 class ExitingState:
 	extends PlayerState
 
-	const EXIT_TIME_SECONDS := 1.0
-	const ROTATIONS_BEFORE_EXIT = 3.0
+	const EXIT_TIME_SECONDS := 3.0
+	const ROTATIONS_PER_SECOND = 3.0
 
 	var _exit: Exit
 	var _t := 0.0
@@ -256,17 +267,82 @@ class ExitingState:
 		_exit = exit
 
 	func on_enter() -> void:
-		_parent.velocity = _exit.center - _parent.position
+		_parent.velocity = (_exit.center - _parent.position) / EXIT_TIME_SECONDS
 
 	func on_physics_process(delta: float) -> void:
 		_t += delta
-		_parent.rotation = _t * 2 * PI * ROTATIONS_BEFORE_EXIT
+		_parent.rotation = _t * 2 * PI * ROTATIONS_PER_SECOND
 		_parent.scale = Vector2(1.0, 1.0).lerp(Vector2(0.0, 0.0), _t / EXIT_TIME_SECONDS)
 		_parent.move_and_slide()
 		if _t > EXIT_TIME_SECONDS:
 			_parent.queue_free()
 
+class EffectPlayer:
+	extends RefCounted
+
+	const MIN_PITCH := 1.4
+	const MAX_PITCH := 1.6
+	const MIN_VOLUME := -12.5
+	const MAX_VOLUME := -9.5
+
+	var _audio_player: AudioStreamPlayer2D
+	var _sounds: Array[AudioStreamWAV]
+
+	func _init(audio_player: AudioStreamPlayer2D, sounds: Array[AudioStreamWAV]):
+		_audio_player = audio_player
+		_sounds = sounds
+
+	func play() -> void:
+		var pitch = randf_range(MIN_PITCH, MAX_PITCH)
+		var volume = randf_range(MIN_VOLUME, MAX_VOLUME)
+		var part = _select_next_stream()
+		_audio_player.stream = part
+		_audio_player.pitch_scale = pitch
+		_audio_player.volume_db = volume
+		_audio_player.play()
+
+	func _select_next_stream() -> AudioStreamWAV:
+		return _sounds.pick_random()
+
+class WalkEffectPlayer:
+	extends EffectPlayer
+
+	var _playing := false
+
+	func play() -> void:
+		if _playing: return
+		_playing = true
+		_play_next_part()
+
+	func stop() -> void:
+		_playing = false
+
+	func on_audio_player_finished() -> void:
+		if _playing:
+			_play_next_part()
+
+	func _play_next_part() -> void:
+		var pitch = randf_range(MIN_PITCH, MAX_PITCH)
+		var volume = randf_range(MIN_VOLUME, MAX_VOLUME)
+		var part = _select_next_stream()
+		_audio_player.stream = part
+		_audio_player.pitch_scale = pitch
+		_audio_player.volume_db = volume
+		_audio_player.play()
+
+@export var steps: Array[AudioStreamWAV]
+@export var jumps: Array[AudioStreamWAV]
+@export var deaths: Array[AudioStreamWAV]
+@export var exits: Array[AudioStreamWAV]
+@export var movement_config: PlayerMovementConfig
+
 var _state: PlayerState
+
+@onready var _walk_effect_player := WalkEffectPlayer.new(walk_player, steps)
+@onready var _jump_effect_player := EffectPlayer.new(jump_player, jumps)
+@onready var _death_effect_player := EffectPlayer.new(death_player, deaths)
+@onready var _exit_effect_player := EffectPlayer.new(exit_player, exits)
+
 
 var wall_jump_timer: Timer:
 	get: return $WallJumpTimer
@@ -283,11 +359,34 @@ var appear_particles: GPUParticles2D:
 var disappear_particles: GPUParticles2D:
 	get: return $DisappearParticles
 
+var walk_player: AudioStreamPlayer2D:
+	get: return $WalkPlayer
+
+var jump_player: AudioStreamPlayer2D:
+	get: return $JumpPlayer
+
+var death_player: AudioStreamPlayer2D:
+	get: return $DeathPlayer
+
+var exit_player: AudioStreamPlayer2D:
+	get: return $ExitPlayer
+
+func play_walk() -> void:
+	_walk_effect_player.play()
+
+func stop_playing_walk() -> void:
+	_walk_effect_player.stop()
+
+func play_jump() -> void:
+	_jump_effect_player.play()
+
 func die() -> void:
 	_switch_to_state(DyingState.new(self))
+	_death_effect_player.play()
 
 func exit(exit_scene: Exit) -> void:
 	_switch_to_state(ExitingState.new(self, exit_scene))
+	_exit_effect_player.play()
 
 func _ready() -> void:
 	_switch_to_state(AppearState.new(self))
@@ -310,3 +409,6 @@ func _physics_process(delta: float) -> void:
 
 func get_camera() -> Camera2D:
 	return $Camera2D
+
+func _on_walk_player_finished() -> void:
+	_walk_effect_player.on_audio_player_finished()

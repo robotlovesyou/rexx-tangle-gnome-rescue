@@ -24,10 +24,10 @@
 
 ## Training Level
 
-* Add walking sound to player
-* Add jump sound to player
-* Add double jump sound to player
-* Add wall jump sound to player
+* ~~Add walking sound to player~~
+* ~~Add jump sound to player~~
+* ~~Add double jump sound to player~~
+* ~~Add wall jump sound to player~~
 * Add death sound to player (broken crockery?)
 * Add skid sound and effect to player
 * Add exit sound effect for player
