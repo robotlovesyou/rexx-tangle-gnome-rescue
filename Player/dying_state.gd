@@ -1,7 +1,7 @@
 class_name DyingState
 extends PlayerState
 
-const EXIT_STATE_AFTER_SECONDS := 1.0
+const EXIT_STATE_AFTER_SECONDS := 3.0
 
 var _time := 0.0
 

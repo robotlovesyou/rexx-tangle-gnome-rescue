@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://cenujiplxkpem"]
+[gd_scene load_steps=77 format=3 uid="uid://cenujiplxkpem"]
 
 [ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://Player/player.gd" id="1_vtle1"]
@@ -19,9 +19,12 @@
 [ext_resource type="AudioStream" uid="uid://baica5aywsknm" path="res://Sounds/FX/pitched_jump 6-Audio (Bounce).wav" id="11_qemgg"]
 [ext_resource type="AudioStream" uid="uid://bk50f4y5p6khl" path="res://Sounds/FX/pitched_jump 7-Audio (Bounce).wav" id="12_8viyr"]
 [ext_resource type="AudioStream" uid="uid://dher67hhnmvdv" path="res://Sounds/FX/pitched_jump 8-Audio (Bounce).wav" id="13_sm0op"]
-[ext_resource type="AudioStream" uid="uid://cclb7qojgpqb4" path="res://Sounds/FX/death_effect 1-Audio.wav" id="14_hshwv"]
-[ext_resource type="AudioStream" uid="uid://blfp4permo5p2" path="res://Sounds/FX/death_effect 2-1-Audio 2.wav" id="15_gpjlu"]
+[ext_resource type="AudioStream" uid="uid://bi8ej7p02eq1h" path="res://Sounds/FX/CarefullyCarefullyWithThePlates More Plates.wav" id="14_hshwv"]
+[ext_resource type="AudioStream" uid="uid://dwl6qdl7f012c" path="res://Sounds/FX/CarefullyCarefullyWithThePlates Plates.wav" id="15_gpjlu"]
 [ext_resource type="AudioStream" uid="uid://kvr1od7fpvc" path="res://Sounds/FX/exit_effect 1-Audio.wav" id="16_gpjlu"]
+[ext_resource type="AudioStream" uid="uid://be4e7c2eusnwk" path="res://Sounds/FX/SkidMarks Skid One.wav" id="17_qemgg"]
+[ext_resource type="AudioStream" uid="uid://cww2nwgp32dda" path="res://Sounds/FX/SkidMarks Skid Two.wav" id="18_8viyr"]
+[ext_resource type="AudioStream" uid="uid://pthcq3riq252" path="res://Sounds/FX/SkidMarks Skid Three.wav" id="19_sm0op"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00tjw"]
 atlas = ExtResource("3_od3ui")
@@ -358,6 +361,24 @@ color = Color(1, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_5htga")
 alpha_curve = SubResource("CurveTexture_x3vf3")
 
+[sub_resource type="Curve" id="Curve_qemgg"]
+_data = [Vector2(0.20992365, 1), 0.0, 0.0, 0, 0, Vector2(0.66793895, 1), 0.0, 0.0, 0, 0, Vector2(0.8664122, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8viyr"]
+curve = SubResource("Curve_qemgg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sm0op"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 1, 1)
+direction = Vector3(-0.01, -0.2, 0)
+spread = 10.0
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 98, 0)
+alpha_curve = SubResource("CurveTexture_8viyr")
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 20
 floor_snap_length = 4.0
@@ -367,11 +388,14 @@ steps = Array[AudioStreamWAV]([ExtResource("3_5htga"), ExtResource("4_p5o4e"), E
 jumps = Array[AudioStreamWAV]([ExtResource("6_n471f"), ExtResource("7_7emwf"), ExtResource("8_hshwv"), ExtResource("9_gpjlu"), ExtResource("10_8mwp6"), ExtResource("11_qemgg"), ExtResource("12_8viyr"), ExtResource("13_sm0op")])
 deaths = Array[AudioStreamWAV]([ExtResource("14_hshwv"), ExtResource("15_gpjlu")])
 exits = Array[AudioStreamWAV]([ExtResource("16_gpjlu")])
+skids = Array[AudioStreamWAV]([ExtResource("17_qemgg"), ExtResource("18_8viyr"), ExtResource("19_sm0op")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"appear"
+animation = &"idle"
 autoplay = "idle"
+frame = 2
+frame_progress = 0.59507465
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 1)
@@ -405,13 +429,29 @@ trail_lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_od3ui")
 
 [node name="WalkPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"Level"
 
 [node name="RexxEars" type="AudioListener2D" parent="."]
 
 [node name="JumpPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"Level"
 
 [node name="DeathPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"Level"
 
 [node name="ExitPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"Level"
+
+[node name="SkidPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = 3.3
+bus = &"Level"
+
+[node name="SkidParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 16)
+emitting = false
+amount = 24
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_sm0op")
 
 [connection signal="finished" from="WalkPlayer" to="." method="_on_walk_player_finished"]

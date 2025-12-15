@@ -13,6 +13,9 @@ var _killed_enemy_last_frame := false
 func on_enter() -> void:
 	_begin_action(Enums.Action.IDLING)
 
+func on_exit() -> void:
+	_parent.stop_playing_walk()
+
 func on_physics_process(delta: float) -> void:
 	var was_on_floor = _parent.is_on_floor()
 	_determine_direction()
@@ -40,6 +43,9 @@ func _begin_action(action: Enums.Action) -> void:
 func _is_jumping() -> bool:
 	# return true for any jumping action (jumping, double jumping, wall jumping)
 	return _action == Enums.Action.JUMPING or _action == Enums.Action.DOUBLE_JUMPING or _action == Enums.Action.DOUBLE_JUMPED or _action == Enums.Action.WALL_JUMPING
+
+func _is_skidding() -> bool:
+	return _parent.is_on_floor() and abs(_parent.velocity.x) > 100.0 and ((_direction != 0.0 and sign(_direction) != sign(_parent.velocity.x)) or _direction == 0.0)
 
 func _has_direction() -> bool:
 	return _direction != 0.0
@@ -177,6 +183,11 @@ func _append_to_history(delta: float) -> void:
 	MovementHistory.append(_parent.position, _parent.get_platform_velocity() * delta, _action, _parent.animated_sprite.flip_h)
 
 func _play_action() -> void:
+	if _is_skidding():
+		_parent.play_skid()
+	else:
+		_parent.stop_skid()
+
 	if !_action_did_change: return
 	_parent.stop_playing_walk()
 	match _action:

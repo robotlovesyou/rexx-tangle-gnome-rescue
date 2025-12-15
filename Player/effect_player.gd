@@ -9,6 +9,9 @@ const MAX_VOLUME := -9.5
 var _audio_player: AudioStreamPlayer2D
 var _sounds: Array[AudioStreamWAV]
 
+var playing: bool:
+	get: return _audio_player.playing
+
 func _init(audio_player: AudioStreamPlayer2D, sounds: Array[AudioStreamWAV]):
 	_audio_player = audio_player
 	_sounds = sounds

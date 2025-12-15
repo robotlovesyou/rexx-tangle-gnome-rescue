@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://b375kt25cr6s8"]
+[gd_resource type="AudioBusLayout" load_steps=8 format=3 uid="uid://b375kt25cr6s8"]
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
 resource_name = "HighPassFilter"
@@ -14,12 +14,21 @@ drive = 0.15
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
 resource_name = "Reverb"
-room_size = 0.5
+room_size = 0.33
 hipass = 0.81
+wet = 0.33
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_g28q7"]
 resource_name = "LowPassFilter"
 cutoff_hz = 1000.0
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_g28q7"]
+resource_name = "HighPassFilter"
+cutoff_hz = 300.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_g28q7"]
+resource_name = "Reverb"
+wet = 0.13
 
 [resource]
 bus/1/name = &"Lobby"
@@ -50,3 +59,13 @@ bus/3/volume_db = -10.51852
 bus/3/send = &"Master"
 bus/3/effect/0/effect = SubResource("AudioEffectLowPassFilter_g28q7")
 bus/3/effect/0/enabled = true
+bus/4/name = &"Level"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectHighPassFilter_g28q7")
+bus/4/effect/0/enabled = true
+bus/4/effect/1/effect = SubResource("AudioEffectReverb_g28q7")
+bus/4/effect/1/enabled = true
