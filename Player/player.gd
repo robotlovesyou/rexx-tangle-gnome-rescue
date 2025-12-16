@@ -81,6 +81,9 @@ func exit(exit_scene: Exit) -> void:
 	_switch_to_state(ExitingState.new(self, exit_scene))
 	_exit_effect_player.play()
 
+func exit_done() -> void:
+	Events.player_exited_level_sync()
+
 func _ready() -> void:
 	_switch_to_state(AppearState.new(self))
 

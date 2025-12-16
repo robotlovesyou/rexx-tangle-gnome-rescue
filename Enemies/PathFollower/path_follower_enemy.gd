@@ -6,6 +6,9 @@ signal died
 @export var path_follower: PathFollow2D
 @export var animated_sprite: AnimatedSprite2D
 @export var death_particles: GPUParticles2D
+@export var death_sounds: Array[AudioStreamWAV]
+
+@onready var death_player := EffectPlayer.new(spark_player, death_sounds)
 
 enum State {
 	ALIVE,
@@ -20,6 +23,9 @@ const DEATH_TIME := 1.0
 
 var _time_elapsed := 0.0
 var _time_dead := 0.0
+
+var spark_player: AudioStreamPlayer2D:
+	get: return $SparkPlayer
 
 
 func _physics_process(delta: float) -> void:
@@ -53,5 +59,6 @@ func die() -> void:
 	_state = State.DEAD
 	collision_layer = 0 # stop colliding with the player
 	animated_sprite.play("die")
+	death_player.play()
 	death_particles.emitting = true
 	died.emit()

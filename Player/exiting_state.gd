@@ -20,4 +20,4 @@ func on_physics_process(delta: float) -> void:
 	_parent.scale = Vector2(1.0, 1.0).lerp(Vector2(0.0, 0.0), _t / EXIT_TIME_SECONDS)
 	_parent.move_and_slide()
 	if _t > EXIT_TIME_SECONDS:
-		_parent.queue_free()
+		_parent.exit_done()

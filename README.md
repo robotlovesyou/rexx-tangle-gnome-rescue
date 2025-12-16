@@ -29,16 +29,16 @@
 * ~~Add double jump sound to player~~
 * ~~Add wall jump sound to player~~
 * ~~Add death sound to player (broken crockery?)~~
-~~* Add exit sound effect for player~~
+* ~~Add exit sound effect for player~~
 * ~~Add skid sound to player~~ (could do with some work)
-* Add skid particles to player
+* ~~Add skid particles to player~~
+* ~~Add death sound for path follower enemy~~
+* ~~Add proper exit handling (don't just free the player)~~
 * Add rescue sound for gnome
 * Add exit sound for gnome
-* Add death sound for path follower enemy
-* Add proper exit handling (don't just free the player)
-* Create a base class for the level
-* Move the level manager code into the base class
-* Make signal handling consistent (events bus vs whatever else)
+* ~~Create a base class for the level~~
+* Move the level manager code into the base class (not sure about this)
+* Make signal handling consistent (events bus vs whatever else) (also not sure about this)
 * Tidy code for consistency (how to access child nodes. how to access config, etc)
 * ~~Add hazard blocks~~
 * ~~Add enemies~~

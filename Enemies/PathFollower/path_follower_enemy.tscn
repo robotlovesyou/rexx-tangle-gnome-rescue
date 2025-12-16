@@ -1,8 +1,12 @@
-[gd_scene load_steps=36 format=3 uid="uid://bn3fwtg8kxfwp"]
+[gd_scene load_steps=40 format=3 uid="uid://bn3fwtg8kxfwp"]
 
 [ext_resource type="Texture2D" uid="uid://dtcxisu7nbql3" path="res://Enemies/PathFollower/EnemyWalk.png" id="1_gke5b"]
 [ext_resource type="Script" uid="uid://dqpeve6od1png" path="res://Enemies/PathFollower/path_follower_enemy.gd" id="1_jh8ke"]
 [ext_resource type="Texture2D" uid="uid://fe1cpffrnptr" path="res://Enemies/PathFollower/EnemyDeath.png" id="2_lb5sl"]
+[ext_resource type="AudioStream" uid="uid://c70djspk58o0a" path="res://Sounds/FX/Sparky Spark One.wav" id="2_yfj2h"]
+[ext_resource type="AudioStream" uid="uid://bsnjx0r7qjv50" path="res://Sounds/FX/Sparky Spark Two.wav" id="3_u17ix"]
+[ext_resource type="AudioStream" uid="uid://k5kd2gwoqqrf" path="res://Sounds/FX/Sparky Spark Three.wav" id="4_sj4f2"]
+[ext_resource type="AudioStream" uid="uid://bv611xdcks3g4" path="res://Sounds/FX/Sparky Spark Four.wav" id="5_10tny"]
 
 [sub_resource type="Curve2D" id="Curve2D_jh8ke"]
 _data = {
@@ -230,6 +234,7 @@ script = ExtResource("1_jh8ke")
 path_follower = NodePath("../PathToFollow/PathFollow2D")
 animated_sprite = NodePath("AnimatedSprite2D")
 death_particles = NodePath("DeathParticles")
+death_sounds = Array[AudioStreamWAV]([ExtResource("2_yfj2h"), ExtResource("3_u17ix"), null, ExtResource("4_sj4f2"), ExtResource("5_10tny")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollowerEnemy"]
 position = Vector2(16.5, 17)
@@ -247,3 +252,6 @@ emitting = false
 amount = 25
 trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_sj4f2")
+
+[node name="SparkPlayer" type="AudioStreamPlayer2D" parent="PathFollowerEnemy"]
+bus = &"Lobby"

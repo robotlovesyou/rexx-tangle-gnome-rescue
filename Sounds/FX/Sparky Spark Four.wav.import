@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bv611xdcks3g4"
+path="res://.godot/imported/Sparky Spark Four.wav-e6927f0477728a3f2e81afd3ec3eb708.sample"
+
+[deps]
+
+source_file="res://Sounds/FX/Sparky Spark Four.wav"
+dest_files=["res://.godot/imported/Sparky Spark Four.wav-e6927f0477728a3f2e81afd3ec3eb708.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

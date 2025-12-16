@@ -443,7 +443,7 @@ bus = &"Level"
 bus = &"Level"
 
 [node name="SkidPlayer" type="AudioStreamPlayer2D" parent="."]
-volume_db = 3.3
+volume_db = 9.9
 bus = &"Level"
 
 [node name="SkidParticles" type="GPUParticles2D" parent="."]
