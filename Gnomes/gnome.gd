@@ -6,12 +6,17 @@ extends CharacterBody2D
 # const JUMP_VELOCITY = -400.0
 
 @export var movement_config: PlayerMovementConfig
+@export var hello_sounds: Array[AudioStreamWAV]
+
+@onready var hellos := EffectPlayer.new(hello_player, hello_sounds)
+
 var _action: Enums.GnomeAction
 var _player_action: Enums.Action
 var _touching_player: bool = false
 var _state: GnomeState
 var _follow_index: int
 var _safe_spot: GnomeSafeSpot
+var _has_said_hello := false
 
 
 var follow_index: int:
@@ -26,6 +31,9 @@ var animated_sprite: AnimatedSprite2D:
 
 var safe_spot: GnomeSafeSpot:
 	get: return _safe_spot
+
+var hello_player: AudioStreamPlayer2D:
+	get: return $HelloPlayer
 
 func _ready() -> void:
 	_begin_action(Enums.GnomeAction.GROUNDED)
@@ -211,3 +219,8 @@ func check_stuck(expected_position: Vector2) -> void:
 		follow_got_stuck.call_deferred()
 	else:
 		follow_not_stuck()
+
+func play_hello_once() -> void:
+	if !_has_said_hello:
+		hellos.play()
+		_has_said_hello = true
