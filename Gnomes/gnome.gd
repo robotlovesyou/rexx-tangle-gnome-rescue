@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var movement_config: PlayerMovementConfig
 @export var hello_sounds: Array[AudioStreamWAV]
 
-@onready var hellos := EffectPlayer.new(hello_player, hello_sounds)
+@onready var hellos := EffectPlayer.new(hello_player, hello_sounds, {EffectPlayer.MAX_PITCH: 1.0, EffectPlayer.MIN_PITCH: 1.0})
 
 var _action: Enums.GnomeAction
 var _player_action: Enums.Action

@@ -16,8 +16,8 @@ func on_audio_player_finished() -> void:
 		_play_next_part()
 
 func _play_next_part() -> void:
-	var pitch = randf_range(MIN_PITCH, MAX_PITCH)
-	var volume = randf_range(MIN_VOLUME, MAX_VOLUME)
+	var pitch = randf_range(_min_pitch, _max_pitch)
+	var volume = randf_range(_min_volume, _max_volume)
 	var part = _select_next_stream()
 	_audio_player.stream = part
 	_audio_player.pitch_scale = pitch
