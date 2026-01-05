@@ -7,6 +7,7 @@ var _time := 0.0
 
 func on_enter() -> void:
 	_parent.visible = false
+	ActionMonitor.action = Enums.Action.DYING
 
 func on_exit() -> void:
 	pass

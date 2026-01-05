@@ -1,10 +1,10 @@
 [gd_scene load_steps=41 format=3 uid="uid://y4tb8v4fvs66"]
 
 [ext_resource type="Script" uid="uid://bua5ful6l310d" path="res://Gnomes/gnome.gd" id="1_5vlar"]
-[ext_resource type="Texture2D" uid="uid://cs3aooemb044i" path="res://BigGnomeIdle.png" id="1_qe4o5"]
-[ext_resource type="Texture2D" uid="uid://i5mk3qey4bdj" path="res://BigGnomeWalk.png" id="2_5vlar"]
+[ext_resource type="Texture2D" uid="uid://cs3aooemb044i" path="res://RexxArt/Gnomes/BigGnomeIdle.png" id="1_qe4o5"]
+[ext_resource type="Texture2D" uid="uid://i5mk3qey4bdj" path="res://RexxArt/Gnomes/BigGnomeWalk.png" id="2_5vlar"]
 [ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="2_dt2vp"]
-[ext_resource type="Texture2D" uid="uid://c0lcgpdyebu7u" path="res://BigGnomeDisappear.png" id="3_csjxl"]
+[ext_resource type="Texture2D" uid="uid://c0lcgpdyebu7u" path="res://RexxArt/Gnomes/BigGnomeDisappear.png" id="3_csjxl"]
 [ext_resource type="AudioStream" uid="uid://bdquptyqlei76" path="res://Sounds/Gnomes/Hello/Finally.wav" id="3_u8kr0"]
 [ext_resource type="AudioStream" uid="uid://dspn0gcqywwhq" path="res://Sounds/Gnomes/Hello/OhHello1.wav" id="4_41rew"]
 [ext_resource type="AudioStream" uid="uid://d080kmx2434yu" path="res://Sounds/Gnomes/Hello/OhHello2.wav" id="5_p0twa"]

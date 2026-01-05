@@ -3,6 +3,7 @@ extends Node2D
 
 @export var player_scene: PackedScene
 @export var broken_player_scene: PackedScene
+@export var dismembered_gnome_scene: PackedScene
 @export var next_level: String
 @export var exit: Exit
 @export var hud: HUD
@@ -22,6 +23,7 @@ func _ready() -> void:
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
 	Events.player_killed_enemy.connect(_on_player_killed_enemy)
 	Events.player_exited_level.connect(_on_player_exited_level)
+	Events.gnome_hit_spike_trap.connect(_on_gnome_hit_spike_trap)
 	Level.gnome_rescued.connect(_on_gnome_rescued)
 	_update_gnome_count_in_hud()
 	hud.update_timer(timer_seconds)
@@ -32,6 +34,10 @@ func _physics_process(delta: float) -> void:
 	if _player_over_exit and Input.is_action_just_pressed("ui_accept"):
 		PMonitor.player.exit(exit)
 
+	if Input.is_action_just_released("instakill_gnomes"):
+		for item in get_tree().get_nodes_in_group("Gnome"):
+			var gnome = item as Gnome
+			_kill_gnome(gnome)
 
 func _on_player_hit_spike_trap(_trap: SpikeTrap) -> void:
 	_kill_player()
@@ -39,17 +45,38 @@ func _on_player_hit_spike_trap(_trap: SpikeTrap) -> void:
 func _on_player_hit_emeny(_enemy: Enemy) -> void:
 	_kill_player()
 
+func _spawn_broken_player(at: Vector2) -> BrokenRexx:
+	var broken_player = broken_player_scene.instantiate()
+	add_child(broken_player)
+	move_child(broken_player, player_sibling_node.get_index() + 1)
+	broken_player.global_position = at
+	return broken_player
+
+func _spawn_dismembered_gnome(gnome: Gnome) -> DismemberedGnome:
+	var dismembered_gnome = dismembered_gnome_scene.instantiate()
+	dismembered_gnome.global_position = gnome.global_position
+	add_child(dismembered_gnome)
+	move_child(dismembered_gnome, gnome.get_index() + 1)
+	return dismembered_gnome
+
+func _on_gnome_hit_spike_trap(trap: SpikeTrap, gnome: Gnome) -> void:
+	_kill_gnome(gnome)
+
 func _kill_player() -> void:
-	Level.spawn_broken_player(PMonitor.player.global_position, broken_player_scene, self, $Signs).set_initial_velocity(PMonitor.player.velocity)
+	_spawn_broken_player(PMonitor.player.global_position).set_initial_velocity(PMonitor.player.velocity)
 	await Level.kill_player()
 	Level.despawn_player()
-	Level.spawn_player(player_scene, self, $Signs)
+	Level.spawn_player(player_scene, self, player_sibling_node)
 
 func _on_player_killed_enemy(enemy: Enemy) -> void:
 	Level.kill_enemy(enemy)
 
 func _on_player_exited_level() -> void:
 	Level.replace_level_with(next_level)
+
+func _kill_gnome(gnome: Gnome) -> void:
+	_spawn_dismembered_gnome(gnome).set_initial_velocity()
+
 
 func _on_gnome_rescued() -> void:
 	_rescue_count += 1

@@ -25,7 +25,6 @@ const STRETCH_ASPECT_KEEP_HEIGHT: int = 3
 const STRETCH_ASPECT_EXPAND: int      = 4
 
 func _enter_tree() -> void:
-	print("enter tree")
 	if Engine.is_editor_hint():
 		set_process(true)
 		_refresh_preview()

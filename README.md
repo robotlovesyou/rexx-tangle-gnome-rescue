@@ -2,6 +2,10 @@
 
 # TO DO
 
+# Week 1 2026
+* Gnome Death
+* Move as much code as possible out of level manager global and into base_level class
+
 ## General
 
 * Add a fade between the menu screens

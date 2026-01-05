@@ -1,7 +1,7 @@
 class_name BrokenRexx
 extends Node2D
 
-const LIFE_TIME_SECONDS = 2.0
+const LIFE_TIME_SECONDS := 2.0
 
 
 var top_left: RigidBody2D:
@@ -26,18 +26,16 @@ var _t := 0.0
 
 func set_initial_velocity(velocity: Vector2) -> void:
 	var scaled_velocity = velocity / (Engine.physics_ticks_per_second / 2.0)
-	top_left.apply_central_impulse(top_left.mass * scaled_velocity)
-	top_left.apply_torque_impulse(scaled_velocity.x)
-	top_right.apply_central_impulse(top_right.mass * scaled_velocity)
-	top_right.apply_torque_impulse(scaled_velocity.x)
-	bottom_left.apply_central_impulse(bottom_left.mass * scaled_velocity)
-	bottom_left.apply_torque_impulse(scaled_velocity.x)
-	bottom_right.apply_central_impulse(bottom_right.mass * scaled_velocity)
-	bottom_right.apply_torque_impulse(scaled_velocity.x)
-	leg_1.apply_central_impulse(leg_1.mass * scaled_velocity)
-	leg_1.apply_torque_impulse(scaled_velocity.x)
-	leg_2.apply_central_impulse(leg_2.mass * scaled_velocity)
-	leg_2.apply_torque_impulse(scaled_velocity.x)
+	_apply_body_impulse(top_left, scaled_velocity)
+	_apply_body_impulse(top_right, scaled_velocity)
+	_apply_body_impulse(bottom_left, scaled_velocity)
+	_apply_body_impulse(bottom_right, scaled_velocity)
+	_apply_body_impulse(leg_1, scaled_velocity)
+	_apply_body_impulse(leg_2, scaled_velocity)
+
+func _apply_body_impulse(body: RigidBody2D, scaled_velocity: Vector2):
+	body.apply_central_impulse(body.mass * scaled_velocity)
+	body.apply_torque_impulse(scaled_velocity.x)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

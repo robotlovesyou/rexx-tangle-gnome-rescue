@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i5mk3qey4bdj"
-path="res://.godot/imported/BigGnomeWalk.png-d4707336c1d310dc921788b9f15484b6.ctex"
+uid="uid://8tqbmofxdlia"
+path="res://.godot/imported/BigGnomeDismemberedLeg.png-ae6c60bbb51318f6200070b8d98a9822.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BigGnomeWalk.png"
-dest_files=["res://.godot/imported/BigGnomeWalk.png-d4707336c1d310dc921788b9f15484b6.ctex"]
+source_file="res://RexxArt/Gnomes/BigGnomeDismemberedLeg.png"
+dest_files=["res://.godot/imported/BigGnomeDismemberedLeg.png-ae6c60bbb51318f6200070b8d98a9822.ctex"]
 
 [params]
 

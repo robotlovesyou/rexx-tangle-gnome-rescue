@@ -2,6 +2,7 @@ class_name LevelEventBus
 extends Node
 
 signal player_hit_spike_trap(SpikeTrap)
+signal gnome_hit_spike_trap(SpikeTrap, Gnome)
 signal player_hit_enemy(Enemy)
 signal player_killed_enemy(Enemy)
 signal player_exited_level()
@@ -12,6 +13,12 @@ func player_hit_spike_trap_sync(trap: SpikeTrap) -> void:
 
 func player_hit_spike_trap_async(trap: SpikeTrap) -> void:
 	player_hit_spike_trap.emit.call_deferred(trap)
+
+func gnome_hit_spike_trap_sync(trap: SpikeTrap, gnome: Gnome) -> void:
+	gnome_hit_spike_trap.emit(trap, gnome)
+
+func gnome_hit_spike_trap_async(trap: SpikeTrap, gnome: Gnome) -> void:
+	gnome_hit_spike_trap.emit.call_deferred(trap, gnome)
 
 func player_hit_enemy_sync(enemy: Enemy) -> void:
 	player_hit_enemy.emit(enemy)

@@ -35,7 +35,6 @@ func on_physics_process(delta: float) -> void:
 
 func _begin_action(action: Enums.Action) -> void:
 	if action == _action: return
-	print(Enums.action_name(action))
 	_action = action
 	_action_did_change = true
 	ActionMonitor.action = _action
