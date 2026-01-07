@@ -38,7 +38,6 @@ func _apply_body_impulse(body: RigidBody2D, velocity: Vector2, torque: float):
 
 
 func _process(delta: float) -> void:
-	print(torso.angular_velocity)
 	_t += delta
 	if _t >= LIFE_TIME_SECONDS:
 		self.queue_free()

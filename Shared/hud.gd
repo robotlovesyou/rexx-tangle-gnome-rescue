@@ -20,7 +20,8 @@ var _time_flashing_timer := 0.0
 
 func update_gnome_count(rescued: int, minimum: int, remaining: int) -> void:
 	var rescued_color = "red" if rescued < minimum else "green"
-	gnome_label.text = "Rescued: [color=\"%s\"]%d/%d[/color] Remaining: %d" % [rescued_color, rescued, minimum, remaining]
+	var remaining_color = "red" if rescued + remaining < minimum else "green"
+	gnome_label.text = "Rescued: [color=\"%s\"]%d/%d[/color] Remaining: [color=\"%s\"]%d[/color]" % [rescued_color, rescued, minimum, remaining_color, remaining]
 
 func update_timer(seconds: int) -> void:
 	var timer_color = "green" if seconds >= 60 else "red"

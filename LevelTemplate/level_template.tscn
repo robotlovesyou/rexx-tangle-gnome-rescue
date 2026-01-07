@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://byvmdrxwabccf"]
+[gd_scene load_steps=25 format=4 uid="uid://byvmdrxwabccf"]
 
 [ext_resource type="Script" uid="uid://b5iuspefhqqgb" path="res://LevelTemplate/level_template.gd" id="1_hyjmn"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_lw321"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d1d8b4dpydja5" path="res://Shared/gnome_safe_spot.tscn" id="8_fgqrj"]
 [ext_resource type="PackedScene" uid="uid://y4tb8v4fvs66" path="res://Gnomes/gnome.tscn" id="9_boc5u"]
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="10_4evms"]
+[ext_resource type="PackedScene" uid="uid://blysyve0sampw" path="res://LevelTemplate/game_over_message.tscn" id="12_boc5u"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4evms"]
 load_path = "res://.godot/imported/training_level_atlas.png-0dd344668e5896736eedce2bfa24cd33.ctex"
@@ -780,7 +781,7 @@ terrain_set_0/terrain_0/name = "BlueFloor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_o5dvu")
 
-[node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("exit", "hud", "player_sibling_node")]
+[node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("exit", "hud", "game_over_message", "player_sibling_node")]
 script = ExtResource("1_hyjmn")
 player_scene = ExtResource("2_lw321")
 broken_player_scene = ExtResource("3_0k4pj")
@@ -788,6 +789,7 @@ dismembered_gnome_scene = ExtResource("4_fgqrj")
 next_level = "res://launch_menu_screen.tscn"
 exit = NodePath("Exit")
 hud = NodePath("HUD")
+game_over_message = NodePath("GameOverMessage")
 minimum_gnomes = 1
 timer_seconds = 300
 player_sibling_node = NodePath("Floor")
@@ -827,6 +829,9 @@ position = Vector2(1088, 240)
 
 [node name="SpikeTrap" parent="." instance=ExtResource("10_4evms")]
 position = Vector2(770, 240)
+
+[node name="GameOverMessage" parent="." instance=ExtResource("12_boc5u")]
+visible = false
 
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]

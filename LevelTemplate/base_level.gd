@@ -7,12 +7,14 @@ extends Node2D
 @export var next_level: String
 @export var exit: Exit
 @export var hud: HUD
+@export var game_over_message: GameOverMessage
 @export var minimum_gnomes: int
 @export var timer_seconds: int
 @export var player_sibling_node: Node
 
 
 var _rescue_count := 0
+var _current_gnome_count := 0
 var _t := 0.0
 var _player_over_exit := false
 
@@ -76,7 +78,15 @@ func _on_player_exited_level() -> void:
 
 func _kill_gnome(gnome: Gnome) -> void:
 	_spawn_dismembered_gnome(gnome).set_initial_velocity()
+	gnome.die()
+	await get_tree().create_timer(0).timeout
+	_update_gnome_count_in_hud()
+	if _current_gnome_count + _rescue_count < minimum_gnomes:
+		game_over("Not enough gnomes left to rescue")
 
+func game_over(reason: String) -> void:
+	game_over_message.set_reason(reason)
+	game_over_message.show()
 
 func _on_gnome_rescued() -> void:
 	_rescue_count += 1
@@ -86,7 +96,8 @@ func _on_gnome_rescued() -> void:
 		exit.active = true
 
 func _update_gnome_count_in_hud() -> void:
-	hud.update_gnome_count(_rescue_count, minimum_gnomes, get_tree().get_nodes_in_group("Gnome").size())
+	_current_gnome_count = get_tree().get_nodes_in_group("Gnome").size()
+	hud.update_gnome_count(_rescue_count, minimum_gnomes, _current_gnome_count)
 
 func _on_player_entered_exit() -> void:
 	_player_over_exit = true

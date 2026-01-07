@@ -1,8 +1,9 @@
-[gd_scene load_steps=64 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=66 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
 [ext_resource type="Texture2D" uid="uid://d063wl75s2kuu" path="res://RexxArt/OfficeIntro/office_intro_skybox.png" id="3_7ctbl"]
+[ext_resource type="PackedScene" uid="uid://5bebiiyii4yx" path="res://Gnomes/dismembered_gnome.tscn" id="4_d50g8"]
 [ext_resource type="Texture2D" uid="uid://dwveg04727ykm" path="res://RexxArt/OfficeIntro/office_intro_far_background.png" id="4_iouky"]
 [ext_resource type="Texture2D" uid="uid://dshkqrm7map16" path="res://RexxArt/RexxTrainingLevel/training_level_atlas.png" id="5_0wdl5"]
 [ext_resource type="Texture2D" uid="uid://dxd8o8edkeas5" path="res://RexxArt/UI/DialogBox.png" id="10_3crw2"]
@@ -36,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://dlxpek0qkd3g7" path="res://Level-0-Training/floor.tscn" id="29_r30qa"]
 [ext_resource type="PackedScene" uid="uid://cepvnfljrn4by" path="res://Shared/hud.tscn" id="31_j0lek"]
 [ext_resource type="PackedScene" uid="uid://xk5iw48kpmxo" path="res://Level-0-Training/door.tscn" id="33_2xdl0"]
+[ext_resource type="PackedScene" uid="uid://blysyve0sampw" path="res://LevelTemplate/game_over_message.tscn" id="37_qxvr5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xs5uq"]
 texture = ExtResource("5_0wdl5")
@@ -540,7 +542,7 @@ _data = {
 &"open_dialog": SubResource("Animation_3crw2")
 }
 
-[node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("training_dialogs_layer", "enemy_training_dialog", "gnome_training_dialog", "exit_training_dialog", "gnome_count_door", "timer_door", "exit", "hud", "player_sibling_node")]
+[node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("training_dialogs_layer", "enemy_training_dialog", "gnome_training_dialog", "exit_training_dialog", "gnome_count_door", "timer_door", "exit", "hud", "game_over_message", "player_sibling_node")]
 script = ExtResource("1_7wmsh")
 training_dialogs_layer = NodePath("TrainingDialogsLayer")
 enemy_training_dialog = NodePath("Signs/EnemyTrainingDialog")
@@ -550,9 +552,11 @@ gnome_count_door = NodePath("GnomeCountDoor")
 timer_door = NodePath("TimerDoor")
 player_scene = ExtResource("17_2xdl0")
 broken_player_scene = ExtResource("25_suax4")
+dismembered_gnome_scene = ExtResource("4_d50g8")
 next_level = "res://launch_menu_screen.tscn"
 exit = NodePath("Exit")
 hud = NodePath("HUD")
+game_over_message = NodePath("GameOverMessage")
 minimum_gnomes = 1
 timer_seconds = 300
 player_sibling_node = NodePath("Signs")
@@ -1256,6 +1260,9 @@ scroll_active = false
 libraries = {
 &"": SubResource("AnimationLibrary_swwo2")
 }
+
+[node name="GameOverMessage" parent="." instance=ExtResource("37_qxvr5")]
+visible = false
 
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]

@@ -3,6 +3,7 @@ extends RefCounted
 
 enum StateID {
 	COLLECTED, 
+	DYING,
 	FOLLOW,
 	LERP_FOLLOW, 
 	NONE,

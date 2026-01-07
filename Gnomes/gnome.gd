@@ -79,10 +79,14 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 			match event:
 				Enums.GnomeEvent.PLAYER_COLLECTED:
 					_switch_to_state(GnomeCollectedState.new(self))
+				Enums.GnomeEvent.DIED:
+					_switch_to_state(GnomeDyingState.new(self))
 		GnomeState.StateID.COLLECTED:
 			match event:
 				Enums.GnomeEvent.COLLECTION_DONE:
 					_switch_to_state(GnomeLerpFollowState.new(self))
+				Enums.GnomeEvent.DIED:
+					_switch_to_state(GnomeDyingState.new(self))
 		GnomeState.StateID.LERP_FOLLOW:
 			match event:
 				Enums.GnomeEvent.LERP_FOLLOW_DONE:
@@ -98,6 +102,8 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					_switch_to_state(GnomePlatformLerpState.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
 					_switch_to_state(GnomeOrphanedState.new(self))
+				Enums.GnomeEvent.DIED:
+					_switch_to_state(GnomeDyingState.new(self))
 		GnomeState.StateID.FOLLOW:
 			match event:
 				Enums.GnomeEvent.BECAME_ABANDONED:
@@ -114,6 +120,8 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 						_switch_to_state(GnomeSafeTeleportState.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
 					_switch_to_state(GnomeOrphanedState.new(self))
+				Enums.GnomeEvent.DIED:
+					_switch_to_state(GnomeDyingState.new(self))
 		GnomeState.StateID.STRAY:
 			match event: 
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
@@ -122,10 +130,14 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					_switch_to_state(GnomeWanderState.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
 					_switch_to_state(GnomeOrphanedState.new(self))
+				Enums.GnomeEvent.DIED:
+					_switch_to_state(GnomeDyingState.new(self))
 		GnomeState.StateID.WANDER:
 			match event:
 				Enums.GnomeEvent.PLAYER_COLLECTED:
 					_switch_to_state(GnomeCollectedState.new(self))
+				Enums.GnomeEvent.DIED:
+					_switch_to_state(GnomeDyingState.new(self))
 		GnomeState.StateID.PLATFORM_LERP:
 			match event:
 				Enums.GnomeEvent.LANDED_ON_PLATFORM:
@@ -134,6 +146,8 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					_switch_to_state(GnomePlatformStuckState.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
 					_switch_to_state(GnomeOrphanedState.new(self))
+				Enums.GnomeEvent.DIED:
+					_switch_to_state(GnomeDyingState.new(self))
 		GnomeState.StateID.PLATFORM_IDLE:
 			match event:
 				Enums.GnomeEvent.BECAME_ABANDONED:
@@ -142,18 +156,24 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					_switch_to_state(GnomeLerpFollowState.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
 					_switch_to_state(GnomeOrphanedState.new(self))
+				Enums.GnomeEvent.DIED:
+					_switch_to_state(GnomeDyingState.new(self))
 		GnomeState.StateID.PLATFORM_STUCK:
 			match event: 
 				Enums.GnomeEvent.BECAME_STUCK, Enums.GnomeEvent.BECAME_FREE:
 					_switch_to_state(GnomePlatformLerpState.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
 					_switch_to_state(GnomeOrphanedState.new(self))
+				Enums.GnomeEvent.DIED:
+					_switch_to_state(GnomeDyingState.new(self))
 		GnomeState.StateID.STUCK:
 			match event:
 				Enums.GnomeEvent.BECAME_FREE, Enums.GnomeEvent.BECAME_STUCK:
 					_switch_to_state(GnomeLerpFollowState.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
 					_switch_to_state(GnomeOrphanedState.new(self))
+				Enums.GnomeEvent.DIED:
+					_switch_to_state(GnomeDyingState.new(self))
 
 func _physics_process(delta: float) -> void:
 	_state.on_physics_process(delta)
@@ -236,3 +256,6 @@ func play_hello_once() -> void:
 	if !_has_said_hello:
 		hellos.play()
 		_has_said_hello = true
+
+func die() -> void:
+	_handle_gnome_event(Enums.GnomeEvent.DIED)
