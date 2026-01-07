@@ -45,7 +45,7 @@ func on_physics_process(delta: float) -> void:
 
 			if _t > TIME_IN_STATE_SECONDS + _t_apex * 2.0:
 				_gnome.queue_free()
-				Level.rescue(_gnome)
+				Events.gnome_rescued_sync(_gnome)
 
 	_gnome.velocity.y += _gnome.get_gravity().y * delta
 	_gnome.move_and_slide()
@@ -55,4 +55,3 @@ func on_animate(sprite: AnimatedSprite2D) -> void:
 	if _phase == Phase.TELEPORT:
 		sprite.play("disappear")
 	
-
