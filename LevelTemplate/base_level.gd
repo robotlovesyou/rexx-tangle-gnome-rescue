@@ -19,16 +19,30 @@ var _t := 0.0
 var _player_over_exit := false
 
 func _ready() -> void:
-	Level.spawn_player(player_scene, self, player_sibling_node)
+	_spawn_player(self, player_sibling_node)
 	MovementHistory.reset($Player.position, Enums.Action.IDLING)
 	Events.player_hit_spike_trap.connect(_on_player_hit_spike_trap)
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
 	Events.player_killed_enemy.connect(_on_player_killed_enemy)
 	Events.player_exited_level.connect(_on_player_exited_level)
 	Events.gnome_hit_spike_trap.connect(_on_gnome_hit_spike_trap)
-	Level.gnome_rescued.connect(_on_gnome_rescued)
+	Events.gnome_rescued.connect(_on_gnome_rescued)
 	_update_gnome_count_in_hud()
 	hud.update_timer(timer_seconds)
+
+func _despawn_player() -> void:
+	if PMonitor.player:
+		PMonitor.player.queue_free()
+		await PMonitor.player.tree_exited
+
+func _spawn_player(root: Node, immediate_sibling: Node) -> Player:
+	var player = player_scene.instantiate()
+	root.add_child(player)
+	root.move_child(player, immediate_sibling.get_index()+1)
+	player.global_position = Level.spawn_point.global_position
+	player.get_camera().make_current()
+	PMonitor.player = player
+	return player
 
 func _physics_process(delta: float) -> void:
 	_t += delta
@@ -66,12 +80,16 @@ func _on_gnome_hit_spike_trap(trap: SpikeTrap, gnome: Gnome) -> void:
 
 func _kill_player() -> void:
 	_spawn_broken_player(PMonitor.player.global_position).set_initial_velocity(PMonitor.player.velocity)
-	await Level.kill_player()
-	Level.despawn_player()
-	Level.spawn_player(player_scene, self, player_sibling_node)
+	PMonitor.player.die()
+	await PMonitor.player.done_dying
+	_despawn_player()
+	_spawn_player(self, player_sibling_node)
+
+func _kill_enemy(enemy: Enemy) -> void:
+	enemy.die()
 
 func _on_player_killed_enemy(enemy: Enemy) -> void:
-	Level.kill_enemy(enemy)
+	_kill_enemy(enemy)
 
 func _on_player_exited_level() -> void:
 	Level.replace_level_with(next_level)
@@ -88,7 +106,8 @@ func game_over(reason: String) -> void:
 	game_over_message.set_reason(reason)
 	game_over_message.show()
 
-func _on_gnome_rescued() -> void:
+func _on_gnome_rescued(gnome: Gnome) -> void:
+	FollowersMonitor.remove(gnome)
 	_rescue_count += 1
 	await get_tree().create_timer(0).timeout
 	_update_gnome_count_in_hud()
