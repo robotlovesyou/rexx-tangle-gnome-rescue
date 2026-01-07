@@ -174,6 +174,10 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					_switch_to_state(GnomeOrphanedState.new(self))
 				Enums.GnomeEvent.DIED:
 					_switch_to_state(GnomeDyingState.new(self))
+		GnomeState.StateID.ORPHANED:
+			match event: 
+				Enums.GnomeEvent.DIED:
+					_switch_to_state(GnomeDyingState.new(self))
 
 func _physics_process(delta: float) -> void:
 	_state.on_physics_process(delta)
