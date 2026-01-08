@@ -1,5 +1,8 @@
 extends Control
 
+signal new_game_clicked
+signal quit_to_desktop_clicked
+
 @export var first_button: Button
 @export var next_screen: String
 
@@ -10,8 +13,8 @@ func _ready() -> void:
 
 
 func _on_quit_button_pressed() -> void:
-	get_tree().quit()
+	quit_to_desktop_clicked.emit()
 
 
 func _on_new_game_button_pressed() -> void:
-	Level.replace_level_with(next_screen)
+	new_game_clicked.emit()

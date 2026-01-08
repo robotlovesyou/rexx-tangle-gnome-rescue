@@ -40,13 +40,15 @@ func _ready() -> void:
 		_lines.append(l)
 
 
+func _color_at(t: float, p: float = 0.0) -> Color: return gradient_texture.gradient.sample(0.5 + 0.5 * sin(2.0 * PI * cycle_frequency * _t + p))
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	_t += delta
 	for cr in _tiles:
 		if(randf() <= resample_chance):
-			cr.color = gradient_texture.gradient.sample(randf())
-
-	_t += delta
+			cr.color = _color_at(_t, PI)
+	
 	for l in _lines:
-		l.default_color = gradient_texture.gradient.sample(0.5 + 0.5 * sin(2.0 * PI * cycle_frequency * _t))
+		l.default_color = _color_at(_t)

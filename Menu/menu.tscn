@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu53arek8otth"]
+
+[ext_resource type="Script" uid="uid://cx7rv17ifma37" path="res://Menu/menu.gd" id="1_ihied"]
+[ext_resource type="PackedScene" uid="uid://8son31pbxhla" path="res://Menu/menu_background.tscn" id="2_raj00"]
+[ext_resource type="PackedScene" uid="uid://b32ptwvo8bbye" path="res://Menu/launch_menu_screen.tscn" id="3_raj00"]
+[ext_resource type="AudioStream" uid="uid://deoipfe85wf1h" path="res://Sounds/Music/TitleMusicV1.wav" id="4_8w4re"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_ihied")
+
+[node name="MenuBackground" parent="." instance=ExtResource("2_raj00")]
+
+[node name="MenuRoot" type="CanvasLayer" parent="."]
+
+[node name="MenuCentering" type="CenterContainer" parent="MenuRoot"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LaunchMenuScreen" parent="MenuRoot/MenuCentering" instance=ExtResource("3_raj00")]
+layout_mode = 2
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_8w4re")
+autoplay = true
+
+[connection signal="new_game_clicked" from="MenuRoot/MenuCentering/LaunchMenuScreen" to="." method="_on_new_game_clicked"]
+[connection signal="quit_to_desktop_clicked" from="MenuRoot/MenuCentering/LaunchMenuScreen" to="." method="_on_quit_to_desktop_clicked"]
+[connection signal="finished" from="MenuMusic" to="." method="_on_menu_music_finished"]
