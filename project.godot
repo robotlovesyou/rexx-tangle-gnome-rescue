@@ -23,6 +23,7 @@ FollowersMonitor="*res://Globals/gnome_followers_monitor.gd"
 PMonitor="*res://Globals/player_monitor.gd"
 Level="*res://Globals/level_manager.gd"
 Events="*res://Globals/level_event_bus.gd"
+ScaleManager="*res://Globals/viewport_scale_manager.gd"
 
 [display]
 
@@ -30,7 +31,6 @@ window/size/viewport_width=1280
 window/size/viewport_height=800
 window/stretch/mode="viewport"
 window/stretch/scale=2.0
-window/stretch/scale_mode="integer"
 
 [global_group]
 

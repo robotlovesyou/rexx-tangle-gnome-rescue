@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cepvnfljrn4by"]
 
-[ext_resource type="Texture2D" uid="uid://dxd8o8edkeas5" path="res://RexxArt/UI/DialogBox.png" id="1_qypgx"]
 [ext_resource type="Script" uid="uid://dgqa7e383q0hg" path="res://Shared/hud.gd" id="1_ysegd"]
 [ext_resource type="Texture2D" uid="uid://bikmu83t21586" path="res://RexxArt/UI/GnomeIdle.png" id="2_ylxdp"]
+[ext_resource type="Texture2D" uid="uid://d1e54v671qpth" path="res://RexxArt/UI/DialogBoxV2.png" id="2_ysegd"]
 [ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="3_ylxdp"]
 [ext_resource type="Texture2D" uid="uid://d4cgopgng8wrf" path="res://RexxArt/UI/ClockIcon.png" id="4_hj8c4"]
 
@@ -25,7 +25,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 4.0
 grow_horizontal = 2
-texture = ExtResource("1_qypgx")
+texture = ExtResource("2_ysegd")
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2

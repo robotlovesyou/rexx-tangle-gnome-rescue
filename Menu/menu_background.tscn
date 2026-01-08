@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://8son31pbxhla"]
+
+[ext_resource type="Script" uid="uid://n2jq16ivcg5o" path="res://Menu/menu_background.gd" id="1_i8yye"]
+
+[sub_resource type="Gradient" id="Gradient_i8yye"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+colors = PackedColorArray(0.654902, 0.64705884, 0.7764706, 1, 0.4, 0.80784315, 0.8392157, 1, 0.5294118, 0.5921569, 0.69803923, 1, 0.42745098, 0.5411765, 0.5882353, 1, 0.043137256, 0.19215687, 0.25882354, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 4
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0ajar"]
+gradient = SubResource("Gradient_i8yye")
+
+[node name="MenuBackground" type="Node2D"]
+script = ExtResource("1_i8yye")
+gradient_texture = SubResource("GradientTexture1D_0ajar")
+resample_chance = 0.005
+cycle_frequency = 0.1

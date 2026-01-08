@@ -3,12 +3,13 @@
 # TO DO
 
 # Week 1 2026
-* Gnome Death
-* Move as much code as possible out of level manager global and into base_level class
-* Make Game Over actually work
+* ~~Gnome Death~~
+* ~~Move as much code as possible out of level manager global and into base_level class~~
+* 
 
 ## General
 
+* Make Game Over actually work
 * Add a fade between the menu screens
 * Switch to using file scenes instead of packed scenes
 * Gnomes need better abandonment detection. 

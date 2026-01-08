@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://5bebiiyii4yx" path="res://Gnomes/dismembered_gnome.tscn" id="4_d50g8"]
 [ext_resource type="Texture2D" uid="uid://dwveg04727ykm" path="res://RexxArt/OfficeIntro/office_intro_far_background.png" id="4_iouky"]
 [ext_resource type="Texture2D" uid="uid://dshkqrm7map16" path="res://RexxArt/RexxTrainingLevel/training_level_atlas.png" id="5_0wdl5"]
-[ext_resource type="Texture2D" uid="uid://dxd8o8edkeas5" path="res://RexxArt/UI/DialogBox.png" id="10_3crw2"]
 [ext_resource type="PackedScene" uid="uid://wqp0pyi44pis" path="res://Level-0-Training/right_arrow_raised_begin.tscn" id="13_3crw2"]
 [ext_resource type="PackedScene" uid="uid://bdsfyccq00rm3" path="res://Level-0-Training/up_arrow_raised_end.tscn" id="13_daw8o"]
 [ext_resource type="PackedScene" uid="uid://coyjee3c84087" path="res://Level-0-Training/horizontal_platform.tscn" id="13_iouky"]
@@ -37,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://dlxpek0qkd3g7" path="res://Level-0-Training/floor.tscn" id="29_r30qa"]
 [ext_resource type="PackedScene" uid="uid://cepvnfljrn4by" path="res://Shared/hud.tscn" id="31_j0lek"]
 [ext_resource type="PackedScene" uid="uid://xk5iw48kpmxo" path="res://Level-0-Training/door.tscn" id="33_2xdl0"]
+[ext_resource type="Texture2D" uid="uid://d1e54v671qpth" path="res://RexxArt/UI/DialogBoxV2.png" id="36_d50g8"]
 [ext_resource type="PackedScene" uid="uid://blysyve0sampw" path="res://LevelTemplate/game_over_message.tscn" id="37_qxvr5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xs5uq"]
@@ -553,7 +553,7 @@ timer_door = NodePath("TimerDoor")
 player_scene = ExtResource("17_2xdl0")
 broken_player_scene = ExtResource("25_suax4")
 dismembered_gnome_scene = ExtResource("4_d50g8")
-next_level = "res://launch_menu_screen.tscn"
+next_level = "res://Menu/launch_menu_screen.tscn"
 exit = NodePath("Exit")
 hud = NodePath("HUD")
 game_over_message = NodePath("GameOverMessage")
@@ -1227,7 +1227,7 @@ grow_vertical = 0
 visible = false
 custom_minimum_size = Vector2(4, 4)
 layout_mode = 2
-texture = ExtResource("10_3crw2")
+texture = ExtResource("36_d50g8")
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2

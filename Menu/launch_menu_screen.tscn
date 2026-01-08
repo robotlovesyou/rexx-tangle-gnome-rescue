@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b32ptwvo8bbye"]
+[gd_scene load_steps=4 format=3 uid="uid://b32ptwvo8bbye"]
 
-[ext_resource type="Script" uid="uid://iwkycdaw1e8" path="res://launch_menu_screen.gd" id="1_4y2q8"]
+[ext_resource type="Script" uid="uid://iwkycdaw1e8" path="res://launch_menu_screen.gd" id="1_ed3or"]
+[ext_resource type="PackedScene" uid="uid://8son31pbxhla" path="res://Menu/menu_background.tscn" id="2_wxv4c"]
+[ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="3_hs3uv"]
 
 [node name="LaunchMenuScreen" type="Control" node_paths=PackedStringArray("first_button")]
 layout_mode = 3
@@ -9,11 +11,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4y2q8")
+script = ExtResource("1_ed3or")
 first_button = NodePath("OuterContainer/MenuStackContainer/NewGameButton")
 next_screen = "res://choose_your_hero_screen.tscn"
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +24,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="MenuBackground" parent="." instance=ExtResource("2_wxv4c")]
 
 [node name="OuterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -35,10 +40,16 @@ layout_mode = 2
 
 [node name="NewGameButton" type="Button" parent="OuterContainer/MenuStackContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_hs3uv")
+theme_override_font_sizes/font_size = 64
 text = "NEW GAME"
 
 [node name="QuitButton" type="Button" parent="OuterContainer/MenuStackContainer"]
 layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_hs3uv")
+theme_override_font_sizes/font_size = 64
 text = "QUIT TO DESKTOP"
 
 [connection signal="pressed" from="OuterContainer/MenuStackContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
