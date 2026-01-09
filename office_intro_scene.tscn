@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d2uvdk8xc7job" path="res://receptionist.tscn" id="1_o8pjn"]
 [ext_resource type="Script" uid="uid://dpyrqs3230hl8" path="res://office_intro_scene.gd" id="1_qyf7s"]
 [ext_resource type="Texture2D" uid="uid://c4rr7qe8enle5" path="res://Industrial_Tileset_1D_16.png" id="3_71efp"]
-[ext_resource type="PackedScene" uid="uid://cm3ja0664tlao" path="res://cutscene_rexx.tscn" id="4_gbj7c"]
+[ext_resource type="PackedScene" uid="uid://cm3ja0664tlao" path="res://Shared/cutscene_rexx.tscn" id="4_gbj7c"]
 [ext_resource type="PackedScene" uid="uid://b8bkw4qsyvw48" path="res://office_intro_dialog.tscn" id="6_u6t2v"]
 [ext_resource type="AudioStream" uid="uid://cutmykwce6ilq" path="res://Sounds/Music/lobby_music.wav" id="7_u6t2v"]
 

@@ -5,7 +5,8 @@
 # Week 1 2026
 * ~~Gnome Death~~
 * ~~Move as much code as possible out of level manager global and into base_level class~~
-* 
+* Add the game name to the launch menu screen. Use the same color technique as the tiles but for the color of each letter.
+* Have Rexxi walk back and forth mixed in with idling
 
 ## General
 

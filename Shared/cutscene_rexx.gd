@@ -12,6 +12,12 @@ const MAX_VOLUME := -9.5
 
 var _is_playing_pitter_patter: bool = false
 
+var sprite: Sprite2D:
+	get: return $Sprite2D
+
+var _camera: Camera2D:
+	get: return $Camera2D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,6 +31,15 @@ func walk() -> void:
 func idle() -> void:
 	animation_player.play("idle")
 	_is_playing_pitter_patter = false
+
+func face_left() -> void:
+	sprite.flip_h = false
+
+func face_right() -> void:
+	sprite.flip_h = true
+
+func disable_camera() -> void:
+	_camera.enabled = false
 
 
 func _on_pitter_patter_player_finished() -> void:

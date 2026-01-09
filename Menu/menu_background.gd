@@ -1,3 +1,4 @@
+class_name MenuBackground
 extends Node2D
 
 @export var tile_h_count := 16

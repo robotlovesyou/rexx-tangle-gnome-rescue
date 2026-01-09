@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtofs5dpf6i7q"]
+
+[ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="1_tqs7i"]
+
+[node name="RichTextDemo" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_tqs7i")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[outline_size=3][outline_color=#FF0000]H[/outline_color][/outline_size][outline_size=5][outline_color=#00FF00]e[/outline_color][/outline_size][outline_size=2][outline_color=#0000FF]l[/outline_color][/outline_size][outline_size=4][outline_color=#FFFF00]l[/outline_color][/outline_size][outline_size=3][outline_color=#FF00FF]o[/outline_color][/outline_size]
+"
+horizontal_alignment = 1
+vertical_alignment = 1
