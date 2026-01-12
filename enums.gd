@@ -13,8 +13,7 @@ enum Action {
 	PLATFORM_WALKING,
 	WALKING, 
 	WALL_JUMPING,
-	WALL_SLIDING_DOWN, 
-	WALL_SLIDING_UP
+	WALL_SLIDING,
 }
 static func action_name(action: Action) -> String: return Action.find_key(int(action))
 

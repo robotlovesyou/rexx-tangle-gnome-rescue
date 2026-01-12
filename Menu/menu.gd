@@ -1,5 +1,6 @@
 extends Node2D
 
+
 class TitleCharacter:
 	var _char
 	var char: String:
@@ -24,6 +25,9 @@ class TitleCharacter:
 @export var title_color_change_chance = 0.001
 @export var title_gradient: GradientTexture1D
 @export var title_cycle_frequency := 0.1
+@export var new_game_button: Button
+@export var quit_button: Button
+@export var next_scene: String
 
 var _title_1_chars: Array[TitleCharacter] = []
 var _title_2_chars: Array[TitleCharacter] = []
@@ -49,11 +53,13 @@ func _ready() -> void:
 	_move_to_start_of_row(0)
 	_walk_rexx()
 	_cutscene_rexx.disable_camera()
-	for c in ["R", "E", "X", "X", "I", " ", "T", "A", "N", "G", "L", "E"]:
+	for c in ["R", "E", "X", "X", "I", " ", "T", "A", "N", "G", "L", "E", ":"]:
 		_title_1_chars.append(TitleCharacter.new(c, _sample_from_gradient(randf())))
 
 	for c in ["G", "N", "O", "M", "E", " ", "R", "E", "S", "C", "U", "E", "!"]:
 		_title_2_chars.append(TitleCharacter.new(c, _sample_from_gradient(randf())))
+
+	new_game_button.grab_focus()
 
 	title_label.text = _title_chars_to_bbcode()
 
@@ -155,3 +161,7 @@ func _title_chars_to_bbcode() -> String:
 		title += c.to_bbcode()
 
 	return title
+
+
+func _on_new_game_button_pressed() -> void:
+	Level.replace_level_with(next_scene)

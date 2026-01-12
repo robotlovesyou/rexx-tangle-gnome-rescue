@@ -17,6 +17,7 @@ func on_exit() -> void:
 	_parent.stop_playing_walk()
 
 func on_physics_process(delta: float) -> void:
+	_action_did_change = false
 	var was_on_floor = _parent.is_on_floor()
 	_determine_direction()
 	_determine_has_jumped_or_stopped()
@@ -31,10 +32,10 @@ func on_physics_process(delta: float) -> void:
 	_check_for_enemy_collision()
 	_handle_coyote_timer(was_on_floor)
 	_append_to_history(delta)
-	_action_did_change = false
 
 func _begin_action(action: Enums.Action) -> void:
 	if action == _action: return
+	print("%s => %s" % [Enums.action_name(_action), Enums.action_name(action)])
 	_action = action
 	_action_did_change = true
 	ActionMonitor.action = _action
@@ -103,7 +104,7 @@ func _determine_action() -> Enums.Action:
 	if _has_jumped and !_is_jumping():
 		return Enums.Action.JUMPING
 	if _parent.is_on_wall_only():
-		return Enums.Action.WALL_SLIDING_DOWN if _parent.velocity.y > 0.0 else Enums.Action.WALL_SLIDING_UP
+		return Enums.Action.WALL_SLIDING
 	if not on_floor and _is_jumping():
 		return _action
 	if not on_floor and not _is_jumping():
@@ -165,18 +166,24 @@ func on_animate(animated_sprite: AnimatedSprite2D) -> void:
 		animated_sprite.flip_h = _direction > 0.0
 	else:
 		animated_sprite.flip_h = 	_last_direction > 0.0
+
+	var jump_emitting := false
 		
 	match _action:
 		Enums.Action.WALKING, Enums.Action.PLATFORM_WALKING:
 			animated_sprite.play( "walk")
-		Enums.Action.JUMPING, Enums.Action.DOUBLE_JUMPING, Enums.Action.FALLING:
+		Enums.Action.JUMPING, Enums.Action.DOUBLE_JUMPING, Enums.Action.DOUBLE_JUMPED, Enums.Action.WALL_JUMPING, Enums.Action.FALLING:
+			if _action_did_change:
+				animated_sprite.stop()
 			animated_sprite.play("jump")
-		Enums.Action.WALL_SLIDING_DOWN:
-			animated_sprite.play("wall_slide_down")
-		Enums.Action.WALL_SLIDING_UP:
-			animated_sprite.play("wall_slide_up")
+			jump_emitting = true
+		Enums.Action.WALL_SLIDING:
+			if _action_did_change:
+				animated_sprite.play("wall_hit")
 		_:
 			animated_sprite.play("idle")
+
+	_parent.jump_particles.emitting = jump_emitting
 
 func _append_to_history(delta: float) -> void:
 	MovementHistory.append(_parent.position, _parent.get_platform_velocity() * delta, _action, _parent.animated_sprite.flip_h)
@@ -192,5 +199,5 @@ func _play_action() -> void:
 	match _action:
 		Enums.Action.WALKING:
 			_parent.play_walk()
-		Enums.Action.JUMPING, Enums.Action.DOUBLE_JUMPED, Enums.Action.WALL_JUMPING:
+		Enums.Action.JUMPING, Enums.Action.DOUBLE_JUMPING, Enums.Action.WALL_JUMPING:
 			_parent.play_jump()

@@ -52,6 +52,9 @@ var skid_player: AudioStreamPlayer2D:
 var skid_particles: GPUParticles2D:
 	get: return $SkidParticles
 
+var jump_particles: GPUParticles2D:
+	get: return $JumpParticles
+
 func play_walk() -> void:
 	_walk_effect_player.play()
 

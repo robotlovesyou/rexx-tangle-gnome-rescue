@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bu53arek8otth"]
+[gd_scene load_steps=14 format=3 uid="uid://bu53arek8otth"]
 
 [ext_resource type="Script" uid="uid://cx7rv17ifma37" path="res://Menu/menu.gd" id="1_ihied"]
 [ext_resource type="PackedScene" uid="uid://8son31pbxhla" path="res://Menu/menu_background.tscn" id="2_raj00"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cm3ja0664tlao" path="res://Shared/cutscene_rexx.tscn" id="3_ofseh"]
 [ext_resource type="AudioStream" uid="uid://deoipfe85wf1h" path="res://Sounds/Music/TitleMusicV1.wav" id="4_8w4re"]
 [ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="5_eafcm"]
+[ext_resource type="FontFile" uid="uid://qb70mfn5i3l1" path="res://RexxArt/CommercialAssets/Jersey10-Regular.ttf" id="5_xuj3a"]
 [ext_resource type="StyleBox" uid="uid://bwebt5s1fl82k" path="res://Menu/menubox.tres" id="6_mf1wf"]
 [ext_resource type="StyleBox" uid="uid://blj36jpbf8eie" path="res://Menu/menubox_pressed.tres" id="7_xuj3a"]
 [ext_resource type="StyleBox" uid="uid://b1c1k2s5ka3k8" path="res://Menu/menubox_hover.tres" id="8_0k1h5"]
@@ -23,12 +24,15 @@ metadata/_snap_count = 4
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xuj3a"]
 gradient = SubResource("Gradient_mf1wf")
 
-[node name="Menu" type="Node2D" node_paths=PackedStringArray("title_label")]
+[node name="Menu" type="Node2D" node_paths=PackedStringArray("title_label", "new_game_button", "quit_button")]
 script = ExtResource("1_ihied")
 movement_config = SubResource("Resource_eafcm")
 title_label = NodePath("MenuRoot/MenuCentering/VBoxContainer/GameTitle")
 title_color_change_chance = 0.01
 title_gradient = SubResource("GradientTexture1D_xuj3a")
+new_game_button = NodePath("MenuRoot/MenuCentering/VBoxContainer/CenterContainer/VBoxContainer/NewGameButton")
+quit_button = NodePath("MenuRoot/MenuCentering/VBoxContainer/CenterContainer/VBoxContainer/QuitButton")
+next_scene = "res://office_intro_scene_v_2.tscn"
 
 [node name="MenuBackground" parent="." instance=ExtResource("2_raj00")]
 
@@ -51,10 +55,10 @@ clip_contents = false
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/normal_font = ExtResource("5_eafcm")
-theme_override_fonts/bold_font = ExtResource("5_eafcm")
-theme_override_font_sizes/normal_font_size = 128
-theme_override_font_sizes/bold_font_size = 128
+theme_override_fonts/normal_font = ExtResource("5_xuj3a")
+theme_override_fonts/bold_font = ExtResource("5_xuj3a")
+theme_override_font_sizes/normal_font_size = 116
+theme_override_font_sizes/bold_font_size = 116
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
@@ -70,6 +74,8 @@ layout_mode = 2
 
 [node name="NewGameButton" type="Button" parent="MenuRoot/MenuCentering/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("5_eafcm")
 theme_override_font_sizes/font_size = 64
@@ -92,4 +98,5 @@ text = "QUIT TO DESKTOP"
 stream = ExtResource("4_8w4re")
 autoplay = true
 
+[connection signal="pressed" from="MenuRoot/MenuCentering/VBoxContainer/CenterContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="finished" from="MenuMusic" to="." method="_on_menu_music_finished"]
