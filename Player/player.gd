@@ -53,7 +53,7 @@ var skid_particles: GPUParticles2D:
 	get: return $SkidParticles
 
 var jump_particles: GPUParticles2D:
-	get: return $JumpParticles
+	get: return $CPUJumpParticles
 
 func play_walk() -> void:
 	_walk_effect_player.play()

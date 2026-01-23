@@ -781,7 +781,7 @@ terrain_set_0/terrain_0/name = "BlueFloor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_o5dvu")
 
-[node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("exit", "hud", "game_over_message", "player_sibling_node")]
+[node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("exit", "hud", "game_over_message", "player_sibling_node", "level_music_player")]
 script = ExtResource("1_hyjmn")
 player_scene = ExtResource("2_lw321")
 broken_player_scene = ExtResource("3_0k4pj")
@@ -793,6 +793,7 @@ game_over_message = NodePath("GameOverMessage")
 minimum_gnomes = 1
 timer_seconds = 300
 player_sibling_node = NodePath("Floor")
+level_music_player = NodePath("LevelMusicPlayer")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("4_cn8h2")]
 position = Vector2(192, 192)
@@ -832,6 +833,8 @@ position = Vector2(770, 240)
 
 [node name="GameOverMessage" parent="." instance=ExtResource("12_boc5u")]
 visible = false
+
+[node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]

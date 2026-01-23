@@ -11,6 +11,7 @@ extends Node2D
 @export var minimum_gnomes: int
 @export var timer_seconds: int
 @export var player_sibling_node: Node
+@export var level_music_player: AudioStreamPlayer
 
 
 var _rescue_count := 0
@@ -29,6 +30,7 @@ func _ready() -> void:
 	Events.gnome_rescued.connect(_on_gnome_rescued)
 	_update_gnome_count_in_hud()
 	hud.update_timer(timer_seconds)
+	level_music_player.play()
 
 func _despawn_player() -> void:
 	if PMonitor.player:
