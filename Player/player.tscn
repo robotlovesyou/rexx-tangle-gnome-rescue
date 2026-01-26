@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://cenujiplxkpem"]
+[gd_scene load_steps=87 format=3 uid="uid://cenujiplxkpem"]
 
 [ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://Player/player.gd" id="1_vtle1"]
@@ -22,34 +22,19 @@
 [ext_resource type="AudioStream" uid="uid://be4e7c2eusnwk" path="res://Sounds/FX/SkidMarks Skid One.wav" id="17_qemgg"]
 [ext_resource type="AudioStream" uid="uid://cww2nwgp32dda" path="res://Sounds/FX/SkidMarks Skid Two.wav" id="18_8viyr"]
 [ext_resource type="AudioStream" uid="uid://pthcq3riq252" path="res://Sounds/FX/SkidMarks Skid Three.wav" id="19_sm0op"]
-[ext_resource type="Gradient" uid="uid://mn54ul1pmcke" path="res://Player/jump_particles_ramp.tres" id="20_qemgg"]
+[ext_resource type="Texture2D" uid="uid://bn2u1dwaetlmu" path="res://RexxArt/Rexx/BubblesAreSquareNow.png" id="20_8viyr"]
 [ext_resource type="Texture2D" uid="uid://cnc207pfe8r4y" path="res://RexxArt/Rexx/BigJumpV2Squish.png" id="22_qemgg"]
 [ext_resource type="Texture2D" uid="uid://joff5ga1xsej" path="res://RexxArt/Rexx/BigFaceSquishCrop.png" id="24_8viyr"]
 
-[sub_resource type="Curve" id="Curve_8mwp6"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7480916, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="Curve" id="Curve_8viyr"]
+_data = [Vector2(0.009933777, 0.48523486), 0.0, 0.0, 0, 0, Vector2(0.25827813, 1), 0.0, 0.0, 0, 0, Vector2(0.7384106, 1), 0.0, 0.0, 0, 0, Vector2(0.99999994, 0.4503355), 0.0, 0.0, 0, 0]
+point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_qemgg"]
-curve = SubResource("Curve_8mwp6")
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_sm0op"]
-gradient = ExtResource("20_qemgg")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_76lrf"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(16, 16, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-direction = Vector3(0, 1, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 10.0
-gravity = Vector3(0, 9.8, 0)
-scale_max = 2.0
-color_ramp = SubResource("GradientTexture1D_sm0op")
-alpha_curve = SubResource("CurveTexture_qemgg")
-turbulence_noise_strength = 0.0
-turbulence_noise_scale = 0.09
+[sub_resource type="Gradient" id="Gradient_qemgg"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+colors = PackedColorArray(0.70980394, 0.3137255, 0.53333336, 1, 0.13333334, 0.4862745, 0.6156863, 1, 0.09019608, 0.7647059, 0.69803923, 1, 1, 0.75686276, 0.27058825, 0.5137255, 0.13725491, 0.007843138, 0.18039216, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00tjw"]
 atlas = ExtResource("3_od3ui")
@@ -466,24 +451,18 @@ deaths = Array[AudioStreamWAV]([ExtResource("14_hshwv"), ExtResource("15_gpjlu")
 exits = Array[AudioStreamWAV]([ExtResource("16_gpjlu")])
 skids = Array[AudioStreamWAV]([ExtResource("17_qemgg"), ExtResource("18_8viyr"), ExtResource("19_sm0op")])
 
-[node name="JumpParticles" type="GPUParticles2D" parent="."]
-visible = false
-emitting = false
-amount = 256
-lifetime = 4.0
-randomness = 0.5
-process_material = SubResource("ParticleProcessMaterial_76lrf")
-
 [node name="CPUJumpParticles" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 256
+amount = 32
+texture = ExtResource("20_8viyr")
 lifetime = 4.0
-emission_shape = 3
-emission_rect_extents = Vector2(16, 16)
 direction = Vector2(0, 0)
 gravity = Vector2(0, 9.8)
-scale_amount_max = 2.0
-color_ramp = ExtResource("20_qemgg")
+angular_velocity_min = 10.0
+angular_velocity_max = 100.0
+scale_amount_min = 0.1
+scale_amount_curve = SubResource("Curve_8viyr")
+color_ramp = SubResource("Gradient_qemgg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2hs0m")

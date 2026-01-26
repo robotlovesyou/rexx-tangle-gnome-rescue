@@ -12,12 +12,15 @@ extends Node2D
 @export var timer_seconds: int
 @export var player_sibling_node: Node
 @export var level_music_player: AudioStreamPlayer
+@export var level_music_beats: JSON
 
 
 var _rescue_count := 0
 var _current_gnome_count := 0
 var _t := 0.0
+var _ticks := 0
 var _player_over_exit := false
+var _beats: Array[int] = []
 
 func _ready() -> void:
 	_spawn_player(self, player_sibling_node)
@@ -30,6 +33,7 @@ func _ready() -> void:
 	Events.gnome_rescued.connect(_on_gnome_rescued)
 	_update_gnome_count_in_hud()
 	hud.update_timer(timer_seconds)
+	_beats.assign(level_music_beats.data["beats"])
 	level_music_player.play()
 
 func _despawn_player() -> void:
@@ -48,6 +52,9 @@ func _spawn_player(root: Node, immediate_sibling: Node) -> Player:
 
 func _physics_process(delta: float) -> void:
 	_t += delta
+	if len(_beats) > _ticks and _beats[_ticks] == 1:
+		PMonitor.player.trigger_beat_effect()
+	_ticks += 1
 	hud.update_timer(timer_seconds - floor(_t))
 	if _player_over_exit and Input.is_action_just_pressed("ui_accept"):
 		PMonitor.player.exit(exit)

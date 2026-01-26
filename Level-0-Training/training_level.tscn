@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=68 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="Script" uid="uid://cebvscd3f4chq" path="res://parallax_backgrounds.gd" id="2_6p1ko"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dwveg04727ykm" path="res://RexxArt/OfficeIntro/office_intro_far_background.png" id="4_iouky"]
 [ext_resource type="Texture2D" uid="uid://dshkqrm7map16" path="res://RexxArt/RexxTrainingLevel/training_level_atlas.png" id="5_0wdl5"]
 [ext_resource type="AudioStream" uid="uid://co7ajua4n8mna" path="res://Sounds/Music/AskNotForWhomTheCarriageReturns.wav" id="5_ew8o4"]
+[ext_resource type="JSON" path="res://Sounds/DataSources/AskNotForWhomTheCarriageReturns/claps.json" id="5_vo65f"]
 [ext_resource type="PackedScene" uid="uid://wqp0pyi44pis" path="res://Level-0-Training/right_arrow_raised_begin.tscn" id="13_3crw2"]
 [ext_resource type="PackedScene" uid="uid://bdsfyccq00rm3" path="res://Level-0-Training/up_arrow_raised_end.tscn" id="13_daw8o"]
 [ext_resource type="PackedScene" uid="uid://coyjee3c84087" path="res://Level-0-Training/horizontal_platform.tscn" id="13_iouky"]
@@ -562,6 +563,7 @@ minimum_gnomes = 1
 timer_seconds = 300
 player_sibling_node = NodePath("Signs")
 level_music_player = NodePath("LevelMusicPlayer")
+level_music_beats = ExtResource("5_vo65f")
 
 [node name="ParallaxBackgrounds" type="Node2D" parent="."]
 visible = false

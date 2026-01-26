@@ -11,6 +11,7 @@ signal done_dying
 @export var movement_config: PlayerMovementConfig
 
 var _state: PlayerState
+var _particle_beat_envelope := ADEnvelope.new(0.05, 0.1)
 
 @onready var _walk_effect_player := WalkEffectPlayer.new(walk_player, steps)
 @onready var _jump_effect_player := EffectPlayer.new(jump_player, jumps)
@@ -87,8 +88,12 @@ func exit(exit_scene: Exit) -> void:
 func exit_done() -> void:
 	Events.player_exited_level_sync()
 
+var _min_jump_particle_scale := 0.0
+var _max_jump_particle_scale := 0.0
 func _ready() -> void:
 	_switch_to_state(AppearState.new(self))
+	_min_jump_particle_scale = jump_particles.scale_amount_min
+	_max_jump_particle_scale = jump_particles.scale_amount_max
 
 func done_appearing() -> void:
 	_switch_to_state(AliveState.new(self))
@@ -101,13 +106,21 @@ func _switch_to_state(state: PlayerState) -> void:
 	_state = state
 	_state.on_enter()
 
-	
+var _t := 0.0
 func _physics_process(delta: float) -> void:
+	_t += delta
 	_state.on_physics_process(delta)
 	_state.on_animate(animated_sprite)
+	_particle_beat_envelope.progress(delta)
+	var sample = _particle_beat_envelope.sample()
+	jump_particles.scale_amount_max = _max_jump_particle_scale * (1.0 + sample)
+	jump_particles.scale_amount_min = _min_jump_particle_scale * (1.0 + sample)
 
 func get_camera() -> Camera2D:
 	return $Camera2D
+
+func trigger_beat_effect() -> void:
+	_particle_beat_envelope.trigger()
 
 func _on_walk_player_finished() -> void:
 	_walk_effect_player.on_audio_player_finished()
