@@ -1,0 +1,2 @@
+class_name Level1Examination
+extends BaseLevel

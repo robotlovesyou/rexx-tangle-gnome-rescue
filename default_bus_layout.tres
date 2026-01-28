@@ -1,4 +1,9 @@
-[gd_resource type="AudioBusLayout" load_steps=8 format=3 uid="uid://b375kt25cr6s8"]
+[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://b375kt25cr6s8"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+threshold = -31.8
+sidechain = &"SFX"
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
 resource_name = "HighPassFilter"
@@ -43,6 +48,8 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/2/effect/0/enabled = true
 bus/3/name = &"Lobby"
 bus/3/solo = false
 bus/3/mute = false

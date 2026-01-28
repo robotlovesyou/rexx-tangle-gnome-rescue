@@ -237,6 +237,7 @@ amount = 32
 process_material = SubResource("ParticleProcessMaterial_41rew")
 
 [node name="HelloPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = 3.0
 bus = &"Level"
 
 [connection signal="body_entered" from="PlayerCollection" to="." method="_on_player_collection_body_entered"]
