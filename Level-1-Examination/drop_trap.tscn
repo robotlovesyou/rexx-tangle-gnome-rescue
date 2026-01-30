@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://df7mbjqn1xeib"]
+
+[ext_resource type="Texture2D" uid="uid://4pcenepatny" path="res://Level-1-Examination/SkyBlueDropTrap.png" id="1_twjxr"]
+[ext_resource type="Script" uid="uid://cd6py15q7x4e6" path="res://Level-1-Examination/drop_trap.gd" id="1_wgvpv"]
+[ext_resource type="Script" uid="uid://v3b5lgh01vvv" path="res://Shared/ADLoop.gd" id="2_y6n84"]
+
+[sub_resource type="Resource" id="Resource_lersg"]
+script = ExtResource("2_y6n84")
+attack = 0.2
+decay = 4.0
+metadata/_custom_type_script = "uid://v3b5lgh01vvv"
+
+[sub_resource type="Curve2D" id="Curve2D_hu4ui"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192)
+}
+point_count = 2
+
+[node name="DropTrap" type="Node2D"]
+script = ExtResource("1_wgvpv")
+cycle_envelope = SubResource("Resource_lersg")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_hu4ui")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = 1.5707964
+
+[node name="TrapBody" type="AnimatableBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="TrapBody"]
+position = Vector2(1.5999985, -30.400002)
+texture = ExtResource("1_twjxr")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TrapBody"]
+position = Vector2(1.5999985, -30.400002)
+polygon = PackedVector2Array(-31, 31, -21, -31, 20, -31, 31, 31)

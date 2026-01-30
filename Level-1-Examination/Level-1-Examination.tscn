@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://iqpwyxksj3rh"]
+[gd_scene load_steps=47 format=4 uid="uid://iqpwyxksj3rh"]
 
 [ext_resource type="Script" uid="uid://dlbbfb18u54hm" path="res://Level-1-Examination/level_1_examination.gd" id="1_xcvpb"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_lpkm8"]
@@ -20,7 +20,9 @@
 [ext_resource type="AudioStream" uid="uid://co7ajua4n8mna" path="res://Sounds/Music/AskNotForWhomTheCarriageReturns.wav" id="14_85m5c"]
 [ext_resource type="Texture2D" uid="uid://6fkmgro4104i" path="res://Level-1-Examination/OrangeTileMap.png" id="14_fcg0v"]
 [ext_resource type="PackedScene" uid="uid://cn0ro2m8rmfk" path="res://Shared/parallax_background.tscn" id="20_0y2ya"]
-[ext_resource type="Texture2D" uid="uid://d1q8jseublfqs" path="res://Level-1-Examination/DropTrap.png" id="21_k2nt3"]
+[ext_resource type="PackedScene" uid="uid://df7mbjqn1xeib" path="res://Level-1-Examination/drop_trap.tscn" id="21_k2nt3"]
+[ext_resource type="Script" uid="uid://v3b5lgh01vvv" path="res://Shared/ADLoop.gd" id="22_bsmmg"]
+[ext_resource type="Texture2D" uid="uid://uviyr77ujhyq" path="res://Level-1-Examination/MidBlueDropTrap.png" id="24_tsy5n"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4evms"]
 load_path = "res://.godot/imported/training_level_atlas.png-0dd344668e5896736eedce2bfa24cd33.ctex"
@@ -2725,6 +2727,13 @@ terrain_set_0/terrain_0/name = "OrangeFloor"
 terrain_set_0/terrain_0/color = Color(0.98663026, 5.977839e-05, 0.4114776, 1)
 sources/0 = SubResource("TileSetAtlasSource_0y2ya")
 
+[sub_resource type="Resource" id="Resource_1kri4"]
+script = ExtResource("22_bsmmg")
+attack = 0.2
+decay = 4.0
+time_offset = 1.0
+metadata/_custom_type_script = "uid://v3b5lgh01vvv"
+
 [node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("exit", "hud", "game_over_message", "player_sibling_node", "level_music_player")]
 script = ExtResource("1_xcvpb")
 player_scene = ExtResource("2_lpkm8")
@@ -2810,11 +2819,18 @@ visible = false
 stream = ExtResource("14_85m5c")
 volume_db = -6.0
 
-[node name="DropTrap" type="Sprite2D" parent="."]
-position = Vector2(424, 136)
-texture = ExtResource("21_k2nt3")
+[node name="DropTrap" parent="." instance=ExtResource("21_k2nt3")]
+position = Vector2(128, 64)
+
+[node name="DropTrap2" parent="." instance=ExtResource("21_k2nt3")]
+position = Vector2(256, 64)
+cycle_envelope = SubResource("Resource_1kri4")
+
+[node name="Sprite2D" parent="DropTrap2/TrapBody" index="0"]
+texture = ExtResource("24_tsy5n")
 
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]
 
 [editable path="Floor"]
+[editable path="DropTrap2"]
