@@ -61,7 +61,6 @@ func _check_for_enemy_collision():
 				Events.player_killed_enemy_async(collider as CharacterBody2D)
 			else:
 				Events.player_hit_enemy_async(collider as CharacterBody2D)
-			
 
 func _determine_direction() -> void:
 	var temp_direciton = _direction

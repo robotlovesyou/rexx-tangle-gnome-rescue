@@ -3,6 +3,8 @@ extends Node
 
 signal player_hit_spike_trap(SpikeTrap)
 signal gnome_hit_spike_trap(SpikeTrap, Gnome)
+signal player_hit_drop_trap(DropTrap)
+signal gnome_hit_drop_trap(DropTrap, Gnome)
 signal gnome_rescued(Gnome)
 signal player_hit_enemy(Enemy)
 signal player_killed_enemy(Enemy)
@@ -19,6 +21,18 @@ func gnome_hit_spike_trap_sync(trap: SpikeTrap, gnome: Gnome) -> void:
 
 func gnome_hit_spike_trap_async(trap: SpikeTrap, gnome: Gnome) -> void:
 	gnome_hit_spike_trap.emit.call_deferred(trap, gnome)
+
+func player_hit_drop_trap_sync(trap: DropTrap) -> void:
+	player_hit_drop_trap.emit(trap)
+
+func player_hit_drop_trap_async(trap: DropTrap) -> void:
+	player_hit_drop_trap.emit.call_deferred(trap)
+
+func gnome_hit_drop_trap_sync(trap: DropTrap, gnome: Gnome) -> void:
+	gnome_hit_drop_trap.emit(trap, gnome)
+
+func gnome_hit_drop_trap_async(trap: DropTrap, gnome: Gnome) -> void:
+	gnome_hit_drop_trap.emit.call_deferred(trap, gnome)
 
 func gnome_rescued_sync(gnome: Gnome) -> void:
 	gnome_rescued.emit(gnome)

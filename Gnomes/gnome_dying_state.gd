@@ -10,4 +10,5 @@ func _init(gnome: Gnome):
 
 func on_enter_state() -> void:
 	FollowersMonitor.remove_safe(_gnome)
+	_gnome.collision_layer = 0
 	_gnome.queue_free()

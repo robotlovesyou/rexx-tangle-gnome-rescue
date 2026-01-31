@@ -24,6 +24,13 @@
 [ext_resource type="Script" uid="uid://v3b5lgh01vvv" path="res://Shared/ADLoop.gd" id="22_bsmmg"]
 [ext_resource type="Texture2D" uid="uid://uviyr77ujhyq" path="res://Level-1-Examination/MidBlueDropTrap.png" id="24_tsy5n"]
 
+[sub_resource type="Resource" id="Resource_1kri4"]
+script = ExtResource("22_bsmmg")
+attack = 0.2
+decay = 4.0
+time_offset = 1.0
+metadata/_custom_type_script = "uid://v3b5lgh01vvv"
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4evms"]
 load_path = "res://.godot/imported/training_level_atlas.png-0dd344668e5896736eedce2bfa24cd33.ctex"
 
@@ -2727,13 +2734,6 @@ terrain_set_0/terrain_0/name = "OrangeFloor"
 terrain_set_0/terrain_0/color = Color(0.98663026, 5.977839e-05, 0.4114776, 1)
 sources/0 = SubResource("TileSetAtlasSource_0y2ya")
 
-[sub_resource type="Resource" id="Resource_1kri4"]
-script = ExtResource("22_bsmmg")
-attack = 0.2
-decay = 4.0
-time_offset = 1.0
-metadata/_custom_type_script = "uid://v3b5lgh01vvv"
-
 [node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("exit", "hud", "game_over_message", "player_sibling_node", "level_music_player")]
 script = ExtResource("1_xcvpb")
 player_scene = ExtResource("2_lpkm8")
@@ -2750,10 +2750,21 @@ level_music_beats = ExtResource("5_thoww")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(-1, 0)
 repeat_size = Vector2(640, 400)
 
 [node name="ParallaxBackground" parent="Parallax2D" instance=ExtResource("20_0y2ya")]
 tile_h_count = 32
+
+[node name="DropTrap" parent="." instance=ExtResource("21_k2nt3")]
+position = Vector2(128, 64)
+
+[node name="DropTrap2" parent="." instance=ExtResource("21_k2nt3")]
+position = Vector2(256, 64)
+cycle_envelope = SubResource("Resource_1kri4")
+
+[node name="Sprite2D" parent="DropTrap2/TrapBody" index="0"]
+texture = ExtResource("24_tsy5n")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("5_0jkmi")]
 position = Vector2(192, 192)
@@ -2818,20 +2829,10 @@ visible = false
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_85m5c")
-volume_db = -6.0
-
-[node name="DropTrap" parent="." instance=ExtResource("21_k2nt3")]
-position = Vector2(128, 64)
-
-[node name="DropTrap2" parent="." instance=ExtResource("21_k2nt3")]
-position = Vector2(256, 64)
-cycle_envelope = SubResource("Resource_1kri4")
-
-[node name="Sprite2D" parent="DropTrap2/TrapBody" index="0"]
-texture = ExtResource("24_tsy5n")
+volume_db = -12.0
 
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]
 
-[editable path="Floor"]
 [editable path="DropTrap2"]
+[editable path="Floor"]

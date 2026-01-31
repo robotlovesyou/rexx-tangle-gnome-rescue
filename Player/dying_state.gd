@@ -7,6 +7,7 @@ var _time := 0.0
 
 func on_enter() -> void:
 	_parent.visible = false
+	_parent.collision_layer = 0
 	ActionMonitor.action = Enums.Action.DYING
 
 func on_exit() -> void:

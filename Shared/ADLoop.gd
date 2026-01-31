@@ -1,6 +1,8 @@
 class_name ADLoop
 extends Resource
 
+signal phase_changed(Phase)
+
 @export var attack := 1.0
 @export var decay := 1.0
 @export var time_offset := 0.0
@@ -23,12 +25,14 @@ func _calc_env_value() -> float:
 		Phase.ATTACK:
 			if _t >= attack:
 				_phase = Phase.DECAY
+				phase_changed.emit(_phase)
 				return _calc_env_value()
 			return _t / attack
 		_:
 			if _t >= attack + decay:
 				_t -= (attack+decay)
 				_phase = Phase.ATTACK
+				phase_changed.emit(_phase)
 				return _calc_env_value()
 			return 1.0 - ((_t - attack) / decay)
 

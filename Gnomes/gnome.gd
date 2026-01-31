@@ -8,7 +8,12 @@ extends CharacterBody2D
 @export var movement_config: PlayerMovementConfig
 @export var hello_sounds: Array[AudioStreamWAV]
 
-@onready var hellos := EffectPlayer.new(hello_player, hello_sounds, {EffectPlayer.MAX_PITCH: 1.0, EffectPlayer.MIN_PITCH: 1.0})
+@onready var hellos := EffectPlayer.new(hello_player, hello_sounds, {
+	EffectPlayer.MAX_PITCH: 1.0, 
+	EffectPlayer.MIN_PITCH: 1.0,
+	EffectPlayer.MIN_VOLUME: -3.0,
+	EffectPlayer.MAX_VOLUME: 0.0
+	})
 
 var _action: Enums.GnomeAction
 var _player_action: Enums.Action
@@ -57,11 +62,11 @@ func _player_began_action(action: Enums.Action) -> void:
 		Enums.Action.IDLING:
 			_handle_gnome_event(Enums.GnomeEvent.PLAYER_BECAME_IDLE)
 		Enums.Action.PLATFORM_IDLING, Enums.Action.PLATFORM_WALKING:
-			_handle_player_on_platform(_player_action)
+			_handle_player_on_platform()
 		_:
 			_handle_gnome_event(Enums.GnomeEvent.PLAYER_STOPPED_IDLING)
 
-func _handle_player_on_platform(player_action: Enums.Action) -> void:
+func _handle_player_on_platform() -> void:
 	if _action == Enums.GnomeAction.AIRBORNE:
 		_handle_gnome_event(Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM)
 	else:

@@ -208,7 +208,7 @@ emission_curve = SubResource("CurveTexture_u8kr0")
 
 [node name="Gnome" type="CharacterBody2D" groups=["Gnome"]]
 collision_layer = 2
-collision_mask = 12
+collision_mask = 76
 script = ExtResource("1_5vlar")
 movement_config = ExtResource("2_dt2vp")
 hello_sounds = Array[AudioStreamWAV]([ExtResource("3_u8kr0"), ExtResource("4_41rew"), ExtResource("5_p0twa"), ExtResource("6_c5r3t"), ExtResource("7_0c3gf")])
