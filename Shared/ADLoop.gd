@@ -16,7 +16,6 @@ func ready() -> void:
 func physics_update(delta: float) -> void:
 	_t += delta
 	_sample = _calc_env_value()
-	print(_sample, ", ", _phase)
 	
 
 func _calc_env_value() -> float:
