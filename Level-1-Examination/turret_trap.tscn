@@ -1,8 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxbjmf2c6jtom"]
+[gd_scene load_steps=8 format=3 uid="uid://cxbjmf2c6jtom"]
 
 [ext_resource type="Texture2D" uid="uid://dmtiq852r5hfu" path="res://Level-1-Examination/GunTrap.png" id="1_0bsvu"]
 [ext_resource type="Script" uid="uid://dlqfntgqgiiup" path="res://Level-1-Examination/turret_trap.gd" id="1_sku7x"]
-[ext_resource type="Texture2D" uid="uid://cuihjqs1sqcx4" path="res://Level-1-Examination/GunBarrel.png" id="2_prr1i"]
+[ext_resource type="Shader" uid="uid://b5gn31ac1rjdc" path="res://Level-1-Examination/turret_trap_barrel.gdshader" id="3_bov3a"]
+[ext_resource type="Texture2D" uid="uid://db38eqaqxllfg" path="res://Level-1-Examination/GunBarrelTemplate.png" id="3_sku7x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bov3a"]
+shader = ExtResource("3_bov3a")
+shader_parameter/replacement_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+shader_parameter/highlight_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+shader_parameter/shadow_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+shader_parameter/parent_rotation = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2dixi"]
+shader = ExtResource("3_bov3a")
+shader_parameter/replacement_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+shader_parameter/highlight_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+shader_parameter/shadow_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+shader_parameter/parent_rotation = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_prr1i"]
 radius = 192.1666
@@ -14,10 +29,12 @@ script = ExtResource("1_sku7x")
 texture = ExtResource("1_0bsvu")
 
 [node name="BarrelPivot" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_bov3a")
 
 [node name="Barrel" type="Sprite2D" parent="BarrelPivot"]
+material = SubResource("ShaderMaterial_2dixi")
 position = Vector2(24, 0)
-texture = ExtResource("2_prr1i")
+texture = ExtResource("3_sku7x")
 
 [node name="DangerZone" type="Area2D" parent="."]
 

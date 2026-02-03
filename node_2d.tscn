@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceb5h74xx12gk"]
+
+[ext_resource type="Texture2D" uid="uid://yalrqonuw4dd" path="res://icon.svg" id="2_epypp"]
+
+[sub_resource type="Shader" id="Shader_wtcfe"]
+code = "shader_type canvas_item;
+
+uniform float parent_rotation: hint_range(0.0, 4.0) = 0.0;
+
+void fragment() {
+	vec2 texture_size = vec2(textureSize(TEXTURE, 0));
+        // Rotate UV coordinates based on parent rotation
+    vec2 centered_uv = UV - 0.5;
+    
+    float s = sin(parent_rotation);
+    float c = cos(parent_rotation);
+    mat2 rot = mat2(vec2(c, -s), vec2(s, c));
+    vec2 rotated_pos = rot * centered_uv;
+    
+    // Now use rotated_pos for quadrant logic
+    bool is_top = rotated_pos.y < 0.0;
+    bool is_right = rotated_pos.x > 0.0;
+	if (is_top) {
+		COLOR += vec4(1.0, 0.0, 0.0, 1.0);
+	}
+	if (is_right) {
+		COLOR += vec4(0.0, 1.0, 0.0, 1.0);
+	}
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hol4"]
+shader = SubResource("Shader_wtcfe")
+shader_parameter/parent_rotation = 0.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0hol4")
+texture = ExtResource("2_epypp")

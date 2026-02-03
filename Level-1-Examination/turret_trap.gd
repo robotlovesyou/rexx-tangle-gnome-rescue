@@ -10,6 +10,9 @@ var _player_in_danger_zone := false
 var _barrel_pivot: Node2D:
 	get: return $BarrelPivot
 
+var _barrel: Sprite2D:
+	get: return $BarrelPivot/Barrel
+
 func _on_danger_zone_body_exited(body: Node2D) -> void:
 	if body is Player:
 		_player_in_danger_zone = false
@@ -24,6 +27,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if _player_in_danger_zone:
 		_turn_toward_player(delta)
+	_barrel.material.set_shader_parameter("parent_rotation", _barrel_pivot.rotation)
 
 func _turn_toward_player(delta: float):
 	var player_position = PMonitor.player.global_position;
