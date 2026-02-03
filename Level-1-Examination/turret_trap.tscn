@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxbjmf2c6jtom"]
+
+[ext_resource type="Texture2D" uid="uid://dmtiq852r5hfu" path="res://Level-1-Examination/GunTrap.png" id="1_0bsvu"]
+[ext_resource type="Texture2D" uid="uid://cuihjqs1sqcx4" path="res://Level-1-Examination/GunBarrel.png" id="2_prr1i"]
+
+[node name="TurretTrap" type="Node2D"]
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_0bsvu")
+
+[node name="BarrelPivot" type="Node2D" parent="."]
+
+[node name="Barrel" type="Sprite2D" parent="BarrelPivot"]
+position = Vector2(-24, 0)
+texture = ExtResource("2_prr1i")

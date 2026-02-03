@@ -1,6 +1,8 @@
 class_name BaseLevel
 extends Node2D
 
+const CHUNK_DURATION = 1.0/60.1
+
 @export var player_scene: PackedScene
 @export var broken_player_scene: PackedScene
 @export var dismembered_gnome_scene: PackedScene
@@ -15,10 +17,10 @@ extends Node2D
 @export var level_music_beats: JSON
 
 
+var _t := 0.0
 var _rescue_count := 0
 var _current_gnome_count := 0
-var _t := 0.0
-var _ticks := 0
+var _last_chunk_played := 0
 var _player_over_exit := false
 var _beats: Array[int] = []
 
@@ -54,9 +56,13 @@ func _spawn_player(root: Node, immediate_sibling: Node) -> Player:
 
 func _physics_process(delta: float) -> void:
 	_t += delta
-	if len(_beats) > _ticks and _beats[_ticks] == 1:
-		PMonitor.player.trigger_beat_effect()
-	_ticks += 1
+	var current_chunk = floor(level_music_player.get_playback_position() / CHUNK_DURATION)
+
+	if len(_beats) > current_chunk and _last_chunk_played != current_chunk:
+		_last_chunk_played = current_chunk
+		if _beats[current_chunk] == 1:
+			Events.beat_channel_1_fired_sync()
+	
 	hud.update_timer(timer_seconds - floor(_t))
 	if _player_over_exit and Input.is_action_just_pressed("ui_accept"):
 		PMonitor.player.exit(exit)

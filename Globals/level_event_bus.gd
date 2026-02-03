@@ -9,6 +9,7 @@ signal gnome_rescued(Gnome)
 signal player_hit_enemy(Enemy)
 signal player_killed_enemy(Enemy)
 signal player_exited_level()
+signal beat_channel_1
 
 func player_hit_spike_trap_sync(trap: SpikeTrap) -> void:
 	player_hit_spike_trap.emit(trap)
@@ -57,3 +58,9 @@ func player_exited_level_sync() -> void:
 
 func player_exited_level_async() -> void:
 	player_exited_level.emit.call_deferred()
+
+func beat_channel_1_fired_sync() -> void:
+	beat_channel_1.emit()
+
+func beat_channel_1_fired_async() -> void:
+	beat_channel_1.emit.call_deferred()

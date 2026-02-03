@@ -28,7 +28,10 @@ func _physics_process(delta: float) -> void:
 	_path_follow.progress_ratio = cycle_envelope.sample()
 	var movement = _path_follow.position - _trap_body.position
 	var collision = _trap_body.move_and_collide(movement)
-	
+	#force movement to the correct position, now that we have collisions
+	_trap_body.position = _path_follow.position
+
+	# exit if we are moving up. We only care about collisions with player/gnomes when falling
 	if movement.y <= 0.0: 
 		return
 

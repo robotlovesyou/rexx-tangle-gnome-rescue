@@ -59,6 +59,7 @@ rotation = 1.5707964
 [node name="TrapBody" type="AnimatableBody2D" parent="."]
 collision_layer = 64
 collision_mask = 3
+sync_to_physics = false
 
 [node name="Sprite2D" type="Sprite2D" parent="TrapBody"]
 position = Vector2(1.5999985, -30.400002)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://cenujiplxkpem"]
+[gd_scene load_steps=89 format=3 uid="uid://cenujiplxkpem"]
 
 [ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://Player/player.gd" id="1_vtle1"]
@@ -23,8 +23,13 @@
 [ext_resource type="AudioStream" uid="uid://cww2nwgp32dda" path="res://Sounds/FX/SkidMarks Skid Two.wav" id="18_8viyr"]
 [ext_resource type="AudioStream" uid="uid://pthcq3riq252" path="res://Sounds/FX/SkidMarks Skid Three.wav" id="19_sm0op"]
 [ext_resource type="Texture2D" uid="uid://bn2u1dwaetlmu" path="res://RexxArt/Rexx/BubblesAreSquareNow.png" id="20_8viyr"]
+[ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="20_sm0op"]
 [ext_resource type="Texture2D" uid="uid://cnc207pfe8r4y" path="res://RexxArt/Rexx/BigJumpV2Squish.png" id="22_qemgg"]
 [ext_resource type="Texture2D" uid="uid://joff5ga1xsej" path="res://RexxArt/Rexx/BigFaceSquishCrop.png" id="24_8viyr"]
+
+[sub_resource type="Resource" id="Resource_76lrf"]
+script = ExtResource("20_sm0op")
+metadata/_custom_type_script = "uid://scj8vyjnp7sq"
 
 [sub_resource type="Curve" id="Curve_8viyr"]
 _data = [Vector2(0.009933777, 0.48523486), 0.0, 0.0, 0, 0, Vector2(0.25827813, 1), 0.0, 0.0, 0, 0, Vector2(0.7384106, 1), 0.0, 0.0, 0, 0, Vector2(0.99999994, 0.4503355), 0.0, 0.0, 0, 0]
@@ -451,6 +456,7 @@ jumps = Array[AudioStreamWAV]([ExtResource("6_n471f"), ExtResource("7_7emwf"), E
 deaths = Array[AudioStreamWAV]([ExtResource("14_hshwv"), ExtResource("15_gpjlu")])
 exits = Array[AudioStreamWAV]([ExtResource("16_gpjlu")])
 skids = Array[AudioStreamWAV]([ExtResource("17_qemgg"), ExtResource("18_8viyr"), ExtResource("19_sm0op")])
+movement_config = SubResource("Resource_76lrf")
 
 [node name="CPUJumpParticles" type="CPUParticles2D" parent="."]
 emitting = false
