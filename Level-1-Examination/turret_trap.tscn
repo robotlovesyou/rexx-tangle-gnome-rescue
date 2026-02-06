@@ -56,7 +56,7 @@ debug_color = Color(0.99040204, 0, 0.28447464, 0.41960785)
 [node name="FiringPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_grfx0")
 volume_db = -12.0
-max_distance = 300.0
+max_distance = 600.0
 
 [connection signal="body_entered" from="DangerZone" to="." method="_on_danger_zone_body_entered"]
 [connection signal="body_exited" from="DangerZone" to="." method="_on_danger_zone_body_exited"]
