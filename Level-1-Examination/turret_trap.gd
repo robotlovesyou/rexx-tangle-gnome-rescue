@@ -6,13 +6,15 @@ var _max_radians_per_second := 0.0
 	get: return _max_radians_per_second / 2.0 * PI
 	set(value): _max_radians_per_second = value * 2.0 * PI
 
-@export var charge_time_seconds := 1.0
+@export var charge_time_seconds := 3.0
+@export var danger_time_seconds := 1.0
 @export var barrel_freeze_time := 0.5
 @export var projectile_scene: PackedScene
 @export var projectile_speed := 100.0
 @export var barrel_length := 48.0
 
 var _time_charging := 0.0
+var _time_in_danger_zone := 0.0
 var _time_since_firing := 2.0 * barrel_freeze_time
 
 var _player_in_danger_zone := false
@@ -30,7 +32,8 @@ var _firing_player:
 func _on_danger_zone_body_exited(body: Node2D) -> void:
 	if body is Player:
 		_player_in_danger_zone = false
-		_time_charging = 0.0
+		_time_in_danger_zone = 0.0
+
 
 func _on_danger_zone_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -41,12 +44,16 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_time_since_firing += delta
-	if _player_in_danger_zone and _time_since_firing >= barrel_freeze_time:
-		_turn_toward_player(delta)
-		_time_charging += delta
-		if _time_charging >= charge_time_seconds and !_player_in_safe_zone:
-			_fire_projectile()
-			_time_charging = 0.0
+	_time_charging += delta
+	if _player_in_danger_zone:
+		_time_in_danger_zone += delta
+		if _time_since_firing >= barrel_freeze_time:
+			_turn_toward_player(delta)
+			
+			if _time_charging >= charge_time_seconds and _time_in_danger_zone >= danger_time_seconds and !_player_in_safe_zone:
+				_fire_projectile()
+				_time_charging = 0.0
+				_time_in_danger_zone = 0.0
 
 	_barrel.material.set_shader_parameter("parent_rotation", _barrel_pivot.rotation)
 
