@@ -30,11 +30,13 @@ func _ready() -> void:
 	Events.player_hit_spike_trap.connect(_on_player_hit_spike_trap)
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
 	Events.player_hit_drop_trap.connect(_on_player_hit_drop_trap)
+	Events.player_hit_projectile.connect(_on_player_hit_projectile)
 	Events.player_killed_enemy.connect(_on_player_killed_enemy)
 	Events.player_exited_level.connect(_on_player_exited_level)
 	Events.gnome_hit_spike_trap.connect(_on_gnome_hit_spike_trap)
 	Events.gnome_hit_drop_trap.connect(_on_gnome_hit_drop_trap)
 	Events.gnome_rescued.connect(_on_gnome_rescued)
+	Events.gnome_hit_projectile.connect(_on_gnome_hit_projectile)
 	_update_gnome_count_in_hud()
 	hud.update_timer(timer_seconds)
 	_beats.assign(level_music_beats.data["beats"])
@@ -146,4 +148,10 @@ func _on_player_hit_drop_trap(_trap: DropTrap) -> void:
 	_kill_player()
 
 func _on_gnome_hit_drop_trap(_trap: DropTrap, gnome: Gnome) -> void:
+	_kill_gnome(gnome)
+
+func _on_player_hit_projectile() -> void:
+	_kill_player()
+
+func _on_gnome_hit_projectile(gnome: Gnome) -> void:
 	_kill_gnome(gnome)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxbjmf2c6jtom"]
+[gd_scene load_steps=11 format=3 uid="uid://cxbjmf2c6jtom"]
 
 [ext_resource type="Texture2D" uid="uid://dmtiq852r5hfu" path="res://Level-1-Examination/GunTrap.png" id="1_0bsvu"]
 [ext_resource type="Script" uid="uid://dlqfntgqgiiup" path="res://Level-1-Examination/turret_trap.gd" id="1_sku7x"]
+[ext_resource type="PackedScene" uid="uid://4r6gcnphm7jj" path="res://Level-1-Examination/turret_trap_projectile.tscn" id="2_2dixi"]
 [ext_resource type="Shader" uid="uid://b5gn31ac1rjdc" path="res://Level-1-Examination/turret_trap_barrel.gdshader" id="3_bov3a"]
 [ext_resource type="Texture2D" uid="uid://db38eqaqxllfg" path="res://Level-1-Examination/GunBarrelTemplate.png" id="3_sku7x"]
+[ext_resource type="AudioStream" uid="uid://rrhofjxxn4tc" path="res://Sounds/FX/TurretTrapFiring.wav" id="6_grfx0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bov3a"]
 shader = ExtResource("3_bov3a")
@@ -20,10 +22,14 @@ shader_parameter/shadow_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
 shader_parameter/parent_rotation = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_prr1i"]
-radius = 192.1666
+radius = 320.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_grfx0"]
+radius = 80.0
 
 [node name="TurretTrap" type="Node2D"]
 script = ExtResource("1_sku7x")
+projectile_scene = ExtResource("2_2dixi")
 
 [node name="Body" type="Sprite2D" parent="."]
 texture = ExtResource("1_0bsvu")
@@ -41,5 +47,18 @@ texture = ExtResource("3_sku7x")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DangerZone"]
 shape = SubResource("CircleShape2D_prr1i")
 
+[node name="SafeZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeZone"]
+shape = SubResource("CircleShape2D_grfx0")
+debug_color = Color(0.99040204, 0, 0.28447464, 0.41960785)
+
+[node name="FiringPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_grfx0")
+volume_db = -12.0
+max_distance = 300.0
+
 [connection signal="body_entered" from="DangerZone" to="." method="_on_danger_zone_body_entered"]
 [connection signal="body_exited" from="DangerZone" to="." method="_on_danger_zone_body_exited"]
+[connection signal="body_entered" from="SafeZone" to="." method="_on_safe_zone_body_entered"]
+[connection signal="body_exited" from="SafeZone" to="." method="_on_safe_zone_body_exited"]

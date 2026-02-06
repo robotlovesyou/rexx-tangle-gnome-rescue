@@ -191,6 +191,12 @@ func _physics_process(delta: float) -> void:
 		_begin_action(Enums.GnomeAction.GROUNDED)
 	else:
 		_begin_action(Enums.GnomeAction.AIRBORNE)
+
+	for i in range(get_slide_collision_count()):
+		var collider = get_slide_collision(i).get_collider()
+		if collider and collider.is_in_group("Projectile"):
+			(collider as TurretTrapProjectile).gnome_collided_with_projectile(self)
+			break
 	# Add the gravity.
 	# if not is_on_floor():
 	# 	velocity += get_gravity() * delta

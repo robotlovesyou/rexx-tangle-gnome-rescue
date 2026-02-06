@@ -40,6 +40,7 @@ Player="The Player"
 Enemy="An Enemy"
 Gnome="A Gnome to be rescued"
 DropTrap="A Drop Trap"
+Projectile="A Projectile"
 
 [input]
 

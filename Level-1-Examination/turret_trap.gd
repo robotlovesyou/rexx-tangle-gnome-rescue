@@ -1,3 +1,4 @@
+class_name TurretTrap
 extends Node2D
 
 var _max_radians_per_second := 0.0
@@ -5,7 +6,17 @@ var _max_radians_per_second := 0.0
 	get: return _max_radians_per_second / 2.0 * PI
 	set(value): _max_radians_per_second = value * 2.0 * PI
 
+@export var charge_time_seconds := 1.0
+@export var barrel_freeze_time := 0.5
+@export var projectile_scene: PackedScene
+@export var projectile_speed := 100.0
+@export var barrel_length := 48.0
+
+var _time_charging := 0.0
+var _time_since_firing := 2.0 * barrel_freeze_time
+
 var _player_in_danger_zone := false
+var _player_in_safe_zone := false
 
 var _barrel_pivot: Node2D:
 	get: return $BarrelPivot
@@ -13,9 +24,13 @@ var _barrel_pivot: Node2D:
 var _barrel: Sprite2D:
 	get: return $BarrelPivot/Barrel
 
+var _firing_player:
+	get: return $FiringPlayer
+
 func _on_danger_zone_body_exited(body: Node2D) -> void:
 	if body is Player:
 		_player_in_danger_zone = false
+		_time_charging = 0.0
 
 func _on_danger_zone_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -25,8 +40,14 @@ func _ready() -> void:
 	print(_max_radians_per_second)
 
 func _physics_process(delta: float) -> void:
-	if _player_in_danger_zone:
+	_time_since_firing += delta
+	if _player_in_danger_zone and _time_since_firing >= barrel_freeze_time:
 		_turn_toward_player(delta)
+		_time_charging += delta
+		if _time_charging >= charge_time_seconds and !_player_in_safe_zone:
+			_fire_projectile()
+			_time_charging = 0.0
+
 	_barrel.material.set_shader_parameter("parent_rotation", _barrel_pivot.rotation)
 
 func _turn_toward_player(delta: float):
@@ -39,3 +60,21 @@ func _turn_toward_player(delta: float):
 		_barrel_pivot.rotation += sign(required_rot) * max_rot
 	else:
 		_barrel_pivot.rotation = desired_angle
+
+func _fire_projectile() -> void:
+	var projectile = projectile_scene.instantiate() as TurretTrapProjectile
+	var vector_down_barrel = Vector2(cos(_barrel_pivot.rotation), sin(_barrel_pivot.rotation))
+	projectile.position = vector_down_barrel * barrel_length
+	add_child(projectile)
+	projectile.projectile_velocity = vector_down_barrel * projectile_speed
+	_time_since_firing = 0.0
+	_firing_player.play()
+	
+
+
+func _on_safe_zone_body_entered(body: Node2D) -> void:
+	_player_in_safe_zone = true
+
+
+func _on_safe_zone_body_exited(body: Node2D) -> void:
+	_player_in_safe_zone = false

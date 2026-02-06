@@ -117,6 +117,14 @@ func _physics_process(delta: float) -> void:
 	jump_particles.scale_amount_max = _max_jump_particle_scale * (1.0 + sample)
 	jump_particles.scale_amount_min = _min_jump_particle_scale * (1.0 + sample)
 
+	for i in range(get_slide_collision_count()):
+		var collider = get_slide_collision(i).get_collider()
+		if collider and collider.is_in_group("Projectile"):
+			print("collided with projectile")
+			(collider as TurretTrapProjectile).player_collided_with_projectile()
+			break
+
+
 func get_camera() -> Camera2D:
 	return $Camera2D
 

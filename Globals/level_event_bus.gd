@@ -5,6 +5,8 @@ signal player_hit_spike_trap(SpikeTrap)
 signal gnome_hit_spike_trap(SpikeTrap, Gnome)
 signal player_hit_drop_trap(DropTrap)
 signal gnome_hit_drop_trap(DropTrap, Gnome)
+signal player_hit_projectile()
+signal gnome_hit_projectile(Gnome)
 signal gnome_rescued(Gnome)
 signal player_hit_enemy(Enemy)
 signal player_killed_enemy(Enemy)
@@ -64,3 +66,15 @@ func beat_channel_1_fired_sync() -> void:
 
 func beat_channel_1_fired_async() -> void:
 	beat_channel_1.emit.call_deferred()
+
+func player_hit_projectile_sync() -> void:
+	player_hit_projectile.emit()
+
+func player_hit_projectile_async() -> void:
+	player_hit_projectile.emit.call_deferred()
+
+func gnome_hit_projectile_sync(gnome: Gnome) -> void:
+	gnome_hit_projectile.emit(gnome)
+
+func gnome_hit_projectile_async(gnome: Gnome) -> void:
+	gnome_hit_projectile.emit.call_deferred(gnome)
