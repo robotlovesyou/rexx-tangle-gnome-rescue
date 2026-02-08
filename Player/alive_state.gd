@@ -55,8 +55,12 @@ func _check_for_enemy_collision():
 		var collision = _parent.get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider.is_in_group("Enemy"):
-			var angle = collision.get_normal().angle_to(Vector2.UP)
-			if abs(angle) < 0.5: #45º
+			# var angle = collision.get_normal().angle_to(Vector2.UP)
+			var point_relative_to_enemy = _parent.position - collider.global_position
+			# print(point_relative_to_enemy)
+			# if abs(angle) < 0.5: #45º
+			# SUPER HACKY!!!
+			if point_relative_to_enemy.y < -10.0:
 				_killed_enemy_last_frame = true
 				Events.player_killed_enemy_async(collider as CharacterBody2D)
 			else:

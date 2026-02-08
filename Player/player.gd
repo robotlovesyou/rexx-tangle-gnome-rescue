@@ -120,7 +120,6 @@ func _physics_process(delta: float) -> void:
 	for i in range(get_slide_collision_count()):
 		var collider = get_slide_collision(i).get_collider()
 		if collider and collider.is_in_group("Projectile"):
-			print("collided with projectile")
 			(collider as TurretTrapProjectile).player_collided_with_projectile()
 			break
 

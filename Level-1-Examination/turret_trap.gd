@@ -19,6 +19,7 @@ var _time_since_firing := 2.0 * barrel_freeze_time
 
 var _player_in_danger_zone := false
 var _player_in_safe_zone := false
+var _gnomes_in_safe_zone := 0
 
 var _barrel_pivot: Node2D:
 	get: return $BarrelPivot
@@ -50,7 +51,7 @@ func _physics_process(delta: float) -> void:
 		if _time_since_firing >= barrel_freeze_time:
 			_turn_toward_player(delta)
 			
-			if _time_charging >= charge_time_seconds and _time_in_danger_zone >= danger_time_seconds and !_player_in_safe_zone:
+			if _time_charging >= charge_time_seconds and _time_in_danger_zone >= danger_time_seconds and !_player_in_safe_zone and _gnomes_in_safe_zone <= 0:
 				_fire_projectile()
 				_time_charging = 0.0
 				_time_in_danger_zone = 0.0
@@ -80,8 +81,14 @@ func _fire_projectile() -> void:
 
 
 func _on_safe_zone_body_entered(body: Node2D) -> void:
-	_player_in_safe_zone = true
+	if body is Player:
+		_player_in_safe_zone = true
+	elif body is Gnome:
+		_gnomes_in_safe_zone += 1
 
 
 func _on_safe_zone_body_exited(body: Node2D) -> void:
-	_player_in_safe_zone = false
+	if body is Player:
+		_player_in_safe_zone = false
+	elif body is Gnome:
+		_gnomes_in_safe_zone -= 1

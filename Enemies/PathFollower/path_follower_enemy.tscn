@@ -10,7 +10,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_jh8ke"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 16, 16, 0, 0, 0, 0, 208, 16)
+"points": PackedVector2Array(0, 0, 0, 0, -9.951384e-07, -1.9073485e-06, 0, 0, 0, 0, 200.34782, -1.9073485e-06)
 }
 point_count = 2
 
@@ -219,13 +219,15 @@ turbulence_enabled = true
 turbulence_noise_strength = 9.99
 turbulence_noise_scale = 1.159
 
-[node name="Node2D" type="Node2D"]
+[node name="PathFollowerRoot" type="Node2D"]
 
 [node name="PathToFollow" type="Path2D" parent="."]
+position = Vector2(5.684342e-14, 1.1368684e-13)
+scale = Vector2(0.9583333, 1)
 curve = SubResource("Curve2D_jh8ke")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="PathToFollow"]
-position = Vector2(16, 16)
+position = Vector2(-9.951384e-07, -1.9073485e-06)
 
 [node name="PathFollowerEnemy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("path_follower", "animated_sprite", "death_particles") groups=["Enemy"]]
 collision_layer = 16
@@ -237,17 +239,14 @@ death_particles = NodePath("DeathParticles")
 death_sounds = Array[AudioStreamWAV]([ExtResource("2_yfj2h"), ExtResource("3_u17ix"), null, ExtResource("4_sj4f2"), ExtResource("5_10tny")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollowerEnemy"]
-position = Vector2(16.5, 17)
 shape = SubResource("RectangleShape2D_jh8ke")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollowerEnemy"]
 sprite_frames = SubResource("SpriteFrames_smnrf")
 animation = &"die"
 autoplay = "walk"
-centered = false
 
 [node name="DeathParticles" type="GPUParticles2D" parent="PathFollowerEnemy"]
-position = Vector2(16, 32)
 emitting = false
 amount = 25
 trail_enabled = true

@@ -3,8 +3,8 @@ extends RefCounted
 
 const DEFAULT_MIN_PITCH := 1.4
 const DEFAULT_MAX_PITCH := 1.6
-const DEFAULT_MIN_VOLUME := -12.5
-const DEFAULT_MAX_VOLUME := -9.5
+const DEFAULT_MIN_VOLUME := -6.0
+const DEFAULT_MAX_VOLUME := 0.0
 
 const MIN_PITCH := "min_pitch"
 const MAX_PITCH := "max_pitch"

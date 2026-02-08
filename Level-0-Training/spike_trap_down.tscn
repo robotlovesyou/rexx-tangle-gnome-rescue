@@ -8,7 +8,7 @@
 shader = ExtResource("2_f4tu1")
 shader_parameter/highlight_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
 
-[node name="SpikeTrap" type="Node2D"]
+[node name="SpikeTrapDown" type="Node2D"]
 script = ExtResource("1_42ac1")
 
 [node name="Area2D" type="Area2D" parent="."]
