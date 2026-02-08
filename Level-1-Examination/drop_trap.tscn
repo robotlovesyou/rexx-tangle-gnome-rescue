@@ -62,11 +62,11 @@ collision_mask = 3
 sync_to_physics = false
 
 [node name="Sprite2D" type="Sprite2D" parent="TrapBody"]
-position = Vector2(1.5999985, -30.400002)
+position = Vector2(0, -32)
 texture = ExtResource("1_twjxr")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TrapBody"]
-position = Vector2(1.5999985, -30.400002)
+position = Vector2(0, -32)
 polygon = PackedVector2Array(-31, 31, -21, -31, 20, -31, 31, 31)
 
 [node name="HitParticles" type="GPUParticles2D" parent="TrapBody"]
