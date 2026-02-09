@@ -181,6 +181,8 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					_switch_to_state(GnomeDyingState.new(self))
 		GnomeState.StateID.ORPHANED:
 			match event: 
+				Enums.GnomeEvent.PLAYER_COLLECTED:
+					_switch_to_state(GnomeCollectedState.new(self))
 				Enums.GnomeEvent.DIED:
 					_switch_to_state(GnomeDyingState.new(self))
 

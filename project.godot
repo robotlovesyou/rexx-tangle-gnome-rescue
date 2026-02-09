@@ -59,6 +59,7 @@ instakill_gnomes={
 2d_physics/layer_5="Enemy"
 2d_physics/layer_6="Furniture"
 2d_physics/layer_7="DropTrap"
+2d_physics/layer_8="GnomepaqueTerrain"
 
 [physics]
 

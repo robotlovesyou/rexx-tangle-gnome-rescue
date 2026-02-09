@@ -12,6 +12,7 @@ var _max_radians_per_second := 0.0
 @export var projectile_scene: PackedScene
 @export var projectile_speed := 100.0
 @export var barrel_length := 48.0
+@export var auto_visible := true # because it covers a bunch of shit in the editor and I always forget to unhide it...
 
 var _time_charging := 0.0
 var _time_in_danger_zone := 0.0
@@ -41,7 +42,8 @@ func _on_danger_zone_body_entered(body: Node2D) -> void:
 		_player_in_danger_zone = true
 
 func _ready() -> void:
-	print(_max_radians_per_second)
+	if auto_visible:
+		visible = true
 
 func _physics_process(delta: float) -> void:
 	_time_since_firing += delta

@@ -15,7 +15,7 @@ shader_parameter/gradient = ExtResource("3_kact3")
 
 [node name="TurretTrapProjectile" type="CharacterBody2D" groups=["Projectile"]]
 collision_layer = 16
-collision_mask = 71
+collision_mask = 199
 script = ExtResource("1_wg3sd")
 explosion_scene = ExtResource("2_l5bcx")
 

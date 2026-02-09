@@ -447,7 +447,7 @@ gravity = Vector3(0, 98, 0)
 alpha_curve = SubResource("CurveTexture_8viyr")
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-collision_mask = 84
+collision_mask = 212
 floor_snap_length = 4.0
 safe_margin = 0.1
 script = ExtResource("1_vtle1")
