@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=4 uid="uid://iqpwyxksj3rh"]
+[gd_scene load_steps=76 format=4 uid="uid://iqpwyxksj3rh"]
 
 [ext_resource type="Script" uid="uid://dlbbfb18u54hm" path="res://Level-1-Examination/level_1_examination.gd" id="1_xcvpb"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_lpkm8"]
@@ -27,11 +27,12 @@
 [ext_resource type="PackedScene" uid="uid://df7mbjqn1xeib" path="res://Level-1-Examination/drop_trap.tscn" id="21_k2nt3"]
 [ext_resource type="Script" uid="uid://v3b5lgh01vvv" path="res://Shared/ADLoop.gd" id="22_bsmmg"]
 [ext_resource type="PackedScene" uid="uid://bxq7ib3maf0vh" path="res://Level-0-Training/spike_trap_down.tscn" id="22_d4fbk"]
-[ext_resource type="PackedScene" uid="uid://cxbjmf2c6jtom" path="res://Level-1-Examination/turret_trap.tscn" id="22_tsy5n"]
 [ext_resource type="PackedScene" uid="uid://d00whkuhaef4g" path="res://Level-0-Training/spike_trap_left.tscn" id="22_x1sj8"]
 [ext_resource type="Texture2D" uid="uid://uviyr77ujhyq" path="res://Level-1-Examination/MidBlueDropTrap.png" id="24_tsy5n"]
 [ext_resource type="PackedScene" uid="uid://beybgcm674y60" path="res://Level-0-Training/spike_trap_right.tscn" id="28_fyiql"]
 [ext_resource type="PackedScene" uid="uid://bn3fwtg8kxfwp" path="res://Enemies/PathFollower/path_follower_enemy.tscn" id="31_poek4"]
+[ext_resource type="PackedScene" uid="uid://4tr6ko5sfl5b" path="res://Level-1-Examination/lazer_trap.tscn" id="33_5ggxx"]
+[ext_resource type="PackedScene" uid="uid://b575ft8cmajfi" path="res://Level-1-Examination/rifle_trap_left.tscn" id="33_rmmu0"]
 
 [sub_resource type="Resource" id="Resource_hopua"]
 script = ExtResource("22_bsmmg")
@@ -3264,7 +3265,11 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hopua"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ggxx"]
+radius = 376.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ggxx"]
+size = Vector2(408, 207.99998)
 
 [node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("exit", "hud", "game_over_message", "player_sibling_node", "level_music_player")]
 script = ExtResource("1_xcvpb")
@@ -3661,22 +3666,19 @@ rotation = 3.1415925
 
 [node name="Turrets" type="Node" parent="."]
 
-[node name="TurretTrap" parent="Turrets" instance=ExtResource("22_tsy5n")]
-position = Vector2(1048, 600)
-max_rps = 1.0
+[node name="LazerTrap" parent="Turrets" instance=ExtResource("33_5ggxx")]
+position = Vector2(1032, 608)
 
-[node name="TurretTrap2" parent="Turrets" instance=ExtResource("22_tsy5n")]
-visible = false
-position = Vector2(3840, -320)
-max_rps = 1.0
-charge_time_seconds = 4.0
+[node name="CollisionShape2D" parent="Turrets/LazerTrap/DangerZone" index="0"]
+shape = SubResource("CircleShape2D_5ggxx")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Turrets/TurretTrap2/SafeZone" index="0"]
-polygon = PackedVector2Array(-40, 0, -40, -32, 64, -32, 128, -32, 128, 0, 128, 48, -40, 48)
+[node name="RifleTrapLeft" parent="Turrets" instance=ExtResource("33_rmmu0")]
+position = Vector2(3838, -320.0909)
+charge_time = 3.0
 
-[node name="CollisionShape2D" parent="Turrets/TurretTrap2/SafeZone" index="1"]
-shape = SubResource("CircleShape2D_hopua")
-disabled = true
+[node name="CollisionShape2D" parent="Turrets/RifleTrapLeft/DangerZone" index="0"]
+position = Vector2(-194, 8.090912)
+shape = SubResource("RectangleShape2D_5ggxx")
 
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]
@@ -3689,4 +3691,5 @@ disabled = true
 [editable path="Enemies/PathFollowerRoot2"]
 [editable path="Enemies/PathFollowerRoot3"]
 [editable path="Enemies/PathFollowerRoot4"]
-[editable path="Turrets/TurretTrap2"]
+[editable path="Turrets/LazerTrap"]
+[editable path="Turrets/RifleTrapLeft"]

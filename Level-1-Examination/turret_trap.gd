@@ -76,7 +76,7 @@ func _fire_projectile() -> void:
 	var vector_down_barrel = Vector2(cos(_barrel_pivot.rotation), sin(_barrel_pivot.rotation))
 	projectile.position = vector_down_barrel * barrel_length
 	add_child(projectile)
-	projectile.projectile_velocity = vector_down_barrel * projectile_speed
+	projectile._projectile_velocity = vector_down_barrel * projectile_speed
 	_time_since_firing = 0.0
 	_firing_player.play()
 	

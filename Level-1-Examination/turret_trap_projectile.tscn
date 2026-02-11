@@ -12,6 +12,7 @@ radius = 8.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kact3"]
 shader = ExtResource("2_fa0a7")
 shader_parameter/gradient = ExtResource("3_kact3")
+shader_parameter/charge = 1.0
 
 [node name="TurretTrapProjectile" type="CharacterBody2D" groups=["Projectile"]]
 collision_layer = 16
