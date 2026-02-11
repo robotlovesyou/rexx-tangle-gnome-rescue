@@ -370,7 +370,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jxqw"]
-size = Vector2(25, 28)
+size = Vector2(30, 28)
 
 [sub_resource type="Curve" id="Curve_od3ui"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7319149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -449,7 +449,7 @@ alpha_curve = SubResource("CurveTexture_8viyr")
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 212
 floor_snap_length = 4.0
-safe_margin = 0.1
+safe_margin = 0.8
 script = ExtResource("1_vtle1")
 steps = Array[AudioStreamWAV]([ExtResource("3_5htga"), ExtResource("4_p5o4e"), ExtResource("5_gu6f8"), ExtResource("6_dkpta")])
 jumps = Array[AudioStreamWAV]([ExtResource("6_n471f"), ExtResource("7_7emwf"), ExtResource("8_hshwv"), ExtResource("9_gpjlu"), ExtResource("10_8mwp6"), ExtResource("11_qemgg"), ExtResource("12_8viyr"), ExtResource("13_sm0op")])
@@ -475,11 +475,26 @@ color_ramp = SubResource("Gradient_qemgg")
 sprite_frames = SubResource("SpriteFrames_2hs0m")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.12997393
+
+[node name="DebugRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -14.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_1jxqw")
+
+[node name="DetectWallsRight" type="RayCast2D" parent="."]
+target_position = Vector2(17, 0)
+collision_mask = 4
+
+[node name="DetectWallsLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-17, 0)
+collision_mask = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true

@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://4a8mh27313b8" path="res://Shared/spawn_point.gd" id="1_00gca"]
 
-[node name="SpawnPoint" type="Node2D"]
+[node name="SpawnPoint" type="Node2D" groups=["SpawnPoint"]]
 script = ExtResource("1_00gca")

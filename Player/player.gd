@@ -9,6 +9,7 @@ signal done_dying
 @export var exits: Array[AudioStreamWAV]
 @export var skids: Array[AudioStreamWAV]
 @export var movement_config: PlayerMovementConfig
+@export var debug_is_on_wall_only := false
 
 var _state: PlayerState
 var _particle_beat_envelope := ADEnvelope.new(0.05, 0.1)
@@ -58,6 +59,15 @@ var skid_particles: GPUParticles2D:
 
 var jump_particles: GPUParticles2D:
 	get: return $CPUJumpParticles
+
+var detect_walls_left: RayCast2D:
+	get: return $DetectWallsLeft
+
+var detect_walls_right: RayCast2D:
+	get: return $DetectWallsRight
+
+var debug_rect: ColorRect:
+	get: return $DebugRect
 
 func play_walk() -> void:
 	_walk_effect_player.play()
@@ -123,6 +133,11 @@ func _physics_process(delta: float) -> void:
 			(collider as TurretTrapProjectile).player_collided_with_projectile()
 			break
 
+	debug_rect.visible = debug_is_on_wall_only and is_cast_on_wall_only()
+
+func is_cast_on_wall_only() -> bool:
+	return (detect_walls_left.is_colliding() or detect_walls_right.is_colliding()) and !is_on_floor()
+		
 
 func get_camera() -> Camera2D:
 	return $Camera2D

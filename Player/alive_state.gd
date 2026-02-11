@@ -19,6 +19,7 @@ func on_exit() -> void:
 func on_physics_process(delta: float) -> void:
 	_action_did_change = false
 	var was_on_floor = _parent.is_on_floor()
+
 	_determine_direction()
 	_determine_has_jumped_or_stopped()
 	_begin_action(_determine_action())
@@ -35,7 +36,7 @@ func on_physics_process(delta: float) -> void:
 
 func _begin_action(action: Enums.Action) -> void:
 	if action == _action: return
-	# print("%s => %s" % [Enums.action_name(_action), Enums.action_name(action)])
+	print("%s => %s" % [Enums.action_name(_action), Enums.action_name(action)])
 	_action = action
 	_action_did_change = true
 	ActionMonitor.action = _action
@@ -67,14 +68,14 @@ func _check_for_enemy_collision():
 				Events.player_hit_enemy_async(collider as CharacterBody2D)
 
 func _determine_direction() -> void:
-	var temp_direciton = _direction
+	var temp_direction = _direction
 	if _parent.wall_jump_timer.time_left > 0.0:
 		_direction = _wall_jump_normal.x
 	else:
 		_direction = Input.get_axis("ui_left", "ui_right")
 
 	if _direction:
-		_last_direction = temp_direciton
+		_last_direction = temp_direction
 
 func _determine_has_jumped_or_stopped() -> void:
 	_has_jumped = Input.is_action_just_pressed("ui_accept")
@@ -98,7 +99,7 @@ func _is_on_platform() -> bool:
 func _determine_action() -> Enums.Action:
 	var on_floor = _parent.is_on_floor()
 	var on_platform = _is_on_platform()
-	if _parent.is_on_wall_only() and _has_jumped:
+	if _parent.is_cast_on_wall_only() and _has_jumped:
 		return Enums.Action.WALL_JUMPING
 	if _has_jumped and _action == Enums.Action.JUMPING:
 		return Enums.Action.DOUBLE_JUMPING
@@ -106,7 +107,7 @@ func _determine_action() -> Enums.Action:
 		return Enums.Action.DOUBLE_JUMPED
 	if _has_jumped and !_is_jumping():
 		return Enums.Action.JUMPING
-	if _parent.is_on_wall_only():
+	if _parent.is_cast_on_wall_only():
 		return Enums.Action.WALL_SLIDING
 	if not on_floor and _is_jumping():
 		return _action
@@ -135,7 +136,7 @@ func _handle_lateral_movement(delta:float) -> void:
 
 func _handle_jump() -> void:
 	if _has_jumped:
-		if _parent.is_on_wall_only():
+		if _parent.is_cast_on_wall_only():
 			_parent.velocity.y = _parent.movement_config.JUMP_VELOCITY
 			_wall_jump_normal = _parent.get_wall_normal()
 			_parent.velocity.x = _parent.movement_config.SPEED * _wall_jump_normal.x
@@ -158,7 +159,7 @@ func _handle_coyote_timer(was_on_floor: bool) -> void:
 
 func _apply_gravity(delta: float) -> void:
 	if not _parent.is_on_floor():
-		if _parent.is_on_wall_only() and _parent.velocity.y >= 0.0:	
+		if _parent.is_cast_on_wall_only() and _parent.velocity.y >= 0.0:	
 			_parent.velocity += _parent.get_gravity() * _parent.movement_config.WALL_SLIDE_SCALE * delta
 			_parent.velocity.y = min(_parent.velocity.y, _parent.movement_config.WALL_SLIDE_MAX_SPEED)
 		else:
