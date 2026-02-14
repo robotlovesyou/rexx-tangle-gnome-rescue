@@ -26,6 +26,8 @@
 [ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="20_sm0op"]
 [ext_resource type="Texture2D" uid="uid://cnc207pfe8r4y" path="res://RexxArt/Rexx/BigJumpV2Squish.png" id="22_qemgg"]
 [ext_resource type="Texture2D" uid="uid://joff5ga1xsej" path="res://RexxArt/Rexx/BigFaceSquishCrop.png" id="24_8viyr"]
+[ext_resource type="Curve" uid="uid://nq2vln21402r" path="res://Player/appear_alpha_curve.tres" id="27_76lrf"]
+[ext_resource type="Gradient" uid="uid://24u6bvbj54jf" path="res://Player/appear_particles_ramp.tres" id="27_sm0op"]
 
 [sub_resource type="Resource" id="Resource_76lrf"]
 script = ExtResource("20_sm0op")
@@ -372,18 +374,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jxqw"]
 size = Vector2(30, 28)
 
-[sub_resource type="Curve" id="Curve_od3ui"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7319149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [sub_resource type="CurveTexture" id="CurveTexture_00tjw"]
-curve = SubResource("Curve_od3ui")
-
-[sub_resource type="Gradient" id="Gradient_x3vf3"]
-colors = PackedColorArray(0.19310254, 0.30628648, 0.7774328, 1, 0.49, 0.6854999, 1, 1)
+curve = ExtResource("27_76lrf")
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_apopc"]
-gradient = SubResource("Gradient_x3vf3")
+gradient = ExtResource("27_sm0op")
 
 [sub_resource type="Curve" id="Curve_5htga"]
 _data = [Vector2(0, 0.9438202), 0.0, 0.0, 0, 0]

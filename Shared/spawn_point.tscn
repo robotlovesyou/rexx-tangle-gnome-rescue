@@ -1,6 +1,66 @@
-[gd_scene load_steps=2 format=3 uid="uid://djgyhguij8ueu"]
+[gd_scene load_steps=12 format=3 uid="uid://djgyhguij8ueu"]
 
 [ext_resource type="Script" uid="uid://4a8mh27313b8" path="res://Shared/spawn_point.gd" id="1_00gca"]
+[ext_resource type="Texture2D" uid="uid://cj6cm2ebk3usd" path="res://Shared/SpawnPointActive.png" id="2_jp2t4"]
+[ext_resource type="Texture2D" uid="uid://b7ldjst5j0r7s" path="res://Shared/SpawnPointInactive.png" id="3_m35vl"]
+[ext_resource type="Curve" uid="uid://nq2vln21402r" path="res://Player/appear_alpha_curve.tres" id="4_m4bmk"]
+[ext_resource type="Gradient" uid="uid://24u6bvbj54jf" path="res://Player/appear_particles_ramp.tres" id="4_m35vl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jp2t4"]
+size = Vector2(32, 10)
+
+[sub_resource type="CurveTexture" id="CurveTexture_vb7eh"]
+curve = ExtResource("4_m4bmk")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m4bmk"]
+gradient = ExtResource("4_m35vl")
+
+[sub_resource type="Curve" id="Curve_m4bmk"]
+_data = [Vector2(0, 0.9584), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_xuvh2"]
+curve = SubResource("Curve_m4bmk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jp2t4"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 4, 1)
+gravity = Vector3(0, -98, 0)
+scale_min = 2.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_m4bmk")
+alpha_curve = SubResource("CurveTexture_vb7eh")
+emission_curve = SubResource("CurveTexture_xuvh2")
 
 [node name="SpawnPoint" type="Node2D" groups=["SpawnPoint"]]
 script = ExtResource("1_00gca")
+
+[node name="SpawnPointActive" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 32)
+texture = ExtResource("2_jp2t4")
+
+[node name="SpawnPointInactive" type="Sprite2D" parent="."]
+position = Vector2(0, 32)
+texture = ExtResource("3_m35vl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 19
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-24, 40, -16, 32, 16, 32, 24, 40)
+
+[node name="ActivationArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationArea"]
+position = Vector2(0, 29)
+shape = SubResource("RectangleShape2D_jp2t4")
+
+[node name="ActiveParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 28)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_jp2t4")
+
+[connection signal="body_entered" from="ActivationArea" to="." method="_on_activation_area_body_entered"]
