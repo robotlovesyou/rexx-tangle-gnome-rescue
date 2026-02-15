@@ -1,0 +1,28 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=7 format=3 uid="uid://c2ep71hehrit7"]
+
+[ext_resource type="Curve" uid="uid://nq2vln21402r" path="res://Player/appear_alpha_curve.tres" id="1_1uli5"]
+[ext_resource type="Gradient" uid="uid://24u6bvbj54jf" path="res://Player/appear_particles_ramp.tres" id="2_h0im1"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_00tjw"]
+curve = ExtResource("1_1uli5")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_apopc"]
+gradient = ExtResource("2_h0im1")
+
+[sub_resource type="Curve" id="Curve_5htga"]
+_data = [Vector2(0, 0.9438202), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_p5o4e"]
+curve = SubResource("Curve_5htga")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 0, 0)
+gravity = Vector3(0, -98, 0)
+scale_min = 2.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_apopc")
+alpha_curve = SubResource("CurveTexture_00tjw")
+emission_curve = SubResource("CurveTexture_p5o4e")

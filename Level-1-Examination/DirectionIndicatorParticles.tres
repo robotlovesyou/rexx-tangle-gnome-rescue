@@ -1,0 +1,44 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=9 format=3 uid="uid://ba20usvxasrd6"]
+
+[ext_resource type="Curve" uid="uid://vrp462p7vk05" path="res://Level-1-Examination/turbulence_influence_curve.tres" id="1_p82sq"]
+
+[sub_resource type="Curve" id="Curve_v8cpu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.091603056, 1), 0.0, 0.0, 0, 0, Vector2(0.7319149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_p82sq"]
+curve = SubResource("Curve_v8cpu")
+
+[sub_resource type="Gradient" id="Gradient_6d2u6"]
+colors = PackedColorArray(0.19310254, 0.30628648, 0.7774328, 1, 0.49, 0.6854999, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vjjcn"]
+gradient = SubResource("Gradient_6d2u6")
+
+[sub_resource type="Curve" id="Curve_eho7a"]
+_data = [Vector2(0, 0.9438202), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_bpkp3"]
+curve = SubResource("Curve_eho7a")
+
+[sub_resource type="CurveTexture" id="CurveTexture_6d2u6"]
+curve = ExtResource("1_p82sq")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(64, 64, 0)
+gravity = Vector3(98, 0, 0)
+scale_min = 2.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_vjjcn")
+alpha_curve = SubResource("CurveTexture_p82sq")
+emission_curve = SubResource("CurveTexture_bpkp3")
+turbulence_enabled = true
+turbulence_noise_strength = 0.05
+turbulence_noise_scale = 10.0
+turbulence_noise_speed = Vector3(1, 0, 0)
+turbulence_noise_speed_random = 0.1
+turbulence_influence_min = 0.05
+turbulence_influence_over_life = SubResource("CurveTexture_6d2u6")
