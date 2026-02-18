@@ -1,0 +1,11 @@
+[gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://d03rhsrc37ahf"]
+
+[sub_resource type="Gradient" id="Gradient_n5bmp"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0020000003, 0.02606667, 0.04, 1, 0.0035999964, 0.07926001, 0.12, 1, 0.004199996, 0.09473331, 0.14, 1, 0.0035999964, 0.07926001, 0.12, 1, 0.0059999945, 0.1353333, 0.2, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 5
+
+[resource]
+gradient = SubResource("Gradient_n5bmp")
