@@ -73,7 +73,6 @@ func _determine_direction() -> void:
 		_direction = _wall_jump_normal.x
 	else:
 		_direction = Input.get_axis("ui_left", "ui_right")
-		print(_direction)
 
 	if _direction:
 		_last_direction = temp_direction

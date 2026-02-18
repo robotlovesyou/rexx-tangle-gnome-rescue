@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=4 uid="uid://iqpwyxksj3rh"]
+[gd_scene load_steps=104 format=4 uid="uid://iqpwyxksj3rh"]
 
 [ext_resource type="Script" uid="uid://dlbbfb18u54hm" path="res://Level-1-Examination/level_1_examination.gd" id="1_xcvpb"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_lpkm8"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://y4tb8v4fvs66" path="res://Gnomes/gnome.tscn" id="10_wnu8j"]
 [ext_resource type="Texture2D" uid="uid://d1v6ra773qj52" path="res://Level-1-Examination/MidBlueTileMap.png" id="11_ihgyl"]
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="11_x6rhn"]
-[ext_resource type="PackedScene" uid="uid://blysyve0sampw" path="res://LevelTemplate/game_over_message.tscn" id="12_ims2g"]
 [ext_resource type="Texture2D" uid="uid://dfmkrnddvebp4" path="res://Level-1-Examination/DarkBlueTileMap.png" id="12_ql8uy"]
 [ext_resource type="Texture2D" uid="uid://xosm482g64f5" path="res://Level-1-Examination/YellowTileMap.png" id="13_vfq1x"]
 [ext_resource type="AudioStream" uid="uid://co7ajua4n8mna" path="res://Sounds/Music/AskNotForWhomTheCarriageReturns.wav" id="14_85m5c"]
@@ -3472,19 +3471,19 @@ size = Vector2(273, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_5wwgy"]
 radius = 369.04877
 
-[node name="Level1Examination" type="Node2D" node_paths=PackedStringArray("exit", "hud", "game_over_message", "player_sibling_node", "level_music_player")]
+[node name="Level1Examination" type="Node2D" node_paths=PackedStringArray("exit", "hud", "player_sibling_node", "level_music_player")]
 script = ExtResource("1_xcvpb")
 player_scene = ExtResource("2_lpkm8")
 broken_player_scene = ExtResource("3_5y7yk")
 dismembered_gnome_scene = ExtResource("4_s62pe")
 exit = NodePath("Exit")
 hud = NodePath("HUD")
-game_over_message = NodePath("GameOverMessage")
 minimum_gnomes = 5
 timer_seconds = 241
 player_sibling_node = NodePath("Floor")
 level_music_player = NodePath("LevelMusicPlayer")
 level_music_beats = ExtResource("5_thoww")
+game_over_scene_path = "res://Level-1-Examination/game_over_screen.tscn"
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.5, 0.5)
@@ -3680,9 +3679,6 @@ position = Vector2(3656, -128)
 
 [node name="Gnome6" parent="Gnomes" instance=ExtResource("10_wnu8j")]
 position = Vector2(2272, -1488)
-
-[node name="GameOverMessage" parent="." instance=ExtResource("12_ims2g")]
-visible = false
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_85m5c")

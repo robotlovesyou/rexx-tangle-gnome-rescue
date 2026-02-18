@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://fkrkcxv42han"]
+
+[ext_resource type="PackedScene" uid="uid://cn0ro2m8rmfk" path="res://Shared/parallax_background.tscn" id="1_umre8"]
+[ext_resource type="Script" uid="uid://cekreetawjlys" path="res://LevelTemplate/game_over_screen.gd" id="1_yu8ou"]
+[ext_resource type="FontFile" uid="uid://qb70mfn5i3l1" path="res://RexxArt/CommercialAssets/Jersey10-Regular.ttf" id="3_xs0qo"]
+[ext_resource type="AudioStream" uid="uid://dvxetb2di2qa5" path="res://Sounds/Music/AirOnAGString.mp3" id="4_uqirv"]
+
+[sub_resource type="Gradient" id="Gradient_n5bmp"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0020000003, 0.02606667, 0.04, 1, 0.0035999964, 0.07926001, 0.12, 1, 0.004199996, 0.09473331, 0.14, 1, 0.0035999964, 0.07926001, 0.12, 1, 0.0059999945, 0.1353333, 0.2, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 5
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lylok"]
+gradient = SubResource("Gradient_n5bmp")
+
+[node name="GameOverScreen" type="Node2D"]
+script = ExtResource("1_yu8ou")
+tile_h_count = 16
+gradient_texture = SubResource("GradientTexture1D_lylok")
+resample_chance = 0.01
+cycle_frequency = 0.1
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_umre8")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_xs0qo")
+theme_override_fonts/bold_font = ExtResource("3_xs0qo")
+theme_override_fonts/bold_italics_font = ExtResource("3_xs0qo")
+theme_override_fonts/italics_font = ExtResource("3_xs0qo")
+theme_override_fonts/mono_font = ExtResource("3_xs0qo")
+theme_override_font_sizes/normal_font_size = 100
+theme_override_font_sizes/bold_font_size = 100
+theme_override_font_sizes/bold_italics_font_size = 100
+theme_override_font_sizes/italics_font_size = 100
+theme_override_font_sizes/mono_font_size = 100
+text = "MISSION FAILED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReasonLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("3_xs0qo")
+theme_override_fonts/bold_font = ExtResource("3_xs0qo")
+theme_override_fonts/bold_italics_font = ExtResource("3_xs0qo")
+theme_override_fonts/italics_font = ExtResource("3_xs0qo")
+theme_override_fonts/mono_font = ExtResource("3_xs0qo")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_xs0qo")
+theme_override_font_sizes/font_size = 32
+text = "Start Over"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_uqirv")
+autoplay = true

@@ -109,6 +109,8 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					_switch_to_state(GnomeOrphanedState.new(self))
 				Enums.GnomeEvent.DIED:
 					_switch_to_state(GnomeDyingState.new(self))
+				Enums.GnomeEvent.HIT_SAFE_SPOT:
+					_switch_to_state(GnomeSafeTeleportState.new(self))
 		GnomeState.StateID.FOLLOW:
 			match event:
 				Enums.GnomeEvent.BECAME_ABANDONED:
@@ -121,8 +123,7 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 				Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM:
 					_switch_to_state(GnomePlatformLerpState.new(self))
 				Enums.GnomeEvent.HIT_SAFE_SPOT:
-					if is_on_floor():
-						_switch_to_state(GnomeSafeTeleportState.new(self))
+					_switch_to_state(GnomeSafeTeleportState.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
 					_switch_to_state(GnomeOrphanedState.new(self))
 				Enums.GnomeEvent.DIED:

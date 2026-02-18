@@ -15,6 +15,7 @@ const CHUNK_DURATION = 1.0/60.1
 @export var player_sibling_node: Node
 @export var level_music_player: AudioStreamPlayer
 @export var level_music_beats: JSON
+@export var game_over_scene_path: String
 
 
 var _t := 0.0
@@ -119,11 +120,15 @@ func _kill_gnome(gnome: Gnome) -> void:
 	await get_tree().create_timer(0).timeout
 	_update_gnome_count_in_hud()
 	if _current_gnome_count + _rescue_count < minimum_gnomes:
-		game_over("Not enough gnomes left to rescue")
+		game_over(GameOverScreen.Reason.NOT_ENOUGH_GNOMES)
 
-func game_over(reason: String) -> void:
-	game_over_message.set_reason(reason)
-	game_over_message.show()
+func game_over(reason: GameOverScreen.Reason) -> void:
+	var scene = load(game_over_scene_path)
+	var instance = scene.instantiate()
+	instance.reason = reason
+	get_tree().current_scene.queue_free()
+	get_tree().root.add_child(instance)
+	get_tree().current_scene = instance
 
 func _on_gnome_rescued(gnome: Gnome) -> void:
 	FollowersMonitor.remove(gnome)
