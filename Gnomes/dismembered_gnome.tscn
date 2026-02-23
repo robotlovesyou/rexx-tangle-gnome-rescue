@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://5bebiiyii4yx"]
 
-[ext_resource type="Texture2D" uid="uid://cq2rbh75ixr5h" path="res://RexxArt/Gnomes/BigGnomeDismemberedHead.png" id="1_m3kir"]
 [ext_resource type="Script" uid="uid://djntk2mswm8bl" path="res://Gnomes/dismembered_gnome.gd" id="1_qrd8y"]
 [ext_resource type="Texture2D" uid="uid://340xsg32b2wm" path="res://RexxArt/Gnomes/BigGnomeDismemberedTorso.png" id="2_ohhvt"]
-[ext_resource type="Texture2D" uid="uid://8tqbmofxdlia" path="res://RexxArt/Gnomes/BigGnomeDismemberedLeg.png" id="3_levkv"]
-[ext_resource type="Texture2D" uid="uid://p3ngit40w4r4" path="res://RexxArt/Gnomes/BigGnomeDismemberedArm.png" id="4_qrd8y"]
+[ext_resource type="Texture2D" uid="uid://cjkpxa8otmpm5" path="res://RexxArt/Gnomes/NewGnomeHead.png" id="2_qrd8y"]
+[ext_resource type="Texture2D" uid="uid://dktino7p0l5wq" path="res://RexxArt/Gnomes/NewGnomeLeg.png" id="4_3xwyj"]
+[ext_resource type="Texture2D" uid="uid://b0mddwaf3ir4" path="res://RexxArt/Gnomes/NewGnomeArm.png" id="5_svaif"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2gj8"]
 size = Vector2(10, 11)
@@ -19,11 +19,8 @@ collision_mask = 7
 mass = 5.0
 inertia = 10.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DismemberedHead"]
-polygon = PackedVector2Array(-8, 0, -8, 0, -8, -3, -3, -10, 1, -12, 4, -12, 8, -9, 10, -7, 10, -2, 8, 0, 4, 6, -2, 8, -7, 7, -8, 6, -10, 4, -10, 0)
-
 [node name="HeadSprite" type="Sprite2D" parent="DismemberedHead"]
-texture = ExtResource("1_m3kir")
+texture = ExtResource("2_qrd8y")
 
 [node name="CPUBloodSpray" type="CPUParticles2D" parent="DismemberedHead"]
 physics_interpolation_mode = 1
@@ -41,7 +38,11 @@ scale_amount_min = 0.25
 scale_amount_max = 1.5
 color = Color(1, 0, 0, 1)
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DismemberedHead"]
+polygon = PackedVector2Array(-4, 3, -4, -1, 5, -4, 10, -6, 10, -10, 5, -15, -3, -15, -5, -13, -8, -8, -9, -3, -9, 1, -6, 4)
+
 [node name="DismemberedTorso" type="RigidBody2D" parent="."]
+visible = false
 position = Vector2(0, 5)
 collision_layer = 0
 collision_mask = 7
@@ -51,6 +52,7 @@ lock_rotation = true
 
 [node name="CPUBloodSpray2" type="CPUParticles2D" parent="DismemberedTorso"]
 physics_interpolation_mode = 1
+visible = false
 position = Vector2(-2, -8)
 rotation = 3.1415927
 amount = 100
@@ -67,9 +69,11 @@ scale_amount_max = 1.5
 color = Color(1, 0, 0, 1)
 
 [node name="TorsoSprite" type="Sprite2D" parent="DismemberedTorso"]
+visible = false
 texture = ExtResource("2_ohhvt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DismemberedTorso"]
+visible = false
 position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_t2gj8")
 
@@ -81,10 +85,10 @@ mass = 10.0
 inertia = 10.0
 
 [node name="LegSprite" type="Sprite2D" parent="DismemberedLeg1"]
-texture = ExtResource("3_levkv")
+texture = ExtResource("4_3xwyj")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DismemberedLeg1"]
-polygon = PackedVector2Array(-1, -3, -1, 0, -4, 0, -4, 4, 3, 4, 3, -3)
+polygon = PackedVector2Array(-2, 1, 2, 1, 3, 2, 3, 8, -4, 8, -4, 4, -3, 2)
 
 [node name="DismemberedLeg2" type="RigidBody2D" parent="."]
 position = Vector2(6, 15)
@@ -94,10 +98,10 @@ mass = 10.0
 inertia = 10.0
 
 [node name="LegSprite" type="Sprite2D" parent="DismemberedLeg2"]
-texture = ExtResource("3_levkv")
+texture = ExtResource("4_3xwyj")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DismemberedLeg2"]
-polygon = PackedVector2Array(-1, -3, -1, 0, -4, 0, -4, 4, 3, 4, 3, -3)
+polygon = PackedVector2Array(-4, 4, -3, 2, -2, 1, 2, 1, 3, 2, 3, 8, -4, 8)
 
 [node name="DismemberedArm1" type="RigidBody2D" parent="."]
 position = Vector2(10, 6)
@@ -108,11 +112,11 @@ inertia = 10.0
 
 [node name="ArmSprite" type="Sprite2D" parent="DismemberedArm1"]
 position = Vector2(0.10000038, -0.19999981)
-texture = ExtResource("4_qrd8y")
+texture = ExtResource("5_svaif")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DismemberedArm1"]
 position = Vector2(1.1000004, -7.2)
-polygon = PackedVector2Array(-5, 5, -5, 10, -2, 10, -2, 9, 2, 9, 2, 5, 1, 4, 0, 4, -1, 5, -2, 5)
+polygon = PackedVector2Array(-7.1000004, 7.2, -3.1000004, 6.2, -2.1000004, 5.2, -0.10000038, 2.1999998, 1.8999996, 1.1999998, 3.8999996, 2.1999998, 3.8999996, 10.2, 0.8999996, 12.2, -0.10000038, 13.2, -5.1000004, 13.2, -7.1000004, 11.2)
 
 [node name="DismemberedArm2" type="RigidBody2D" parent="."]
 position = Vector2(-11, 6)
@@ -123,8 +127,8 @@ inertia = 10.0
 
 [node name="ArmSprite" type="Sprite2D" parent="DismemberedArm2"]
 position = Vector2(0.10000038, -0.19999981)
-texture = ExtResource("4_qrd8y")
+texture = ExtResource("5_svaif")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DismemberedArm2"]
 position = Vector2(1.1000004, -7.2)
-polygon = PackedVector2Array(-5, 5, -5, 10, -2, 10, -2, 9, 2, 9, 2, 5, 1, 4, 0, 4, -1, 5, -2, 5)
+polygon = PackedVector2Array(-0.10000038, 2.1999998, 1.8999996, 1.1999998, 3.8999996, 2.1999998, 3.8999996, 10.2, 0.8999996, 12.2, -0.10000038, 13.2, -5.1000004, 13.2, -7.1000004, 10.2, -7.1000004, 7.2, -3.1000004, 6.2, -2.1000004, 5.2)

@@ -2,27 +2,38 @@
 
 # TO DO
 
-# Week 1 2026
-* ~~Gnome Death~~
-* ~~Move as much code as possible out of level manager global and into base_level class~~
-* Add the game name to the launch menu screen. Use the same color technique as the tiles but for the color of each letter.
-* Have Rexxi walk back and forth mixed in with idling
+## Next Up
+* ~~Ensure new gnomes have appear/disappear and death animations~~
+* Re-build tutorial using level template			
+* Re build existing cutscene to use a bottom docked text dialog with a portrait and a next button
+* Add the Basement cutscene
+* Add a quit button to the title screen
+* Re-release with all above items fixed and included
+
+## Backlog
+* Refactor the gnomes to ignore terrain
+* Refactor the gnomes to allow for respawning
+* Add a fade between the menu screens (Partially done)
+* Decide how the game deals with difficulty, levels and level navigation, scores, save games etc
+* Add continue/new game buttons to the title screen
+* Add the next environment (blocked by all above)
+
 
 ## General
 
-* Make Game Over actually work
-* Add a fade between the menu screens
-* Switch to using file scenes instead of packed scenes
-* Gnomes need better abandonment detection. 
-* Gnomes may need better idle behaviour.
-* Idling gnomes should switch to wander after a time. 
-* Add wall terrains OR disallow jumping through the floor of non moving platforms?
-* Add an exit for the gnomes
-* Add hazards
-* Add enemies and enemy interactions
-* Add gnome panic state, triggered by falling off or missing a moving platform
-* Add a countdown timer
-* Add level completion / score
+* ~~Make Game Over actually work~~
+
+* ~~Switch to using file scenes instead of packed scenes~~
+* ~~Gnomes need better abandonment detection. ~~
+* ~~Gnomes may need better idle behaviour.~~
+* ~~Idling gnomes should switch to wander after a time. ~~
+* ~~Add wall terrains OR disallow jumping through the floor of non moving platforms?~~
+* ~~Add an exit for the gnomes~~
+* ~~Add hazards~~
+* ~~Add enemies and enemy interactions~~
+* ~~Add gnome panic state, triggered by falling off or missing a moving platform~~
+* ~~Add a countdown timer~~
+* ~~Add level completion / score~~
 
 ## Office Intro Scene
 
