@@ -49,3 +49,4 @@ func _on_cycle_envelope_phase_changed(phase: ADLoop.Phase) -> void:
 		_hit_particles.restart()
 	else:
 		_hit_particles.emitting = false
+

@@ -42,6 +42,7 @@ Gnome="A Gnome to be rescued"
 DropTrap="A Drop Trap"
 Projectile="A Projectile"
 SpawnPoint="A Player Spawn Point"
+UsesShaders="Does stuff with shaders"
 
 [input]
 

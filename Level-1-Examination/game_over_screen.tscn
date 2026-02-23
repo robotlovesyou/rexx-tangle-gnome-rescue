@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cq5h6xsgsgyge"]
+[gd_scene load_steps=7 format=3 uid="uid://fkrkcxv42han"]
 
-[ext_resource type="Script" uid="uid://cekreetawjlys" path="res://LevelTemplate/game_over_screen.gd" id="1_3s6cy"]
-[ext_resource type="PackedScene" uid="uid://cn0ro2m8rmfk" path="res://Shared/parallax_background.tscn" id="2_pmht0"]
-[ext_resource type="FontFile" uid="uid://qb70mfn5i3l1" path="res://RexxArt/CommercialAssets/Jersey10-Regular.ttf" id="3_fwtip"]
-[ext_resource type="AudioStream" uid="uid://dvxetb2di2qa5" path="res://Sounds/Music/AirOnAGString.mp3" id="4_xvfdm"]
+[ext_resource type="PackedScene" uid="uid://cn0ro2m8rmfk" path="res://Shared/parallax_background.tscn" id="1_umre8"]
+[ext_resource type="Script" uid="uid://cekreetawjlys" path="res://LevelTemplate/game_over_screen.gd" id="1_yu8ou"]
+[ext_resource type="FontFile" uid="uid://qb70mfn5i3l1" path="res://RexxArt/CommercialAssets/Jersey10-Regular.ttf" id="3_xs0qo"]
+[ext_resource type="AudioStream" uid="uid://dvxetb2di2qa5" path="res://Sounds/Music/AirOnAGString.mp3" id="4_uqirv"]
 
 [sub_resource type="Gradient" id="Gradient_n5bmp"]
 interpolation_mode = 2
@@ -16,14 +16,14 @@ metadata/_snap_count = 5
 gradient = SubResource("Gradient_n5bmp")
 
 [node name="GameOverScreen" type="Node2D"]
-script = ExtResource("1_3s6cy")
+script = ExtResource("1_yu8ou")
 start_over_path = "res://Level-1-Examination/level_1_intro.tscn"
 tile_h_count = 16
 gradient_texture = SubResource("GradientTexture1D_lylok")
 resample_chance = 0.01
 cycle_frequency = 0.1
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("2_pmht0")]
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_umre8")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -44,11 +44,11 @@ layout_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("3_fwtip")
-theme_override_fonts/bold_font = ExtResource("3_fwtip")
-theme_override_fonts/bold_italics_font = ExtResource("3_fwtip")
-theme_override_fonts/italics_font = ExtResource("3_fwtip")
-theme_override_fonts/mono_font = ExtResource("3_fwtip")
+theme_override_fonts/normal_font = ExtResource("3_xs0qo")
+theme_override_fonts/bold_font = ExtResource("3_xs0qo")
+theme_override_fonts/bold_italics_font = ExtResource("3_xs0qo")
+theme_override_fonts/italics_font = ExtResource("3_xs0qo")
+theme_override_fonts/mono_font = ExtResource("3_xs0qo")
 theme_override_font_sizes/normal_font_size = 100
 theme_override_font_sizes/bold_font_size = 100
 theme_override_font_sizes/bold_italics_font_size = 100
@@ -61,28 +61,35 @@ vertical_alignment = 1
 [node name="ReasonLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("3_fwtip")
-theme_override_fonts/bold_font = ExtResource("3_fwtip")
-theme_override_fonts/bold_italics_font = ExtResource("3_fwtip")
-theme_override_fonts/italics_font = ExtResource("3_fwtip")
-theme_override_fonts/mono_font = ExtResource("3_fwtip")
+theme_override_fonts/normal_font = ExtResource("3_xs0qo")
+theme_override_fonts/bold_font = ExtResource("3_xs0qo")
+theme_override_fonts/bold_italics_font = ExtResource("3_xs0qo")
+theme_override_fonts/italics_font = ExtResource("3_xs0qo")
+theme_override_fonts/mono_font = ExtResource("3_xs0qo")
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 theme_override_font_sizes/bold_italics_font_size = 32
 theme_override_font_sizes/italics_font_size = 32
 theme_override_font_sizes/mono_font_size = 32
-text = "(Not Enough Gnomes Left to Rescue)"
+text = "Not Enough Gnomes Left to Rescue"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="StartOverButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_fwtip")
+theme_override_fonts/font = ExtResource("3_xs0qo")
 theme_override_font_sizes/font_size = 32
-text = "Start Over"
+text = "Start Over [Spacebar]"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_xs0qo")
+theme_override_font_sizes/font_size = 32
+text = "Exit"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_xvfdm")
+stream = ExtResource("4_uqirv")
+volume_db = -9.0
 autoplay = true
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

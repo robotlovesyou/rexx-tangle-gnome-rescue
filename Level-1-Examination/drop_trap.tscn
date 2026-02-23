@@ -45,7 +45,7 @@ scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_i170g")
 alpha_curve = SubResource("CurveTexture_i170g")
 
-[node name="DropTrap" type="Node2D"]
+[node name="DropTrap" type="Node2D" groups=["UsesShaders"]]
 script = ExtResource("1_wgvpv")
 cycle_envelope = SubResource("Resource_lersg")
 hit_sounds = Array[AudioStreamWAV]([ExtResource("4_lersg")])

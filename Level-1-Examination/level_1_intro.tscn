@@ -12,8 +12,16 @@ characters_per_second = 30.0
 intro_text = "Welcome to the \"Not even an alpha\" release of [p][b]Rexx Tangle: Gnome Rescue[/b][/p]
 This is just the first level of the game and does not include the story elements, or even a tutorial.
 
+The aim of the game is to collect gnomes, by walking over them, and return them to safety here:
+[img=24]res://RexxArt/Shared/GnomeSafeSpot.png[/img]
+You can return here with gnomes as many times as you like but you must collect at least 5 gnomes before the time runs out.
+
+When you have collected enough gnomes an exit will appear:
+[img=22]res://RexxArt/Shared/ExitIcon.png[/img]
+Stand over it and jump to complete the level
+
 Controls:
-Left: [img=32]res://Level-1-Examination/ArrowL.png[/img]
+Left: [img]res://Level-1-Examination/ArrowL.png[/img]
 Right: [img]res://Level-1-Examination/ArrowR.png[/img]
 Jump: [Spacebar]
 Double Jump: Hit space when already jumping

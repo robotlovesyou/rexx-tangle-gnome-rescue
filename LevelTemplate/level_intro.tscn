@@ -12,6 +12,10 @@ characters_per_second = 15.0
 intro_text = "Welcome to the \"Not even an alpha\" release of [p][b]Rexx Tangle: Gnome Rescue[/b][/p]
 This is just the first level of the game and does not include the story elements, or even a tutorial.
 
+The aim of the game is to collect gnomes, by walking over them, and return them to safety by bringing them back here:
+
+
+
 Controls:
 Left: ←
 Right: →

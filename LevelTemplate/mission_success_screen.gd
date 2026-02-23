@@ -1,13 +1,6 @@
 @tool
-class_name GameOverScreen
+class_name MissionSuccessScreen
 extends Node2D
-
-enum Reason {
-	NOT_ENOUGH_GNOMES,
-	TIMED_OUT
-}
-
-@export var start_over_path: String
 
 var _initialized = false
 var _tile_h_count: int
@@ -42,50 +35,39 @@ var _cycle_frequency: float
 		if is_node_ready():
 			_parallax_background.cycle_frequency = _cycle_frequency
 
-@export var exit_disabled_seconds := 1.0
-var _t := 0.0
-
-var _reason := Reason.NOT_ENOUGH_GNOMES
-var reason: Reason:
-	get: return _reason
-	set(val): 
-		_reason = val
-		if is_node_ready():
-			_set_reason_text()
-
 var _parallax_background: ParallaxBackground:
 	get: return $ParallaxBackground
 
-var _reason_label: RichTextLabel:
-	get: return $CanvasLayer/MarginContainer/VBoxContainer/ReasonLabel
-
-func _ready() -> void:
-	_tile_h_count = _parallax_background.tile_h_count
-	_gradient_texture = _parallax_background.gradient_texture
-	_resample_chance = _parallax_background.resample_chance
-	_cycle_frequency = _parallax_background.cycle_frequency
-	_set_reason_text()
-	_initialized = true
-
-func _set_reason_text() -> void:
-	match _reason:
-		Reason.NOT_ENOUGH_GNOMES:
-			_reason_label.text = "Not Enough Gnomes Left to Rescue"
-		Reason.TIMED_OUT:
-			_reason_label.text = "Ran Out of Time"
+@export var fireworks_gpu_particles: Array[PackedScene]
+@export var spawn_chance := 1.0/60.0
+@export var next_scene_path: String
+@export var exit_disabled_seconds := 1.0
+var _t := 0.0
 
 func _physics_process(delta: float) -> void:
 	if !Engine.is_editor_hint():
 		_t += delta
+		if randf() <= spawn_chance:
+			var w = get_viewport().get_visible_rect().size.x
+			var h = get_viewport().get_visible_rect().size.y
+			var x = randi_range(0, w)
+			var y = randi_range(0, h)
+			var firework = fireworks_gpu_particles.pick_random().instantiate() as GPUParticles2D
+			add_child(firework)
+			firework.position.x = x
+			firework.position.y = y
+			firework.restart()
+
 		if Input.is_action_just_released("ui_accept") and _t >= exit_disabled_seconds:
 			_change_to_next_scene()
 
 
+func _change_to_next_scene() -> void:
+	get_tree().change_scene_to_file(next_scene_path)	
+
+
 func _on_button_pressed() -> void:
 	_change_to_next_scene()
-
-func _change_to_next_scene() -> void:
-	get_tree().change_scene_to_file(start_over_path)
 
 
 func _on_exit_button_pressed() -> void:

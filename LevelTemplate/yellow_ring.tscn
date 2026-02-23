@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b00bib7o5fpmf"]
+
+[sub_resource type="Curve" id="Curve_lxuxy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7366412, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4l576"]
+curve = SubResource("Curve_lxuxy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_alogg"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 42.1
+emission_ring_inner_radius = 34.25
+emission_ring_cone_angle = 90.0
+direction = Vector3(1, 1, 0)
+radial_velocity_min = 99.99998
+radial_velocity_max = 149.99997
+gravity = Vector3(0, 98, 0)
+color = Color(1, 1, 0.011764706, 1)
+alpha_curve = SubResource("CurveTexture_4l576")
+
+[node name="YellowRing" type="GPUParticles2D"]
+emitting = false
+amount = 360
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_alogg")

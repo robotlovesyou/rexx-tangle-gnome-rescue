@@ -82,7 +82,7 @@ radius = 302.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_vktl0"]
 radius = 32.0
 
-[node name="LazerTrap" type="Node2D"]
+[node name="LazerTrap" type="Node2D" groups=["UsesShaders"]]
 script = ExtResource("1_pl2bt")
 projectile_scene = ExtResource("3_0tslq")
 

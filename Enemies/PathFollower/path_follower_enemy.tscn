@@ -229,7 +229,7 @@ curve = SubResource("Curve2D_jh8ke")
 [node name="PathFollow2D" type="PathFollow2D" parent="PathToFollow"]
 position = Vector2(-9.951384e-07, -1.9073485e-06)
 
-[node name="PathFollowerEnemy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("path_follower", "animated_sprite", "death_particles") groups=["Enemy"]]
+[node name="PathFollowerEnemy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("path_follower", "animated_sprite", "death_particles") groups=["Enemy", "UsesShaders"]]
 collision_layer = 16
 collision_mask = 7
 script = ExtResource("1_jh8ke")
@@ -249,6 +249,7 @@ autoplay = "walk"
 [node name="DeathParticles" type="GPUParticles2D" parent="PathFollowerEnemy"]
 emitting = false
 amount = 25
+one_shot = true
 trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_sj4f2")
 

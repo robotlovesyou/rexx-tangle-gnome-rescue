@@ -145,7 +145,7 @@ size = Vector2(128, 240)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8n08"]
 size = Vector2(32, 48)
 
-[node name="RifleTrapUp" type="Node2D"]
+[node name="RifleTrapUp" type="Node2D" groups=["UsesShaders"]]
 script = ExtResource("1_bqniq")
 projectile_scene = ExtResource("2_oy4wm")
 

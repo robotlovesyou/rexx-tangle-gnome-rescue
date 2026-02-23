@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpgean18i4l5y"]
+
+[sub_resource type="Curve" id="Curve_fvp73"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7366412, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gnxsy"]
+curve = SubResource("Curve_fvp73")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rnlow"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 42.1
+emission_ring_inner_radius = 34.25
+emission_ring_cone_angle = 90.0
+direction = Vector3(1, 1, 0)
+radial_velocity_min = 99.99998
+radial_velocity_max = 149.99997
+gravity = Vector3(0, 98, 0)
+color = Color(0.92871994, 0.11452996, 0.99999994, 1)
+alpha_curve = SubResource("CurveTexture_gnxsy")
+
+[node name="YellowRing" type="GPUParticles2D"]
+emitting = false
+amount = 360
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_rnlow")

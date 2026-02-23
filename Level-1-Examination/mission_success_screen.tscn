@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://dashvcplu6gax"]
+
+[ext_resource type="Script" uid="uid://c4yqap2bm1ya5" path="res://LevelTemplate/mission_success_screen.gd" id="1_ojufc"]
+[ext_resource type="PackedScene" uid="uid://cn0ro2m8rmfk" path="res://Shared/parallax_background.tscn" id="1_qfebs"]
+[ext_resource type="Texture2D" uid="uid://d03rhsrc37ahf" path="res://LevelTemplate/intro_background_gradient.tres" id="2_dijl7"]
+[ext_resource type="PackedScene" uid="uid://cpgean18i4l5y" path="res://LevelTemplate/purple_ring.tscn" id="3_duxob"]
+[ext_resource type="PackedScene" uid="uid://bvqmfm4dkn03g" path="res://LevelTemplate/red_ball.tscn" id="4_043jv"]
+[ext_resource type="PackedScene" uid="uid://b00bib7o5fpmf" path="res://LevelTemplate/yellow_ring.tscn" id="5_uch37"]
+[ext_resource type="PackedScene" uid="uid://cxogmep4xxtax" path="res://LevelTemplate/pink_ball.tscn" id="6_vaxye"]
+[ext_resource type="FontFile" uid="uid://qb70mfn5i3l1" path="res://RexxArt/CommercialAssets/Jersey10-Regular.ttf" id="8_043jv"]
+
+[node name="MissionSuccessScreen" type="Node2D"]
+script = ExtResource("1_ojufc")
+tile_h_count = 16
+gradient_texture = ExtResource("2_dijl7")
+resample_chance = 0.01
+cycle_frequency = 0.1
+fireworks_gpu_particles = Array[PackedScene]([ExtResource("3_duxob"), ExtResource("4_043jv"), ExtResource("5_uch37"), ExtResource("6_vaxye")])
+spawn_chance = 0.01
+next_scene_path = "res://Level-1-Examination/level_1_intro.tscn"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_qfebs")]
+gradient_texture = ExtResource("2_dijl7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("8_043jv")
+theme_override_fonts/bold_font = ExtResource("8_043jv")
+theme_override_fonts/bold_italics_font = ExtResource("8_043jv")
+theme_override_fonts/italics_font = ExtResource("8_043jv")
+theme_override_fonts/mono_font = ExtResource("8_043jv")
+theme_override_font_sizes/normal_font_size = 128
+theme_override_font_sizes/bold_font_size = 120
+theme_override_font_sizes/bold_italics_font_size = 120
+theme_override_font_sizes/italics_font_size = 120
+theme_override_font_sizes/mono_font_size = 120
+bbcode_enabled = true
+text = "[wave][rainbow]MISSION SUCCESSFUL![/rainbow][/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AgainButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_043jv")
+theme_override_font_sizes/font_size = 32
+text = "Again, again! [Spacebar]"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_043jv")
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/AgainButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

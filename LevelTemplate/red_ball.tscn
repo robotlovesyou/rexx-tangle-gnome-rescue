@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvqmfm4dkn03g"]
+
+[sub_resource type="Curve" id="Curve_nk1mk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7633588, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7tfmr"]
+curve = SubResource("Curve_nk1mk")
+
+[sub_resource type="Curve" id="Curve_bnjqk"]
+_data = [Vector2(0.0038167983, 0), 0.0, 0.0, 0, 0, Vector2(0.07633588, 1), 0.0, 0.0, 0, 0, Vector2(0.7366412, 1), 0.0, 0.0, 0, 0, Vector2(0.9961832, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_slw7f"]
+curve = SubResource("Curve_bnjqk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x5iqi"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.29
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 99.99998
+radial_velocity_max = 149.99997
+gravity = Vector3(0, 98, 0)
+scale_max = 3.0
+color = Color(0.99999994, 0.04050286, 0.022352692, 1)
+alpha_curve = SubResource("CurveTexture_7tfmr")
+emission_curve = SubResource("CurveTexture_slw7f")
+
+[node name="PinkBall" type="GPUParticles2D"]
+emitting = false
+amount = 360
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.61
+fixed_fps = 60
+trail_enabled = true
+trail_lifetime = 0.05
+process_material = SubResource("ParticleProcessMaterial_x5iqi")

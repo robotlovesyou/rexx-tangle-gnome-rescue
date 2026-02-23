@@ -9,13 +9,14 @@ const CHUNK_DURATION = 1.0/60.1
 @export var next_level: String
 @export var exit: Exit
 @export var hud: HUD
-@export var game_over_message: GameOverMessage
 @export var minimum_gnomes: int
 @export var timer_seconds: int
 @export var player_sibling_node: Node
 @export var level_music_player: AudioStreamPlayer
 @export var level_music_beats: JSON
 @export var game_over_scene_path: String
+@export var mission_successful_scene_path: String
+@export var shader_compiler_camera: Camera2D
 
 
 var _t := 0.0
@@ -27,6 +28,7 @@ var _beats: Array[int] = []
 
 func _ready() -> void:
 	_spawn_player(self, player_sibling_node)
+	# use_all_shaders_and_sfx()
 	MovementHistory.reset($Player.position, Enums.Action.IDLING)
 	Events.player_hit_spike_trap.connect(_on_player_hit_spike_trap)
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
@@ -66,6 +68,9 @@ func _physics_process(delta: float) -> void:
 		if _beats[current_chunk] == 1:
 			Events.beat_channel_1_fired_sync()
 	
+	if timer_seconds - floor(_t) <= 0.0:
+		game_over(GameOverScreen.Reason.TIMED_OUT)
+
 	hud.update_timer(timer_seconds - floor(_t))
 	if _player_over_exit and Input.is_action_just_pressed("ui_accept"):
 		PMonitor.player.exit(exit)

@@ -60,5 +60,6 @@ func die() -> void:
 	collision_layer = 0 # stop colliding with the player
 	animated_sprite.play("die")
 	death_player.play()
-	death_particles.emitting = true
+	death_particles.restart()
 	died.emit()
+

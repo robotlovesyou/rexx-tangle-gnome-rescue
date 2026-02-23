@@ -119,3 +119,4 @@ func _on_safe_zone_body_entered(body: Node2D) -> void:
 func _on_safe_zone_body_exited(body: Node2D) -> void:
 	if body is Player:
 		_player_out_of_safe()
+
