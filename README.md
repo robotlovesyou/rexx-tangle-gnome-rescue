@@ -4,10 +4,10 @@
 
 ## Next Up
 * ~~Ensure new gnomes have appear/disappear and death animations~~
+* ~~Make the spike trap above the third gnome less of a shit~~
 * Re-build tutorial using level template			
 * Re build existing cutscene to use a bottom docked text dialog with a portrait and a next button
 * Add the Basement cutscene
-* Add a quit button to the title screen
 * Re-release with all above items fixed and included
 
 ## Backlog

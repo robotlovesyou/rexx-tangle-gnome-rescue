@@ -34,4 +34,3 @@ func _on_door_animation_animation_finished() -> void:
 		Phase.CLOSING:
 			_phase = Phase.CLOSED
 			_door_collision_shape.disabled = false
-

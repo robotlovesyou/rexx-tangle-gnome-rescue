@@ -3516,7 +3516,7 @@ size = Vector2(273, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_5wwgy"]
 radius = 369.04877
 
-[node name="Level1Examination" type="Node2D" node_paths=PackedStringArray("exit", "hud", "player_sibling_node", "level_music_player", "shader_compiler_camera")]
+[node name="Level1Examination" type="Node2D" node_paths=PackedStringArray("exit", "hud", "player_sibling_node", "level_music_player")]
 script = ExtResource("1_xcvpb")
 player_scene = ExtResource("2_lpkm8")
 broken_player_scene = ExtResource("3_5y7yk")
@@ -3531,7 +3531,6 @@ level_music_player = NodePath("LevelMusicPlayer")
 level_music_beats = ExtResource("5_thoww")
 game_over_scene_path = "res://Level-1-Examination/game_over_screen.tscn"
 mission_successful_scene_path = "res://Level-1-Examination/mission_success_screen.tscn"
-shader_compiler_camera = NodePath("ShaderCompilerCamera")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.5, 0.5)
@@ -3905,9 +3904,6 @@ position = Vector2(1160, 464)
 
 [node name="SpikeTrapDown12" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
 position = Vector2(1160, 464)
-
-[node name="SpikeTrapDown13" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(3336, -112)
 
 [node name="SpikeTrapDown14" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
 position = Vector2(3352, -112)

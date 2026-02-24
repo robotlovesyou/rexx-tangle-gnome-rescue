@@ -16,7 +16,8 @@ const CHUNK_DURATION = 1.0/60.1
 @export var level_music_beats: JSON
 @export var game_over_scene_path: String
 @export var mission_successful_scene_path: String
-@export var shader_compiler_camera: Camera2D
+@export var show_gnome_count: bool
+@export var show_timer: bool
 
 
 var _t := 0.0
@@ -27,8 +28,17 @@ var _player_over_exit := false
 var _beats: Array[int] = []
 
 func _ready() -> void:
+	if show_gnome_count:
+		hud.show_gnome_count()
+	else:
+		hud.hide_gnome_count()
+		
+	if show_timer:
+		hud.show_timer()
+	else:
+		hud.hide_timer()
+		
 	_spawn_player(self, player_sibling_node)
-	# use_all_shaders_and_sfx()
 	MovementHistory.reset($Player.position, Enums.Action.IDLING)
 	Events.player_hit_spike_trap.connect(_on_player_hit_spike_trap)
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
