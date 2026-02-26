@@ -32,7 +32,7 @@ title_color_change_chance = 0.01
 title_gradient = SubResource("GradientTexture1D_xuj3a")
 new_game_button = NodePath("MenuRoot/MenuCentering/VBoxContainer/CenterContainer/VBoxContainer/NewGameButton")
 quit_button = NodePath("MenuRoot/MenuCentering/VBoxContainer/CenterContainer/VBoxContainer/QuitButton")
-next_scene = "res://office_intro_scene_v_2.tscn"
+next_scene = "res://Cutscenes/basement_intro/basement_intro.tscn"
 
 [node name="MenuBackground" parent="." instance=ExtResource("2_raj00")]
 

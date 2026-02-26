@@ -3531,6 +3531,8 @@ level_music_player = NodePath("LevelMusicPlayer")
 level_music_beats = ExtResource("5_thoww")
 game_over_scene_path = "res://Level-1-Examination/game_over_screen.tscn"
 mission_successful_scene_path = "res://Level-1-Examination/mission_success_screen.tscn"
+show_gnome_count = true
+show_timer = true
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.5, 0.5)

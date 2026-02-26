@@ -10,6 +10,8 @@
 * ~~Fix the bug with the gnome chain getting further behind the player~~
 * ~~Re build existing cutscene to use a bottom docked text dialog with a portrait and a next button~~
 * ~~Add the Basement cutscene~~
+* Add an intro screen for the training level
+* Update the intro screen for the examination level to reflect the tutorial now existing.
 * Stop gnomes dying off screen long after player has died
 * Re-release with all above items fixed and included
 
@@ -17,6 +19,9 @@
 * Better beat data for the examination level
 * Refactor the gnomes to ignore terrain
 * Refactor the gnomes to allow for respawning
+* Use Jules' gnome recordings.
+* Gnome death sfx
+* Gnome rescue sfx
 * Add the next environment (blocked by all above)
 * Add a fade between the menu screens (Partially done)
 * Decide how the game deals with difficulty, levels and level navigation, scores, save games etc

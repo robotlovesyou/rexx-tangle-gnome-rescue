@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RexxTangleGnomeRescue"
-run/main_scene="uid://cdo8ugf57hem2"
+run/main_scene="uid://bu53arek8otth"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
