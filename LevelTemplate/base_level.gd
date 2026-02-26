@@ -40,6 +40,7 @@ func _ready() -> void:
 		
 	_spawn_player(self, player_sibling_node)
 	MovementHistory.reset($Player.position, Enums.Action.IDLING)
+	FollowersMonitor.reset()
 	Events.player_hit_spike_trap.connect(_on_player_hit_spike_trap)
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
 	Events.player_hit_drop_trap.connect(_on_player_hit_drop_trap)

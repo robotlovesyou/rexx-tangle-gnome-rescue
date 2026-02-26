@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=4 uid="uid://b5otshbvwmath"]
+[gd_scene load_steps=135 format=4 uid="uid://b5otshbvwmath"]
 
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="PackedScene" uid="uid://5bebiiyii4yx" path="res://Gnomes/dismembered_gnome.tscn" id="4_d50g8"]
@@ -2749,6 +2749,51 @@ turbulence_noise_speed_random = 0.1
 turbulence_influence_min = 0.05
 turbulence_influence_over_life = SubResource("CurveTexture_swevn")
 
+[sub_resource type="Curve" id="Curve_wxtdl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7319149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_215bb"]
+curve = SubResource("Curve_wxtdl")
+
+[sub_resource type="Gradient" id="Gradient_gvhsn"]
+colors = PackedColorArray(0.19310254, 0.30628648, 0.7774328, 1, 0.49, 0.6854999, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7yfge"]
+gradient = SubResource("Gradient_gvhsn")
+
+[sub_resource type="Curve" id="Curve_3uh1m"]
+_data = [Vector2(0, 0.9438202), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_r437d"]
+curve = SubResource("Curve_3uh1m")
+
+[sub_resource type="Curve" id="Curve_bolsf"]
+_data = [Vector2(0.31751823, 0), 0.0, 0.0, 0, 0, Vector2(0.5109489, 0.77382755), 0.0, 0.0, 0, 0, Vector2(0.76277375, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5j5mf"]
+curve = SubResource("Curve_bolsf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vmrl8"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(64, 64, 0)
+gravity = Vector3(0, -98, 0)
+scale_min = 2.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_7yfge")
+alpha_curve = SubResource("CurveTexture_215bb")
+emission_curve = SubResource("CurveTexture_r437d")
+turbulence_enabled = true
+turbulence_noise_strength = 0.05
+turbulence_noise_scale = 10.0
+turbulence_noise_speed = Vector3(-1, 0, 0)
+turbulence_noise_speed_random = 0.1
+turbulence_influence_min = 0.05
+turbulence_influence_over_life = SubResource("CurveTexture_5j5mf")
+
 [sub_resource type="Curve" id="Curve_7yfge"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7319149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -3509,10 +3554,9 @@ position = Vector2(1616, -1672)
 shape = SubResource("RectangleShape2D_wbhwl")
 
 [node name="DirectionIndicatorParticlesRight" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
-visible = false
-position = Vector2(40, 752)
+position = Vector2(2768, -336)
 amount = 16
-lifetime = 4.0
+lifetime = 6.0
 process_material = ExtResource("40_tdp4v")
 
 [node name="DirectionIndicatorParticlesRight2" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
@@ -3523,8 +3567,7 @@ lifetime = 4.0
 process_material = ExtResource("40_tdp4v")
 
 [node name="DirectionIndicatorParticlesLeft" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
-visible = false
-position = Vector2(3696, -912)
+position = Vector2(-128, 704)
 amount = 16
 lifetime = 4.0
 process_material = SubResource("ParticleProcessMaterial_oiwpp")
@@ -3537,10 +3580,16 @@ lifetime = 4.0
 process_material = ExtResource("42_fa5wb")
 
 [node name="DirectionIndicatorParticlesUp" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
-position = Vector2(1088, 224)
+position = Vector2(-712, 624)
 amount = 16
 lifetime = 4.0
 process_material = SubResource("ParticleProcessMaterial_6kxcu")
+
+[node name="DirectionIndicatorParticlesUp2" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
+position = Vector2(1088, 224)
+amount = 16
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_vmrl8")
 
 [node name="DirectionIndicatorParticlesDown" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
 visible = false

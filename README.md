@@ -5,19 +5,22 @@
 ## Next Up
 * ~~Ensure new gnomes have appear/disappear and death animations~~
 * ~~Make the spike trap above the third gnome less of a shit~~
-* Re-build tutorial using level template			
-* Re build existing cutscene to use a bottom docked text dialog with a portrait and a next button
-* Add the Basement cutscene
+* ~~Re-build tutorial using updated appearance~~
+* ~~Add an extra gnome and update dialog texts~~
+* ~~Fix the bug with the gnome chain getting further behind the player~~
+* ~~Re build existing cutscene to use a bottom docked text dialog with a portrait and a next button~~
+* ~~Add the Basement cutscene~~
+* Stop gnomes dying off screen long after player has died
 * Re-release with all above items fixed and included
 
 ## Backlog
+* Better beat data for the examination level
 * Refactor the gnomes to ignore terrain
 * Refactor the gnomes to allow for respawning
+* Add the next environment (blocked by all above)
 * Add a fade between the menu screens (Partially done)
 * Decide how the game deals with difficulty, levels and level navigation, scores, save games etc
 * Add continue/new game buttons to the title screen
-* Add the next environment (blocked by all above)
-
 
 ## General
 
@@ -34,60 +37,6 @@
 * ~~Add gnome panic state, triggered by falling off or missing a moving platform~~
 * ~~Add a countdown timer~~
 * ~~Add level completion / score~~
-
-## Office Intro Scene
-
-* Add user interaction to acknowledge text
-* Split text across > 1 dialog
-
-## Training Level
-
-* ~~Add walking sound to player~~
-* ~~Add jump sound to player~~
-* ~~Add double jump sound to player~~
-* ~~Add wall jump sound to player~~
-* ~~Add death sound to player (broken crockery?)~~
-* ~~Add exit sound effect for player~~
-* ~~Add skid sound to player~~ (could do with some work)
-* ~~Add skid particles to player~~
-* ~~Add death sound for path follower enemy~~
-* ~~Add proper exit handling (don't just free the player)~~
-* Add rescue sound for gnome
-* Add exit sound for gnome
-* ~~Create a base class for the level~~
-* Move the level manager code into the base class (not sure about this)
-* Make signal handling consistent (events bus vs whatever else) (also not sure about this)
-* Tidy code for consistency (how to access child nodes. how to access config, etc)
-* ~~Add hazard blocks~~
-* ~~Add enemies~~
-* ~~Add jumping on enemies~~
-* ~~Add vertical platforms~~
-* ~~Add horizontal platforms~~
-* ~~Add Gnomes~~
-* ~~Add Player Death~~
-* ~~Add Gnome Rescue: In progress~~
-* ~~Add the timer and rescue counter~~
-
-
-* ~~Add double jumps~~
-* ~~Add wall jumps~~
-* ~~Add wall slides~~
-* ~~Add gnomes~~
-* ~~Gnomes - Handle Wait~~
-* ~~Gnomes - Handle Collection~~
-* ~~Gnomes - Handle WALKING~~
-* ~~Add moving platforms: Done but gnomes need to correctly move while player is on them~~
-* ~~Gnomes - Handle approaching platforms~~
-* ~~Gnomes - Handle JUMPING: partially done but needs animation~~
-* ~~Gnomes - Handle STRAYING when the player is IDLE: partially done but needs to switch to wander state after a given time~~
-* ~~new GnomeFollowState can sometimes get stuck and jump. Need to detect when stuck and react appropriately~~
-* ~~Straying gnomes need to eventually enter wander state~~
-* ~~Straying gnomes need to react to gravity in the event that they walk off a ledge.~~
-* ~~Handle going into wander state if the player gets too far away after becoming stuck~~
-* ~~Gnomes - Handle STRAYING on platforms when the player is IDLE~~
-* ~~Alter number of follow lerp frames depending on gnome index~~
-* ~~Also lerp toward eventual offset to prevent giant leaps back in history~~
-* ~~When stuck, try adding a little hop _before_ starting the follow lerp~~
 
 # Possible better way to detect being abandoned
 If the gnome is in some kind of idle state (stray, platform_idle etc) for > a set time AND has greater than LIMIT y difference

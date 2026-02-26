@@ -84,6 +84,7 @@ flip_h = true
 libraries = {
 &"": SubResource("AnimationLibrary_f6lok")
 }
+autoplay = "idle"
 
 [node name="RexxEars" type="AudioListener2D" parent="."]
 current = true

@@ -1,4 +1,10 @@
-[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://b375kt25cr6s8"]
+[gd_resource type="AudioBusLayout" load_steps=10 format=3 uid="uid://b375kt25cr6s8"]
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_j3pel"]
+resource_name = "Limiter"
+ceiling_db = -2.0
+threshold_db = -1.0
+soft_clip_db = 0.0
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
 resource_name = "Compressor"
@@ -36,6 +42,8 @@ resource_name = "Reverb"
 wet = 0.05
 
 [resource]
+bus/0/effect/0/effect = SubResource("AudioEffectLimiter_j3pel")
+bus/0/effect/0/enabled = true
 bus/1/name = &"SFX"
 bus/1/solo = false
 bus/1/mute = false

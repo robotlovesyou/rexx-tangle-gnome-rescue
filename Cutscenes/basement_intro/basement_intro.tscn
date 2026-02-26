@@ -1,0 +1,586 @@
+[gd_scene load_steps=32 format=3 uid="uid://cb4i744132bot"]
+
+[ext_resource type="Texture2D" uid="uid://bhx37l0f6d30c" path="res://RexxArt/basement_intro/Background.png" id="1_pchyy"]
+[ext_resource type="Script" uid="uid://cjkee6qqilye8" path="res://Cutscenes/basement_intro/basement_intro.gd" id="1_ywbvp"]
+[ext_resource type="Texture2D" uid="uid://c5kt8tfkdhpp0" path="res://RexxArt/OfficeIntro/Mmmmud.png" id="2_7n6so"]
+[ext_resource type="Texture2D" uid="uid://df7mymr61stq3" path="res://RexxArt/OfficeIntro/Wrrrmy.png" id="3_u5pvl"]
+[ext_resource type="PackedScene" uid="uid://cm3ja0664tlao" path="res://Shared/cutscene_rexx.tscn" id="4_u5pvl"]
+[ext_resource type="Texture2D" uid="uid://oohis1klio74" path="res://RexxArt/OfficeIntro/RexxPortrait.png" id="5_y8j24"]
+[ext_resource type="Texture2D" uid="uid://4j8j1iho2hpg" path="res://RexxArt/basement_intro/MamaTangle.png" id="6_hsqd1"]
+[ext_resource type="Script" uid="uid://c5slkx4qtio3j" path="res://Cutscenes/office_intro/dialog_layer.gd" id="8_breoy"]
+[ext_resource type="Texture2D" uid="uid://cpng7r3er2vw8" path="res://RexxArt/basement_intro/MamaPortrait.png" id="8_flume"]
+[ext_resource type="Texture2D" uid="uid://d1e54v671qpth" path="res://RexxArt/UI/DialogBoxV2.png" id="9_flume"]
+[ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="10_6dgnh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2fs6"]
+atlas = ExtResource("3_u5pvl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7vwt"]
+atlas = ExtResource("3_u5pvl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y8j24"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2fs6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7vwt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="Animation" id="Animation_u5pvl"]
+resource_name = "cutscene"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutsceneRexx")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"idle"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.33333334, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.9001, 1, 1.1, 1.2, 1.2001001, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"show_mama_dialog_1"
+}, {
+"args": [],
+"method": &"close_dialog"
+}, {
+"args": [],
+"method": &"show_rexxi_dialog_1"
+}, {
+"args": [],
+"method": &"close_dialog"
+}, {
+"args": [],
+"method": &"close_dialog"
+}, {
+"args": [],
+"method": &"show_mama_dialog_2"
+}, {
+"args": [],
+"method": &"close_dialog"
+}, {
+"args": [],
+"method": &"show_rexxi_dialog_2"
+}, {
+"args": [],
+"method": &"close_dialog"
+}, {
+"args": [],
+"method": &"show_face_on"
+}, {
+"args": [],
+"method": &"close_dialog"
+}, {
+"args": [],
+"method": &"show_both_dialog"
+}, {
+"args": [],
+"method": &"close_dialog"
+}, {
+"args": [],
+"method": &"hide_face_on"
+}, {
+"args": [],
+"method": &"show_rexxi_dialog_3"
+}, {
+"args": [],
+"method": &"close_dialog"
+}, {
+"args": [],
+"method": &"start_next_level"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y8j24"]
+_data = {
+&"cutscene": SubResource("Animation_u5pvl")
+}
+
+[sub_resource type="Animation" id="Animation_v1fss"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hsqd1"]
+resource_name = "pulse"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dhyn7"]
+_data = {
+&"RESET": SubResource("Animation_v1fss"),
+&"pulse": SubResource("Animation_hsqd1")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1fss"]
+atlas = ExtResource("6_hsqd1")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhyn7"]
+atlas = ExtResource("6_hsqd1")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fowu"]
+atlas = ExtResource("6_hsqd1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywbvp"]
+atlas = ExtResource("6_hsqd1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hsqd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1fss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhyn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fowu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywbvp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_jdagy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6dgnh"]
+resource_name = "pulse"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mmush"]
+_data = {
+&"RESET": SubResource("Animation_jdagy"),
+&"pulse": SubResource("Animation_6dgnh")
+}
+
+[sub_resource type="Animation" id="Animation_daw8o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/TrainingDialogLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/NinePatchRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/PanelContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_swwo2"]
+resource_name = "close_dialog"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, 100), Vector2(4, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/NinePatchRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/TrainingDialogLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/PanelContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.010004105),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_3crw2"]
+resource_name = "open_dialog"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/TrainingDialogLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/NinePatchRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/NinePatchRect:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(640, 100)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/PanelContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_swwo2"]
+_data = {
+&"RESET": SubResource("Animation_daw8o"),
+&"close_dialog": SubResource("Animation_swwo2"),
+&"open_dialog": SubResource("Animation_3crw2")
+}
+
+[node name="BasementIntro" type="Node2D"]
+script = ExtResource("1_ywbvp")
+rexx_portrait_path = "res://RexxArt/OfficeIntro/RexxPortrait.png"
+rexx_portrait_name = "Rexx Tangle"
+mama_portrait_path = "res://RexxArt/basement_intro/MamaPortrait.png"
+mama_portrait_name = "Mama Tangle"
+both_portrait_path = "res://RexxArt/basement_intro/MamaAndRexxPortrait.png"
+both_portrait_name = "Rexx and Mama"
+next_screen = "res://Cutscenes/office_intro/office_intro_scene_v_2.tscn"
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(320, 200)
+texture = ExtResource("1_pchyy")
+
+[node name="Mmmmud" type="Sprite2D" parent="."]
+position = Vector2(640, 350)
+texture = ExtResource("2_7n6so")
+
+[node name="Wrrmy" type="AnimatedSprite2D" parent="."]
+position = Vector2(51, 343)
+sprite_frames = SubResource("SpriteFrames_y8j24")
+autoplay = "default"
+
+[node name="Wrrmy2" type="AnimatedSprite2D" parent="."]
+position = Vector2(366, 386)
+sprite_frames = SubResource("SpriteFrames_y8j24")
+autoplay = "default"
+
+[node name="Wrrmy3" type="AnimatedSprite2D" parent="."]
+position = Vector2(600, 317)
+sprite_frames = SubResource("SpriteFrames_y8j24")
+autoplay = "default"
+
+[node name="CutsceneRexx" parent="." instance=ExtResource("4_u5pvl")]
+position = Vector2(193, 284)
+
+[node name="CutscenePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_y8j24")
+}
+autoplay = "cutscene"
+
+[node name="RexxFaceOn" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(193, 270)
+texture = ExtResource("5_y8j24")
+
+[node name="LookForwardPlayer" type="AnimationPlayer" parent="RexxFaceOn"]
+libraries = {
+&"": SubResource("AnimationLibrary_dhyn7")
+}
+autoplay = "pulse"
+
+[node name="MamaTangle" type="AnimatedSprite2D" parent="."]
+position = Vector2(521, 156)
+sprite_frames = SubResource("SpriteFrames_hsqd1")
+autoplay = "default"
+
+[node name="MamaFaceOn" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(521, 158)
+texture = ExtResource("8_flume")
+
+[node name="LookForwardPlayer" type="AnimationPlayer" parent="MamaFaceOn"]
+libraries = {
+&"": SubResource("AnimationLibrary_mmush")
+}
+autoplay = "pulse"
+
+[node name="DialogLayer" type="CanvasLayer" parent="."]
+script = ExtResource("8_breoy")
+
+[node name="CenterContainer" type="CenterContainer" parent="DialogLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="DialogLayer/CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+texture = ExtResource("9_flume")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogLayer/CenterContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogLayer/CenterContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogLayer/CenterContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="TrainingDialogLabel" type="RichTextLabel" parent="DialogLayer/CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("10_6dgnh")
+theme_override_fonts/bold_font = ExtResource("10_6dgnh")
+theme_override_fonts/mono_font = ExtResource("10_6dgnh")
+bbcode_enabled = true
+text = "Hello [b]Mum[/b]"
+fit_content = true
+scroll_active = false
+
+[node name="Label" type="Label" parent="DialogLayer/CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_6dgnh")
+text = "Hit [Space] to continue."
+
+[node name="PanelContainer" type="PanelContainer" parent="DialogLayer/CenterContainer/NinePatchRect/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogLayer/CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="DialogLayer/CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_y8j24")
+stretch_mode = 5
+
+[node name="PortraitLabel" type="Label" parent="DialogLayer/CenterContainer/NinePatchRect/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_6dgnh")
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogAnimations" type="AnimationPlayer" parent="DialogLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_swwo2")
+}
+
+[connection signal="pause_requested" from="DialogLayer" to="." method="_on_dialog_layer_pause_requested"]

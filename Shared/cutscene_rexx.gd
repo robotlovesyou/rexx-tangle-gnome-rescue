@@ -21,7 +21,7 @@ var _camera: Camera2D:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	walk()
+	pass
 
 func walk() -> void:
 	animation_player.play("walk")
