@@ -1,21 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdo8ugf57hem2"]
+[gd_scene load_steps=6 format=3 uid="uid://c8k31rnkxipyq"]
 
-[ext_resource type="Script" uid="uid://4ktldg66g5og" path="res://LevelTemplate/level_intro.gd" id="1_lind2"]
-[ext_resource type="AudioStream" uid="uid://cjvx4kokrutrp" path="res://Sounds/FX/djt_ass_morse-code.wav" id="2_byqi5"]
-[ext_resource type="Texture2D" uid="uid://d03rhsrc37ahf" path="res://LevelTemplate/intro_background_gradient.tres" id="3_usmnq"]
-[ext_resource type="PackedScene" uid="uid://cn0ro2m8rmfk" path="res://Shared/parallax_background.tscn" id="4_r03l4"]
-[ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="5_euiln"]
+[ext_resource type="Script" uid="uid://4ktldg66g5og" path="res://LevelTemplate/level_intro.gd" id="1_2f7vd"]
+[ext_resource type="AudioStream" uid="uid://cjvx4kokrutrp" path="res://Sounds/FX/djt_ass_morse-code.wav" id="2_7wi0s"]
+[ext_resource type="Texture2D" uid="uid://d03rhsrc37ahf" path="res://LevelTemplate/intro_background_gradient.tres" id="3_25ht2"]
+[ext_resource type="PackedScene" uid="uid://cn0ro2m8rmfk" path="res://Shared/parallax_background.tscn" id="4_k1nph"]
+[ext_resource type="FontFile" uid="uid://dr08tfds514np" path="res://RexxArt/CommercialAssets/monogram.ttf" id="5_403b6"]
 
 [node name="LevelIntro" type="Node2D"]
-script = ExtResource("1_lind2")
-characters_per_second = 30.0
-intro_text = "Congratulations on completing the [rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Gnomenclature Inc[/rainbow] Gnome Intervention Technician training course. Before we can send you out into the field, you need to pass our final examination. Rescue at least 5 gnomes before the timer runs out and you will be a fully fledged G.I.T."
-intro_morse = ExtResource("2_byqi5")
-gradient_texture = ExtResource("3_usmnq")
-path_to_level = "res://Level-1-Examination/Level-1-Examination.tscn"
+script = ExtResource("1_2f7vd")
+characters_per_second = 15.0
+intro_text = "Welcome to the [rainbow freq=1.0 sat=0.8 val=0.8 speed=1.0]Gnomenclature Inc[/rainbow] training course, where you will learn the basics of moving around and rescuing gnomes. Good luck!"
+intro_morse = ExtResource("2_7wi0s")
+gradient_texture = ExtResource("3_25ht2")
+path_to_level = "res://Level-0-Training/training_level.tscn"
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("4_r03l4")]
-gradient_texture = ExtResource("3_usmnq")
+[node name="ParallaxBackground" parent="." instance=ExtResource("4_k1nph")]
+gradient_texture = ExtResource("3_25ht2")
 
 [node name="InfoLayer" type="CanvasLayer" parent="."]
 
@@ -44,11 +44,11 @@ layout_mode = 2
 [node name="DisplayLabel" type="RichTextLabel" parent="InfoLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("5_euiln")
-theme_override_fonts/bold_font = ExtResource("5_euiln")
-theme_override_fonts/bold_italics_font = ExtResource("5_euiln")
-theme_override_fonts/italics_font = ExtResource("5_euiln")
-theme_override_fonts/mono_font = ExtResource("5_euiln")
+theme_override_fonts/normal_font = ExtResource("5_403b6")
+theme_override_fonts/bold_font = ExtResource("5_403b6")
+theme_override_fonts/bold_italics_font = ExtResource("5_403b6")
+theme_override_fonts/italics_font = ExtResource("5_403b6")
+theme_override_fonts/mono_font = ExtResource("5_403b6")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_font_sizes/bold_font_size = 32
 theme_override_font_sizes/bold_italics_font_size = 24
@@ -59,7 +59,7 @@ scroll_active = false
 
 [node name="Button" type="Button" parent="InfoLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_euiln")
+theme_override_fonts/font = ExtResource("5_403b6")
 text = "Continue [Spacebar]"
 
 [node name="MorsePlayer" type="AudioStreamPlayer" parent="."]

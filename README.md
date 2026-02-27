@@ -10,9 +10,9 @@
 * ~~Fix the bug with the gnome chain getting further behind the player~~
 * ~~Re build existing cutscene to use a bottom docked text dialog with a portrait and a next button~~
 * ~~Add the Basement cutscene~~
-* Add an intro screen for the training level
-* Update the intro screen for the examination level to reflect the tutorial now existing.
-* Stop gnomes dying off screen long after player has died
+* ~~Add an intro screen for the training level~~
+* ~~Update the intro screen for the examination level to reflect the tutorial now existing.~~
+* ~~Stop gnomes dying off screen long after player has died~~ (hopefully)
 * Re-release with all above items fixed and included
 
 ## Backlog
