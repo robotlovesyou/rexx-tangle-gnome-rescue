@@ -25,7 +25,10 @@ var _rescue_count := 0
 var _current_gnome_count := 0
 var _last_chunk_played := 0
 var _player_over_exit := false
-var _beats: Array[int] = []
+var _beats: Array[float] = []
+var _current_beat := 0
+var _time_begin := 0.0
+var _time_delay := 0.0
 
 func _ready() -> void:
 	if show_gnome_count:
@@ -54,6 +57,8 @@ func _ready() -> void:
 	_update_gnome_count_in_hud()
 	hud.update_timer(timer_seconds)
 	_beats.assign(level_music_beats.data["beats"])
+	_time_begin = _time_seconds()
+	_time_delay = AudioServer.get_output_latency() + AudioServer.get_time_to_next_mix()
 	level_music_player.play()
 
 func _despawn_player() -> void:
@@ -69,14 +74,17 @@ func _spawn_player(root: Node, immediate_sibling: Node) -> Player:
 	player.get_camera().make_current()
 	PMonitor.player = player
 	return player
+	
+func _time_seconds() -> float:
+	return Time.get_ticks_msec() / 1000.0
 
 func _physics_process(delta: float) -> void:
 	_t += delta
-	var current_chunk = floor(level_music_player.get_playback_position() / CHUNK_DURATION)
-
-	if len(_beats) > current_chunk and _last_chunk_played != current_chunk:
-		_last_chunk_played = current_chunk
-		if _beats[current_chunk] == 1:
+	var time = _time_seconds() - _time_begin - _time_delay
+	var next_beat = _beats[_current_beat]
+	if len(_beats) > _current_beat:
+		if time >= next_beat:
+			_current_beat += 1
 			Events.beat_channel_1_fired_sync()
 	
 	if timer_seconds - floor(_t) <= 0.0:

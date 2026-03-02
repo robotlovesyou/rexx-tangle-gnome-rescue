@@ -53,7 +53,7 @@ func _ready() -> void:
 	_move_to_start_of_row(0)
 	_walk_rexx()
 	_cutscene_rexx.disable_camera()
-	for c in ["R", "E", "X", "X", "I", " ", "T", "A", "N", "G", "L", "E", ":"]:
+	for c in ["R", "E", "X", "X", " ", "T", "A", "N", "G", "L", "E", ":"]:
 		_title_1_chars.append(TitleCharacter.new(c, _sample_from_gradient(randf())))
 
 	for c in ["G", "N", "O", "M", "E", " ", "R", "E", "S", "C", "U", "E", "!"]:

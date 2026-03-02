@@ -92,4 +92,5 @@ stream = ExtResource("4_uqirv")
 volume_db = -9.0
 autoplay = true
 
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/StartOverButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

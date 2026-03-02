@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://3wevavg74u6f" path="res://Level-0-Training/training_level.gd" id="1_7wmsh"]
 [ext_resource type="PackedScene" uid="uid://5bebiiyii4yx" path="res://Gnomes/dismembered_gnome.tscn" id="4_d50g8"]
 [ext_resource type="AudioStream" uid="uid://co7ajua4n8mna" path="res://Sounds/Music/AskNotForWhomTheCarriageReturns.wav" id="5_ew8o4"]
-[ext_resource type="JSON" path="res://Sounds/DataSources/AskNotForWhomTheCarriageReturns/claps.json" id="5_vo65f"]
+[ext_resource type="JSON" path="res://Sounds/DataSources/AskNotForWhomTheCarriageReturns/claps2.json" id="5_wxtdl"]
 [ext_resource type="PackedScene" uid="uid://cn0ro2m8rmfk" path="res://Shared/parallax_background.tscn" id="6_wxtdl"]
 [ext_resource type="PackedScene" uid="uid://wqp0pyi44pis" path="res://Level-0-Training/right_arrow_raised_begin.tscn" id="13_3crw2"]
 [ext_resource type="PackedScene" uid="uid://bdsfyccq00rm3" path="res://Level-0-Training/up_arrow_raised_end.tscn" id="13_daw8o"]
@@ -2979,11 +2979,11 @@ dismembered_gnome_scene = ExtResource("4_d50g8")
 next_level = "res://Level-1-Examination/level_1_intro.tscn"
 exit = NodePath("Exit")
 hud = NodePath("HUD")
-minimum_gnomes = 1
+minimum_gnomes = 2
 timer_seconds = 300
 player_sibling_node = NodePath("Signs")
 level_music_player = NodePath("LevelMusicPlayer")
-level_music_beats = ExtResource("5_vo65f")
+level_music_beats = ExtResource("5_wxtdl")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.5, 0.5)
@@ -3325,7 +3325,7 @@ position = Vector2(0.19360352, 49.334015)
 
 [node name="MoveRightTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
 position = Vector2(48, 752)
-text = "Move Right With [b]→[/b]"
+text = "Move Right With [img]res://Level-0-Training/ArrowR.png[/img]"
 
 [node name="ActivationShape" parent="Signs/MoveRightTrainingDialog/ActivationArea" index="0"]
 position = Vector2(112, 0)
@@ -3333,7 +3333,7 @@ shape = SubResource("RectangleShape2D_3crw2")
 
 [node name="MoveLeftTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
 position = Vector2(144, 832)
-text = "Move Left With [b]←[/b]"
+text = "Move Left With [b][img]res://Level-0-Training/ArrowL.png[/img][/b]"
 
 [node name="ActivationShape" parent="Signs/MoveLeftTrainingDialog/ActivationArea" index="0"]
 position = Vector2(24, 0)
@@ -3357,7 +3357,7 @@ shape = SubResource("RectangleShape2D_cfsdc")
 
 [node name="WallJumpTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
 position = Vector2(-576, 656)
-text = "Jump into the wall with [b]←[SPACE][/b] and then hit [b][SPACE][/b] again while touching the wall to Wall Jump.
+text = "Jump into the wall with and then jump again while touching the wall to Wall Jump.
 Wall Jumps can be chained to scale great heights,"
 
 [node name="ActivationShape" parent="Signs/WallJumpTrainingDialog/ActivationArea" index="0"]
@@ -3404,6 +3404,14 @@ text = "This is a lost gnome. When you walk past it it will start following you.
 position = Vector2(80, -72)
 shape = SubResource("RectangleShape2D_r30qa")
 
+[node name="GnomeTrainingDialog2" parent="Signs" instance=ExtResource("14_daw8o")]
+position = Vector2(3056, -304)
+text = "Here is another lost gnome. You should take it back to the safe spot to rescue it. You can take gnomes back to the safe spot as often as you like so long as you rescue the minumum before the time runs out."
+
+[node name="ActivationShape" parent="Signs/GnomeTrainingDialog2/ActivationArea" index="0"]
+position = Vector2(80, -72)
+shape = SubResource("RectangleShape2D_r30qa")
+
 [node name="TimerTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
 position = Vector2(1776, -304)
 text = "This shows the time remaining for the mission. If the time runs out before you collect the minimum number of gnomes then the mission is failed. "
@@ -3429,16 +3437,19 @@ text = "Now that you have collected all the gnomes you can stand over the exit a
 position = Vector2(-48, 8)
 shape = SubResource("RectangleShape2D_d50g8")
 
-[node name="Gnome" parent="." instance=ExtResource("18_q5fgu")]
-position = Vector2(2048, -288)
-
-[node name="VerticalPlatformTrainingDialog" parent="." instance=ExtResource("14_daw8o")]
+[node name="VerticalPlatformTrainingDialog" parent="Signs" instance=ExtResource("14_daw8o")]
 position = Vector2(912, 224)
 text = "Platforms can also be used to reach great heights. "
 
-[node name="ActivationShape" parent="VerticalPlatformTrainingDialog/ActivationArea" index="0"]
+[node name="ActivationShape" parent="Signs/VerticalPlatformTrainingDialog/ActivationArea" index="0"]
 position = Vector2(115, -16)
 shape = SubResource("RectangleShape2D_c4lke")
+
+[node name="Gnome" parent="." instance=ExtResource("18_q5fgu")]
+position = Vector2(2048, -288)
+
+[node name="Gnome2" parent="." instance=ExtResource("18_q5fgu")]
+position = Vector2(3072, -288)
 
 [node name="HorizontalPlatform" parent="." instance=ExtResource("13_iouky")]
 position = Vector2(384, 256)
@@ -3554,6 +3565,7 @@ position = Vector2(1616, -1672)
 shape = SubResource("RectangleShape2D_wbhwl")
 
 [node name="DirectionIndicatorParticlesRight" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
+visible = false
 position = Vector2(2768, -336)
 amount = 16
 lifetime = 6.0
@@ -3817,12 +3829,14 @@ bus = &"Music"
 [connection signal="training_dialog_requested" from="Signs/GnomeCountTrainingDialog" to="." method="on_gnome_count_dialog_requested"]
 [connection signal="training_dialog_freed" from="Signs/GnomeTrainingDialog" to="." method="_on_training_dialog_freed"]
 [connection signal="training_dialog_requested" from="Signs/GnomeTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="Signs/GnomeTrainingDialog2" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/GnomeTrainingDialog2" to="." method="_on_training_dialog_requested"]
 [connection signal="training_dialog_freed" from="Signs/TimerTrainingDialog" to="." method="_on_training_dialog_freed"]
 [connection signal="training_dialog_requested" from="Signs/TimerTrainingDialog" to="." method="_on_timer_training_dialog_training_dialog_requested"]
 [connection signal="training_dialog_freed" from="Signs/SafeSpotTrainingDialog" to="." method="_on_training_dialog_freed"]
 [connection signal="training_dialog_requested" from="Signs/SafeSpotTrainingDialog" to="." method="_on_training_dialog_requested"]
-[connection signal="training_dialog_freed" from="VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_freed"]
-[connection signal="training_dialog_requested" from="VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="training_dialog_freed" from="Signs/VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_freed"]
+[connection signal="training_dialog_requested" from="Signs/VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_requested"]
 [connection signal="body_entered" from="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" to="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" method="_on_body_entered"]
 [connection signal="died" from="PathFollowerEnemy/PathFollowerEnemy" to="." method="_on_training_enemy_died"]
 [connection signal="hilight_gnome_count_done" from="HUD" to="." method="_on_hud_hilight_gnome_count_done"]
@@ -3839,10 +3853,11 @@ bus = &"Music"
 [editable path="Signs/HorizontalPlatformTrainingDialog"]
 [editable path="Signs/GnomeCountTrainingDialog"]
 [editable path="Signs/GnomeTrainingDialog"]
+[editable path="Signs/GnomeTrainingDialog2"]
 [editable path="Signs/TimerTrainingDialog"]
 [editable path="Signs/SafeSpotTrainingDialog"]
 [editable path="Signs/ExitTrainingDialog"]
-[editable path="VerticalPlatformTrainingDialog"]
+[editable path="Signs/VerticalPlatformTrainingDialog"]
 [editable path="HorizontalPlatform"]
 [editable path="VerticalPlatform"]
 [editable path="Floor"]
