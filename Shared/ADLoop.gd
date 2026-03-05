@@ -38,4 +38,3 @@ func _calc_env_value() -> float:
 
 func sample() -> float: return _sample
 	
-

@@ -3,6 +3,7 @@ extends BaseLevel
 @export var training_dialogs_layer: TrainingDialogsLayer
 @export var enemy_training_dialog: TrainingDialog
 @export var gnome_training_dialog: TrainingDialog
+@export var gnome_training_dialog_2: TrainingDialog
 @export var exit_training_dialog: TrainingDialog
 @export var gnome_count_door: Door
 @export var timer_door: Door
@@ -55,10 +56,13 @@ func _on_player_entered_exit() -> void:
 	super()
 	_on_training_dialog_requested(exit_training_dialog.text)
 
-
 func _on_player_exited_exit() -> void:
 	super()
 	_on_training_dialog_freed(exit_training_dialog.text)
 
+func _on_first_gnome_rescued() -> void:
+	gnome_training_dialog.active = false
 
-	
+
+func _on_second_gnome_rescued() -> void:
+	gnome_training_dialog_2.active = false

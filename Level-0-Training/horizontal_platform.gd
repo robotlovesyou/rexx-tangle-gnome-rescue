@@ -6,12 +6,17 @@ extends Node2D
 		return 1.0 / _f
 	set(value):
 		_f = 1.0 / value
+		
+@export var offset_seconds := 0.0
 
 @export var path_follow: PathFollow2D
 @export var platform: AnimatableBody2D
 
 var _f := 0.1
 var _t := 0.0
+
+func _ready() -> void:
+	_t += offset_seconds
 
 
 func _tri(f: float, t: float) -> float: return (2.0/PI) * asin(sin(2.0 * PI * f * t))

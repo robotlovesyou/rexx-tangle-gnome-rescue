@@ -5,9 +5,9 @@
 ## Next Up
 * ~~Better beat data for the examination level~~
 * ~~stop the gnome training dialog firing after owned gnome is rescued
-* Use Jules' gnome recordings.
-* Gnome death sfx
-* Gnome rescue sfx
+* ~~Use Jules' gnome recordings.~~
+* ~~Gnome death sfx~~
+* ~~Gnome rescue sfx~~
 
 ## Backlog
 

@@ -20,6 +20,7 @@ func _init(gnome: Gnome):
 	_jump_velocity = _gnome.movement_config.JUMP_VELOCITY
 
 func on_enter_state() -> void:
+	_gnome.play_rescue()
 	_t_apex = abs(_jump_velocity) / _gnome.get_gravity().y
 	_gnome.velocity.y = _jump_velocity
 	_gnome.velocity.x = (_gnome.safe_spot.center_x - _gnome.position.x) / _t_apex / 2.0

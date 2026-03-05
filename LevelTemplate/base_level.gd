@@ -119,7 +119,7 @@ func _spawn_dismembered_gnome(gnome: Gnome) -> DismemberedGnome:
 	move_child(dismembered_gnome, gnome.get_index() + 1)
 	return dismembered_gnome
 
-func _on_gnome_hit_spike_trap(trap: SpikeTrap, gnome: Gnome) -> void:
+func _on_gnome_hit_spike_trap(_trap: SpikeTrap, gnome: Gnome) -> void:
 	_kill_gnome(gnome)
 
 func _kill_player() -> void:

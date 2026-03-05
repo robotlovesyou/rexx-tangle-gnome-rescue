@@ -11,8 +11,8 @@ var active: bool:
 	get: return _active
 	set(value): 
 		_active = value
-		if _active == false:
-			training_dialog_freed.emit(text)
+		#if _active == false:
+			#training_dialog_freed.emit(text)
 
 func _on_activation_area_body_entered(body: Node2D) -> void:
 	if not _active or not body is Player: return

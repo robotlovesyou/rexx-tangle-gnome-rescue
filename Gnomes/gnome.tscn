@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://y4tb8v4fvs66"]
+[gd_scene load_steps=68 format=3 uid="uid://y4tb8v4fvs66"]
 
 [ext_resource type="Script" uid="uid://bua5ful6l310d" path="res://Gnomes/gnome.gd" id="1_5vlar"]
 [ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="2_dt2vp"]
@@ -7,9 +7,26 @@
 [ext_resource type="AudioStream" uid="uid://d080kmx2434yu" path="res://Sounds/Gnomes/Hello/OhHello2.wav" id="5_p0twa"]
 [ext_resource type="AudioStream" uid="uid://bf7kofut174wf" path="res://Sounds/Gnomes/Hello/OhHello3.wav" id="6_c5r3t"]
 [ext_resource type="AudioStream" uid="uid://ekyml8vdbhv7" path="res://Sounds/Gnomes/Hello/Sticky.wav" id="7_0c3gf"]
+[ext_resource type="AudioStream" uid="uid://djdynylp4aht8" path="res://Sounds/Gnomes/Hello/AwfullyScared.wav" id="8_neo78"]
 [ext_resource type="Texture2D" uid="uid://chvxkkyxkru0l" path="res://RexxArt/Gnomes/NewGnomeDisappear.png" id="8_u8kr0"]
+[ext_resource type="AudioStream" uid="uid://bobam64ufh5f6" path="res://Sounds/Gnomes/Hello/FancySeeingYouHere2.wav" id="9_76m06"]
 [ext_resource type="Texture2D" uid="uid://dvifkf3nuc52h" path="res://RexxArt/Gnomes/idle.png" id="9_u8kr0"]
 [ext_resource type="Texture2D" uid="uid://nbbkcbynywow" path="res://RexxArt/Gnomes/walk.png" id="10_41rew"]
+[ext_resource type="AudioStream" uid="uid://co1j87q13fkew" path="res://Sounds/Gnomes/Hello/FancySeeingYouHere.wav" id="10_op0cm"]
+[ext_resource type="AudioStream" uid="uid://cxfhbqpd2gnr3" path="res://Sounds/Gnomes/Hello/FinallyF.wav" id="11_15eb3"]
+[ext_resource type="AudioStream" uid="uid://dkjdpybn6vdwf" path="res://Sounds/Gnomes/Hello/Handsome.wav" id="12_lgxlx"]
+[ext_resource type="AudioStream" uid="uid://0xu2bqr87fle" path="res://Sounds/Gnomes/Hello/OohHello.wav" id="13_ujxtx"]
+[ext_resource type="AudioStream" uid="uid://c35gog6ywmv7p" path="res://Sounds/Gnomes/Hello/Strangers.wav" id="14_v0vju"]
+[ext_resource type="AudioStream" uid="uid://corbe21s8n26m" path="res://Sounds/Gnomes/Hello/TakeYourTime.wav" id="15_dgik7"]
+[ext_resource type="AudioStream" uid="uid://07nu6pls87a5" path="res://Sounds/Gnomes/Hello/Waiting.wav" id="16_1t76n"]
+[ext_resource type="AudioStream" uid="uid://cr2cgpjnn14a6" path="res://Sounds/Gnomes/Hello/WellHello.wav" id="17_kgc4o"]
+[ext_resource type="AudioStream" uid="uid://d1c3lopif71c6" path="res://Sounds/Gnomes/Hello/WhereAreWeGoing.wav" id="18_7q7oc"]
+[ext_resource type="AudioStream" uid="uid://dwovaxkx4f3rt" path="res://Sounds/Gnomes/Rescue/Nirvana.wav" id="19_ujxtx"]
+[ext_resource type="AudioStream" uid="uid://5vjo2ij126jm" path="res://Sounds/Gnomes/Rescue/OhJa.wav" id="20_v0vju"]
+[ext_resource type="AudioStream" uid="uid://dhcglvy17j42t" path="res://Sounds/Gnomes/Rescue/Oooh.wav" id="21_dgik7"]
+[ext_resource type="AudioStream" uid="uid://clwo074yhevjo" path="res://Sounds/Gnomes/Rescue/Wunderbar.wav" id="22_1t76n"]
+[ext_resource type="AudioStream" uid="uid://drbvwcqb6ajv1" path="res://Sounds/Gnomes/Rescue/Yippee.wav" id="23_kgc4o"]
+[ext_resource type="Texture2D" uid="uid://c7ooka5l4u4ns" path="res://RexxArt/Gnomes/GnomeSpeech.png" id="27_v0vju"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41rew"]
 atlas = ExtResource("8_u8kr0")
@@ -211,6 +228,35 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwqxm"]
+atlas = ExtResource("27_v0vju")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piige"]
+atlas = ExtResource("27_v0vju")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74hks"]
+atlas = ExtResource("27_v0vju")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ujxtx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwqxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_piige")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74hks")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6xdq"]
 size = Vector2(10, 29)
 
@@ -253,13 +299,20 @@ collision_layer = 2
 collision_mask = 76
 script = ExtResource("1_5vlar")
 movement_config = ExtResource("2_dt2vp")
-hello_sounds = Array[AudioStreamWAV]([ExtResource("3_u8kr0"), ExtResource("4_41rew"), ExtResource("5_p0twa"), ExtResource("6_c5r3t"), ExtResource("7_0c3gf")])
+hello_sounds = Array[AudioStreamWAV]([ExtResource("3_u8kr0"), ExtResource("4_41rew"), ExtResource("5_p0twa"), ExtResource("6_c5r3t"), ExtResource("7_0c3gf"), ExtResource("8_neo78"), ExtResource("9_76m06"), ExtResource("10_op0cm"), ExtResource("11_15eb3"), ExtResource("12_lgxlx"), ExtResource("13_ujxtx"), ExtResource("14_v0vju"), ExtResource("15_dgik7"), ExtResource("16_1t76n"), ExtResource("17_kgc4o"), ExtResource("18_7q7oc")])
+rescue_sounds = Array[AudioStreamWAV]([ExtResource("19_ujxtx"), ExtResource("20_v0vju"), ExtResource("21_dgik7"), ExtResource("22_1t76n"), ExtResource("23_kgc4o")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_ttdt0")
 animation = &"disappear"
 autoplay = "idle"
+
+[node name="GnomeSpeech" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ujxtx")
+autoplay = "default"
+frame_progress = 0.74494326
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
@@ -282,5 +335,9 @@ process_material = SubResource("ParticleProcessMaterial_41rew")
 volume_db = 3.0
 bus = &"Level"
 
+[node name="RescuePlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
 [connection signal="body_entered" from="PlayerCollection" to="." method="_on_player_collection_body_entered"]
 [connection signal="body_exited" from="PlayerCollection" to="." method="_on_player_collection_body_exited"]
+[connection signal="finished" from="HelloPlayer" to="." method="_on_hello_player_finished"]

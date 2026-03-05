@@ -1,9 +1,11 @@
 class_name DropTrap
 extends Node2D
 
-@export var cycle_envelope: ADLoop
+@export var attack := 1.0
+@export var decay := 1.0
+@export var time_offset := 0.0
 @export var hit_sounds: Array[AudioStreamWAV] = []
-
+var _cycle_envelope: ADLoop
 var _path_follow: PathFollow2D:
 	get: return $Path2D/PathFollow2D
 
@@ -19,13 +21,16 @@ var _hit_particles: GPUParticles2D:
 @onready var _hit_effect_player := EffectPlayer.new(_hit_player, hit_sounds, {EffectPlayer.MIN_VOLUME: 0.0, EffectPlayer.MAX_VOLUME: 3.0})
 
 func _ready() -> void:
-	assert(cycle_envelope != null, 'A value must be assigned to the cycle envelope')
-	cycle_envelope.ready()
-	cycle_envelope.phase_changed.connect(_on_cycle_envelope_phase_changed)
+	_cycle_envelope = ADLoop.new()
+	_cycle_envelope.attack = attack
+	_cycle_envelope.decay = decay
+	_cycle_envelope.time_offset = time_offset
+	_cycle_envelope.ready()
+	_cycle_envelope.phase_changed.connect(_on_cycle_envelope_phase_changed)
 
 func _physics_process(delta: float) -> void:
-	cycle_envelope.physics_update(delta)
-	_path_follow.progress_ratio = cycle_envelope.sample()
+	_cycle_envelope.physics_update(delta)
+	_path_follow.progress_ratio = _cycle_envelope.sample()
 	var movement = _path_follow.position - _trap_body.position
 	var collision = _trap_body.move_and_collide(movement)
 	#force movement to the correct position, now that we have collisions
@@ -49,4 +54,3 @@ func _on_cycle_envelope_phase_changed(phase: ADLoop.Phase) -> void:
 		_hit_particles.restart()
 	else:
 		_hit_particles.emitting = false
-

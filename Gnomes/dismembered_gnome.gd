@@ -3,6 +3,18 @@ extends Node2D
 
 const LIFE_TIME_SECONDS := 3.0
 
+@export var death_sounds: Array[AudioStreamWAV]
+
+@onready var deaths:= EffectPlayer.new(death_player, death_sounds, {
+	EffectPlayer.MAX_PITCH: 1.0, 
+	EffectPlayer.MIN_PITCH: 1.0,
+	EffectPlayer.MIN_VOLUME: -3.0,
+	EffectPlayer.MAX_VOLUME: 0.0
+	})
+
+var death_player: AudioStreamPlayer2D:
+	get: return $DeathPlayer
+
 var head: RigidBody2D:
 	get: return $DismemberedHead
 
@@ -35,7 +47,9 @@ func _apply_body_impulse(body: RigidBody2D, velocity: Vector2, torque: float):
 	var scaled_velocity = velocity / Engine.physics_ticks_per_second
 	body.apply_central_impulse(body.mass * scaled_velocity)
 	body.apply_torque_impulse(torque * body.mass)
-
+	
+func _ready() -> void:
+	deaths.play()
 
 func _process(delta: float) -> void:
 	_t += delta

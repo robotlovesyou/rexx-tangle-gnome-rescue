@@ -2965,11 +2965,12 @@ _data = {
 &"open_dialog": SubResource("Animation_3crw2")
 }
 
-[node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("training_dialogs_layer", "enemy_training_dialog", "gnome_training_dialog", "exit_training_dialog", "gnome_count_door", "timer_door", "exit", "hud", "player_sibling_node", "level_music_player")]
+[node name="TrainingLevel" type="Node2D" node_paths=PackedStringArray("training_dialogs_layer", "enemy_training_dialog", "gnome_training_dialog", "gnome_training_dialog_2", "exit_training_dialog", "gnome_count_door", "timer_door", "exit", "hud", "player_sibling_node", "level_music_player")]
 script = ExtResource("1_7wmsh")
 training_dialogs_layer = NodePath("TrainingDialogsLayer")
 enemy_training_dialog = NodePath("Signs/EnemyTrainingDialog")
 gnome_training_dialog = NodePath("Signs/GnomeTrainingDialog")
+gnome_training_dialog_2 = NodePath("Signs/GnomeTrainingDialog2")
 exit_training_dialog = NodePath("Signs/ExitTrainingDialog")
 gnome_count_door = NodePath("GnomeCountDoor")
 timer_door = NodePath("TimerDoor")
@@ -3623,127 +3624,127 @@ position = Vector2(-96, 256)
 position = Vector2(8, 0)
 
 [node name="SpikeTrap" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(-368, 272)
+position = Vector2(-376, 272)
 
 [node name="SpikeTrap8" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(-384, 272)
+position = Vector2(-392, 272)
 
 [node name="SpikeTrap2" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(-352, 272)
+position = Vector2(-360, 272)
 
 [node name="SpikeTrap3" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(-336, 272)
+position = Vector2(-344, 272)
 
 [node name="SpikeTrap4" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(-320, 272)
+position = Vector2(-328, 272)
 
 [node name="SpikeTrap5" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(-304, 272)
+position = Vector2(-312, 272)
 
 [node name="SpikeTrap6" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(-288, 272)
+position = Vector2(-296, 272)
 
 [node name="SpikeTrap7" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(-272, 272)
+position = Vector2(-280, 272)
 
 [node name="SpikeTrap9" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(384, 320)
+position = Vector2(376, 320)
 
 [node name="SpikeTrap10" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(400, 320)
+position = Vector2(392, 320)
 
 [node name="SpikeTrap11" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(416, 320)
+position = Vector2(408, 320)
 
 [node name="SpikeTrap12" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(432, 320)
+position = Vector2(424, 320)
 
 [node name="SpikeTrap13" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(448, 320)
+position = Vector2(440, 320)
 
 [node name="SpikeTrap14" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(464, 320)
+position = Vector2(456, 320)
 
 [node name="SpikeTrap15" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(480, 320)
+position = Vector2(472, 320)
 
 [node name="SpikeTrap16" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(496, 320)
+position = Vector2(488, 320)
 
 [node name="SpikeTrap17" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(512, 320)
+position = Vector2(504, 320)
 
 [node name="SpikeTrap18" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(528, 320)
+position = Vector2(520, 320)
 
 [node name="SpikeTrap19" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(544, 320)
+position = Vector2(536, 320)
 
 [node name="SpikeTrap20" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(560, 320)
+position = Vector2(552, 320)
 
 [node name="SpikeTrap21" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(576, 320)
+position = Vector2(568, 320)
 
 [node name="SpikeTrap22" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(592, 320)
+position = Vector2(584, 320)
 
 [node name="SpikeTrap23" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(608, 320)
+position = Vector2(600, 320)
 
 [node name="SpikeTrap24" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(624, 320)
+position = Vector2(616, 320)
 
 [node name="SpikeTrap25" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(624, 320)
+position = Vector2(616, 320)
 
 [node name="SpikeTrap26" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(640, 320)
+position = Vector2(632, 320)
 
 [node name="SpikeTrap27" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(656, 320)
+position = Vector2(648, 320)
 
 [node name="SpikeTrap28" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(672, 320)
+position = Vector2(664, 320)
 
 [node name="SpikeTrap29" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(688, 320)
+position = Vector2(680, 320)
 
 [node name="SpikeTrap30" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(704, 320)
+position = Vector2(696, 320)
 
 [node name="SpikeTrap31" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(720, 320)
+position = Vector2(712, 320)
 
 [node name="SpikeTrap32" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(736, 320)
+position = Vector2(728, 320)
 
 [node name="SpikeTrap33" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(752, 320)
+position = Vector2(744, 320)
 
 [node name="SpikeTrap34" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(768, 320)
+position = Vector2(760, 320)
 
 [node name="SpikeTrap35" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(784, 320)
+position = Vector2(776, 320)
 
 [node name="SpikeTrap36" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(800, 320)
+position = Vector2(792, 320)
 
 [node name="SpikeTrap37" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(816, 320)
+position = Vector2(808, 320)
 
 [node name="SpikeTrap38" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(832, 320)
+position = Vector2(824, 320)
 
 [node name="SpikeTrap39" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(848, 320)
+position = Vector2(840, 320)
 
 [node name="SpikeTrap40" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(864, 320)
+position = Vector2(856, 320)
 
 [node name="SpikeTrap41" parent="SpikeTraps" instance=ExtResource("18_6p1ko")]
-position = Vector2(880, 320)
+position = Vector2(872, 320)
 
 [node name="HUD" parent="." instance=ExtResource("31_j0lek")]
 
@@ -3837,6 +3838,8 @@ bus = &"Music"
 [connection signal="training_dialog_requested" from="Signs/SafeSpotTrainingDialog" to="." method="_on_training_dialog_requested"]
 [connection signal="training_dialog_freed" from="Signs/VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_freed"]
 [connection signal="training_dialog_requested" from="Signs/VerticalPlatformTrainingDialog" to="." method="_on_training_dialog_requested"]
+[connection signal="rescued" from="Gnome" to="." method="_on_first_gnome_rescued"]
+[connection signal="rescued" from="Gnome2" to="." method="_on_second_gnome_rescued"]
 [connection signal="body_entered" from="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" to="SpawnPoints/SpikeTrapSpawnPoint/ActivateSpikeTrapSpawnPoint" method="_on_body_entered"]
 [connection signal="died" from="PathFollowerEnemy/PathFollowerEnemy" to="." method="_on_training_enemy_died"]
 [connection signal="hilight_gnome_count_done" from="HUD" to="." method="_on_hud_hilight_gnome_count_done"]

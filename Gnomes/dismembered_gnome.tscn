@@ -1,16 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://5bebiiyii4yx"]
+[gd_scene load_steps=12 format=3 uid="uid://5bebiiyii4yx"]
 
 [ext_resource type="Script" uid="uid://djntk2mswm8bl" path="res://Gnomes/dismembered_gnome.gd" id="1_qrd8y"]
 [ext_resource type="Texture2D" uid="uid://340xsg32b2wm" path="res://RexxArt/Gnomes/BigGnomeDismemberedTorso.png" id="2_ohhvt"]
 [ext_resource type="Texture2D" uid="uid://cjkpxa8otmpm5" path="res://RexxArt/Gnomes/NewGnomeHead.png" id="2_qrd8y"]
+[ext_resource type="AudioStream" uid="uid://c0xen4jnlcsdv" path="res://Sounds/Gnomes/Death/Arm.wav" id="2_u5ivb"]
+[ext_resource type="AudioStream" uid="uid://bixl0l5s1s7o7" path="res://Sounds/Gnomes/Death/Decapitated.wav" id="3_rk5vf"]
 [ext_resource type="Texture2D" uid="uid://dktino7p0l5wq" path="res://RexxArt/Gnomes/NewGnomeLeg.png" id="4_3xwyj"]
+[ext_resource type="AudioStream" uid="uid://dg04d04sm13fh" path="res://Sounds/Gnomes/Death/Ouch.wav" id="4_ll63s"]
+[ext_resource type="AudioStream" uid="uid://bg3ugeareek65" path="res://Sounds/Gnomes/Death/Pies.wav" id="5_opm8v"]
 [ext_resource type="Texture2D" uid="uid://b0mddwaf3ir4" path="res://RexxArt/Gnomes/NewGnomeArm.png" id="5_svaif"]
+[ext_resource type="AudioStream" uid="uid://ssn0x535sawa" path="res://Sounds/Gnomes/Death/Undone.wav" id="6_ctu8j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2gj8"]
 size = Vector2(10, 11)
 
 [node name="DismemberedGnome" type="Node2D"]
 script = ExtResource("1_qrd8y")
+death_sounds = Array[AudioStreamWAV]([ExtResource("2_u5ivb"), ExtResource("3_rk5vf"), ExtResource("4_ll63s"), ExtResource("5_opm8v"), ExtResource("6_ctu8j")])
 
 [node name="DismemberedHead" type="RigidBody2D" parent="."]
 position = Vector2(0, -8)
@@ -132,3 +138,6 @@ texture = ExtResource("5_svaif")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DismemberedArm2"]
 position = Vector2(1.1000004, -7.2)
 polygon = PackedVector2Array(-0.10000038, 2.1999998, 1.8999996, 1.1999998, 3.8999996, 2.1999998, 3.8999996, 10.2, 0.8999996, 12.2, -0.10000038, 13.2, -5.1000004, 13.2, -7.1000004, 10.2, -7.1000004, 7.2, -3.1000004, 6.2, -2.1000004, 5.2)
+
+[node name="DeathPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"

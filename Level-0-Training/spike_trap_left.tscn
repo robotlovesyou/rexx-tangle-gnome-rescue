@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bg1a8aqlhlsid" path="res://Level-0-Training/spike_trap.gd" id="1_ee1nm"]
 [ext_resource type="Shader" uid="uid://d2q0ydrdk4k18" path="res://Level-0-Training/spike_trap.gdshader" id="2_lk28r"]
-[ext_resource type="Texture2D" uid="uid://dqi2itmbuhusy" path="res://Level-0-Training/SpikeTrap2.png" id="3_e1emy"]
+[ext_resource type="Texture2D" uid="uid://d4kgatdmymo2g" path="res://Level-0-Training/SmallerSpikeTrap.png" id="3_ee1nm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fd7bo"]
 shader = ExtResource("2_lk28r")
@@ -18,12 +18,13 @@ collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2(0, 8)
-polygon = PackedVector2Array(-8, 8, -6, -5, -4, -16, -2, -24, 2, -24, 4, -16, 6, -5, 8, 8)
+polygon = PackedVector2Array(1.9999993, 6.9999995, 2.9999998, 2, 6, -2, 7, -6, 9, -6, 10, -2, 13, 2, 13.999999, 7.0000005)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_fd7bo")
 rotation = -1.5707964
-texture = ExtResource("3_e1emy")
+texture = ExtResource("3_ee1nm")
+centered = false
 flip_h = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

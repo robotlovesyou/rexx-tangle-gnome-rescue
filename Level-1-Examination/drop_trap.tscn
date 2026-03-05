@@ -1,15 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://df7mbjqn1xeib"]
+[gd_scene load_steps=10 format=3 uid="uid://df7mbjqn1xeib"]
 
 [ext_resource type="Texture2D" uid="uid://4pcenepatny" path="res://Level-1-Examination/SkyBlueDropTrap.png" id="1_twjxr"]
 [ext_resource type="Script" uid="uid://cd6py15q7x4e6" path="res://Level-1-Examination/drop_trap.gd" id="1_wgvpv"]
-[ext_resource type="Script" uid="uid://v3b5lgh01vvv" path="res://Shared/ADLoop.gd" id="2_y6n84"]
 [ext_resource type="AudioStream" uid="uid://b3ns50xw66rbb" path="res://Sounds/FX/DropTrapHit.wav" id="4_lersg"]
-
-[sub_resource type="Resource" id="Resource_lersg"]
-script = ExtResource("2_y6n84")
-attack = 0.2
-decay = 4.0
-metadata/_custom_type_script = "uid://v3b5lgh01vvv"
 
 [sub_resource type="Curve2D" id="Curve2D_hu4ui"]
 _data = {
@@ -47,7 +40,6 @@ alpha_curve = SubResource("CurveTexture_i170g")
 
 [node name="DropTrap" type="Node2D" groups=["UsesShaders"]]
 script = ExtResource("1_wgvpv")
-cycle_envelope = SubResource("Resource_lersg")
 hit_sounds = Array[AudioStreamWAV]([ExtResource("4_lersg")])
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -67,7 +59,7 @@ texture = ExtResource("1_twjxr")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TrapBody"]
 position = Vector2(0, -32)
-polygon = PackedVector2Array(-31, 31, -21, -31, 20, -31, 31, 31)
+polygon = PackedVector2Array(-24, 28, -21, -31, 20, -31, 24, 28)
 
 [node name="HitParticles" type="GPUParticles2D" parent="TrapBody"]
 emitting = false

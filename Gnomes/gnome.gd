@@ -1,16 +1,26 @@
 class_name Gnome
 extends CharacterBody2D
 
+signal rescued
 
 # const SPEED = 300.0
 # const JUMP_VELOCITY = -400.0
 
 @export var movement_config: PlayerMovementConfig
 @export var hello_sounds: Array[AudioStreamWAV]
+@export var rescue_sounds: Array[AudioStreamWAV]
+
 
 @onready var hellos := EffectPlayer.new(hello_player, hello_sounds, {
-	EffectPlayer.MAX_PITCH: 1.0, 
-	EffectPlayer.MIN_PITCH: 1.0,
+	EffectPlayer.MAX_PITCH: 1.2, 
+	EffectPlayer.MIN_PITCH: 0.8,
+	EffectPlayer.MIN_VOLUME: -3.0,
+	EffectPlayer.MAX_VOLUME: 0.0
+	})
+	
+@onready var rescues := EffectPlayer.new(rescue_player, rescue_sounds, {
+	EffectPlayer.MAX_PITCH: 1.2, 
+	EffectPlayer.MIN_PITCH: 0.8,
 	EffectPlayer.MIN_VOLUME: -3.0,
 	EffectPlayer.MAX_VOLUME: 0.0
 	})
@@ -39,6 +49,15 @@ var safe_spot: GnomeSafeSpot:
 
 var hello_player: AudioStreamPlayer2D:
 	get: return $HelloPlayer
+	
+var death_player: AudioStreamPlayer2D:
+	get: return $DeathPlayer
+	
+var rescue_player: AudioStreamPlayer2D:
+	get: return $RescuePlayer
+	
+var gnome_speech: AnimatedSprite2D:
+	get: return $GnomeSpeech
 
 func _ready() -> void:
 	_begin_action(Enums.GnomeAction.GROUNDED)
@@ -272,8 +291,16 @@ func check_stuck(expected_position: Vector2) -> void:
 
 func play_hello_once() -> void:
 	if !_has_said_hello:
+		gnome_speech.show()
 		hellos.play()
 		_has_said_hello = true
+		
+func play_rescue() -> void:
+	rescues.play()
 
 func die() -> void:
 	_handle_gnome_event(Enums.GnomeEvent.DIED)
+
+
+func _on_hello_player_finished() -> void:
+	gnome_speech.hide()
