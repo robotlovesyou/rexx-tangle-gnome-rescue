@@ -60,11 +60,17 @@ var skid_particles: GPUParticles2D:
 var jump_particles: GPUParticles2D:
 	get: return $CPUJumpParticles
 
-var detect_walls_left: RayCast2D:
-	get: return $DetectWallsLeft
+var detect_walls_left_high: RayCast2D:
+	get: return $DetectWallsLeftHigh
+	
+var detect_walls_left_low: RayCast2D:
+	get: return $DetectWallsLeftLow
+	
+var detect_walls_right_high: RayCast2D:
+	get: return $DetectWallsRightHigh
 
-var detect_walls_right: RayCast2D:
-	get: return $DetectWallsRight
+var detect_walls_right_low: RayCast2D:
+	get: return $DetectWallsRightLow
 
 var debug_rect: ColorRect:
 	get: return $DebugRect
@@ -136,7 +142,7 @@ func _physics_process(delta: float) -> void:
 	debug_rect.visible = debug_is_on_wall_only and is_cast_on_wall_only()
 
 func is_cast_on_wall_only() -> bool:
-	return (detect_walls_left.is_colliding() or detect_walls_right.is_colliding()) and !is_on_floor()
+	return (detect_walls_left_high.is_colliding() or detect_walls_left_low.is_colliding() or detect_walls_right_high.is_colliding() or detect_walls_right_low.is_colliding()) and !is_on_floor()
 		
 
 func get_camera() -> Camera2D:
