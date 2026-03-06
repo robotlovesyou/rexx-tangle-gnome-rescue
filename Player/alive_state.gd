@@ -138,7 +138,7 @@ func _handle_jump() -> void:
 	if _has_jumped:
 		if _parent.is_cast_on_wall_only():
 			_parent.velocity.y = _parent.movement_config.JUMP_VELOCITY
-			_wall_jump_normal = _parent.get_wall_normal()
+			_wall_jump_normal = _parent.get_cast_wall_normal()
 			_parent.velocity.x = _parent.movement_config.SPEED * _wall_jump_normal.x
 			_parent.wall_jump_timer.start()
 		elif _parent.is_on_floor() or _parent.coyote_jump_timer.time_left > 0.0:

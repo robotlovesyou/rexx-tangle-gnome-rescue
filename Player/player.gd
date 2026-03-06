@@ -16,6 +16,7 @@ var _particle_beat_envelope := ADEnvelope.new(0.05, 0.1)
 var _min_jump_particle_scale := 0.0
 var _max_jump_particle_scale := 0.0
 var _t := 0.0
+var _cast_wall_normal := Vector2.ZERO
 
 @onready var _walk_effect_player := WalkEffectPlayer.new(walk_player, steps)
 @onready var _jump_effect_player := EffectPlayer.new(jump_player, jumps)
@@ -142,7 +143,28 @@ func _physics_process(delta: float) -> void:
 	debug_rect.visible = debug_is_on_wall_only and is_cast_on_wall_only()
 
 func is_cast_on_wall_only() -> bool:
-	return (detect_walls_left_high.is_colliding() or detect_walls_left_low.is_colliding() or detect_walls_right_high.is_colliding() or detect_walls_right_low.is_colliding()) and !is_on_floor()
+	# checking each ray individually to get the wall normal at the same time
+	if detect_walls_left_high.is_colliding():
+		_cast_wall_normal = detect_walls_left_high.get_collision_normal()
+		return true
+		
+	if detect_walls_left_low.is_colliding():
+		_cast_wall_normal = detect_walls_left_low.get_collision_normal()
+		return true
+		
+	if detect_walls_right_high.is_colliding():
+		_cast_wall_normal = detect_walls_right_high.get_collision_normal()
+		return true
+		
+	if detect_walls_right_low.is_colliding():
+		_cast_wall_normal = detect_walls_right_low.get_collision_normal()
+		return true
+		
+	_cast_wall_normal = Vector2.ZERO
+	return false
+	
+func get_cast_wall_normal() -> Vector2:
+	return _cast_wall_normal
 		
 
 func get_camera() -> Camera2D:

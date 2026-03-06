@@ -4,9 +4,11 @@
 
 ## Next Up
 * ~~Refactor the gnomes to ignore terrain~~
+* ~~If possible use wall rays to calculate wall normal~~
+* Refactor the gnomes to ignore platforms
 * Refactor the gnomes to allow for respawning
 * Level intro text should all show on first press of space and only exit on second
-* If possible use wall rays to calculate wall normal
+
 
 ## Backlog
 * Add the next environment (blocked by all above)
