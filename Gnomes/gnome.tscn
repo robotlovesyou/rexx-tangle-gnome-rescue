@@ -338,6 +338,32 @@ bus = &"Level"
 [node name="RescuePlayer" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
 
+[node name="TouchingPlayerRight" type="RayCast2D" parent="."]
+target_position = Vector2(20, 0)
+hit_from_inside = true
+
+[node name="TouchingPlayerLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-20, 0)
+hit_from_inside = true
+
+[node name="GhostGnome" type="Node2D" parent="."]
+
+[node name="StandingOnGroundLeft" type="RayCast2D" parent="GhostGnome"]
+position = Vector2(-5, 0)
+target_position = Vector2(0, 17)
+collision_mask = 4
+
+[node name="StandingOnGroundRight" type="RayCast2D" parent="GhostGnome"]
+position = Vector2(6, 0)
+target_position = Vector2(0, 17)
+collision_mask = 4
+
+[node name="ColorRect" type="ColorRect" parent="GhostGnome"]
+visible = false
+offset_left = -8.0
+offset_right = 8.0
+offset_bottom = 16.0
+
 [connection signal="body_entered" from="PlayerCollection" to="." method="_on_player_collection_body_entered"]
 [connection signal="body_exited" from="PlayerCollection" to="." method="_on_player_collection_body_exited"]
 [connection signal="finished" from="HelloPlayer" to="." method="_on_hello_player_finished"]

@@ -38,6 +38,6 @@ func on_physics_process(delta: float) -> void:
 	_amplitude = min(_limit, _amplitude * (1.0 + (_growth * delta)))
 	_gnome.velocity.x = (target_x - _gnome.position.x) * Engine.physics_ticks_per_second
 	_gnome.move_and_slide()
-	if _gnome.has_player_abandoned():
-		_gnome.player_abandoned()
-		return
+	# if _gnome.has_player_abandoned():
+	# 	_gnome.player_abandoned()
+	# 	return

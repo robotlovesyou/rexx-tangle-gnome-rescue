@@ -3,23 +3,22 @@
 # TO DO
 
 ## Next Up
-* ~~Better beat data for the examination level~~
-* ~~stop the gnome training dialog firing after owned gnome is rescued
-* ~~Use Jules' gnome recordings.~~
-* ~~Gnome death sfx~~
-* ~~Gnome rescue sfx~~
-
-## Backlog
-
 * Refactor the gnomes to ignore terrain
 * Refactor the gnomes to allow for respawning
+* Level intro text should all show on first press of space and only exit on second
 
+## Backlog
 * Add the next environment (blocked by all above)
 * Add a fade between the menu screens (Partially done)
 * Decide how the game deals with difficulty, levels and level navigation, scores, save games etc
 * Add continue/new game buttons to the title screen
 
 ## Done
+* ~~Better beat data for the examination level~~
+* ~~stop the gnome training dialog firing after owned gnome is rescued
+* ~~Use Jules' gnome recordings.~~
+* ~~Gnome death sfx~~
+* ~~Gnome rescue sfx~~
 * ~~Ensure new gnomes have appear/disappear and death animations~~
 * ~~Make the spike trap above the third gnome less of a shit~~
 * ~~Re-build tutorial using updated appearance~~

@@ -3,12 +3,12 @@ extends CharacterBody2D
 
 signal rescued
 
-# const SPEED = 300.0
-# const JUMP_VELOCITY = -400.0
+const TRAP_ONLY_COLLISION_MASK = 7
 
 @export var movement_config: PlayerMovementConfig
 @export var hello_sounds: Array[AudioStreamWAV]
 @export var rescue_sounds: Array[AudioStreamWAV]
+@export var debug := false
 
 
 @onready var hellos := EffectPlayer.new(hello_player, hello_sounds, {
@@ -27,11 +27,11 @@ signal rescued
 
 var _action: Enums.GnomeAction
 var _player_action: Enums.Action
-var _touching_player: bool = false
 var _state: GnomeState
 var _follow_index: int
 var _safe_spot: GnomeSafeSpot
 var _has_said_hello := false
+var _default_collision_mask := 0
 
 
 var follow_index: int:
@@ -58,11 +58,35 @@ var rescue_player: AudioStreamPlayer2D:
 	
 var gnome_speech: AnimatedSprite2D:
 	get: return $GnomeSpeech
+	
+var touching_player_left: RayCast2D:
+	get: return $TouchingPlayerLeft
+	
+var touching_player_right: RayCast2D:
+	get: return $TouchingPlayerRight
+	
+var ghost_standing_on_ground_left: RayCast2D:
+	get: return $GhostGnome/StandingOnGroundLeft
+	
+var ghost_standing_on_ground_right: RayCast2D:
+	get: return $GhostGnome/StandingOnGroundRight
+	
+var ghost_gnome: Node2D:
+	get: return $GhostGnome
 
 func _ready() -> void:
+	_default_collision_mask = collision_mask
 	_begin_action(Enums.GnomeAction.GROUNDED)
 	_switch_to_state(GnomeWaitState.new(self))
 	ActionMonitor.began_action.connect(_player_began_action)
+	
+func set_gnome_collision_mask(new_layers: Array[int]) -> void:
+	collision_mask = 0
+	for layer in new_layers:
+		set_collision_mask_value(layer, true)
+		
+func reset_gnome_collision_mask() -> void:
+	collision_mask = _default_collision_mask
 
 func _begin_action(action: Enums.GnomeAction) -> void:
 	if action == _action: return
@@ -108,7 +132,7 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 		GnomeState.StateID.COLLECTED:
 			match event:
 				Enums.GnomeEvent.COLLECTION_DONE:
-					_switch_to_state(GnomeLerpFollowState.new(self))
+					_switch_to_state(GnomeLerpFollowStateV2.new(self))
 				Enums.GnomeEvent.DIED:
 					_switch_to_state(GnomeDyingState.new(self))
 		GnomeState.StateID.LERP_FOLLOW:
@@ -117,7 +141,7 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					if _should_enter_stray():
 						_switch_to_state(GnomeStrayState.new(self))
 					else:
-						_switch_to_state(GnomeFollowState.new(self))
+						_switch_to_state(GnomeFollowStateV2.new(self))
 				Enums.GnomeEvent.BECAME_ABANDONED:
 					_switch_to_state(GnomeWanderState.new(self))
 				Enums.GnomeEvent.BECAME_STUCK:
@@ -135,7 +159,9 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 				Enums.GnomeEvent.BECAME_ABANDONED:
 					_switch_to_state(GnomeWanderState.new(self))
 				Enums.GnomeEvent.BECAME_GROUNDED, Enums.GnomeEvent.PLAYER_COLLECTED, Enums.GnomeEvent.PLAYER_BECAME_IDLE:
+					print("should I stray?")
 					if _should_enter_stray():
+						print("yes, I should")
 						_switch_to_state(GnomeStrayState.new(self))
 				Enums.GnomeEvent.BECAME_STUCK:
 					_switch_to_state(GnomeStuckState.new(self))
@@ -150,7 +176,7 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 		GnomeState.StateID.STRAY:
 			match event: 
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
-					_switch_to_state(GnomeLerpFollowState.new(self))
+					_switch_to_state(GnomeLerpFollowStateV2.new(self))
 				Enums.GnomeEvent.BECAME_ABANDONED:
 					_switch_to_state(GnomeWanderState.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
@@ -178,7 +204,7 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 				Enums.GnomeEvent.BECAME_ABANDONED:
 					_switch_to_state(GnomeWanderState.new(self))
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
-					_switch_to_state(GnomeLerpFollowState.new(self))
+					_switch_to_state(GnomeLerpFollowStateV2.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
 					_switch_to_state(GnomeOrphanedState.new(self))
 				Enums.GnomeEvent.DIED:
@@ -194,7 +220,7 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 		GnomeState.StateID.STUCK:
 			match event:
 				Enums.GnomeEvent.BECAME_FREE, Enums.GnomeEvent.BECAME_STUCK:
-					_switch_to_state(GnomeLerpFollowState.new(self))
+					_switch_to_state(GnomeLerpFollowStateV2.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
 					_switch_to_state(GnomeOrphanedState.new(self))
 				Enums.GnomeEvent.DIED:
@@ -209,7 +235,7 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 func _physics_process(delta: float) -> void:
 	_state.on_physics_process(delta)
 	_state.on_animate($AnimatedSprite2D)
-	if is_on_floor():
+	if ghost_is_standing_on_ground():
 		_begin_action(Enums.GnomeAction.GROUNDED)
 	else:
 		_begin_action(Enums.GnomeAction.AIRBORNE)
@@ -219,33 +245,13 @@ func _physics_process(delta: float) -> void:
 		if collider and collider.is_in_group("Projectile"):
 			(collider as TurretTrapProjectile).gnome_collided_with_projectile(self)
 			break
-	# Add the gravity.
-	# if not is_on_floor():
-	# 	velocity += get_gravity() * delta
-
-	# # Handle jump.
-	# if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-	# 	velocity.y = JUMP_VELOCITY
-
-	# # Get the input direction and handle the movement/deceleration.
-	# # As good practice, you should replace UI actions with custom gameplay actions.
-	# var direction := Input.get_axis("ui_left", "ui_right")
-	# if direction:
-	# 	velocity.x = direction * SPEED
-	# else:
-	# 	velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	# move_and_slide()
-
 
 func _on_player_collection_body_entered(body:Node2D) -> void:
 	if body is Player:
-		_touching_player = true
 		_handle_gnome_event(Enums.GnomeEvent.PLAYER_COLLECTED)
 
-func _on_player_collection_body_exited(body: Node2D) -> void:
-	if body is Player:
-		_touching_player = false
+func _on_player_collection_body_exited(_body: Node2D) -> void:
+	pass
 
 func collection_complete(index: int) -> void:
 	_follow_index = index
@@ -264,13 +270,14 @@ func platform_lerp_follow_complete():
 	_handle_gnome_event(Enums.GnomeEvent.LANDED_ON_PLATFORM)
 
 func _should_enter_stray() -> bool:
-	return _action == Enums.GnomeAction.GROUNDED and _player_action == Enums.Action.IDLING and _touching_player
+	print("%s, %s, %s" % [Enums.gnome_action_name(_action), Enums.action_name(_player_action), _is_touching_player()])
+	return _action == Enums.GnomeAction.GROUNDED and _player_action == Enums.Action.IDLING and _is_touching_player()
 
-func has_player_abandoned() -> float:
-	return PMonitor.distance_to(position) > movement_config.MIN_ABANDONED_DISTANCE
+#func has_player_abandoned() -> float:
+	#return PMonitor.distance_to(position) > movement_config.MIN_ABANDONED_DISTANCE
 
-func player_abandoned() -> void: 
-	_handle_gnome_event(Enums.GnomeEvent.BECAME_ABANDONED)
+#func player_abandoned() -> void: 
+	#_handle_gnome_event(Enums.GnomeEvent.BECAME_ABANDONED)
 
 func stuck_got_free():
 	_handle_gnome_event(Enums.GnomeEvent.BECAME_FREE)
@@ -301,6 +308,28 @@ func play_rescue() -> void:
 func die() -> void:
 	_handle_gnome_event(Enums.GnomeEvent.DIED)
 
-
 func _on_hello_player_finished() -> void:
 	gnome_speech.hide()
+	
+func _is_touching_player() -> bool:
+	return touching_player_left.is_colliding() or touching_player_right.is_colliding()
+	
+func ghost_is_standing_on_ground() -> bool:
+	ghost_standing_on_ground_left.force_raycast_update()
+	ghost_standing_on_ground_right.force_raycast_update()
+	var on_ground = ghost_standing_on_ground_left.is_colliding() and ghost_standing_on_ground_right.is_colliding()
+	if on_ground:
+		$GhostGnome/ColorRect.color = Color.WHITE
+	else:
+		$GhostGnome/ColorRect.color = Color.RED
+	return on_ground
+	
+func reset_ghost() -> void:
+	ghost_gnome.position = Vector2.ZERO
+	#if debug:
+		#print("%s, %s, %s" % [position, ghost_gnome.position, ghost_is_standing_on_ground()])
+	
+func move_ghost_to(to: Vector2) -> void:
+	ghost_gnome.position = to
+	#if debug:
+		#print("%s, %s, %s" % [position, ghost_gnome.position, ghost_is_standing_on_ground()])

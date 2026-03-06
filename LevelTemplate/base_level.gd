@@ -81,8 +81,8 @@ func _time_seconds() -> float:
 func _physics_process(delta: float) -> void:
 	_t += delta
 	var time = _time_seconds() - _time_begin - _time_delay
-	var next_beat = _beats[_current_beat]
 	if len(_beats) > _current_beat:
+		var next_beat = _beats[_current_beat]
 		if time >= next_beat:
 			_current_beat += 1
 			Events.beat_channel_1_fired_sync()
