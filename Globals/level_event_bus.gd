@@ -12,6 +12,7 @@ signal player_hit_enemy(Enemy)
 signal player_killed_enemy(Enemy)
 signal player_exited_level()
 signal beat_channel_1
+signal gnome_reported_position(id: int, position: Vector2)
 
 func player_hit_spike_trap_sync(trap: SpikeTrap) -> void:
 	player_hit_spike_trap.emit(trap)
@@ -78,3 +79,9 @@ func gnome_hit_projectile_sync(gnome: Gnome) -> void:
 
 func gnome_hit_projectile_async(gnome: Gnome) -> void:
 	gnome_hit_projectile.emit.call_deferred(gnome)
+	
+func gnome_reported_position_sync(id: int, position: Vector2) -> void:
+	gnome_reported_position.emit(id, position)
+	
+func gnome_reported_position_async(id: int, position: Vector2) -> void:
+	gnome_reported_position.emit.call_deferred(id, position)

@@ -36,6 +36,7 @@ var _parsed_output_length := 0
 
 var _fading := false
 var _t_fading := 0.0
+var _showing_all_text := false
 
 func _ready() -> void:
 	_parallax_background.tile_h_count = tile_h_count
@@ -53,24 +54,25 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_t += delta
 	_current_output_length = floor(_t * characters_per_second)
-	if _current_output_length < _parsed_output_length:
+	if !_showing_all_text and _current_output_length < _parsed_output_length:
 		_display_label.visible_characters = _current_output_length
 	else:
+		_showing_all_text = true
 		_display_label.visible_characters = -1
 		if _morse_player.playing:
 			_morse_player.stop()
 
-	if Input.is_action_just_released("ui_accept") and !_fading:
-		_continue_to_level()
+	if Input.is_action_just_released("ui_accept"):
+		if !_showing_all_text:
+			_showing_all_text = true
+		elif !_fading:
+			_continue_to_level()
 
 	if _fading:
 		_t_fading += delta
 		if _t_fading > fade_time_seconds:
 			_done()
 		_fader.modulate.a = _t_fading / fade_time_seconds
-
-
-
 
 func _on_morse_player_finished() -> void:
 	if _current_output_length < _parsed_output_length:

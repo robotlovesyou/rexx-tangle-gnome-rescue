@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsqgklrkp8dwv"]
+
+[ext_resource type="PackedScene" uid="uid://y4tb8v4fvs66" path="res://Gnomes/gnome.tscn" id="1_bpts8"]
+[ext_resource type="Script" uid="uid://que72xrhfuwg" path="res://Gnomes/gnome_spawner.gd" id="1_o7638"]
+
+[node name="GnomeSpawner" type="Node2D" groups=["GnomeSpawner"]]
+script = ExtResource("1_o7638")
+gnome_scene = ExtResource("1_bpts8")
+
+[node name="Gnome" parent="." instance=ExtResource("1_bpts8")]
+
+[connection signal="died" from="Gnome" to="." method="_on_gnome_died"]

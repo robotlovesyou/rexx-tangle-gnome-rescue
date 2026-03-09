@@ -2,6 +2,7 @@ class_name Gnome
 extends CharacterBody2D
 
 signal rescued
+signal died
 
 const TRAP_ONLY_COLLISION_MASK = 7
 
@@ -73,6 +74,9 @@ var ghost_standing_on_ground_right: RayCast2D:
 	
 var ghost_gnome: Node2D:
 	get: return $GhostGnome
+	
+var appear_player: AnimationPlayer:
+	get: return $AppearPlayer
 
 func _ready() -> void:
 	_default_collision_mask = collision_mask
@@ -245,6 +249,8 @@ func _physics_process(delta: float) -> void:
 		if collider and collider.is_in_group("Projectile"):
 			(collider as TurretTrapProjectile).gnome_collided_with_projectile(self)
 			break
+			
+	Events.gnome_reported_position_sync(get_instance_id(), global_position)
 
 func _on_player_collection_body_entered(body:Node2D) -> void:
 	if body is Player:
@@ -307,6 +313,9 @@ func play_rescue() -> void:
 
 func die() -> void:
 	_handle_gnome_event(Enums.GnomeEvent.DIED)
+	
+func gnome_has_died() -> void:
+	died.emit()
 
 func _on_hello_player_finished() -> void:
 	gnome_speech.hide()
@@ -333,3 +342,12 @@ func move_ghost_to(to: Vector2) -> void:
 	ghost_gnome.position = to
 	#if debug:
 		#print("%s, %s, %s" % [position, ghost_gnome.position, ghost_is_standing_on_ground()])
+		
+func gnome_was_rescued() -> void:
+	rescued.emit()
+	
+func prepare_appear() -> void:
+	animated_sprite.material.set_shader_parameter("amount", 0.0)
+	
+func appear() -> void:
+	appear_player.play("appear")

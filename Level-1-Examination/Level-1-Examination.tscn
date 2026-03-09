@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://d1q8jseublfqs" path="res://Level-1-Examination/OrangeDropTrap.png" id="9_poek4"]
 [ext_resource type="PackedScene" uid="uid://cepvnfljrn4by" path="res://Shared/hud.tscn" id="9_tesyf"]
 [ext_resource type="Texture2D" uid="uid://cq176n5lo1l67" path="res://Level-1-Examination/SkyBlueTileMap.png" id="10_85m5c"]
-[ext_resource type="PackedScene" uid="uid://y4tb8v4fvs66" path="res://Gnomes/gnome.tscn" id="10_wnu8j"]
 [ext_resource type="Texture2D" uid="uid://d1v6ra773qj52" path="res://Level-1-Examination/MidBlueTileMap.png" id="11_ihgyl"]
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="11_x6rhn"]
 [ext_resource type="Texture2D" uid="uid://dfmkrnddvebp4" path="res://Level-1-Examination/DarkBlueTileMap.png" id="12_ql8uy"]
@@ -36,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://4tr6ko5sfl5b" path="res://Level-1-Examination/lazer_trap.tscn" id="33_5ggxx"]
 [ext_resource type="PackedScene" uid="uid://b575ft8cmajfi" path="res://Level-1-Examination/rifle_trap_left.tscn" id="33_rmmu0"]
 [ext_resource type="PackedScene" uid="uid://dlvgqs2d5awma" path="res://Level-1-Examination/rifle_trap_right.tscn" id="34_rmmu0"]
+[ext_resource type="PackedScene" uid="uid://bsqgklrkp8dwv" path="res://Gnomes/gnome_spawner.tscn" id="37_0yjuw"]
 
 [sub_resource type="Curve2D" id="Curve2D_d4fbk"]
 _data = {
@@ -3825,24 +3825,23 @@ tile_set = SubResource("TileSet_m1waf")
 
 [node name="Gnomes" type="Node" parent="."]
 
-[node name="Gnome" parent="Gnomes" instance=ExtResource("10_wnu8j")]
-position = Vector2(680, 784)
-debug = true
+[node name="GnomeSpawner" parent="Gnomes" instance=ExtResource("37_0yjuw")]
+position = Vector2(640, 784)
 
-[node name="Gnome2" parent="Gnomes" instance=ExtResource("10_wnu8j")]
-position = Vector2(1440, 704)
+[node name="GnomeSpawner2" parent="Gnomes" instance=ExtResource("37_0yjuw")]
+position = Vector2(1439.8656, 703.9873)
 
-[node name="Gnome3" parent="Gnomes" instance=ExtResource("10_wnu8j")]
-position = Vector2(3264, -80)
+[node name="GnomeSpawner3" parent="Gnomes" instance=ExtResource("37_0yjuw")]
+position = Vector2(3263.8796, -80.25021)
 
-[node name="Gnome4" parent="Gnomes" instance=ExtResource("10_wnu8j")]
-position = Vector2(4064, -80)
+[node name="GnomeSpawner4" parent="Gnomes" instance=ExtResource("37_0yjuw")]
+position = Vector2(4064.1086, -79.84139)
 
-[node name="Gnome5" parent="Gnomes" instance=ExtResource("10_wnu8j")]
-position = Vector2(3656, -128)
+[node name="GnomeSpawner5" parent="Gnomes" instance=ExtResource("37_0yjuw")]
+position = Vector2(3656.1165, -127.8892)
 
-[node name="Gnome6" parent="Gnomes" instance=ExtResource("10_wnu8j")]
-position = Vector2(2272, -1488)
+[node name="GnomeSpawner6" parent="Gnomes" instance=ExtResource("37_0yjuw")]
+position = Vector2(2271.8206, -1488.1174)
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_85m5c")

@@ -57,3 +57,4 @@ tile_set = SubResource("TileSet_v2emg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_mtfni")
+one_way_collision = true

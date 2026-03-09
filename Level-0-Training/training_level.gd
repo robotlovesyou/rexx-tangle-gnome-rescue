@@ -8,17 +8,15 @@ extends BaseLevel
 @export var gnome_count_door: Door
 @export var timer_door: Door
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
 	hud.hide_gnome_count()
 	hud.hide_timer()
-
+	hud.hide_minimap()
+	
 func _physics_process(delta: float) -> void:
 	super(delta)
-
 
 func _on_training_dialog_requested(text: String) -> void:
 	training_dialogs_layer.open(text)

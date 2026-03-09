@@ -3,20 +3,24 @@
 # TO DO
 
 ## Next Up
-* ~~Refactor the gnomes to ignore terrain~~
-* ~~If possible use wall rays to calculate wall normal~~
-* Refactor the gnomes to ignore platforms
-* Refactor the gnomes to allow for respawning
-* Level intro text should all show on first press of space and only exit on second
-
+* Create unique music for the training level. Just a fairly short loop should do.
+* Add the next environment (starting with the music)
 
 ## Backlog
-* Add the next environment (blocked by all above)
+* Add spawning indicators to the minimap to show gnomes respawning.
+* Use instance ids to re-use minimap children rather than recrating each physics tick
+* Improve minimap appearance relative to rest of HUD
 * Add a fade between the menu screens (Partially done)
 * Decide how the game deals with difficulty, levels and level navigation, scores, save games etc
 * Add continue/new game buttons to the title screen
 
 ## Done
+* ~~Refactor the gnomes to ignore terrain~~
+* ~~Refactor the gnomes to ignore platforms~~
+* ~~If possible use wall rays to calculate wall normal~~
+* ~~Refactor the gnomes to allow for respawning~~
+* ~~Add a minimap~~
+* ~~Level intro text should all show on first press of space and only exit on second~~
 * ~~Better beat data for the examination level~~
 * ~~stop the gnome training dialog firing after owned gnome is rescued
 * ~~Use Jules' gnome recordings.~~
