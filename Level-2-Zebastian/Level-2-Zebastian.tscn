@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=34 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://b5iuspefhqqgb" path="res://LevelTemplate/level_template.gd" id="1_ravnc"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -13,9 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://y4tb8v4fvs66" path="res://Gnomes/gnome.tscn" id="11_fyph5"]
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="12_mv44v"]
 [ext_resource type="PackedScene" uid="uid://blysyve0sampw" path="res://LevelTemplate/game_over_message.tscn" id="13_s1qii"]
-[ext_resource type="Material" uid="uid://i1uk3e4el4u5" path="res://Level-2-Zebastian/fire_shader_material.tres" id="14_22bsy"]
+[ext_resource type="Shader" uid="uid://cyeveai6q7cqv" path="res://Level-2-Zebastian/fire.gdshader" id="14_22bsy"]
+[ext_resource type="NoiseTexture3D" uid="uid://c4h72na62k22l" path="res://Level-2-Zebastian/fire_noise.tres" id="15_cshrt"]
 [ext_resource type="Texture2D" uid="uid://d4kgatdmymo2g" path="res://Level-0-Training/SmallerSpikeTrap.png" id="16_7p0rw"]
 [ext_resource type="Script" uid="uid://b2spfkp40uilt" path="res://Level-2-Zebastian/fire.gd" id="16_cshrt"]
+[ext_resource type="Texture2D" uid="uid://8xj2qn0id04v" path="res://Level-2-Zebastian/fire_color_ramp.tres" id="16_ebf0l"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4evms"]
 load_path = "res://.godot/imported/training_level_atlas.png-0dd344668e5896736eedce2bfa24cd33.ctex"
@@ -785,23 +787,27 @@ terrain_set_0/terrain_0/name = "BlueFloor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_o5dvu")
 
-[sub_resource type="Curve" id="Curve_cshrt"]
-_data = [Vector2(0.007633589, 0), 0.0, 0.0, 0, 0, Vector2(0.129771, 1), 0.0, 0.0, 0, 0, Vector2(0.84732825, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_22bsy"]
+noise_type = 3
+seed = 3
+frequency = 0.1467
 
-[sub_resource type="CurveTexture" id="CurveTexture_7p0rw"]
-curve = SubResource("Curve_cshrt")
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_cshrt"]
+width = 32
+height = 32
+depth = 32
+noise = SubResource("FastNoiseLite_22bsy")
+seamless = true
+seamless_blend_skirt = 0.5
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cshrt"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(4, 8, 1)
-gravity = Vector3(0, -98, 0)
-scale_min = 0.5
-scale_max = 2.0
-color = Color(0.65834004, 0.6583399, 0.6583399, 1)
-alpha_curve = SubResource("CurveTexture_7p0rw")
-turbulence_enabled = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cshrt"]
+shader = ExtResource("14_22bsy")
+shader_parameter/noise = ExtResource("15_cshrt")
+shader_parameter/noise2 = SubResource("NoiseTexture3D_cshrt")
+shader_parameter/ramp = ExtResource("16_ebf0l")
+shader_parameter/v_speed = 0.499999988824
+shader_parameter/d_speed = 0.0999999977648
+shader_parameter/offset = 0.0
 
 [node name="LevelTemplate" type="Node2D" node_paths=PackedStringArray("exit", "hud", "player_sibling_node", "level_music_player")]
 script = ExtResource("1_ravnc")
@@ -863,13 +869,28 @@ volume_db = -15.0
 [node name="ShaderCompilerCamera" type="Camera2D" parent="."]
 
 [node name="Fire" type="Sprite2D" parent="."]
-material = ExtResource("14_22bsy")
-position = Vector2(344, 248)
+material = SubResource("ShaderMaterial_cshrt")
+position = Vector2(280, 248)
 texture = ExtResource("16_7p0rw")
 script = ExtResource("16_cshrt")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Fire"]
-process_material = SubResource("ParticleProcessMaterial_cshrt")
+[node name="Fire2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cshrt")
+position = Vector2(296, 248)
+texture = ExtResource("16_7p0rw")
+script = ExtResource("16_cshrt")
+
+[node name="Fire3" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cshrt")
+position = Vector2(312, 248)
+texture = ExtResource("16_7p0rw")
+script = ExtResource("16_cshrt")
+
+[node name="Fire4" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cshrt")
+position = Vector2(328, 248)
+texture = ExtResource("16_7p0rw")
+script = ExtResource("16_cshrt")
 
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]
