@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://i1uk3e4el4u5"]
+
+[ext_resource type="Shader" uid="uid://cyeveai6q7cqv" path="res://Level-2-Zebastian/fire.gdshader" id="1_pmfa7"]
+[ext_resource type="NoiseTexture3D" uid="uid://c4h72na62k22l" path="res://Level-2-Zebastian/fire_noise.tres" id="2_gb1e1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ebf0l"]
+noise_type = 3
+seed = 3
+frequency = 0.1467
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_1pxga"]
+width = 32
+height = 32
+depth = 32
+noise = SubResource("FastNoiseLite_ebf0l")
+seamless = true
+seamless_blend_skirt = 0.5
+
+[sub_resource type="Gradient" id="Gradient_22bsy"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+colors = PackedColorArray(1, 0.33333334, 0, 1, 1, 0.46666667, 0, 1, 1, 0.6, 0, 1, 1, 0.73333335, 0.2, 1, 1, 0.8666667, 0.33333334, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 4
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cshrt"]
+gradient = SubResource("Gradient_22bsy")
+
+[resource]
+shader = ExtResource("1_pmfa7")
+shader_parameter/noise = ExtResource("2_gb1e1")
+shader_parameter/noise2 = SubResource("NoiseTexture3D_1pxga")
+shader_parameter/ramp = SubResource("GradientTexture1D_cshrt")
+shader_parameter/v_speed = 0.499999988824
+shader_parameter/d_speed = 0.0999999977648
+shader_parameter/offset = 0.0

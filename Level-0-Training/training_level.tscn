@@ -46,7 +46,7 @@
 [ext_resource type="Material" uid="uid://ba20usvxasrd6" path="res://Level-1-Examination/DirectionIndicatorParticles.tres" id="40_tdp4v"]
 [ext_resource type="Curve" uid="uid://vrp462p7vk05" path="res://Level-1-Examination/turbulence_influence_curve.tres" id="41_7jp0u"]
 [ext_resource type="Material" uid="uid://u8rtyoggwu6u" path="res://Level-1-Examination/DirectionIndicatorParticlesLeft.tres" id="42_fa5wb"]
-[ext_resource type="AudioStream" uid="uid://bpcxin4ndd0c" path="res://Sounds/Music/TrainingDay.mp3" id="47_yiadc"]
+[ext_resource type="AudioStream" uid="uid://bqxmcd4hc41ep" path="res://Sounds/Music/TrainingDayv2.mp3" id="47_yiadc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3crw2"]
 size = Vector2(256, 64)

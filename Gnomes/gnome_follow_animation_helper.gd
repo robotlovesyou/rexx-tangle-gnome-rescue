@@ -11,6 +11,8 @@ func on_animate(movement_data: PlayerMovementData, sprite: AnimatedSprite2D) -> 
 			sprite.play("walk")
 		Enums.Action.IDLING:
 			sprite.play("idle")
+		Enums.Action.JUMPING, Enums.Action.DOUBLE_JUMPED, Enums.Action.DOUBLE_JUMPING, Enums.Action.FALLING:
+			sprite.play("jump")
 		_:
 			if movement_data.action != _last_warned_action:
 				_last_warned_action = movement_data.action

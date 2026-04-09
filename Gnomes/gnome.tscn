@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://y4tb8v4fvs66"]
+[gd_scene load_steps=80 format=3 uid="uid://y4tb8v4fvs66"]
 
 [ext_resource type="Script" uid="uid://bua5ful6l310d" path="res://Gnomes/gnome.gd" id="1_5vlar"]
 [ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="2_dt2vp"]
@@ -26,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://dhcglvy17j42t" path="res://Sounds/Gnomes/Rescue/Oooh.wav" id="21_dgik7"]
 [ext_resource type="AudioStream" uid="uid://clwo074yhevjo" path="res://Sounds/Gnomes/Rescue/Wunderbar.wav" id="22_1t76n"]
 [ext_resource type="AudioStream" uid="uid://drbvwcqb6ajv1" path="res://Sounds/Gnomes/Rescue/Yippee.wav" id="23_kgc4o"]
+[ext_resource type="Texture2D" uid="uid://d34vfibgg8b23" path="res://RexxArt/Gnomes/jump.png" id="27_1t76n"]
 [ext_resource type="Texture2D" uid="uid://c7ooka5l4u4ns" path="res://RexxArt/Gnomes/GnomeSpeech.png" id="27_v0vju"]
 [ext_resource type="Shader" uid="uid://bxshfophs5fb8" path="res://Gnomes/gnome.gdshader" id="28_dgik7"]
 
@@ -130,6 +131,22 @@ region = Rect2(128, 0, 32, 32)
 atlas = ExtResource("9_u8kr0")
 region = Rect2(160, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_urd5x"]
+atlas = ExtResource("27_1t76n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymanf"]
+atlas = ExtResource("27_1t76n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylyhk"]
+atlas = ExtResource("27_1t76n")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta73q"]
+atlas = ExtResource("27_1t76n")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_53cmn"]
 atlas = ExtResource("10_41rew")
 region = Rect2(0, 0, 32, 32)
@@ -226,6 +243,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_urd5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymanf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylyhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta73q")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_53cmn")
 }, {
 "duration": 1.0,
@@ -308,21 +342,6 @@ color_ramp = SubResource("GradientTexture1D_t8sqo")
 alpha_curve = SubResource("CurveTexture_unp4v")
 emission_curve = SubResource("CurveTexture_u8kr0")
 
-[sub_resource type="Animation" id="Animation_dgik7"]
-resource_name = "appear"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/amount")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.999999977648]
-}
-
 [sub_resource type="Animation" id="Animation_1t76n"]
 length = 0.001
 tracks/0/type = "value"
@@ -336,6 +355,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dgik7"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.999999977648]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kgc4o"]
@@ -356,7 +390,7 @@ rescue_sounds = Array[AudioStreamWAV]([ExtResource("19_ujxtx"), ExtResource("20_
 material = SubResource("ShaderMaterial_kgc4o")
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_ttdt0")
-animation = &"disappear"
+animation = &"jump"
 autoplay = "idle"
 
 [node name="GnomeSpeech" type="AnimatedSprite2D" parent="."]
