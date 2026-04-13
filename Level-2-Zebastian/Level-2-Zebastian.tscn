@@ -872,6 +872,8 @@ volume_db = -15.0
 [node name="BirbSwarm" parent="." instance=ExtResource("19_1pxga")]
 position = Vector2(392, 248)
 arrive_time_seconds = 1.5
+travel_time_seconds = 3.0
+leave_time_seconds = 1.5
 
 [node name="Fire" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_cshrt")
