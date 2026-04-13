@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=36 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://b5iuspefhqqgb" path="res://LevelTemplate/level_template.gd" id="1_ravnc"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://b2spfkp40uilt" path="res://Level-2-Zebastian/fire.gd" id="16_cshrt"]
 [ext_resource type="Texture2D" uid="uid://8xj2qn0id04v" path="res://Level-2-Zebastian/fire_color_ramp.tres" id="16_ebf0l"]
 [ext_resource type="PackedScene" uid="uid://dn0idt4lm07gq" path="res://Level-2-Zebastian/birb_swarm.tscn" id="19_1pxga"]
+[ext_resource type="Texture2D" uid="uid://tapcaoji4xx4" path="res://Level-2-Zebastian/SpiderWeb.png" id="20_i3inu"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4evms"]
 load_path = "res://.godot/imported/training_level_atlas.png-0dd344668e5896736eedce2bfa24cd33.ctex"
@@ -898,6 +899,10 @@ material = SubResource("ShaderMaterial_cshrt")
 position = Vector2(288, 248)
 texture = ExtResource("16_7p0rw")
 script = ExtResource("16_cshrt")
+
+[node name="SpiderWeb" type="Sprite2D" parent="."]
+position = Vector2(160, 128)
+texture = ExtResource("20_i3inu")
 
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]

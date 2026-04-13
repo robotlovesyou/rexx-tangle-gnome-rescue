@@ -13,6 +13,10 @@ signal player_killed_enemy(Enemy)
 signal player_exited_level()
 signal beat_channel_1
 signal gnome_reported_position(id: int, position: Vector2)
+signal player_waiting_for_birbs
+signal player_collected_by_birbs
+signal birbs_moved_player(position: Vector2)
+signal player_deposited_by_birbs
 
 func player_hit_spike_trap_sync(trap: SpikeTrap) -> void:
 	player_hit_spike_trap.emit(trap)
@@ -85,3 +89,27 @@ func gnome_reported_position_sync(id: int, position: Vector2) -> void:
 	
 func gnome_reported_position_async(id: int, position: Vector2) -> void:
 	gnome_reported_position.emit.call_deferred(id, position)
+	
+func player_waiting_for_birbs_sync():
+	player_waiting_for_birbs.emit()
+	
+func player_waiting_for_birbs_async():
+	player_waiting_for_birbs.emit.call_deferred()
+	
+func player_collected_by_birbs_sync():
+	player_collected_by_birbs.emit()
+	
+func player_collected_by_birbs_async():
+	player_collected_by_birbs.emit.call_deferred()
+	
+func birbs_moved_player_sync(to: Vector2):
+	birbs_moved_player.emit(to)
+	
+func birbs_moved_player_async(to: Vector2):
+	birbs_moved_player.emit.call_deferred(to)
+	
+func player_deposited_by_birbs_sync():
+	player_deposited_by_birbs.emit()
+	
+func player_deposited_by_birbs_async():
+	player_deposited_by_birbs.emit.call_deferred()
