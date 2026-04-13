@@ -30,7 +30,6 @@ orbit_velocity_min = -0.99999994
 orbit_velocity_max = 1.0000001
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
-scale_max = 1.5
 anim_speed_min = 4.0
 anim_speed_max = 8.0
 
