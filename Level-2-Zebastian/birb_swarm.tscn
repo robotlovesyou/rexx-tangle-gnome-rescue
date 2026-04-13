@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://dn0idt4lm07gq"]
+
+[ext_resource type="Script" uid="uid://bj2rgyhu042n6" path="res://Level-2-Zebastian/birb_swarm.gd" id="1_2gbho"]
+[ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_b5g8j"]
+[ext_resource type="Texture2D" uid="uid://b1xjp8isdbar1" path="res://Level-2-Zebastian/Birb.png" id="2_2gbho"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kifhd"]
+atlas = ExtResource("1_b5g8j")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cdxyx"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 3
+particles_anim_loop = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1br3t"]
+atlas = ExtResource("2_2gbho")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8meel"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 32.0
+emission_ring_inner_radius = 4.0
+emission_ring_cone_angle = 90.0
+orbit_velocity_min = -0.99999994
+orbit_velocity_max = 1.0000001
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+anim_speed_min = 4.0
+anim_speed_max = 8.0
+
+[sub_resource type="Curve2D" id="Curve2D_lkekl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 224, -224, 0, 0, 0, 0, 168, -192, 0, 0, 0, 0, 120, -160, 0, 0, 0, 0, 80, -128, 0, 0, 0, 0, 48, -96, 0, 0, 0, 0, 24, -64, 0, 0, 0, 0, 8, -32, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_b5g8j"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -32, -32, 0, 0, 0, 0, -80, -56, 0, 0, 0, 0, -136, -72, 0, 0, 0, 0, -200, -80, 0, 0, 0, 0, -264, -80, 0, 0, 0, 0, -320, -72, 0, 0, 0, 0, -368, -56, 0, 0, 0, 0, -408, -32, 0, 0, 0, 0, -440, 0)
+}
+point_count = 10
+
+[sub_resource type="Curve2D" id="Curve2D_2gbho"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -440, 0, 0, 0, 0, 0, -448, -32, 0, 0, 0, 0, -464, -64, 0, 0, 0, 0, -488, -96, 0, 0, 0, 0, -520, -128, 0, 0, 0, 0, -560, -160, 0, 0, 0, 0, -608, -192, 0, 0, 0, 0, -664, -224)
+}
+point_count = 8
+
+[node name="BirbSwarm" type="Node2D"]
+script = ExtResource("1_2gbho")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_kifhd")
+
+[node name="BirbParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_cdxyx")
+emitting = false
+texture = SubResource("AtlasTexture_1br3t")
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8meel")
+
+[node name="ArrivePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_lkekl")
+
+[node name="ArriveFollow" type="PathFollow2D" parent="ArrivePath"]
+position = Vector2(224, -224)
+rotation = 2.6224465
+
+[node name="TravelPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_b5g8j")
+
+[node name="TravelFollow" type="PathFollow2D" parent="TravelPath"]
+rotation = -2.3561945
+
+[node name="LeavePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2gbho")
+
+[node name="LeaveFollow" type="PathFollow2D" parent="LeavePath"]
+position = Vector2(-440, 0)
+rotation = -1.815775

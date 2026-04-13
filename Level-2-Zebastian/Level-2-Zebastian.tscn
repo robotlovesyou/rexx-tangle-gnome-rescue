@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=35 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://b5iuspefhqqgb" path="res://LevelTemplate/level_template.gd" id="1_ravnc"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://d4kgatdmymo2g" path="res://Level-0-Training/SmallerSpikeTrap.png" id="16_7p0rw"]
 [ext_resource type="Script" uid="uid://b2spfkp40uilt" path="res://Level-2-Zebastian/fire.gd" id="16_cshrt"]
 [ext_resource type="Texture2D" uid="uid://8xj2qn0id04v" path="res://Level-2-Zebastian/fire_color_ramp.tres" id="16_ebf0l"]
+[ext_resource type="PackedScene" uid="uid://dn0idt4lm07gq" path="res://Level-2-Zebastian/birb_swarm.tscn" id="19_1pxga"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4evms"]
 load_path = "res://.godot/imported/training_level_atlas.png-0dd344668e5896736eedce2bfa24cd33.ctex"
@@ -824,7 +825,7 @@ level_music_player = NodePath("LevelMusicPlayer")
 level_music_beats = ExtResource("5_8yyn7")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("6_ak2hd")]
-position = Vector2(192, 192)
+position = Vector2(320, 224)
 active = true
 
 [node name="Exit" parent="." instance=ExtResource("7_73l37")]
@@ -868,27 +869,31 @@ volume_db = -15.0
 
 [node name="ShaderCompilerCamera" type="Camera2D" parent="."]
 
+[node name="BirbSwarm" parent="." instance=ExtResource("19_1pxga")]
+position = Vector2(392, 248)
+arrive_time_seconds = 1.5
+
 [node name="Fire" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_cshrt")
-position = Vector2(280, 248)
+position = Vector2(240, 248)
 texture = ExtResource("16_7p0rw")
 script = ExtResource("16_cshrt")
 
 [node name="Fire2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_cshrt")
-position = Vector2(296, 248)
+position = Vector2(256, 248)
 texture = ExtResource("16_7p0rw")
 script = ExtResource("16_cshrt")
 
 [node name="Fire3" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_cshrt")
-position = Vector2(312, 248)
+position = Vector2(272, 248)
 texture = ExtResource("16_7p0rw")
 script = ExtResource("16_cshrt")
 
 [node name="Fire4" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_cshrt")
-position = Vector2(328, 248)
+position = Vector2(288, 248)
 texture = ExtResource("16_7p0rw")
 script = ExtResource("16_cshrt")
 
