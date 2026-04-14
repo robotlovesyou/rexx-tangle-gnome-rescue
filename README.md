@@ -3,8 +3,17 @@
 # TO DO
 
 ## Next Up
-* Create unique music for the training level. Just a fairly short loop should do.
-* Add the next environment (starting with the music)
+* Add a button click sound to the birb feeder
+* Add a seed pour sound to the birb feeder
+* Add a birb flock sound effect
+* Add a wheeeeee sound effect for rexx
+* Spider Web Mechanic
+* Flame Traps
+* Leaves with player visibility shader
+* Misty Background
+* Lay out level
+* Draw Big Old Trees
+
 
 ## Backlog
 * Add spawning indicators to the minimap to show gnomes respawning.
@@ -15,6 +24,8 @@
 * Add continue/new game buttons to the title screen
 
 ## Done
+* ~~Create unique music for the training level. Just a fairly short loop should do.~~
+* ~~Add the next environment (starting with the music)~~
 * ~~Refactor the gnomes to ignore terrain~~
 * ~~Refactor the gnomes to ignore platforms~~
 * ~~If possible use wall rays to calculate wall normal~~

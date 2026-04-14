@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dn0idt4lm07gq"]
+[gd_scene load_steps=13 format=3 uid="uid://dn0idt4lm07gq"]
 
 [ext_resource type="Script" uid="uid://bj2rgyhu042n6" path="res://Level-2-Zebastian/birb_swarm.gd" id="1_2gbho"]
 [ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_b5g8j"]
@@ -18,6 +18,13 @@ particles_anim_loop = true
 atlas = ExtResource("2_2gbho")
 region = Rect2(0, 0, 48, 48)
 
+[sub_resource type="Curve" id="Curve_2gbho"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.09923664, 1), 0.0, 0.0, 0, 0, Vector2(0.9007634, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_kifhd"]
+curve = SubResource("Curve_2gbho")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8meel"]
 particle_flag_disable_z = true
 emission_shape = 6
@@ -30,6 +37,7 @@ orbit_velocity_min = -0.99999994
 orbit_velocity_max = 1.0000001
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
+alpha_curve = SubResource("CurveTexture_kifhd")
 anim_speed_min = 4.0
 anim_speed_max = 8.0
 

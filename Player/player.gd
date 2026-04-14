@@ -100,6 +100,15 @@ func stop_skid() -> void:
 func die() -> void:
 	_switch_to_state(DyingState.new(self))
 	_death_effect_player.play()
+	
+func wait_for_birbs() -> void:
+	_switch_to_state(WaitingForBirbsState.new(self))
+	
+func collected_by_birbs() -> void:
+	_switch_to_state(CarriedByBirbsState.new(self))
+	
+func deposited_by_birbs() -> void:
+	_switch_to_state(AliveState.new(self))
 
 func exit(exit_scene: Exit) -> void:
 	_switch_to_state(ExitingState.new(self, exit_scene))
@@ -113,6 +122,9 @@ func _ready() -> void:
 	_min_jump_particle_scale = jump_particles.scale_amount_min
 	_max_jump_particle_scale = jump_particles.scale_amount_max
 	Events.beat_channel_1.connect(trigger_beat_effect)
+	Events.player_waiting_for_birbs.connect(wait_for_birbs)
+	Events.player_collected_by_birbs.connect(collected_by_birbs)
+	Events.player_deposited_by_birbs.connect(deposited_by_birbs)
 
 func done_appearing() -> void:
 	_switch_to_state(AliveState.new(self))

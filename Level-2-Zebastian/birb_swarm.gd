@@ -28,9 +28,10 @@ func start() -> void:
 		_phase = Phase.Arrive
 		birb_particles.restart()
 		_t = 0.0
+		Events.player_waiting_for_birbs_async()
 		
 func _ready() -> void:
-	start()
+	pass
 	
 func _physics_process(delta: float) -> void:
 	match _phase:
@@ -50,14 +51,17 @@ func _physics_process(delta: float) -> void:
 			if _t >= wait_to_travel_time_seconds:
 				_phase = Phase.Travel
 				_t = 0.0
+				Events.player_collected_by_birbs_async()
 		Phase.Travel:
 			_t += delta
 			var ratio := _t / travel_time_seconds
 			travel_follow.progress_ratio = min(ratio, 1.0)
 			birb_particles.global_position = travel_follow.global_position
+			Events.birbs_moved_player_async(travel_follow.global_position)
 			if _t >= travel_time_seconds: 
-				_phase = Phase.Leave
+				_phase = Phase.WaitToLeave
 				_t = 0.0
+				Events.player_deposited_by_birbs_async()
 		Phase.WaitToLeave:
 			_t += delta
 			if _t >= wait_to_leave_time_seconds:
