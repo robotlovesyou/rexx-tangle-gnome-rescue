@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dw6fhph8u2lmu"
+path="res://.godot/imported/CrowLoop Mixdown 2.wav-cba547a3aef84ad8f439593e70b3128e.sample"
+
+[deps]
+
+source_file="res://Level-2-Zebastian/CrowLoop Mixdown 2.wav"
+dest_files=["res://.godot/imported/CrowLoop Mixdown 2.wav-cba547a3aef84ad8f439593e70b3128e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

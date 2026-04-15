@@ -3,6 +3,7 @@ extends PlayerState
 
 var _collision_mask := 0
 var _collision_layer := 0
+var _last_position := Vector2.ZERO
 
 const EMPY_MASK := 0
 
@@ -15,6 +16,7 @@ func on_enter() -> void:
 	_parent.collision_mask = EMPY_MASK
 	_collision_layer = _parent.collision_layer
 	_parent.collision_layer = EMPY_MASK
+	_last_position = _parent.global_position
 	
 func on_exit() -> void:
 	Events.birbs_moved_player.disconnect(birbs_moved_player)
@@ -30,4 +32,6 @@ func birbs_moved_player(to: Vector2) -> void:
 	_parent.global_position = to
 	
 func on_animate(animated_sprite: AnimatedSprite2D) -> void:
+	animated_sprite.flip_h = _parent.global_position.x != _last_position.x and _parent.global_position.x > _last_position.x
+	_last_position = _parent.global_position
 	animated_sprite.play("jump")

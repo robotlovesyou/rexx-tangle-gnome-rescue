@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dn0idt4lm07gq"]
+[gd_scene load_steps=14 format=3 uid="uid://dn0idt4lm07gq"]
 
 [ext_resource type="Script" uid="uid://bj2rgyhu042n6" path="res://Level-2-Zebastian/birb_swarm.gd" id="1_2gbho"]
 [ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_b5g8j"]
 [ext_resource type="Texture2D" uid="uid://b1xjp8isdbar1" path="res://Level-2-Zebastian/Birb.png" id="2_2gbho"]
+[ext_resource type="AudioStream" uid="uid://dw6fhph8u2lmu" path="res://Level-2-Zebastian/CrowLoop Mixdown 2.wav" id="4_kifhd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kifhd"]
 atlas = ExtResource("1_b5g8j")
@@ -72,6 +73,11 @@ emitting = false
 texture = SubResource("AtlasTexture_1br3t")
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_8meel")
+
+[node name="BirbSFX" type="AudioStreamPlayer2D" parent="BirbParticles"]
+stream = ExtResource("4_kifhd")
+max_distance = 400.0
+bus = &"SFX"
 
 [node name="ArrivePath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_lkekl")

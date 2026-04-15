@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dxibwhuulkyuc"]
+[gd_scene load_steps=30 format=3 uid="uid://dxibwhuulkyuc"]
 
 [ext_resource type="Script" uid="uid://d0jrgnx3e3xpa" path="res://Level-2-Zebastian/birb_call.gd" id="1_g57lj"]
 [ext_resource type="Texture2D" uid="uid://cmdthep8xgq8c" path="res://Level-2-Zebastian/BandWBorder.png" id="1_oqhcf"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://1nebc6kmcsrr" path="res://Level-2-Zebastian/Button.png" id="4_otl1a"]
 [ext_resource type="Texture2D" uid="uid://ukiq702e0nd6" path="res://Level-2-Zebastian/BirbSeed.png" id="6_rptgv"]
 [ext_resource type="Texture2D" uid="uid://bcevpc4yi1f0u" path="res://Level-2-Zebastian/Seedz.png" id="7_vvxil"]
+[ext_resource type="AudioStream" uid="uid://3jdailj63r1u" path="res://Level-2-Zebastian/ButtonClickOn.wav" id="8_hx2n4"]
+[ext_resource type="AudioStream" uid="uid://dlfeuv2hsv51w" path="res://Level-2-Zebastian/ButtonClickOff.wav" id="9_c5na0"]
+[ext_resource type="AudioStream" uid="uid://ecok1lkaa6un" path="res://Level-2-Zebastian/SeedPour.wav" id="10_a76vc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otl1a"]
 atlas = ExtResource("4_otl1a")
@@ -219,5 +222,22 @@ animation = &"pile"
 frame = 3
 frame_progress = 1.0
 
+[node name="ButtonClickOn" type="AudioStreamPlayer2D" parent="BirbFeeder"]
+stream = ExtResource("8_hx2n4")
+max_distance = 400.0
+bus = &"SFX"
+
+[node name="ButtonClickOff" type="AudioStreamPlayer2D" parent="BirbFeeder"]
+position = Vector2(-40, -32)
+stream = ExtResource("9_c5na0")
+max_distance = 800.0
+bus = &"SFX"
+
+[node name="SeedPour" type="AudioStreamPlayer2D" parent="BirbFeeder"]
+stream = ExtResource("10_a76vc")
+max_distance = 400.0
+bus = &"SFX"
+
 [connection signal="body_entered" from="BirbFeeder/ButtonActivation" to="." method="_on_button_activation_body_entered"]
 [connection signal="body_exited" from="BirbFeeder/ButtonActivation" to="." method="_on_button_activation_body_exited"]
+[connection signal="finished" from="BirbFeeder/ButtonClickOn" to="." method="_on_button_click_on_finished"]

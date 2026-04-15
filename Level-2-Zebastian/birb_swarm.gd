@@ -14,6 +14,9 @@ var _t := 0.0
 var birb_particles: GPUParticles2D:
 	get: return $BirbParticles
 	
+var birb_sfx: AudioStreamPlayer2D:
+	get: return $BirbParticles/BirbSFX
+	
 var arrive_follow: PathFollow2D:
 	get: return $ArrivePath/ArriveFollow
 	
@@ -22,11 +25,14 @@ var travel_follow: PathFollow2D:
 	
 var leave_follow: PathFollow2D:
 	get: return $LeavePath/LeaveFollow
+	
+var _last_position = Vector2.ZERO
 
 func start() -> void:
 	if _phase == Phase.Sleep:
 		_phase = Phase.Arrive
 		birb_particles.restart()
+		birb_sfx.play()
 		_t = 0.0
 		Events.player_waiting_for_birbs_async()
 		
@@ -76,5 +82,11 @@ func _physics_process(delta: float) -> void:
 			if _t >= leave_time_seconds:
 				_phase = Phase.Sleep
 				_t = 0.0
+				birb_particles.emitting = false
+				birb_sfx.stop()
+	
+	if birb_particles.global_position.x != _last_position.x:
+		birb_particles.scale.x = sign(_last_position.x - birb_particles.global_position.x)
+	_last_position = birb_particles.global_position
 		
 		
