@@ -1,5 +1,5 @@
-class_name GnomeStrayState
-extends GnomeState
+class_name GnomeStrayStrategy
+extends GnomeStrategy
 
 var _gnome: Gnome
 var _phase: float

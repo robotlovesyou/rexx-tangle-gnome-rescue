@@ -1,5 +1,5 @@
-class_name GnomeWanderState
-extends GnomeState
+class_name GnomeWanderStrategy
+extends GnomeStrategy
 
 var _direction = Vector2.LEFT # todo, randomise this?
 var _gnome: Gnome
@@ -31,4 +31,3 @@ func on_animate(sprite: AnimatedSprite2D) -> void:
 		sprite.play("walk")
 	else:
 		pass
-		# sprite.play("jump")

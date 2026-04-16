@@ -1,5 +1,5 @@
-class_name GnomeStuckState
-extends GnomeState
+class_name GnomeStuckStrategy
+extends GnomeStrategy
 
 var _gnome: Gnome
 var _jump_velocity := 0.0
@@ -32,5 +32,3 @@ func on_physics_process(delta: float) -> void:
 		_gnome.follow_got_stuck.call_deferred()
 
 	
-
-

@@ -1,5 +1,5 @@
-class_name DyingState
-extends PlayerState
+class_name DyingStrategy
+extends PlayerStrategy
 
 const EXIT_STATE_AFTER_SECONDS := 3.0
 

@@ -1,5 +1,5 @@
-class_name GnomeDyingState
-extends GnomeState
+class_name GnomeDyingStrategy
+extends GnomeStrategy
 
 var _gnome: Gnome
 

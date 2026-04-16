@@ -1,5 +1,5 @@
-class_name GnomePlatformIdleState
-extends GnomeState
+class_name GnomePlatformIdleStrategy
+extends GnomeStrategy
 
 var _gnome: Gnome
 var _animation_helper: GnomeFollowAnimationHelper

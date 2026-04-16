@@ -28,7 +28,7 @@ const TRAP_ONLY_COLLISION_MASK = 7
 
 var _action: Enums.GnomeAction
 var _player_action: Enums.Action
-var _state: GnomeState
+var _strategy: GnomeStrategy
 var _follow_index: int
 var _safe_spot: GnomeSafeSpot
 var _has_said_hello := false
@@ -81,7 +81,7 @@ var appear_player: AnimationPlayer:
 func _ready() -> void:
 	_default_collision_mask = collision_mask
 	_begin_action(Enums.GnomeAction.GROUNDED)
-	_switch_to_state(GnomeWaitState.new(self))
+	_switch_to_strategy(GnomeWaitStrategy.new(self))
 	ActionMonitor.began_action.connect(_player_began_action)
 	
 func set_gnome_collision_mask(new_layers: Array[int]) -> void:
@@ -119,126 +119,126 @@ func _handle_player_on_platform() -> void:
 	else:
 		pass
 
-func _switch_to_state(state: GnomeState) -> void:
-	if _state: _state.on_exit_state()
-	if _state: print("%s ==> %s" % [_state.state_name(), state.state_name()])
-	_state = state
-	_state.on_enter_state()
+func _switch_to_strategy(strategy: GnomeStrategy) -> void:
+	if _strategy: _strategy.on_exit_state()
+	if _strategy: print("%s ==> %s" % [_strategy.state_name(), strategy.state_name()])
+	_strategy = strategy
+	_strategy.on_enter_state()
 
 func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
-	match _state.state_id():
-		GnomeState.StateID.WAITING:
+	match _strategy.state_id():
+		GnomeStrategy.StateID.WAITING:
 			match event:
 				Enums.GnomeEvent.PLAYER_COLLECTED:
-					_switch_to_state(GnomeCollectedState.new(self))
+					_switch_to_strategy(GnomeCollectedStrategy.new(self))
 				Enums.GnomeEvent.DIED:
-					_switch_to_state(GnomeDyingState.new(self))
-		GnomeState.StateID.COLLECTED:
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
+		GnomeStrategy.StateID.COLLECTED:
 			match event:
 				Enums.GnomeEvent.COLLECTION_DONE:
-					_switch_to_state(GnomeLerpFollowStateV2.new(self))
+					_switch_to_strategy(GnomeLerpFollowStrategyV2.new(self))
 				Enums.GnomeEvent.DIED:
-					_switch_to_state(GnomeDyingState.new(self))
-		GnomeState.StateID.LERP_FOLLOW:
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
+		GnomeStrategy.StateID.LERP_FOLLOW:
 			match event:
 				Enums.GnomeEvent.LERP_FOLLOW_DONE:
 					if _should_enter_stray():
-						_switch_to_state(GnomeStrayState.new(self))
+						_switch_to_strategy(GnomeStrayStrategy.new(self))
 					else:
-						_switch_to_state(GnomeFollowStateV2.new(self))
+						_switch_to_strategy(GnomeFollowStrategyV2.new(self))
 				Enums.GnomeEvent.BECAME_ABANDONED:
-					_switch_to_state(GnomeWanderState.new(self))
+					_switch_to_strategy(GnomeWanderStrategy.new(self))
 				Enums.GnomeEvent.BECAME_STUCK:
-					_switch_to_state(GnomeStuckState.new(self))
+					_switch_to_strategy(GnomeStuckStrategy.new(self))
 				Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM:
-					_switch_to_state(GnomePlatformLerpState.new(self))
+					_switch_to_strategy(GnomePlatformLerpStrategy.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
-					_switch_to_state(GnomeOrphanedState.new(self))
+					_switch_to_strategy(GnomeOrphanedStrategy.new(self))
 				Enums.GnomeEvent.DIED:
-					_switch_to_state(GnomeDyingState.new(self))
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
 				Enums.GnomeEvent.HIT_SAFE_SPOT:
-					_switch_to_state(GnomeSafeTeleportState.new(self))
-		GnomeState.StateID.FOLLOW:
+					_switch_to_strategy(GnomeSafeTeleportStrategy.new(self))
+		GnomeStrategy.StateID.FOLLOW:
 			match event:
 				Enums.GnomeEvent.BECAME_ABANDONED:
-					_switch_to_state(GnomeWanderState.new(self))
+					_switch_to_strategy(GnomeWanderStrategy.new(self))
 				Enums.GnomeEvent.BECAME_GROUNDED, Enums.GnomeEvent.PLAYER_COLLECTED, Enums.GnomeEvent.PLAYER_BECAME_IDLE:
 					print("should I stray?")
 					if _should_enter_stray():
 						print("yes, I should")
-						_switch_to_state(GnomeStrayState.new(self))
+						_switch_to_strategy(GnomeStrayStrategy.new(self))
 				Enums.GnomeEvent.BECAME_STUCK:
-					_switch_to_state(GnomeStuckState.new(self))
+					_switch_to_strategy(GnomeStuckStrategy.new(self))
 				Enums.GnomeEvent.BEGAN_APPROACHING_PLATFORM:
-					_switch_to_state(GnomePlatformLerpState.new(self))
+					_switch_to_strategy(GnomePlatformLerpStrategy.new(self))
 				Enums.GnomeEvent.HIT_SAFE_SPOT:
-					_switch_to_state(GnomeSafeTeleportState.new(self))
+					_switch_to_strategy(GnomeSafeTeleportStrategy.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
-					_switch_to_state(GnomeOrphanedState.new(self))
+					_switch_to_strategy(GnomeOrphanedStrategy.new(self))
 				Enums.GnomeEvent.DIED:
-					_switch_to_state(GnomeDyingState.new(self))
-		GnomeState.StateID.STRAY:
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
+		GnomeStrategy.StateID.STRAY:
 			match event: 
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
-					_switch_to_state(GnomeLerpFollowStateV2.new(self))
+					_switch_to_strategy(GnomeLerpFollowStrategyV2.new(self))
 				Enums.GnomeEvent.BECAME_ABANDONED:
-					_switch_to_state(GnomeWanderState.new(self))
+					_switch_to_strategy(GnomeWanderStrategy.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
-					_switch_to_state(GnomeOrphanedState.new(self))
+					_switch_to_strategy(GnomeOrphanedStrategy.new(self))
 				Enums.GnomeEvent.DIED:
-					_switch_to_state(GnomeDyingState.new(self))
-		GnomeState.StateID.WANDER:
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
+		GnomeStrategy.StateID.WANDER:
 			match event:
 				Enums.GnomeEvent.PLAYER_COLLECTED:
-					_switch_to_state(GnomeCollectedState.new(self))
+					_switch_to_strategy(GnomeCollectedStrategy.new(self))
 				Enums.GnomeEvent.DIED:
-					_switch_to_state(GnomeDyingState.new(self))
-		GnomeState.StateID.PLATFORM_LERP:
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
+		GnomeStrategy.StateID.PLATFORM_LERP:
 			match event:
 				Enums.GnomeEvent.LANDED_ON_PLATFORM:
-					_switch_to_state(GnomePlatformIdleState.new(self))
+					_switch_to_strategy(GnomePlatformIdleStrategy.new(self))
 				Enums.GnomeEvent.BECAME_STUCK:
-					_switch_to_state(GnomePlatformStuckState.new(self))
+					_switch_to_strategy(GnomePlatformStuckStrategy.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
-					_switch_to_state(GnomeOrphanedState.new(self))
+					_switch_to_strategy(GnomeOrphanedStrategy.new(self))
 				Enums.GnomeEvent.DIED:
-					_switch_to_state(GnomeDyingState.new(self))
-		GnomeState.StateID.PLATFORM_IDLE:
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
+		GnomeStrategy.StateID.PLATFORM_IDLE:
 			match event:
 				Enums.GnomeEvent.BECAME_ABANDONED:
-					_switch_to_state(GnomeWanderState.new(self))
+					_switch_to_strategy(GnomeWanderStrategy.new(self))
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
-					_switch_to_state(GnomeLerpFollowStateV2.new(self))
+					_switch_to_strategy(GnomeLerpFollowStrategyV2.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
-					_switch_to_state(GnomeOrphanedState.new(self))
+					_switch_to_strategy(GnomeOrphanedStrategy.new(self))
 				Enums.GnomeEvent.DIED:
-					_switch_to_state(GnomeDyingState.new(self))
-		GnomeState.StateID.PLATFORM_STUCK:
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
+		GnomeStrategy.StateID.PLATFORM_STUCK:
 			match event: 
 				Enums.GnomeEvent.BECAME_STUCK, Enums.GnomeEvent.BECAME_FREE:
-					_switch_to_state(GnomePlatformLerpState.new(self))
+					_switch_to_strategy(GnomePlatformLerpStrategy.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
-					_switch_to_state(GnomeOrphanedState.new(self))
+					_switch_to_strategy(GnomeOrphanedStrategy.new(self))
 				Enums.GnomeEvent.DIED:
-					_switch_to_state(GnomeDyingState.new(self))
-		GnomeState.StateID.STUCK:
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
+		GnomeStrategy.StateID.STUCK:
 			match event:
 				Enums.GnomeEvent.BECAME_FREE, Enums.GnomeEvent.BECAME_STUCK:
-					_switch_to_state(GnomeLerpFollowStateV2.new(self))
+					_switch_to_strategy(GnomeLerpFollowStrategyV2.new(self))
 				Enums.GnomeEvent.BECAME_ORPHANED:
-					_switch_to_state(GnomeOrphanedState.new(self))
+					_switch_to_strategy(GnomeOrphanedStrategy.new(self))
 				Enums.GnomeEvent.DIED:
-					_switch_to_state(GnomeDyingState.new(self))
-		GnomeState.StateID.ORPHANED:
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
+		GnomeStrategy.StateID.ORPHANED:
 			match event: 
 				Enums.GnomeEvent.PLAYER_COLLECTED:
-					_switch_to_state(GnomeCollectedState.new(self))
+					_switch_to_strategy(GnomeCollectedStrategy.new(self))
 				Enums.GnomeEvent.DIED:
-					_switch_to_state(GnomeDyingState.new(self))
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
 
 func _physics_process(delta: float) -> void:
-	_state.on_physics_process(delta)
-	_state.on_animate($AnimatedSprite2D)
+	_strategy.on_physics_process(delta)
+	_strategy.on_animate($AnimatedSprite2D)
 	if ghost_is_standing_on_ground():
 		_begin_action(Enums.GnomeAction.GROUNDED)
 	else:

@@ -1,4 +1,4 @@
-class_name GnomeState
+class_name GnomeStrategy
 extends RefCounted
 
 enum StateID {

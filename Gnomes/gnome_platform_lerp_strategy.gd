@@ -1,5 +1,5 @@
-class_name GnomePlatformLerpState
-extends GnomeState
+class_name GnomePlatformLerpStrategy
+extends GnomeStrategy
 
 var _gnome: Gnome
 

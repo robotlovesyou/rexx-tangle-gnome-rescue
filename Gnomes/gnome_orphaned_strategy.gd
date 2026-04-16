@@ -1,5 +1,5 @@
-class_name GnomeOrphanedState
-extends GnomeState
+class_name GnomeOrphanedStrategy
+extends GnomeStrategy
 
 var _gnome: Gnome
 

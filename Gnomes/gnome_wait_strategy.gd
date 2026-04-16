@@ -1,5 +1,5 @@
-class_name GnomeWaitState\
-extends GnomeState
+class_name GnomeWaitStrategy
+extends GnomeStrategy
 
 var _gnome: Gnome
 

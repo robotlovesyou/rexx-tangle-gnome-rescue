@@ -11,7 +11,7 @@ signal done_dying
 @export var movement_config: PlayerMovementConfig
 @export var debug_is_on_wall_only := false
 
-var _state: PlayerState
+var _strategy: PlayerStrategy
 var _particle_beat_envelope := ADEnvelope.new(0.05, 0.1)
 var _min_jump_particle_scale := 0.0
 var _max_jump_particle_scale := 0.0
@@ -98,27 +98,27 @@ func stop_skid() -> void:
 
 
 func die() -> void:
-	_switch_to_state(DyingState.new(self))
+	_switch_to_strategy(DyingStrategy.new(self))
 	_death_effect_player.play()
 	
 func wait_for_birbs() -> void:
-	_switch_to_state(WaitingForBirbsState.new(self))
+	_switch_to_strategy(WaitingForBirbsStrategy.new(self))
 	
 func collected_by_birbs() -> void:
-	_switch_to_state(CarriedByBirbsState.new(self))
+	_switch_to_strategy(CarriedByBirbsStrategy.new(self))
 	
 func deposited_by_birbs() -> void:
-	_switch_to_state(AliveState.new(self))
+	_switch_to_strategy(AliveStrategy.new(self))
 
 func exit(exit_scene: Exit) -> void:
-	_switch_to_state(ExitingState.new(self, exit_scene))
+	_switch_to_strategy(ExitingStrategy.new(self, exit_scene))
 	_exit_effect_player.play()
 
 func exit_done() -> void:
 	Events.player_exited_level_sync()
 
 func _ready() -> void:
-	_switch_to_state(AppearState.new(self))
+	_switch_to_strategy(AppearStrategy.new(self))
 	_min_jump_particle_scale = jump_particles.scale_amount_min
 	_max_jump_particle_scale = jump_particles.scale_amount_max
 	Events.beat_channel_1.connect(trigger_beat_effect)
@@ -127,20 +127,20 @@ func _ready() -> void:
 	Events.player_deposited_by_birbs.connect(deposited_by_birbs)
 
 func done_appearing() -> void:
-	_switch_to_state(AliveState.new(self))
+	_switch_to_strategy(AliveStrategy.new(self))
 
 func done_disappearing() -> void:
 	done_dying.emit()
 
-func _switch_to_state(state: PlayerState) -> void:
-	if _state: _state.on_exit()
-	_state = state
-	_state.on_enter()
+func _switch_to_strategy(strategy: PlayerStrategy) -> void:
+	if _strategy: _strategy.on_exit()
+	_strategy = strategy
+	_strategy.on_enter()
 
 func _physics_process(delta: float) -> void:
 	_t += delta
-	_state.on_physics_process(delta)
-	_state.on_animate(animated_sprite)
+	_strategy.on_physics_process(delta)
+	_strategy.on_animate(animated_sprite)
 	_particle_beat_envelope.progress(delta)
 	var sample = _particle_beat_envelope.sample()
 	jump_particles.scale_amount_max = _max_jump_particle_scale * (1.0 + sample)

@@ -1,5 +1,5 @@
-class_name ExitingState
-extends PlayerState
+class_name ExitingStrategy
+extends PlayerStrategy
 
 const EXIT_TIME_SECONDS := 3.0
 const ROTATIONS_PER_SECOND = 3.0

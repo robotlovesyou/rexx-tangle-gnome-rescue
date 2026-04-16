@@ -1,4 +1,4 @@
-class_name PlayerState
+class_name PlayerStrategy
 extends RefCounted
 var _parent: Player
 

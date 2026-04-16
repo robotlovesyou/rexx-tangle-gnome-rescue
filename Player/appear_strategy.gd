@@ -1,5 +1,5 @@
-class_name AppearState
-extends PlayerState
+class_name AppearStrategy
+extends PlayerStrategy
 
 const EXIT_STATE_AFTER_SECONDS := 1.0
 const PARTICLES_INITIAL_Y = -12

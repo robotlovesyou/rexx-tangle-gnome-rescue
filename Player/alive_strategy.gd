@@ -1,5 +1,5 @@
-class_name AliveState
-extends PlayerState
+class_name AliveStrategy
+extends PlayerStrategy
 
 var _action: Enums.Action = Enums.Action.NONE
 var _action_did_change := false

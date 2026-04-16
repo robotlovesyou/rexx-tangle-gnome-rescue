@@ -1,5 +1,5 @@
-class_name CarriedByBirbsState
-extends PlayerState
+class_name CarriedByBirbsStrategy
+extends PlayerStrategy
 
 var _collision_mask := 0
 var _collision_layer := 0

@@ -1,5 +1,5 @@
-class_name GnomeCollectedState
-extends GnomeState
+class_name GnomeCollectedStrategy
+extends GnomeStrategy
 
 var _gnome: Gnome
 

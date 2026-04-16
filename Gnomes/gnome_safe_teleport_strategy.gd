@@ -1,5 +1,5 @@
-class_name GnomeSafeTeleportState
-extends GnomeState
+class_name GnomeSafeTeleportStrategy
+extends GnomeStrategy
 
 enum Phase {LEAP_ALIGN, LAND, TELEPORT}
 

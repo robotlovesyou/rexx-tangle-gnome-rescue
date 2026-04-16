@@ -1,5 +1,5 @@
-class_name GnomeFollowState
-extends GnomeState
+class_name GnomeFollowStrategy
+extends GnomeStrategy
 
 var _gnome: Gnome
 var _animation_helper: GnomeFollowAnimationHelper
