@@ -75,6 +75,21 @@ var detect_walls_right_low: RayCast2D:
 
 var debug_rect: ColorRect:
 	get: return $DebugRect
+	
+var anchor_points: Array[Vector2]:
+	get: return [_anchor_point_tl.global_position, _anchor_point_tr.global_position, _anchor_point_br.global_position, _anchor_point_bl.global_position]
+	
+var _anchor_point_tl: Node2D:
+	get: return $AnchorPointTL
+
+var _anchor_point_tr: Node2D:
+	get: return $AnchorPointTR
+
+var _anchor_point_br: Node2D:
+	get: return $AnchorPointBR
+
+var _anchor_point_bl: Node2D:
+	get: return $AnchorPointBL
 
 func play_walk() -> void:
 	_walk_effect_player.play()
@@ -109,6 +124,12 @@ func collected_by_birbs() -> void:
 	
 func deposited_by_birbs() -> void:
 	_switch_to_strategy(AliveStrategy.new(self))
+	
+func caught_in_web(web: SpiderWeb) -> void:
+	_switch_to_strategy(WebbedStrategy.new(self, web))
+	
+func broke_web() -> void:
+	_switch_to_strategy(AliveStrategy.new(self))
 
 func exit(exit_scene: Exit) -> void:
 	_switch_to_strategy(ExitingStrategy.new(self, exit_scene))
@@ -125,6 +146,8 @@ func _ready() -> void:
 	Events.player_waiting_for_birbs.connect(wait_for_birbs)
 	Events.player_collected_by_birbs.connect(collected_by_birbs)
 	Events.player_deposited_by_birbs.connect(deposited_by_birbs)
+	Events.player_caught_in_web.connect(caught_in_web)
+	Events.player_broke_web.connect(broke_web)
 
 func done_appearing() -> void:
 	_switch_to_strategy(AliveStrategy.new(self))

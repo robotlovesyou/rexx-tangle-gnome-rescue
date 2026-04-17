@@ -532,4 +532,16 @@ lifetime = 0.5
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_sm0op")
 
+[node name="AnchorPointTL" type="Node2D" parent="."]
+position = Vector2(-16, -8)
+
+[node name="AnchorPointTR" type="Node2D" parent="."]
+position = Vector2(16, -8)
+
+[node name="AnchorPointBR" type="Node2D" parent="."]
+position = Vector2(-16, 8)
+
+[node name="AnchorPointBL" type="Node2D" parent="."]
+position = Vector2(16, 8)
+
 [connection signal="finished" from="WalkPlayer" to="." method="_on_walk_player_finished"]

@@ -15,6 +15,10 @@ func on_enter() -> void:
 
 func on_exit() -> void:
 	_parent.stop_playing_walk()
+	
+# This function is intended to be used in subclasses to modify the player's velocity
+func _modify_velocity(velocity: Vector2) -> Vector2:
+	return velocity
 
 func on_physics_process(delta: float) -> void:
 	_action_did_change = false
@@ -29,6 +33,7 @@ func on_physics_process(delta: float) -> void:
 	_handle_jump()
 	_handle_lateral_movement(delta)
 	
+	_parent.velocity = _modify_velocity(_parent.velocity)
 	_parent.move_and_slide()
 	_check_for_enemy_collision()
 	_handle_coyote_timer(was_on_floor)

@@ -17,6 +17,8 @@ signal player_waiting_for_birbs
 signal player_collected_by_birbs
 signal birbs_moved_player(position: Vector2)
 signal player_deposited_by_birbs
+signal player_caught_in_web(web: SpiderWeb)
+signal player_broke_web()
 
 func player_hit_spike_trap_sync(trap: SpikeTrap) -> void:
 	player_hit_spike_trap.emit(trap)
@@ -113,3 +115,15 @@ func player_deposited_by_birbs_sync():
 	
 func player_deposited_by_birbs_async():
 	player_deposited_by_birbs.emit.call_deferred()
+	
+func player_caught_in_web_sync(web: SpiderWeb):
+	player_caught_in_web.emit(web)
+	
+func player_caught_in_web_async(web: SpiderWeb):
+	player_caught_in_web.emit.call_deferred(web)
+	
+func player_broke_web_sync():
+	player_broke_web.emit()
+	
+func player_broke_web_async():
+	player_broke_web.emit.call_deferred()

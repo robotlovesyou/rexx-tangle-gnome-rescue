@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn1tejjwxxxe7"]
+
+[ext_resource type="Script" uid="uid://dr0p1tnwrl8a8" path="res://Level-2-Zebastian/spider_web.gd" id="1_2glfo"]
+[ext_resource type="Texture2D" uid="uid://tapcaoji4xx4" path="res://Level-2-Zebastian/SpiderWeb.png" id="1_56ng3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2glfo"]
+size = Vector2(128, 128)
+
+[node name="SpiderWeb" type="Node2D"]
+script = ExtResource("1_2glfo")
+
+[node name="SpiderWebSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_56ng3")
+
+[node name="CatchArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchArea"]
+shape = SubResource("RectangleShape2D_2glfo")
+
+[connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]
