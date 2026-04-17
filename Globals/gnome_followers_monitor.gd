@@ -27,8 +27,9 @@ func remove(gnome: Gnome) -> void:
 	_followers_index.remove_at(offset)
 	for i in range(offset, _followers_index.size()):
 		_followers_dict[_followers_index[i].get_instance_id()] = i
-		# todo: gnomes should handle changes in their follower index and react accordingly. 
-		# _followers_index[i].has_new_follow_index(i)
+		
+var all: Array[Gnome]:
+	get: return _followers_index.duplicate()
 
 func remove_safe(gnome: Gnome) -> void:
 	if !_followers_dict.has(gnome.get_instance_id()): return

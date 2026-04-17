@@ -940,14 +940,14 @@ position = Vector2(288, 248)
 texture = ExtResource("16_7p0rw")
 script = ExtResource("16_cshrt")
 
+[node name="SpiderWeb" parent="." instance=ExtResource("21_fqw8e")]
+position = Vector2(64, 192)
+
 [node name="GnomeSpawner" parent="." instance=ExtResource("21_em3ct")]
 position = Vector2(1008, 240)
 
 [node name="GnomeSpawner2" parent="." instance=ExtResource("21_em3ct")]
 position = Vector2(1048, 240)
-
-[node name="SpiderWeb" parent="." instance=ExtResource("21_fqw8e")]
-position = Vector2(64, 192)
 
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]
