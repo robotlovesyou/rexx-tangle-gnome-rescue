@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://djgyhguij8ueu"]
+[gd_scene load_steps=14 format=3 uid="uid://djgyhguij8ueu"]
 
 [ext_resource type="Script" uid="uid://4a8mh27313b8" path="res://Shared/spawn_point.gd" id="1_00gca"]
 [ext_resource type="Texture2D" uid="uid://cj6cm2ebk3usd" path="res://Shared/SpawnPointActive.png" id="2_jp2t4"]
@@ -33,8 +33,19 @@ color_ramp = SubResource("GradientTexture1D_m4bmk")
 alpha_curve = SubResource("CurveTexture_vb7eh")
 emission_curve = SubResource("CurveTexture_xuvh2")
 
+[sub_resource type="Gradient" id="Gradient_m4bmk"]
+offsets = PackedFloat32Array(0, 0.7171429, 1)
+colors = PackedColorArray(0.40784314, 0.79607844, 1, 1, 0.40784314, 0.79607844, 1, 0.5019608, 0.40784314, 0.79607844, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vb7eh"]
+gradient = SubResource("Gradient_m4bmk")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.8)
+
 [node name="SpawnPoint" type="Node2D" groups=["SpawnPoint"]]
 script = ExtResource("1_00gca")
+lit = null
 
 [node name="SpawnPointActive" type="Sprite2D" parent="."]
 visible = false
@@ -60,7 +71,14 @@ shape = SubResource("RectangleShape2D_jp2t4")
 
 [node name="ActiveParticles" type="GPUParticles2D" parent="."]
 position = Vector2(0, 28)
+emitting = false
 amount = 4
 process_material = SubResource("ParticleProcessMaterial_jp2t4")
+
+[node name="Glow" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, 32)
+texture = SubResource("GradientTexture2D_vb7eh")
+texture_scale = 2.0
 
 [connection signal="body_entered" from="ActivationArea" to="." method="_on_activation_area_body_entered"]

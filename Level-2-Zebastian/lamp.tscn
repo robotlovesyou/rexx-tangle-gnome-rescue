@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://d050tfijdo4fy"]
+
+[ext_resource type="Texture2D" uid="uid://bv2a8r2od0s5o" path="res://LevelTemplate/LampBulb.png" id="1_l6t3m"]
+[ext_resource type="Texture2D" uid="uid://dwpugnj6draji" path="res://LevelTemplate/Lamp.png" id="1_xu4lx"]
+
+[sub_resource type="Gradient" id="Gradient_l6t3m"]
+offsets = PackedFloat32Array(0, 0.30285713, 1)
+colors = PackedColorArray(0.9882353, 1, 0.6, 1, 0.9882353, 1, 0.6, 0.5019608, 0.9882353, 1, 0.6, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b6hyt"]
+gradient = SubResource("Gradient_l6t3m")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.8)
+
+[node name="Lamp" type="Node2D"]
+
+[node name="LampBulb" type="Sprite2D" parent="."]
+texture = ExtResource("1_l6t3m")
+
+[node name="LampSprite" type="Sprite2D" parent="."]
+light_mask = 2
+texture = ExtResource("1_xu4lx")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_b6hyt")
+texture_scale = 4.11

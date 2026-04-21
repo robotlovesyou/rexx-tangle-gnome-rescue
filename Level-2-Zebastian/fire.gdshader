@@ -1,4 +1,5 @@
 shader_type canvas_item;
+#include "center_quantized_uv.gdshaderinc"
 
 uniform sampler3D noise;
 uniform sampler3D noise2;
@@ -11,14 +12,6 @@ const float offset_scale = 0.5;
 
 vec4 sample_noise(sampler3D sample, vec2 uv) {
 	return texture(sample, vec3(vec2(mod(uv.x + offset, 1.0), mod(uv.y + offset + TIME * v_speed, 1.0)), mod(TIME * d_speed, 1.0)));
-}
-
-vec2 center_quantized_uv(vec2 base_uv, float quanta_size, sampler2D base_texture) {
-	vec2 texture_size = vec2(textureSize(base_texture,0));
-	vec2 pixel_coords = base_uv * texture_size;
-	vec2 block_index = floor(pixel_coords / quanta_size);
-	vec2 block_center = (block_index + 0.5) * quanta_size;
-	return block_center / texture_size;
 }
 
 void fragment() {

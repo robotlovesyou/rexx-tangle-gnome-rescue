@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=61 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://b5iuspefhqqgb" path="res://LevelTemplate/level_template.gd" id="1_ravnc"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://5bebiiyii4yx" path="res://Gnomes/dismembered_gnome.tscn" id="4_t31wk"]
 [ext_resource type="JSON" path="res://Sounds/DataSources/AskNotForWhomTheCarriageReturns/claps.json" id="5_8yyn7"]
 [ext_resource type="PackedScene" uid="uid://djgyhguij8ueu" path="res://Shared/spawn_point.tscn" id="6_ak2hd"]
+[ext_resource type="Shader" uid="uid://tc2w71qak8he" path="res://Level-2-Zebastian/fog.gdshader" id="6_eblxv"]
 [ext_resource type="PackedScene" uid="uid://bpie03cvpmuyt" path="res://Shared/exit.tscn" id="7_73l37"]
 [ext_resource type="PackedScene" uid="uid://d1d8b4dpydja5" path="res://Shared/gnome_safe_spot.tscn" id="8_davk5"]
 [ext_resource type="PackedScene" uid="uid://d0rrvvv6k44gt" path="res://Shared/floor.tscn" id="9_g5nbk"]
@@ -26,6 +27,14 @@
 [ext_resource type="PackedScene" uid="uid://dxibwhuulkyuc" path="res://Level-2-Zebastian/birb_call.tscn" id="21_3jg50"]
 [ext_resource type="PackedScene" uid="uid://bsqgklrkp8dwv" path="res://Gnomes/gnome_spawner.tscn" id="21_em3ct"]
 [ext_resource type="PackedScene" uid="uid://cn1tejjwxxxe7" path="res://Level-2-Zebastian/SpiderWeb.tscn" id="21_fqw8e"]
+[ext_resource type="PackedScene" uid="uid://d050tfijdo4fy" path="res://Level-2-Zebastian/lamp.tscn" id="26_uyv0f"]
+[ext_resource type="PackedScene" uid="uid://c5il817cmkgnr" path="res://Level-2-Zebastian/glow_worm.tscn" id="27_mac22"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sab6v"]
+shader = ExtResource("6_eblxv")
+shader_parameter/speed = 0.01
+shader_parameter/frequency = 50.0
+shader_parameter/influence = 0.499999988824
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4evms"]
 load_path = "res://.godot/imported/training_level_atlas.png-0dd344668e5896736eedce2bfa24cd33.ctex"
@@ -1116,13 +1125,17 @@ player_scene = ExtResource("2_1cnoy")
 broken_player_scene = ExtResource("3_nybii")
 dismembered_gnome_scene = ExtResource("4_t31wk")
 next_level = "res://launch_menu_screen.tscn"
-exit = NodePath("Exit")
-hud = NodePath("HUD")
 minimum_gnomes = 1
 timer_seconds = 300
+level_music_beats = ExtResource("5_8yyn7")
+game_over_scene_path = null
+mission_successful_scene_path = null
+show_gnome_count = null
+show_timer = null
+exit = NodePath("Exit")
+hud = NodePath("HUD")
 player_sibling_node = NodePath("Floor")
 level_music_player = NodePath("LevelMusicPlayer")
-level_music_beats = ExtResource("5_8yyn7")
 
 [node name="BaseLightLevel" type="CanvasModulate" parent="."]
 position = Vector2(-8, 0)
@@ -1130,7 +1143,6 @@ color = Color(0.27022192, 0.27022192, 0.27022186, 1)
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scale = Vector2(1.4402528, 0.98989004)
-scroll_scale = Vector2(0.05, 0.05)
 repeat_size = Vector2(640, 400)
 
 [node name="ColorRect2" type="ColorRect" parent="Parallax2D"]
@@ -1141,6 +1153,7 @@ offset_bottom = 400.0
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Parallax2D"]
+material = SubResource("ShaderMaterial_sab6v")
 custom_minimum_size = Vector2(640, 400)
 offset_right = 40.0
 offset_bottom = 40.0
@@ -1149,6 +1162,7 @@ color = Color(1, 1, 1, 0.21568628)
 [node name="SpawnPoint" parent="." instance=ExtResource("6_ak2hd")]
 position = Vector2(40, 3016)
 active = true
+lit = true
 
 [node name="Exit" parent="." instance=ExtResource("7_73l37")]
 position = Vector2(1296, 208)
@@ -1352,8 +1366,15 @@ position = Vector2(288, 248)
 texture = ExtResource("16_7p0rw")
 script = ExtResource("16_cshrt")
 
+[node name="GlowWorm" parent="." instance=ExtResource("27_mac22")]
+position = Vector2(450.41357, 2953.287)
+speed = 50.0
+
+[node name="Lamp" parent="." instance=ExtResource("26_uyv0f")]
+position = Vector2(544, 3048)
+
 [node name="SpiderWeb" parent="." instance=ExtResource("21_fqw8e")]
-position = Vector2(64, 192)
+position = Vector2(-110.41431, 133.9289)
 
 [node name="GnomeSpawner" parent="." instance=ExtResource("21_em3ct")]
 position = Vector2(1008, 240)
