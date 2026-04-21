@@ -3,7 +3,7 @@
 # TO DO
 
 ## Next Up
-* Spider Web Mechanic
+* Do a little layout and experiment with 2D lighting
 * Flame Traps
 * Leaves with player visibility shader
 * Misty Background
@@ -21,6 +21,7 @@
 * Add continue/new game buttons to the title screen
 
 ## Done
+* ~~Spider Web Mechanic~~
 * ~~Add a seed pour sound to the birb feeder~~
 * ~~Add a birb flock sound effect~~
 * ~~Add a button click sound to the birb feeder~~

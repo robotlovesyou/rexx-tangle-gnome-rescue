@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dxibwhuulkyuc"]
+[gd_scene load_steps=31 format=3 uid="uid://dxibwhuulkyuc"]
 
 [ext_resource type="Script" uid="uid://d0jrgnx3e3xpa" path="res://Level-2-Zebastian/birb_call.gd" id="1_g57lj"]
 [ext_resource type="Texture2D" uid="uid://cmdthep8xgq8c" path="res://Level-2-Zebastian/BandWBorder.png" id="1_oqhcf"]
@@ -151,6 +151,9 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a76vc"]
+polygon = PackedVector2Array(-41, -16, -41, 25, 29, 25, 29, 24, -40, 24, -40, -15, 44, -15, 44, -16)
+
 [node name="BirbCall" type="Node2D"]
 script = ExtResource("1_g57lj")
 
@@ -237,6 +240,9 @@ bus = &"SFX"
 stream = ExtResource("10_a76vc")
 max_distance = 400.0
 bus = &"SFX"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BirbFeeder"]
+occluder = SubResource("OccluderPolygon2D_a76vc")
 
 [connection signal="body_entered" from="BirbFeeder/ButtonActivation" to="." method="_on_button_activation_body_entered"]
 [connection signal="body_exited" from="BirbFeeder/ButtonActivation" to="." method="_on_button_activation_body_exited"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dphol1hlxje11"]
+
+[ext_resource type="Texture2D" uid="uid://ln4w6elwi0gt" path="res://Level-2-Zebastian/StreetLamp.png" id="1_2ibaq"]
+[ext_resource type="Texture2D" uid="uid://c0yinej6rjycx" path="res://Level-2-Zebastian/WhiteBulb.png" id="2_cspsr"]
+[ext_resource type="Texture2D" uid="uid://du5s10pxdga0r" path="res://Level-2-Zebastian/TriangularLight.png" id="3_htg11"]
+
+[node name="StreetLamp" type="Node2D"]
+
+[node name="LampBody" type="Sprite2D" parent="."]
+texture = ExtResource("1_2ibaq")
+flip_h = true
+
+[node name="Bulb" type="Sprite2D" parent="."]
+position = Vector2(-20, -87)
+texture = ExtResource("2_cspsr")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-20, -88)
+texture = ExtResource("3_htg11")
+texture_scale = 3.87
