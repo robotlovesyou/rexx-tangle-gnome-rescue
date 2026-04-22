@@ -1,5 +1,6 @@
 class_name PlayerStrategy
 extends RefCounted
+
 var _parent: Player
 
 func _init(parent: Player):
