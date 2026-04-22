@@ -124,6 +124,10 @@ func stop_burn() -> void:
 func set_hide_amount(amount: float) -> void:
 	amount = min(amount, 1.0)
 	animated_sprite.material.set_shader_parameter("hide_amount", amount)
+	
+func set_flame_amount(amount: float) -> void:
+	amount = min(amount, 1.0)
+	animated_sprite.material.set_shader_parameter("flame_amount", amount)
 
 func play_skid() -> void:
 	if not _skid_effect_player.playing:

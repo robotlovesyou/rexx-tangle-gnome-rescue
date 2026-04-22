@@ -51,7 +51,9 @@ shader_parameter/frame_offset = Vector2(0, 0)
 shader_parameter/frame_scale = Vector2(1, 1)
 shader_parameter/burn_amount = 0.0
 shader_parameter/hide_amount = 0.0
+shader_parameter/flame_amount = 0.0
 shader_parameter/burn_color = Color(0, 0, 0, 1)
+shader_parameter/flame_color = Color(1, 0.8666667, 0.33333334, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00tjw"]
 atlas = ExtResource("3_od3ui")
@@ -398,7 +400,7 @@ gradient = SubResource("Gradient_755ss")
 particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(16, 1, 1)
-gravity = Vector3(0, -196, 0)
+gravity = Vector3(0, -392, 0)
 scale_max = 1.5
 color_ramp = SubResource("GradientTexture1D_bbimk")
 alpha_curve = SubResource("CurveTexture_efx54")
@@ -480,15 +482,13 @@ color_ramp = SubResource("Gradient_qemgg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_efx54")
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"idle"
+animation = &"disappear"
 autoplay = "idle"
-frame = 3
-frame_progress = 0.5095831
 
 [node name="BurnParticles" type="GPUParticles2D" parent="."]
 position = Vector2(0, 16)
 emitting = false
-amount = 256
+amount = 512
 lifetime = 3.82
 process_material = SubResource("ParticleProcessMaterial_m0h3t")
 
