@@ -9,7 +9,7 @@ func _init(gnome: Gnome):
 	_gnome = gnome
 
 func on_enter_state() -> void:
-	_gnome.gnome_has_died.call_deferred()
+	_gnome.gnome_has_died()
 	FollowersMonitor.remove_safe(_gnome)
 	_gnome.collision_layer = 0
 	_gnome.queue_free()

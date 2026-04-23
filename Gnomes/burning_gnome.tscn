@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=3 uid="uid://cm8tcj5dyrq5y"]
+
+[ext_resource type="Script" uid="uid://dx7j8s7b155yy" path="res://Gnomes/burning_gnome.gd" id="1_r1aog"]
+[ext_resource type="Material" uid="uid://ct6doeaya0k0a" path="res://Gnomes/burning_gnome_shader.tres" id="2_quao2"]
+[ext_resource type="Texture2D" uid="uid://dvifkf3nuc52h" path="res://RexxArt/Gnomes/idle.png" id="2_r1aog"]
+[ext_resource type="AudioStream" uid="uid://bglj80htxbopg" path="res://Player/burn_fx_01.wav" id="4_quao2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quao2"]
+atlas = ExtResource("2_r1aog")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgy4u"]
+atlas = ExtResource("2_r1aog")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p88ma"]
+atlas = ExtResource("2_r1aog")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgtbi"]
+atlas = ExtResource("2_r1aog")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u3yb"]
+atlas = ExtResource("2_r1aog")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaeyg"]
+atlas = ExtResource("2_r1aog")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wwoms"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quao2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgy4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p88ma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgtbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u3yb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaeyg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_rvbd0"]
+resource_name = "burn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.999999977648, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_njd2j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.999999977648]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_82fbk"]
+_data = {
+&"RESET": SubResource("Animation_njd2j"),
+&"burn": SubResource("Animation_rvbd0")
+}
+
+[node name="BurningGnome" type="Node2D"]
+script = ExtResource("1_r1aog")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("2_quao2")
+sprite_frames = SubResource("SpriteFrames_wwoms")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_82fbk")
+}
+
+[node name="BurnEffectPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_quao2")
+pitch_scale = 1.2
+max_distance = 400.0

@@ -1,0 +1,2 @@
+class_name Level2Zebastian
+extends BaseLevel

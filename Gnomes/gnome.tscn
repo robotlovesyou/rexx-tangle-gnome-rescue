@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://y4tb8v4fvs66"]
+[gd_scene load_steps=77 format=3 uid="uid://y4tb8v4fvs66"]
 
 [ext_resource type="Script" uid="uid://bua5ful6l310d" path="res://Gnomes/gnome.gd" id="1_5vlar"]
 [ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="2_dt2vp"]
@@ -26,22 +26,9 @@
 [ext_resource type="AudioStream" uid="uid://dhcglvy17j42t" path="res://Sounds/Gnomes/Rescue/Oooh.wav" id="21_dgik7"]
 [ext_resource type="AudioStream" uid="uid://clwo074yhevjo" path="res://Sounds/Gnomes/Rescue/Wunderbar.wav" id="22_1t76n"]
 [ext_resource type="AudioStream" uid="uid://drbvwcqb6ajv1" path="res://Sounds/Gnomes/Rescue/Yippee.wav" id="23_kgc4o"]
+[ext_resource type="Material" uid="uid://bi1ucfnqixul2" path="res://Gnomes/gnome_shader.tres" id="24_kgc4o"]
 [ext_resource type="Texture2D" uid="uid://d34vfibgg8b23" path="res://RexxArt/Gnomes/jump.png" id="27_1t76n"]
 [ext_resource type="Texture2D" uid="uid://c7ooka5l4u4ns" path="res://RexxArt/Gnomes/GnomeSpeech.png" id="27_v0vju"]
-[ext_resource type="Shader" uid="uid://bxshfophs5fb8" path="res://Gnomes/gnome.gdshader" id="28_dgik7"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_dgik7"]
-frequency = 0.0639
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1t76n"]
-noise = SubResource("FastNoiseLite_dgik7")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kgc4o"]
-shader = ExtResource("28_dgik7")
-shader_parameter/noise = SubResource("NoiseTexture2D_1t76n")
-shader_parameter/amount = 0.0
-shader_parameter/threshold = 0.1
-shader_parameter/edge_color = Color(0.39304456, 0.6584803, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41rew"]
 atlas = ExtResource("8_u8kr0")
@@ -358,7 +345,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_dgik7"]
-resource_name = "appear"
+resource_name = "burn"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -385,9 +372,10 @@ script = ExtResource("1_5vlar")
 movement_config = ExtResource("2_dt2vp")
 hello_sounds = Array[AudioStreamWAV]([ExtResource("3_u8kr0"), ExtResource("4_41rew"), ExtResource("5_p0twa"), ExtResource("6_c5r3t"), ExtResource("7_0c3gf"), ExtResource("8_neo78"), ExtResource("9_76m06"), ExtResource("10_op0cm"), ExtResource("11_15eb3"), ExtResource("12_lgxlx"), ExtResource("13_ujxtx"), ExtResource("14_v0vju"), ExtResource("15_dgik7"), ExtResource("16_1t76n"), ExtResource("17_kgc4o"), ExtResource("18_7q7oc")])
 rescue_sounds = Array[AudioStreamWAV]([ExtResource("19_ujxtx"), ExtResource("20_v0vju"), ExtResource("21_dgik7"), ExtResource("22_1t76n"), ExtResource("23_kgc4o")])
+appear_edge_color = Color(0.39215687, 0.65882355, 1, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_kgc4o")
+material = ExtResource("24_kgc4o")
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_ttdt0")
 animation = &"jump"

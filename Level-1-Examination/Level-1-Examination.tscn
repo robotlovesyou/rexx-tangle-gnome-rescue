@@ -3669,9 +3669,11 @@ texture = ExtResource("9_poek4")
 [node name="SpawnPoint" parent="." instance=ExtResource("5_0jkmi")]
 position = Vector2(0, 1160)
 active = true
+lit = false
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("5_0jkmi")]
 position = Vector2(3496, -56)
+lit = false
 
 [node name="Exit" parent="." instance=ExtResource("6_yegac")]
 position = Vector2(64, 1152)

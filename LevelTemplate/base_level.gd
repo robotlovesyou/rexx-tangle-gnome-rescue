@@ -2,10 +2,12 @@ class_name BaseLevel
 extends Node2D
 
 const CHUNK_DURATION = 1.0/60.1
+const GNOME_BURN_TIME = 1.0
 
 @export var player_scene: PackedScene
 @export var broken_player_scene: PackedScene
 @export var dismembered_gnome_scene: PackedScene
+@export var burning_gnome_scene: PackedScene
 @export var next_level: String
 @export var exit: Exit
 @export var hud: HUD
@@ -45,6 +47,7 @@ func _ready() -> void:
 	MovementHistory.reset($Player.position, Enums.Action.IDLING)
 	FollowersMonitor.reset()
 	Events.player_burned.connect(_on_player_burned)
+	Events.gnome_burned.connect(_burn_gnome)
 	Events.player_hit_spike_trap.connect(_on_player_hit_spike_trap)
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
 	Events.player_hit_drop_trap.connect(_on_player_hit_drop_trap)
@@ -124,6 +127,15 @@ func _spawn_dismembered_gnome(gnome: Gnome) -> DismemberedGnome:
 	add_child(dismembered_gnome)
 	move_child(dismembered_gnome, gnome.get_index() + 1)
 	return dismembered_gnome
+	
+func _spawn_burning_gnome(gnome: Gnome) -> BurningGnome:
+	print("burning")
+	var burning_gnome = burning_gnome_scene.instantiate()
+	burning_gnome.global_position = gnome.global_position
+	add_child(burning_gnome)
+	move_child(burning_gnome, gnome.get_index() + 1)
+	return burning_gnome
+	
 
 func _on_gnome_hit_spike_trap(_trap: SpikeTrap, gnome: Gnome) -> void:
 	_kill_gnome(gnome)
@@ -145,14 +157,22 @@ func _on_player_killed_enemy(enemy: Enemy) -> void:
 
 func _on_player_exited_level() -> void:
 	Level.replace_level_with(next_level)
+	
+func _dismember_gnome(gnome: Gnome) -> void:
+	_spawn_dismembered_gnome(gnome).set_initial_velocity()
+	_kill_gnome(gnome)
+	
+func _burn_gnome(gnome: Gnome) -> void:
+	_spawn_burning_gnome(gnome)
+	_kill_gnome(gnome)
 
 func _kill_gnome(gnome: Gnome) -> void:
-	_spawn_dismembered_gnome(gnome).set_initial_velocity()
 	gnome.die()
 	await get_tree().create_timer(0).timeout
 	_update_gnome_count_in_hud()
-	if _current_gnome_count + _rescue_count < minimum_gnomes:
-		game_over(GameOverScreen.Reason.NOT_ENOUGH_GNOMES)
+	# This has a race condition. It will be needed for hard mode but it is not currently needed
+	#if _current_gnome_count + _rescue_count < minimum_gnomes:
+		#game_over(GameOverScreen.Reason.NOT_ENOUGH_GNOMES)
 
 func game_over(reason: GameOverScreen.Reason) -> void:
 	var scene = load(game_over_scene_path)
@@ -185,13 +205,13 @@ func _on_player_hit_drop_trap(_trap: DropTrap) -> void:
 	_kill_player(Enums.DeathReason.PIERCED)
 
 func _on_gnome_hit_drop_trap(_trap: DropTrap, gnome: Gnome) -> void:
-	_kill_gnome(gnome)
+	_dismember_gnome(gnome)
 
 func _on_player_hit_projectile() -> void:
 	_kill_player(Enums.DeathReason.PIERCED)
 
 func _on_gnome_hit_projectile(gnome: Gnome) -> void:
-	_kill_gnome(gnome)
+	_dismember_gnome(gnome)
 	
 func _find_level_bounds() -> Rect2:
 	# find all the tilemaps and get their bounds

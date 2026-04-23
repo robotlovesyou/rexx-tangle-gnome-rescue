@@ -221,7 +221,10 @@ func _physics_process(delta: float) -> void:
 
 	debug_rect.visible = debug_is_on_wall_only and is_cast_on_wall_only()
 	if Input.is_action_just_pressed("burn_baby_burn"):
-		Events.player_burned_async()
+		#Events.player_burned_async()
+		for itm in get_tree().get_nodes_in_group("Gnome"):
+			var gnome = itm as Gnome
+			Events.gnome_burned_async(gnome)
 
 func is_cast_on_wall_only() -> bool:
 	# checking each ray individually to get the wall normal at the same time

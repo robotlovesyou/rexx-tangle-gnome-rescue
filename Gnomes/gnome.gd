@@ -9,7 +9,9 @@ const TRAP_ONLY_COLLISION_MASK = 7
 @export var movement_config: PlayerMovementConfig
 @export var hello_sounds: Array[AudioStreamWAV]
 @export var rescue_sounds: Array[AudioStreamWAV]
+@export var appear_edge_color: Color
 @export var debug := false
+
 
 
 @onready var hellos := EffectPlayer.new(hello_player, hello_sounds, {
@@ -77,6 +79,9 @@ var ghost_gnome: Node2D:
 	
 var appear_player: AnimationPlayer:
 	get: return $AppearPlayer
+	
+var burn_effect_player: AudioStreamPlayer2D:
+	get: return $BurnEffectPlayer
 
 func _ready() -> void:
 	_default_collision_mask = collision_mask
@@ -347,6 +352,7 @@ func gnome_was_rescued() -> void:
 	rescued.emit()
 	
 func prepare_appear() -> void:
+	animated_sprite.material.set_shader_parameter("edge_color", appear_edge_color)
 	animated_sprite.material.set_shader_parameter("amount", 0.0)
 	
 func appear() -> void:

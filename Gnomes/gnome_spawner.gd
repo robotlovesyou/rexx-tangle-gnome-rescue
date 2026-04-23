@@ -6,8 +6,11 @@ extends Node2D
 func _ready() -> void:
 	for child in get_children():
 		if child.is_in_group("Gnome"):
+			var gnome = child as Gnome
 			child.reparent.call_deferred(get_parent())
-			(child as Gnome).appear()
+			gnome.prepare_appear()
+			gnome.appear()
+			gnome.connect("died", _on_gnome_died)
 
 
 func _on_gnome_died() -> void:
