@@ -41,3 +41,10 @@ enum GnomeEvent{
 	PLAYER_STOPPED_IDLING
 }
 static func gnome_event_name(event: GnomeEvent) -> String: return GnomeEvent.find_key(int(event))
+
+enum DeathReason {
+	PIERCED,
+	BURNED
+}
+
+static func death_reason_name(reason: DeathReason) -> String: return DeathReason.find_key((int(reason)))

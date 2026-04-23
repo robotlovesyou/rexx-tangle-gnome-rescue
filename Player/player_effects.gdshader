@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-uniform vec2 frame_offset = vec2(0.0);
-uniform vec2 frame_scale = vec2(1.0);
+//uniform vec2 frame_offset = vec2(0.0);
+//uniform vec2 frame_scale = vec2(1.0);
 uniform float burn_amount: hint_range(0.0, 1.0, 0.01) = 0.0;
 uniform float hide_amount: hint_range(0.0, 1.0, 0.01) = 0.0;
 uniform float flame_amount: hint_range(0.0, 1.0, 0.01) = 0.0;
@@ -16,7 +16,7 @@ void vertex() {
 }
 
 void fragment() {
-	vec2 frame_uv = (UV - frame_offset) / frame_scale;
+	vec2 frame_uv = (UV - REGION_RECT.xy) / REGION_RECT.zw;
 	float flame = 1.0 - flame_amount + flame_width;
 	float burned = 1.0 - burn_amount + burn_width;
 	float hidden = 1.0 - hide_amount + hide_width;

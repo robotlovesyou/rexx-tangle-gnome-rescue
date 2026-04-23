@@ -1,6 +1,7 @@
 class_name LevelEventBus
 extends Node
 
+signal player_burned
 signal player_hit_spike_trap(SpikeTrap)
 signal gnome_hit_spike_trap(SpikeTrap, Gnome)
 signal player_hit_drop_trap(DropTrap)
@@ -19,6 +20,12 @@ signal birbs_moved_player(position: Vector2)
 signal player_deposited_by_birbs
 signal player_caught_in_web(web: SpiderWeb)
 signal player_broke_web()
+
+func player_burned_sync() -> void:
+	player_burned.emit()
+	
+func player_burned_async() -> void:
+	player_burned.emit.call_deferred()
 
 func player_hit_spike_trap_sync(trap: SpikeTrap) -> void:
 	player_hit_spike_trap.emit(trap)

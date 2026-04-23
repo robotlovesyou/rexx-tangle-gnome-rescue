@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://cenujiplxkpem"]
+[gd_scene load_steps=92 format=3 uid="uid://cenujiplxkpem"]
 
 [ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://Player/player.gd" id="1_vtle1"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://bn2u1dwaetlmu" path="res://RexxArt/Rexx/BubblesAreSquareNow.png" id="20_8viyr"]
 [ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="20_sm0op"]
 [ext_resource type="Shader" uid="uid://d0m7m72agir2y" path="res://Player/player_effects.gdshader" id="22_76lrf"]
+[ext_resource type="Texture2D" uid="uid://bnesyd1f4fuld" path="res://Player/BurnLight.png" id="22_755ss"]
 [ext_resource type="Texture2D" uid="uid://cnc207pfe8r4y" path="res://RexxArt/Rexx/BigJumpV2Squish.png" id="22_qemgg"]
 [ext_resource type="Texture2D" uid="uid://joff5ga1xsej" path="res://RexxArt/Rexx/BigFaceSquishCrop.png" id="24_8viyr"]
 [ext_resource type="Material" uid="uid://c2ep71hehrit7" path="res://Player/appear_particles_process_material.tres" id="27_sm0op"]
@@ -47,8 +48,6 @@ metadata/_snap_count = 5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_efx54"]
 shader = ExtResource("22_76lrf")
-shader_parameter/frame_offset = Vector2(0, 0)
-shader_parameter/frame_scale = Vector2(1, 1)
 shader_parameter/burn_amount = 0.0
 shader_parameter/hide_amount = 0.0
 shader_parameter/flame_amount = 0.0
@@ -479,10 +478,16 @@ scale_amount_min = 0.1
 scale_amount_curve = SubResource("Curve_8viyr")
 color_ramp = SubResource("Gradient_qemgg")
 
+[node name="BurnLight" type="PointLight2D" parent="."]
+position = Vector2(0, 16)
+enabled = false
+energy = 2.0
+texture = ExtResource("22_755ss")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_efx54")
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"disappear"
+animation = &"appear"
 autoplay = "idle"
 
 [node name="BurnParticles" type="GPUParticles2D" parent="."]
@@ -595,5 +600,4 @@ position = Vector2(-16, 8)
 [node name="AnchorPointBL" type="Node2D" parent="."]
 position = Vector2(16, 8)
 
-[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="finished" from="WalkPlayer" to="." method="_on_walk_player_finished"]

@@ -171,10 +171,14 @@ func _apply_gravity(delta: float) -> void:
 			_parent.velocity += _parent.get_gravity() * delta
 
 func on_animate(animated_sprite: AnimatedSprite2D) -> void:
+	var old_flip := animated_sprite.flip_h
+	var flip := false
 	if _has_direction():
-		animated_sprite.flip_h = _direction > 0.0
+		flip = _direction > 0.0
 	else:
-		animated_sprite.flip_h = 	_last_direction > 0.0
+		flip = _last_direction > 0.0
+	
+	animated_sprite.flip_h = flip
 
 	var jump_emitting := false
 		

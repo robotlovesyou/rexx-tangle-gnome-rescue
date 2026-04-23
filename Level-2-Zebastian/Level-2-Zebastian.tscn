@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=62 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://b5iuspefhqqgb" path="res://LevelTemplate/level_template.gd" id="1_ravnc"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dxibwhuulkyuc" path="res://Level-2-Zebastian/birb_call.tscn" id="21_3jg50"]
 [ext_resource type="PackedScene" uid="uid://bsqgklrkp8dwv" path="res://Gnomes/gnome_spawner.tscn" id="21_em3ct"]
 [ext_resource type="PackedScene" uid="uid://cn1tejjwxxxe7" path="res://Level-2-Zebastian/SpiderWeb.tscn" id="21_fqw8e"]
+[ext_resource type="PackedScene" uid="uid://6eyoasclfhjk" path="res://Level-2-Zebastian/flame_trap.tscn" id="26_sab6v"]
 [ext_resource type="PackedScene" uid="uid://d050tfijdo4fy" path="res://Level-2-Zebastian/lamp.tscn" id="26_uyv0f"]
 [ext_resource type="PackedScene" uid="uid://c5il817cmkgnr" path="res://Level-2-Zebastian/glow_worm.tscn" id="27_mac22"]
 
@@ -1092,7 +1093,7 @@ noise_type = 3
 seed = 3
 frequency = 0.1467
 
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_cshrt"]
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_rmjhb"]
 width = 32
 height = 32
 depth = 32
@@ -1103,18 +1104,18 @@ seamless_blend_skirt = 0.5
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cshrt"]
 shader = ExtResource("14_22bsy")
 shader_parameter/noise = ExtResource("15_cshrt")
-shader_parameter/noise2 = SubResource("NoiseTexture3D_cshrt")
+shader_parameter/noise2 = SubResource("NoiseTexture3D_rmjhb")
 shader_parameter/ramp = ExtResource("16_ebf0l")
 shader_parameter/v_speed = 0.499999988824
 shader_parameter/d_speed = 0.0999999977648
 shader_parameter/offset = 0.0
 
-[sub_resource type="Gradient" id="Gradient_em3ct"]
+[sub_resource type="Gradient" id="Gradient_0pu8p"]
 offsets = PackedFloat32Array(0, 0.48, 1)
 colors = PackedColorArray(1, 0.6, 0, 1, 1, 0.6, 0, 0.5019608, 1, 0.6, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fqw8e"]
-gradient = SubResource("Gradient_em3ct")
+gradient = SubResource("Gradient_0pu8p")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.85, 0.85)
@@ -1125,17 +1126,17 @@ player_scene = ExtResource("2_1cnoy")
 broken_player_scene = ExtResource("3_nybii")
 dismembered_gnome_scene = ExtResource("4_t31wk")
 next_level = "res://launch_menu_screen.tscn"
+exit = NodePath("Exit")
+hud = NodePath("HUD")
 minimum_gnomes = 1
 timer_seconds = 300
+player_sibling_node = NodePath("Floor")
+level_music_player = NodePath("LevelMusicPlayer")
 level_music_beats = ExtResource("5_8yyn7")
 game_over_scene_path = null
 mission_successful_scene_path = null
 show_gnome_count = null
 show_timer = null
-exit = NodePath("Exit")
-hud = NodePath("HUD")
-player_sibling_node = NodePath("Floor")
-level_music_player = NodePath("LevelMusicPlayer")
 
 [node name="BaseLightLevel" type="CanvasModulate" parent="."]
 position = Vector2(-8, 0)
@@ -1169,6 +1170,10 @@ position = Vector2(1296, 208)
 
 [node name="GnomeSafeSpot" parent="." instance=ExtResource("8_davk5")]
 position = Vector2(1248, 208)
+
+[node name="GlowWorm" parent="." instance=ExtResource("27_mac22")]
+position = Vector2(450.41357, 2953.287)
+speed = 50.0
 
 [node name="Floor" parent="." instance=ExtResource("9_g5nbk")]
 
@@ -1348,6 +1353,9 @@ script = ExtResource("16_cshrt")
 texture = SubResource("GradientTexture2D_fqw8e")
 texture_scale = 1.74
 
+[node name="FlameTrap" parent="Fire" instance=ExtResource("26_sab6v")]
+position = Vector2(-40, 2800)
+
 [node name="Fire2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_cshrt")
 position = Vector2(256, 248)
@@ -1365,10 +1373,6 @@ material = SubResource("ShaderMaterial_cshrt")
 position = Vector2(288, 248)
 texture = ExtResource("16_7p0rw")
 script = ExtResource("16_cshrt")
-
-[node name="GlowWorm" parent="." instance=ExtResource("27_mac22")]
-position = Vector2(450.41357, 2953.287)
-speed = 50.0
 
 [node name="Lamp" parent="." instance=ExtResource("26_uyv0f")]
 position = Vector2(544, 3048)

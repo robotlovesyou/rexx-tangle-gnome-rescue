@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 signal done_dying
 
+const FRAME_HEIGHT := 32.0 
+
 @export var steps: Array[AudioStreamWAV]
 @export var jumps: Array[AudioStreamWAV]
 @export var deaths: Array[AudioStreamWAV]
@@ -17,7 +19,6 @@ var _min_jump_particle_scale := 0.0
 var _max_jump_particle_scale := 0.0
 var _t := 0.0
 var _cast_wall_normal := Vector2.ZERO
-var _frame_height := 0.0
 
 @onready var _walk_effect_player := WalkEffectPlayer.new(walk_player, steps)
 @onready var _jump_effect_player := EffectPlayer.new(jump_player, jumps)
@@ -97,6 +98,9 @@ var _burn_particles: GPUParticles2D:
 	
 var _burn_player: AudioStreamPlayer2D:
 	get: return $BurnPlayer
+	
+var _burn_light: PointLight2D:
+	get: return $BurnLight
 
 func play_walk() -> void:
 	_walk_effect_player.play()
@@ -109,17 +113,24 @@ func play_jump() -> void:
 	
 func start_burn() -> void:
 	_burn_player.play()
-	_burn_particles.position.y = _frame_height / 2.0
+	create_tween()\
+		.tween_property(_burn_light, "energy", 0.0, BurningStrategy.BURN_TIME * 1.5)\
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
+	_burn_light.enabled = true
+	_burn_particles.position.y = FRAME_HEIGHT / 2.0
+	_burn_light.position.y = FRAME_HEIGHT / 2.0
 	_burn_particles.emitting = true
 	_burn_particles.restart()
 	
 func set_burn_amount(amount: float) -> void:
 	amount = min(amount, 1.0)
-	_burn_particles.position.y = (_frame_height * (1.0 - amount)) - (_frame_height / 2.0)
+	_burn_particles.position.y = (FRAME_HEIGHT * (1.0 - amount)) - (FRAME_HEIGHT / 2.0)
+	_burn_light.position.y = (FRAME_HEIGHT * (1.0 - amount)) - (FRAME_HEIGHT / 2.0)
 	animated_sprite.material.set_shader_parameter("burn_amount", amount)
 	
 func stop_burn() -> void:
 	_burn_particles.emitting = false
+	_burn_light.enabled = false
 	
 func set_hide_amount(amount: float) -> void:
 	amount = min(amount, 1.0)
@@ -141,10 +152,14 @@ func stop_skid() -> void:
 	skid_particles.emitting = false
 
 
-func die() -> void:
-	_switch_to_strategy(DyingStrategy.new(self))
-	_death_effect_player.play()
-	
+func die(reason: Enums.DeathReason) -> void:
+	match reason:
+		Enums.DeathReason.PIERCED:
+			_switch_to_strategy(DyingStrategy.new(self))
+			_death_effect_player.play()
+		Enums.DeathReason.BURNED:
+			_switch_to_strategy(BurningStrategy.new(self))
+			
 func wait_for_birbs() -> void:
 	_switch_to_strategy(WaitingForBirbsStrategy.new(self))
 	
@@ -206,7 +221,7 @@ func _physics_process(delta: float) -> void:
 
 	debug_rect.visible = debug_is_on_wall_only and is_cast_on_wall_only()
 	if Input.is_action_just_pressed("burn_baby_burn"):
-		_switch_to_strategy(BurningStrategy.new(self))
+		Events.player_burned_async()
 
 func is_cast_on_wall_only() -> bool:
 	# checking each ray individually to get the wall normal at the same time
@@ -241,21 +256,5 @@ func trigger_beat_effect() -> void:
 
 func _on_walk_player_finished() -> void:
 	_walk_effect_player.on_audio_player_finished()
-
-
-func _on_animated_sprite_2d_frame_changed() -> void:
-	var tex := animated_sprite.sprite_frames.get_frame_texture(
-		animated_sprite.animation, animated_sprite.frame
-	)
-	
-	if tex is AtlasTexture:
-		var region := (tex as AtlasTexture).region
-		var atlas_size = (tex as AtlasTexture).atlas.get_size()
-		_frame_height = tex.region.size.y
-		animated_sprite.material.set_shader_parameter("frame_offset", region.position / atlas_size)
-		animated_sprite.material.set_shader_parameter("frame_scale", region.size / atlas_size)
-	else:
-		animated_sprite.material.set_shader_parameter("frame_offset", Vector2.ZERO)
-		animated_sprite.material.set_shader_parameter("frame_scale", Vector2.ONE)
 		
 	

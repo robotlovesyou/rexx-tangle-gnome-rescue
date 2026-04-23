@@ -13,6 +13,7 @@
 
 
 ## Backlog
+* Move the camera out of the player to fix jumps and glitches on death and scene transitions
 * Add spawning indicators to the minimap to show gnomes respawning.
 * Use instance ids to re-use minimap children rather than recrating each physics tick
 * Improve minimap appearance relative to rest of HUD

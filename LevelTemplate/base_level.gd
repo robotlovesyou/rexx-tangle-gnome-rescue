@@ -44,6 +44,7 @@ func _ready() -> void:
 	_spawn_player(self, player_sibling_node)
 	MovementHistory.reset($Player.position, Enums.Action.IDLING)
 	FollowersMonitor.reset()
+	Events.player_burned.connect(_on_player_burned)
 	Events.player_hit_spike_trap.connect(_on_player_hit_spike_trap)
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
 	Events.player_hit_drop_trap.connect(_on_player_hit_drop_trap)
@@ -100,12 +101,15 @@ func _physics_process(delta: float) -> void:
 		for item in get_tree().get_nodes_in_group("Gnome"):
 			var gnome = item as Gnome
 			_kill_gnome(gnome)
+			
+func _on_player_burned() -> void:
+	_kill_player(Enums.DeathReason.BURNED)
 
 func _on_player_hit_spike_trap(_trap: SpikeTrap) -> void:
-	_kill_player()
+	_kill_player(Enums.DeathReason.PIERCED)
 
 func _on_player_hit_emeny(_enemy: Enemy) -> void:
-	_kill_player()
+	_kill_player(Enums.DeathReason.PIERCED)
 
 func _spawn_broken_player(at: Vector2) -> BrokenRexx:
 	var broken_player = broken_player_scene.instantiate()
@@ -124,9 +128,11 @@ func _spawn_dismembered_gnome(gnome: Gnome) -> DismemberedGnome:
 func _on_gnome_hit_spike_trap(_trap: SpikeTrap, gnome: Gnome) -> void:
 	_kill_gnome(gnome)
 
-func _kill_player() -> void:
-	_spawn_broken_player(PMonitor.player.global_position).set_initial_velocity(PMonitor.player.velocity)
-	PMonitor.player.die()
+func _kill_player(reason: Enums.DeathReason) -> void:
+	if reason == Enums.DeathReason.PIERCED:
+		_spawn_broken_player(PMonitor.player.global_position).set_initial_velocity(PMonitor.player.velocity)
+		
+	PMonitor.player.die(reason)
 	await PMonitor.player.done_dying
 	_despawn_player()
 	_spawn_player(self, player_sibling_node)
@@ -176,20 +182,20 @@ func _on_player_exited_exit() -> void:
 	_player_over_exit = false
 
 func _on_player_hit_drop_trap(_trap: DropTrap) -> void:
-	_kill_player()
+	_kill_player(Enums.DeathReason.PIERCED)
 
 func _on_gnome_hit_drop_trap(_trap: DropTrap, gnome: Gnome) -> void:
 	_kill_gnome(gnome)
 
 func _on_player_hit_projectile() -> void:
-	_kill_player()
+	_kill_player(Enums.DeathReason.PIERCED)
 
 func _on_gnome_hit_projectile(gnome: Gnome) -> void:
 	_kill_gnome(gnome)
 	
 func _find_level_bounds() -> Rect2:
 	# find all the tilemaps and get their bounds
-	# find all the static bodys and get their bounds
+	# find all the static bodies and get their bounds
 	var tl_x := 0
 	var tl_y := 0
 	var br_x := 0
