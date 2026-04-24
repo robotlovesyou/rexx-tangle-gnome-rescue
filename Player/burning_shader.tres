@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b0kmp5r80adgq"]
+
+[ext_resource type="Shader" uid="uid://d0m7m72agir2y" path="res://Player/player_effects.gdshader" id="1_8kxnb"]
+
+[resource]
+shader = ExtResource("1_8kxnb")
+shader_parameter/burn_amount = 0.0
+shader_parameter/hide_amount = 0.0
+shader_parameter/flame_amount = 0.0
+shader_parameter/burn_color = Color(0, 0, 0, 1)
+shader_parameter/flame_color = Color(1, 0.8666667, 0.33333334, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=64 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://danj42f0n1wdv" path="res://Level-2-Zebastian/level_2_zebastian.gd" id="1_wprv3"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://6eyoasclfhjk" path="res://Level-2-Zebastian/flame_trap.tscn" id="26_sab6v"]
 [ext_resource type="PackedScene" uid="uid://d050tfijdo4fy" path="res://Level-2-Zebastian/lamp.tscn" id="26_uyv0f"]
 [ext_resource type="PackedScene" uid="uid://c5il817cmkgnr" path="res://Level-2-Zebastian/glow_worm.tscn" id="27_mac22"]
+[ext_resource type="PackedScene" uid="uid://coku57xrn7p84" path="res://Player/burning_rexx.tscn" id="32_0pu8p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sab6v"]
 shader = ExtResource("6_eblxv")
@@ -1126,6 +1127,7 @@ script = ExtResource("1_wprv3")
 player_scene = ExtResource("2_1cnoy")
 broken_player_scene = ExtResource("3_nybii")
 dismembered_gnome_scene = ExtResource("4_t31wk")
+burning_player_scene = ExtResource("32_0pu8p")
 burning_gnome_scene = ExtResource("5_sab6v")
 hud = NodePath("HUD")
 timer_seconds = 312

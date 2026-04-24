@@ -12,9 +12,6 @@ func on_enter() -> void:
 	_parent.animated_sprite.play("appear")
 	_parent.appear_particles.emitting = true
 	_parent.appear_particles.position.y = PARTICLES_INITIAL_Y
-	_parent.set_burn_amount(0.0)
-	_parent.set_flame_amount(0.0)
-	_parent.set_hide_amount(0.0)
 
 func on_exit() -> void:
 	_parent.appear_particles.emitting = false

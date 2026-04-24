@@ -1,0 +1,138 @@
+[gd_scene load_steps=22 format=3 uid="uid://coku57xrn7p84"]
+
+[ext_resource type="Shader" uid="uid://bvpcnlbf7smca" path="res://Player/burning_shader.gdshader" id="1_ddqby"]
+[ext_resource type="Script" uid="uid://dg3kmeyj834jv" path="res://Player/burning_rexx.gd" id="1_nf1v0"]
+[ext_resource type="Texture2D" uid="uid://bhyb6mxnhy7qs" path="res://RexxArt/Rexx/BigAppear.png" id="1_shphn"]
+[ext_resource type="AudioStream" uid="uid://bglj80htxbopg" path="res://Player/burn_fx_01.wav" id="3_ymkyj"]
+[ext_resource type="Texture2D" uid="uid://bnesyd1f4fuld" path="res://Player/BurnLight.png" id="5_s5ihj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ymkyj"]
+shader = ExtResource("1_ddqby")
+shader_parameter/burn_amount = 0.0
+shader_parameter/hide_amount = 0.0
+shader_parameter/flame_amount = 0.0
+shader_parameter/burn_color = Color(0, 0, 0, 1)
+shader_parameter/flame_color = Color(1, 0.8666667, 0.33333334, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddqby"]
+atlas = ExtResource("1_shphn")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymkyj"]
+atlas = ExtResource("1_shphn")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nf1v0"]
+atlas = ExtResource("1_shphn")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5ihj"]
+atlas = ExtResource("1_shphn")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v5be"]
+atlas = ExtResource("1_shphn")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mmqo"]
+atlas = ExtResource("1_shphn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akxgd"]
+atlas = ExtResource("1_shphn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k71d2"]
+atlas = ExtResource("1_shphn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qehlg"]
+atlas = ExtResource("1_shphn")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vlay4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddqby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymkyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nf1v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5ihj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0v5be")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mmqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akxgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k71d2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qehlg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="Curve" id="Curve_ddqby"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7590361, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ymkyj"]
+curve = SubResource("Curve_ddqby")
+
+[sub_resource type="Gradient" id="Gradient_nf1v0"]
+offsets = PackedFloat32Array(0.39869282, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.49747366, 0.49747366, 0.49747366, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s5ihj"]
+gradient = SubResource("Gradient_nf1v0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0v5be"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 1, 1)
+gravity = Vector3(0, -392, 0)
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_s5ihj")
+alpha_curve = SubResource("CurveTexture_ymkyj")
+turbulence_enabled = true
+turbulence_noise_strength = 0.25
+turbulence_noise_scale = 1.0
+
+[node name="BurningRexx" type="Node2D"]
+script = ExtResource("1_nf1v0")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_ymkyj")
+sprite_frames = SubResource("SpriteFrames_vlay4")
+autoplay = "default"
+
+[node name="BurnParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 16)
+emitting = false
+amount = 512
+lifetime = 3.82
+process_material = SubResource("ParticleProcessMaterial_0v5be")
+
+[node name="BurnPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ymkyj")
+max_distance = 400.0
+bus = &"SFX"
+
+[node name="BurnLight" type="PointLight2D" parent="."]
+position = Vector2(0, 16)
+enabled = false
+energy = 2.0
+texture = ExtResource("5_s5ihj")

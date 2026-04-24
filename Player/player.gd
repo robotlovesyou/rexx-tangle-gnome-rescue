@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 signal done_dying
 
-const FRAME_HEIGHT := 32.0 
+#const FRAME_HEIGHT := 32.0
 
 @export var steps: Array[AudioStreamWAV]
 @export var jumps: Array[AudioStreamWAV]
@@ -93,14 +93,14 @@ var _anchor_point_br: Node2D:
 var _anchor_point_bl: Node2D:
 	get: return $AnchorPointBL
 	
-var _burn_particles: GPUParticles2D:
-	get: return $BurnParticles
-	
-var _burn_player: AudioStreamPlayer2D:
-	get: return $BurnPlayer
-	
-var _burn_light: PointLight2D:
-	get: return $BurnLight
+#var _burn_particles: GPUParticles2D:
+	#get: return $BurnParticles
+	#
+#var _burn_player: AudioStreamPlayer2D:
+	#get: return $BurnPlayer
+	#
+#var _burn_light: PointLight2D:
+	#get: return $BurnLight
 
 func play_walk() -> void:
 	_walk_effect_player.play()
@@ -111,34 +111,34 @@ func stop_playing_walk() -> void:
 func play_jump() -> void:
 	_jump_effect_player.play()
 	
-func start_burn() -> void:
-	_burn_player.play()
-	create_tween()\
-		.tween_property(_burn_light, "energy", 0.0, BurningStrategy.BURN_TIME * 1.5)\
-		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
-	_burn_light.enabled = true
-	_burn_particles.position.y = FRAME_HEIGHT / 2.0
-	_burn_light.position.y = FRAME_HEIGHT / 2.0
-	_burn_particles.emitting = true
-	_burn_particles.restart()
+#func start_burn() -> void:
+	#_burn_player.play()
+	#create_tween()\
+		#.tween_property(_burn_light, "energy", 0.0, BurningStrategy.BURN_TIME * 1.5)\
+		#.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
+	#_burn_light.enabled = true
+	#_burn_particles.position.y = FRAME_HEIGHT / 2.0
+	#_burn_light.position.y = FRAME_HEIGHT / 2.0
+	#_burn_particles.emitting = true
+	#_burn_particles.restart()
 	
-func set_burn_amount(amount: float) -> void:
-	amount = min(amount, 1.0)
-	_burn_particles.position.y = (FRAME_HEIGHT * (1.0 - amount)) - (FRAME_HEIGHT / 2.0)
-	_burn_light.position.y = (FRAME_HEIGHT * (1.0 - amount)) - (FRAME_HEIGHT / 2.0)
-	animated_sprite.material.set_shader_parameter("burn_amount", amount)
-	
-func stop_burn() -> void:
-	_burn_particles.emitting = false
-	_burn_light.enabled = false
-	
-func set_hide_amount(amount: float) -> void:
-	amount = min(amount, 1.0)
-	animated_sprite.material.set_shader_parameter("hide_amount", amount)
-	
-func set_flame_amount(amount: float) -> void:
-	amount = min(amount, 1.0)
-	animated_sprite.material.set_shader_parameter("flame_amount", amount)
+#func set_burn_amount(amount: float) -> void:
+	#amount = min(amount, 1.0)
+	#_burn_particles.position.y = (FRAME_HEIGHT * (1.0 - amount)) - (FRAME_HEIGHT / 2.0)
+	#_burn_light.position.y = (FRAME_HEIGHT * (1.0 - amount)) - (FRAME_HEIGHT / 2.0)
+	#animated_sprite.material.set_shader_parameter("burn_amount", amount)
+	#
+#func stop_burn() -> void:
+	#_burn_particles.emitting = false
+	#_burn_light.enabled = false
+	#
+#func set_hide_amount(amount: float) -> void:
+	#amount = min(amount, 1.0)
+	#animated_sprite.material.set_shader_parameter("hide_amount", amount)
+	#
+#func set_flame_amount(amount: float) -> void:
+	#amount = min(amount, 1.0)
+	#animated_sprite.material.set_shader_parameter("flame_amount", amount)
 
 func play_skid() -> void:
 	if not _skid_effect_player.playing:
@@ -158,7 +158,7 @@ func die(reason: Enums.DeathReason) -> void:
 			_switch_to_strategy(DyingStrategy.new(self))
 			_death_effect_player.play()
 		Enums.DeathReason.BURNED:
-			_switch_to_strategy(BurningStrategy.new(self))
+			_switch_to_strategy(DyingStrategy.new(self))
 			
 func wait_for_birbs() -> void:
 	_switch_to_strategy(WaitingForBirbsStrategy.new(self))
@@ -260,4 +260,5 @@ func trigger_beat_effect() -> void:
 func _on_walk_player_finished() -> void:
 	_walk_effect_player.on_audio_player_finished()
 		
-	
+func get_flip_h() -> bool:
+	return animated_sprite.flip_h

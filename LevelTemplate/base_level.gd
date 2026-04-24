@@ -7,6 +7,7 @@ const GNOME_BURN_TIME = 1.0
 @export var player_scene: PackedScene
 @export var broken_player_scene: PackedScene
 @export var dismembered_gnome_scene: PackedScene
+@export var burning_player_scene: PackedScene
 @export var burning_gnome_scene: PackedScene
 @export var next_level: String
 @export var exit: Exit
@@ -114,35 +115,44 @@ func _on_player_hit_spike_trap(_trap: SpikeTrap) -> void:
 func _on_player_hit_emeny(_enemy: Enemy) -> void:
 	_kill_player(Enums.DeathReason.PIERCED)
 
-func _spawn_broken_player(at: Vector2) -> BrokenRexx:
-	var broken_player = broken_player_scene.instantiate()
-	add_child(broken_player)
-	move_child(broken_player, player_sibling_node.get_index() + 1)
-	broken_player.global_position = at
-	return broken_player
-
-func _spawn_dismembered_gnome(gnome: Gnome) -> DismemberedGnome:
-	var dismembered_gnome = dismembered_gnome_scene.instantiate()
-	dismembered_gnome.global_position = gnome.global_position
-	add_child(dismembered_gnome)
-	move_child(dismembered_gnome, gnome.get_index() + 1)
-	return dismembered_gnome
+func _spawn_broken_player(at: Vector2, initial_velocity: Vector2) -> void:
+	(_spawn_dead_player(at, broken_player_scene) as BrokenRexx).set_initial_velocity(initial_velocity)
 	
-func _spawn_burning_gnome(gnome: Gnome) -> BurningGnome:
-	print("burning")
-	var burning_gnome = burning_gnome_scene.instantiate()
-	burning_gnome.global_position = gnome.global_position
-	add_child(burning_gnome)
-	move_child(burning_gnome, gnome.get_index() + 1)
-	return burning_gnome
+func _spawn_burning_player(at: Vector2) -> void:
+	(_spawn_dead_player(at, burning_player_scene) as BurningRexx).flip_h = PMonitor.player.get_flip_h()
+	
+func _spawn_dead_player(at: Vector2, scene: PackedScene) -> Variant:
+	var dead_player = scene.instantiate()
+	add_child(dead_player)
+	move_child(dead_player, player_sibling_node.get_index() + 1)
+	dead_player.global_position = at
+	return dead_player
+	
+func _spawn_dead_gnome(gnome: Gnome, scene: PackedScene) -> Variant:
+	var dead_gnome = scene.instantiate()
+	add_child(dead_gnome)
+	move_child(dead_gnome, gnome.get_index() + 1)
+	dead_gnome.global_position = gnome.global_position
+	return dead_gnome
+
+func _spawn_dismembered_gnome(gnome: Gnome) -> void:
+	(_spawn_dead_gnome(gnome, dismembered_gnome_scene) as DismemberedGnome).set_initial_velocity()
+	
+func _spawn_burning_gnome(gnome: Gnome) -> void:
+	_spawn_dead_gnome(gnome, burning_gnome_scene)
 	
 
 func _on_gnome_hit_spike_trap(_trap: SpikeTrap, gnome: Gnome) -> void:
+	_spawn_dismembered_gnome(gnome)
 	_kill_gnome(gnome)
-
+	
 func _kill_player(reason: Enums.DeathReason) -> void:
-	if reason == Enums.DeathReason.PIERCED:
-		_spawn_broken_player(PMonitor.player.global_position).set_initial_velocity(PMonitor.player.velocity)
+	match reason:
+		Enums.DeathReason.PIERCED:
+			_spawn_broken_player(PMonitor.player.global_position, PMonitor.player.velocity)
+		Enums.DeathReason.BURNED:
+			_spawn_burning_player(PMonitor.player.global_position)
+		
 		
 	PMonitor.player.die(reason)
 	await PMonitor.player.done_dying
@@ -159,7 +169,7 @@ func _on_player_exited_level() -> void:
 	Level.replace_level_with(next_level)
 	
 func _dismember_gnome(gnome: Gnome) -> void:
-	_spawn_dismembered_gnome(gnome).set_initial_velocity()
+	_spawn_dismembered_gnome(gnome)
 	_kill_gnome(gnome)
 	
 func _burn_gnome(gnome: Gnome) -> void:
