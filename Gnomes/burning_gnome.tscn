@@ -110,3 +110,4 @@ libraries = {
 stream = ExtResource("4_quao2")
 pitch_scale = 1.2
 max_distance = 400.0
+bus = &"SFX"

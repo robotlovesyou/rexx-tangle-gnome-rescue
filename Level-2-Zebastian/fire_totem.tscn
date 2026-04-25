@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://df6a2eoskdfrt"]
+
+[ext_resource type="Script" uid="uid://5cec6uynylld" path="res://Level-2-Zebastian/fire_totem.gd" id="1_1vbry"]
+[ext_resource type="Texture2D" uid="uid://csgpkx5unhuid" path="res://Level-2-Zebastian/FireTotem.png" id="1_26asa"]
+[ext_resource type="PackedScene" uid="uid://8ychq5tl01om" path="res://Level-2-Zebastian/fire_projectile.tscn" id="2_p4r74"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vbry"]
+atlas = ExtResource("1_26asa")
+
+[node name="FireTotem" type="Node2D"]
+script = ExtResource("1_1vbry")
+projectile_scene = ExtResource("2_p4r74")
+
+[node name="TotemSprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_1vbry")
+hframes = 2
+vframes = 2
+region_rect = Rect2(0, 0, 32, 64)
+
+[node name="ProjectileAnchor" type="Node2D" parent="."]
+position = Vector2(-6, -6)

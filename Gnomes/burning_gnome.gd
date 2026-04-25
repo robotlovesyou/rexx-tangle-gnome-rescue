@@ -13,6 +13,9 @@ func _physics_process(delta: float) -> void:
 var animation_player: AnimationPlayer:
 	get: return $AnimationPlayer
 	
+var burn_effect_player: AudioStreamPlayer2D:
+	get: return $BurnEffectPlayer
+	
 func _ready() -> void:
-	print("burning in burning gnome")
 	animation_player.play("burn")
+	burn_effect_player.play()
