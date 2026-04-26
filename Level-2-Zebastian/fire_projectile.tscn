@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://8ychq5tl01om"]
+[gd_scene load_steps=17 format=3 uid="uid://8ychq5tl01om"]
 
 [ext_resource type="Script" uid="uid://cedgbqt6kknl1" path="res://Level-2-Zebastian/fire_projectile.gd" id="1_ojb3d"]
 [ext_resource type="Texture2D" uid="uid://cvvle0d8c5hj1" path="res://Level-2-Zebastian/FireProjectile.png" id="2_45ons"]
 [ext_resource type="Shader" uid="uid://dotvde7jsnfit" path="res://Level-2-Zebastian/fire_projectile.gdshader" id="2_is43g"]
+[ext_resource type="AudioStream" uid="uid://ce7eff07twd8s" path="res://Level-2-Zebastian/burn_fx_long.wav" id="4_13frq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_is43g"]
 noise_type = 3
@@ -93,5 +94,10 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
 shape = SubResource("CircleShape2D_13frq")
+
+[node name="BurnFxPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_13frq")
+max_distance = 300.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]

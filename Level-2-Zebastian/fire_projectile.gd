@@ -3,15 +3,26 @@ extends CharacterBody2D
 
 const FRAME_COUNT := 4.0
 const FINAL_ENERGY := 1.0
+const INITIAL_PITCH := 1.8
+const FINAL_PITCH := 0.5
+const INITIAL_VOLUME := -6.0
+const FINAL_VOLUME := -12.0
 var charge_time_seconds := 2.0
 var life_time_seconds := 10.0
 var _t := 0.0
+var _fired := false
 
 var projectile_sprite: Sprite2D:
 	get: return $ProjectileSprite
 	
 var projectile_light: PointLight2D:
 	get: return $ProjectileLight
+	
+var collision_area: Area2D:
+	get: return $CollisionArea
+	
+var burn_fx_player: AudioStreamPlayer2D:
+	get: return $BurnFxPlayer
 	
 func _ready() -> void:
 	velocity = Vector2.ZERO
@@ -32,8 +43,19 @@ func _physics_process(delta: float) -> void:
 	
 func fire(v: Vector2) -> void:
 	velocity = v
+	_fired = true
+	burn_fx_player.play()
+	burn_fx_player.volume_db = INITIAL_VOLUME
+	burn_fx_player.pitch_scale = INITIAL_PITCH
+	create_tween().tween_property(burn_fx_player, "pitch_scale", FINAL_PITCH, life_time_seconds - _t)
+	create_tween().tween_property(burn_fx_player, "volume_db", FINAL_VOLUME, life_time_seconds - _t)
+	for body in collision_area.get_overlapping_bodies():
+		_on_collision_area_body_entered(body)
+	
 	
 func _on_collision_area_body_entered(body: Node2D) -> void:
+	if not _fired: return
+	
 	if body is Player:
 		Events.player_burned_async()
 	elif body is Gnome:
