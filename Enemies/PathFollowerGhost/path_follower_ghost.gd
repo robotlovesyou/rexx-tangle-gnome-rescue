@@ -1,12 +1,14 @@
-class_name PathFollowerEnemy
+class_name PathFollowerGhost
 extends Enemy
 
 signal died
 
 @export var path_follower: PathFollow2D
-@export var animated_sprite: AnimatedSprite2D
+@export var sprite: Sprite2D
 @export var death_particles: GPUParticles2D
 @export var death_sounds: Array[AudioStreamWAV]
+@export var number_of_waves := 2.5
+@export var offset_scale := 0.01
 
 @onready var death_player := EffectPlayer.new(spark_player, death_sounds)
 
@@ -28,29 +30,19 @@ var spark_player: AudioStreamPlayer2D:
 	get: return $SparkPlayer
 	
 func _ready() -> void:
-	pass
-
-
+	sprite.material.set_shader_parameter("n_cycles", number_of_waves)
+	sprite.material.set_shader_parameter("offset_scale", offset_scale)
+	
 func _physics_process(delta: float) -> void:
 
 	match _state:
 		State.ALIVE:
 			_time_elapsed += delta
-			# Add the gravity.
-			if not is_on_floor():
-				velocity += get_gravity() * delta
-
 			advance_path(_time_elapsed)
-
 			velocity.x = (path_follower.position.x - position.x) * Engine.physics_ticks_per_second
-			animated_sprite.flip_h = velocity.x > 0.0
-
 			move_and_slide()
 		State.DEAD:
 			_time_dead += delta
-
-			# if _time_dead > (DEATH_TIME / 2.0):
-			# 	death_particles.emitting = false
 			modulate.a = 1.0 - (_time_dead / DEATH_TIME)
 			if _time_dead > DEATH_TIME:
 				queue_free()
@@ -61,7 +53,6 @@ func advance_path(t: float) -> void:
 func die() -> void:
 	_state = State.DEAD
 	collision_layer = 0 # stop colliding with the player
-	animated_sprite.play("die")
 	death_player.play()
 	death_particles.restart()
 	died.emit()

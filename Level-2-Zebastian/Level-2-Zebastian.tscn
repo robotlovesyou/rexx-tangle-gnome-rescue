@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=57 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://danj42f0n1wdv" path="res://Level-2-Zebastian/level_2_zebastian.gd" id="1_wprv3"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="12_mv44v"]
 [ext_resource type="PackedScene" uid="uid://blysyve0sampw" path="res://LevelTemplate/game_over_message.tscn" id="13_s1qii"]
 [ext_resource type="Texture2D" uid="uid://du5s10pxdga0r" path="res://Level-2-Zebastian/TriangularLight.png" id="15_em3ct"]
+[ext_resource type="PackedScene" uid="uid://d2a20d1sgenan" path="res://Enemies/PathFollowerGhost/path_follower_ghost.tscn" id="18_eblxv"]
 [ext_resource type="PackedScene" uid="uid://dn0idt4lm07gq" path="res://Level-2-Zebastian/birb_swarm.tscn" id="19_1pxga"]
 [ext_resource type="PackedScene" uid="uid://dxibwhuulkyuc" path="res://Level-2-Zebastian/birb_call.tscn" id="21_3jg50"]
 [ext_resource type="PackedScene" uid="uid://bsqgklrkp8dwv" path="res://Gnomes/gnome_spawner.tscn" id="21_em3ct"]
@@ -1086,6 +1087,12 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.8)
 
+[sub_resource type="Curve2D" id="Curve2D_eblxv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -9.951384e-07, -1.9073485e-06, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 116.86957, 0)
+}
+point_count = 3
+
 [node name="Level2Zebastian" type="Node2D" node_paths=PackedStringArray("hud", "player_sibling_node", "level_music_player")]
 script = ExtResource("1_wprv3")
 player_scene = ExtResource("2_1cnoy")
@@ -1342,8 +1349,23 @@ position = Vector2(272, 3040)
 [node name="GnomeSpawner2" parent="." instance=ExtResource("21_em3ct")]
 position = Vector2(312, 3040)
 
+[node name="PathFollowerRoot" parent="." instance=ExtResource("18_eblxv")]
+position = Vector2(400, 3024)
+
+[node name="PathToFollow" parent="PathFollowerRoot" index="0"]
+curve = SubResource("Curve2D_eblxv")
+
+[node name="PathFollow2D" parent="PathFollowerRoot/PathToFollow" index="0"]
+rotation = 1.0899091
+
+[node name="PathFollowerEnemy" parent="PathFollowerRoot" index="1" node_paths=PackedStringArray("sprite")]
+sprite = NodePath("Ghosty")
+number_of_waves = 1.0
+offset_scale = 0.1
+
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]
 
 [editable path="Floor"]
 [editable path="BirbSwarm"]
+[editable path="PathFollowerRoot"]
