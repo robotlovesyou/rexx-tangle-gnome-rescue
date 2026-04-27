@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2a20d1sgenan"]
+[gd_scene load_steps=7 format=3 uid="uid://d2a20d1sgenan"]
 
 [ext_resource type="Script" uid="uid://ckdr56fgdimgr" path="res://Enemies/PathFollowerGhost/path_follower_ghost.gd" id="1_dd0w7"]
 [ext_resource type="Shader" uid="uid://3q0akjh7dun5" path="res://Enemies/PathFollowerGhost/path_follower_ghost.gdshader" id="1_m44j1"]
 [ext_resource type="Texture2D" uid="uid://bmdmf32yehjwy" path="res://Enemies/PathFollowerGhost/SimpleGhosty.png" id="3_m44j1"]
+[ext_resource type="AudioStream" uid="uid://b56mee8417q1u" path="res://Enemies/PathFollowerGhost/ghostfx_01.wav" id="4_5kuhb"]
 
 [sub_resource type="Curve2D" id="Curve2D_jh8ke"]
 _data = {
@@ -16,41 +17,6 @@ shader_parameter/alpha_base = 0.5
 shader_parameter/n_cycles = 1.25
 shader_parameter/offset_scale = 0.01
 
-[sub_resource type="Curve" id="Curve_lb5sl"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2255319, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_j6uth"]
-curve = SubResource("Curve_lb5sl")
-
-[sub_resource type="Gradient" id="Gradient_224he"]
-colors = PackedColorArray(0.54388326, 0.7851973, 0.9984177, 1, 0, 0, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_rns71"]
-gradient = SubResource("Gradient_224he")
-
-[sub_resource type="Curve" id="Curve_yfj2h"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7659574, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_u17ix"]
-curve = SubResource("Curve_yfj2h")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sj4f2"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(15, 1, 1)
-direction = Vector3(0, -1, 0)
-initial_velocity_min = 37.0
-initial_velocity_max = 75.0
-gravity = Vector3(0, -98, 0)
-color_ramp = SubResource("GradientTexture1D_rns71")
-alpha_curve = SubResource("CurveTexture_j6uth")
-emission_curve = SubResource("CurveTexture_u17ix")
-turbulence_enabled = true
-turbulence_noise_strength = 9.99
-turbulence_noise_scale = 1.159
-
 [node name="PathFollowerRoot" type="Node2D"]
 
 [node name="PathToFollow" type="Path2D" parent="."]
@@ -61,27 +27,23 @@ curve = SubResource("Curve2D_jh8ke")
 [node name="PathFollow2D" type="PathFollow2D" parent="PathToFollow"]
 position = Vector2(-9.951384e-07, -1.9073485e-06)
 
-[node name="PathFollowerEnemy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("path_follower", "death_particles") groups=["Enemy", "UsesShaders"]]
+[node name="PathFollowerGhost" type="CharacterBody2D" parent="." node_paths=PackedStringArray("path_follower", "sprite") groups=["Ghost", "UsesShaders"]]
 collision_layer = 16
 collision_mask = 7
 script = ExtResource("1_dd0w7")
 path_follower = NodePath("../PathToFollow/PathFollow2D")
-death_particles = NodePath("DeathParticles")
+sprite = NodePath("Ghosty")
+offset_scale = 0.05
 
-[node name="Ghosty" type="Sprite2D" parent="PathFollowerEnemy"]
+[node name="Ghosty" type="Sprite2D" parent="PathFollowerGhost"]
 material = SubResource("ShaderMaterial_m44j1")
 texture = ExtResource("3_m44j1")
 
-[node name="DeathParticles" type="GPUParticles2D" parent="PathFollowerEnemy"]
-emitting = false
-amount = 25
-one_shot = true
-trail_enabled = true
-process_material = SubResource("ParticleProcessMaterial_sj4f2")
-
-[node name="SparkPlayer" type="AudioStreamPlayer2D" parent="PathFollowerEnemy"]
-bus = &"Lobby"
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PathFollowerEnemy"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PathFollowerGhost"]
 visible = false
 polygon = PackedVector2Array(-14, 0, -10, -8, -6, -12, -4, -14, 4, -14, 10, -8, 14, 0, 14, 14, -14, 14)
+
+[node name="GhostlySoundPlayer" type="AudioStreamPlayer2D" parent="PathFollowerGhost"]
+stream = ExtResource("4_5kuhb")
+max_distance = 400.0
+bus = &"SFX"

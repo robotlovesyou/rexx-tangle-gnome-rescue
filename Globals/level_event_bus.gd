@@ -11,6 +11,7 @@ signal player_hit_projectile()
 signal gnome_hit_projectile(Gnome)
 signal gnome_rescued(Gnome)
 signal player_hit_enemy(Enemy)
+signal player_hit_ghost
 signal player_killed_enemy(Enemy)
 signal player_exited_level()
 signal beat_channel_1
@@ -63,6 +64,12 @@ func gnome_rescued_sync(gnome: Gnome) -> void:
 
 func gnome_rescued_async(gnome: Gnome) -> void:
 	gnome_rescued.emit.call_deferred(gnome)
+	
+func player_hit_ghost_sync() -> void:
+	player_hit_ghost.emit()
+	
+func player_hit_ghost_async() -> void:
+	player_hit_ghost.emit.call_deferred()
 
 func player_hit_enemy_sync(enemy: Enemy) -> void:
 	player_hit_enemy.emit(enemy)

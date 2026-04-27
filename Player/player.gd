@@ -3,8 +3,6 @@ extends CharacterBody2D
 
 signal done_dying
 
-#const FRAME_HEIGHT := 32.0
-
 @export var steps: Array[AudioStreamWAV]
 @export var jumps: Array[AudioStreamWAV]
 @export var deaths: Array[AudioStreamWAV]
@@ -41,6 +39,9 @@ var appear_particles: GPUParticles2D:
 
 var disappear_particles: GPUParticles2D:
 	get: return $DisappearParticles
+	
+var scream_player: AudioStreamPlayer2D:
+	get: return $ScreamPlayer
 
 var walk_player: AudioStreamPlayer2D:
 	get: return $WalkPlayer
@@ -92,15 +93,6 @@ var _anchor_point_br: Node2D:
 
 var _anchor_point_bl: Node2D:
 	get: return $AnchorPointBL
-	
-#var _burn_particles: GPUParticles2D:
-	#get: return $BurnParticles
-	#
-#var _burn_player: AudioStreamPlayer2D:
-	#get: return $BurnPlayer
-	#
-#var _burn_light: PointLight2D:
-	#get: return $BurnLight
 
 func play_walk() -> void:
 	_walk_effect_player.play()
@@ -110,35 +102,6 @@ func stop_playing_walk() -> void:
 
 func play_jump() -> void:
 	_jump_effect_player.play()
-	
-#func start_burn() -> void:
-	#_burn_player.play()
-	#create_tween()\
-		#.tween_property(_burn_light, "energy", 0.0, BurningStrategy.BURN_TIME * 1.5)\
-		#.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
-	#_burn_light.enabled = true
-	#_burn_particles.position.y = FRAME_HEIGHT / 2.0
-	#_burn_light.position.y = FRAME_HEIGHT / 2.0
-	#_burn_particles.emitting = true
-	#_burn_particles.restart()
-	
-#func set_burn_amount(amount: float) -> void:
-	#amount = min(amount, 1.0)
-	#_burn_particles.position.y = (FRAME_HEIGHT * (1.0 - amount)) - (FRAME_HEIGHT / 2.0)
-	#_burn_light.position.y = (FRAME_HEIGHT * (1.0 - amount)) - (FRAME_HEIGHT / 2.0)
-	#animated_sprite.material.set_shader_parameter("burn_amount", amount)
-	#
-#func stop_burn() -> void:
-	#_burn_particles.emitting = false
-	#_burn_light.enabled = false
-	#
-#func set_hide_amount(amount: float) -> void:
-	#amount = min(amount, 1.0)
-	#animated_sprite.material.set_shader_parameter("hide_amount", amount)
-	#
-#func set_flame_amount(amount: float) -> void:
-	#amount = min(amount, 1.0)
-	#animated_sprite.material.set_shader_parameter("flame_amount", amount)
 
 func play_skid() -> void:
 	if not _skid_effect_player.playing:
@@ -153,6 +116,7 @@ func stop_skid() -> void:
 
 
 func die(reason: Enums.DeathReason) -> void:
+	walk_player.stop()
 	match reason:
 		Enums.DeathReason.PIERCED:
 			_switch_to_strategy(DyingStrategy.new(self))
@@ -226,7 +190,7 @@ func _physics_process(delta: float) -> void:
 			var gnome = itm as Gnome
 			Events.gnome_burned_async(gnome)
 
-func is_cast_on_wall_only() -> bool:
+func is_cast_on_wall() -> bool:
 	# checking each ray individually to get the wall normal at the same time
 	if detect_walls_left_high.is_colliding():
 		_cast_wall_normal = detect_walls_left_high.get_collision_normal()
@@ -246,6 +210,10 @@ func is_cast_on_wall_only() -> bool:
 		
 	_cast_wall_normal = Vector2.ZERO
 	return false
+
+func is_cast_on_wall_only() -> bool:
+	if is_on_floor(): return false
+	return is_cast_on_wall()
 	
 func get_cast_wall_normal() -> Vector2:
 	return _cast_wall_normal
@@ -262,3 +230,18 @@ func _on_walk_player_finished() -> void:
 		
 func get_flip_h() -> bool:
 	return animated_sprite.flip_h
+	
+func fade_scream(time: float) -> void:
+	var base_volume = scream_player.volume_linear
+	await create_tween().tween_property(scream_player, "volume_linear", 0.0, time).finished
+	scream_player.stop()
+	scream_player.volume_linear = base_volume
+	
+func scare() -> void:
+	if _strategy is ScaredStrategy: return
+	var direction = -1.0 if get_flip_h() else 1.0
+	scream_player.play()
+	_switch_to_strategy(ScaredStrategy.new(self, direction))
+	
+func done_being_scared() -> void:
+	_switch_to_strategy(AliveStrategy.new(self))

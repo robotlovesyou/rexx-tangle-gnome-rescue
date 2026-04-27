@@ -45,6 +45,7 @@ Projectile="A Projectile"
 SpawnPoint="A Player Spawn Point"
 UsesShaders="Does stuff with shaders"
 GnomeSpawner="A Gnome Spawner"
+Ghost="A Ghostly Enemy"
 
 [input]
 

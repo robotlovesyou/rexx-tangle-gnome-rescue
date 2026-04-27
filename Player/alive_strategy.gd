@@ -9,8 +9,10 @@ var _has_jumped: bool = false
 var _has_stopped_jump: bool = false
 var _wall_jump_normal: Vector2
 var _killed_enemy_last_frame := false
+var _input_strategy: InputStrategy
 
 func on_enter() -> void:
+	_input_strategy = StandardInputStrategy.new()
 	_begin_action(Enums.Action.IDLING)
 
 func on_exit() -> void:
@@ -71,20 +73,22 @@ func _check_for_enemy_collision():
 				Events.player_killed_enemy_async(collider as CharacterBody2D)
 			else:
 				Events.player_hit_enemy_async(collider as CharacterBody2D)
+		if collider.is_in_group("Ghost"):
+			Events.player_hit_ghost_async()
 
 func _determine_direction() -> void:
 	var temp_direction = _direction
 	if _parent.wall_jump_timer.time_left > 0.0:
 		_direction = _wall_jump_normal.x
 	else:
-		_direction = Input.get_axis("ui_left", "ui_right")
+		_direction = _input_strategy.get_h_axis()
 
 	if _direction:
 		_last_direction = temp_direction
 
 func _determine_has_jumped_or_stopped() -> void:
-	_has_jumped = Input.is_action_just_pressed("ui_accept")
-	_has_stopped_jump = Input.is_action_just_released("ui_accept") and not _parent.is_on_floor()
+	_has_jumped = _input_strategy.just_pressed_jump()
+	_has_stopped_jump = _input_strategy.just_released_jump() and not _parent.is_on_floor()
 	# if Input.is_action_just_pressed("ui_accept"):
 	# 	_has_jumped = is_on_wall_only() or is_on_floor() or _action == Enums.Action.JUMPING or _action == Enums.Action.FALLING
 	# else:
@@ -169,15 +173,18 @@ func _apply_gravity(delta: float) -> void:
 			_parent.velocity.y = min(_parent.velocity.y, _parent.movement_config.WALL_SLIDE_MAX_SPEED)
 		else:
 			_parent.velocity += _parent.get_gravity() * delta
-
-func on_animate(animated_sprite: AnimatedSprite2D) -> void:
+			
+func _determine_flip() -> bool:
 	var flip := false
 	if _has_direction():
 		flip = _direction > 0.0
 	else:
 		flip = _last_direction > 0.0
 	
-	animated_sprite.flip_h = flip
+	return flip
+
+func on_animate(animated_sprite: AnimatedSprite2D) -> void:
+	animated_sprite.flip_h = _determine_flip()
 
 	var jump_emitting := false
 		

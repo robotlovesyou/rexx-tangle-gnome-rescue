@@ -7,10 +7,12 @@ const INITIAL_PITCH := 1.8
 const FINAL_PITCH := 0.5
 const INITIAL_VOLUME := -6.0
 const FINAL_VOLUME := -12.0
+const FADE_TIME_PROPORTION := 0.1
 var charge_time_seconds := 2.0
 var life_time_seconds := 10.0
 var _t := 0.0
 var _fired := false
+var _dying := false
 
 var projectile_sprite: Sprite2D:
 	get: return $ProjectileSprite
@@ -47,14 +49,30 @@ func fire(v: Vector2) -> void:
 	burn_fx_player.play()
 	burn_fx_player.volume_db = INITIAL_VOLUME
 	burn_fx_player.pitch_scale = INITIAL_PITCH
-	create_tween().tween_property(burn_fx_player, "pitch_scale", FINAL_PITCH, life_time_seconds - _t)
-	create_tween().tween_property(burn_fx_player, "volume_db", FINAL_VOLUME, life_time_seconds - _t)
+	var tween_time := life_time_seconds - _t
+	create_tween().tween_property(burn_fx_player, "pitch_scale", FINAL_PITCH, tween_time)
+	create_tween().tween_property(burn_fx_player, "volume_db", FINAL_VOLUME, tween_time)
+	get_tree().create_timer((1.0 - FADE_TIME_PROPORTION) * tween_time).timeout.connect(_start_projectile_death)
+	
 	for body in collision_area.get_overlapping_bodies():
 		_on_collision_area_body_entered(body)
+		
+func _start_projectile_death() -> void:
+	_dying = true
+	create_tween()\
+		.tween_property(projectile_light, "energy", 0.0, life_time_seconds - _t)\
+		.set_ease(Tween.EASE_OUT)\
+		.set_trans(Tween.TRANS_EXPO)
 	
+	var transparent = projectile_sprite.modulate
+	modulate.a = 0.0
+	create_tween()\
+		.tween_property(projectile_sprite, "modulate", transparent, life_time_seconds - _t)\
+		.set_ease(Tween.EASE_OUT)\
+		.set_trans(Tween.TRANS_EXPO)
 	
 func _on_collision_area_body_entered(body: Node2D) -> void:
-	if not _fired: return
+	if not _fired or _dying: return
 	
 	if body is Player:
 		Events.player_burned_async()

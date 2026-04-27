@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://cenujiplxkpem"]
+[gd_scene load_steps=94 format=3 uid="uid://cenujiplxkpem"]
 
 [ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://Player/player.gd" id="1_vtle1"]
@@ -27,7 +27,9 @@
 [ext_resource type="Texture2D" uid="uid://cnc207pfe8r4y" path="res://RexxArt/Rexx/BigJumpV2Squish.png" id="22_qemgg"]
 [ext_resource type="Material" uid="uid://bhme48noym83x" path="res://Player/player_shader.tres" id="23_755ss"]
 [ext_resource type="Texture2D" uid="uid://joff5ga1xsej" path="res://RexxArt/Rexx/BigFaceSquishCrop.png" id="24_8viyr"]
+[ext_resource type="Texture2D" uid="uid://ckotlqcab70bj" path="res://RexxArt/Rexx/TheFear.png" id="24_efx54"]
 [ext_resource type="Material" uid="uid://c2ep71hehrit7" path="res://Player/appear_particles_process_material.tres" id="27_sm0op"]
+[ext_resource type="AudioStream" uid="uid://d4iegm8bjat2i" path="res://Player/rexxhelm_scream.wav" id="30_755ss"]
 
 [sub_resource type="Resource" id="Resource_76lrf"]
 script = ExtResource("20_sm0op")
@@ -107,6 +109,38 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8mwp6"]
 atlas = ExtResource("3_od3ui")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ynux"]
+atlas = ExtResource("24_efx54")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d30e8"]
+atlas = ExtResource("24_efx54")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pogt"]
+atlas = ExtResource("24_efx54")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie76m"]
+atlas = ExtResource("24_efx54")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy65m"]
+atlas = ExtResource("24_efx54")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_maysp"]
+atlas = ExtResource("24_efx54")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l10g"]
+atlas = ExtResource("24_efx54")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rl0i"]
+atlas = ExtResource("24_efx54")
+region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_4flbx")
@@ -271,6 +305,35 @@ animations = [{
 "loop": false,
 "name": &"disappear",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ynux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d30e8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pogt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ie76m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dy65m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maysp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1l10g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rl0i")
+}],
+"loop": true,
+"name": &"fear",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -445,8 +508,9 @@ color_ramp = SubResource("Gradient_qemgg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = ExtResource("23_755ss")
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"appear"
+animation = &"fear"
 autoplay = "idle"
+frame_progress = 0.33462626
 
 [node name="DebugRect" type="ColorRect" parent="."]
 visible = false
@@ -511,6 +575,11 @@ process_material = SubResource("ParticleProcessMaterial_od3ui")
 bus = &"Level"
 
 [node name="RexxEars" type="AudioListener2D" parent="."]
+
+[node name="ScreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("30_755ss")
+max_distance = 400.0
+bus = &"SFX"
 
 [node name="JumpPlayer" type="AudioStreamPlayer2D" parent="."]
 bus = &"Level"
