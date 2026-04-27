@@ -237,9 +237,9 @@ func fade_scream(time: float) -> void:
 	scream_player.stop()
 	scream_player.volume_linear = base_volume
 	
-func scare() -> void:
+func scare(source: Vector2) -> void:
 	if _strategy is ScaredStrategy: return
-	var direction = -1.0 if get_flip_h() else 1.0
+	var direction = sign(global_position.x - source.x)
 	scream_player.play()
 	_switch_to_strategy(ScaredStrategy.new(self, direction))
 	

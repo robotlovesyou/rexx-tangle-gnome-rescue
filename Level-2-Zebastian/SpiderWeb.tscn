@@ -29,4 +29,56 @@ stream = ExtResource("4_vhk0l")
 max_distance = 600.0
 bus = &"SFX"
 
+[node name="AnchorPoints" type="Node" parent="."]
+
+[node name="AnchorPoint" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-47.552612, -47.491714)
+
+[node name="AnchorPoint2" type="Node2D" parent="AnchorPoints"]
+position = Vector2(48, -48)
+
+[node name="AnchorPoint3" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-64, 0)
+
+[node name="AnchorPoint4" type="Node2D" parent="AnchorPoints"]
+position = Vector2(64, 0)
+
+[node name="AnchorPoint5" type="Node2D" parent="AnchorPoints"]
+position = Vector2(0, -64)
+
+[node name="AnchorPoint6" type="Node2D" parent="AnchorPoints"]
+position = Vector2(48, 48)
+
+[node name="AnchorPoint7" type="Node2D" parent="AnchorPoints"]
+position = Vector2(0, 64)
+
+[node name="AnchorPoint8" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-48, 48)
+
+[node name="AnchorPoint9" type="Node2D" parent="AnchorPoints"]
+
+[node name="AnchorPoint10" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-32, -32)
+
+[node name="AnchorPoint11" type="Node2D" parent="AnchorPoints"]
+position = Vector2(0, -48)
+
+[node name="AnchorPoint12" type="Node2D" parent="AnchorPoints"]
+position = Vector2(32, -32)
+
+[node name="AnchorPoint13" type="Node2D" parent="AnchorPoints"]
+position = Vector2(48, 0)
+
+[node name="AnchorPoint14" type="Node2D" parent="AnchorPoints"]
+position = Vector2(32, 32)
+
+[node name="AnchorPoint15" type="Node2D" parent="AnchorPoints"]
+position = Vector2(0, 48)
+
+[node name="AnchorPoint16" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-32, 32)
+
+[node name="AnchorPoint17" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-48, 0)
+
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]

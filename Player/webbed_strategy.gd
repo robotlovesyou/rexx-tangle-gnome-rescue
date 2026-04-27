@@ -14,6 +14,10 @@ func _init(parent: Player, web: SpiderWeb):
 	
 func on_enter() -> void:
 	_caught_at = _parent.global_position
+	_input_strategy = StandardInputStrategy.new()
+	
+func on_exit() -> void:
+	_web.release_player()
 
 func _modify_velocity(velocity: Vector2) -> Vector2:
 	if _parent.global_position.distance_to(_caught_at) > BREAK_DISTANCE:

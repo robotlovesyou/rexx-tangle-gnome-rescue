@@ -74,7 +74,7 @@ func _check_for_enemy_collision():
 			else:
 				Events.player_hit_enemy_async(collider as CharacterBody2D)
 		if collider.is_in_group("Ghost"):
-			Events.player_hit_ghost_async()
+			Events.player_hit_ghost_async(collider as PathFollowerGhost)
 
 func _determine_direction() -> void:
 	var temp_direction = _direction

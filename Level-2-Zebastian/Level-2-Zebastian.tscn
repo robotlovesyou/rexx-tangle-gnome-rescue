@@ -1355,7 +1355,7 @@ position = Vector2(544, 3048)
 position = Vector2(-704, 3048)
 
 [node name="SpiderWeb" parent="." instance=ExtResource("21_fqw8e")]
-position = Vector2(-110.41431, 133.9289)
+position = Vector2(-960, 3000)
 
 [node name="GnomeSpawner" parent="." instance=ExtResource("21_em3ct")]
 position = Vector2(272, 3040)
