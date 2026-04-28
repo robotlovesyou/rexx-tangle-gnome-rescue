@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://df6a2eoskdfrt" path="res://Level-2-Zebastian/fire_totem.tscn" id="25_mac22"]
 [ext_resource type="PackedScene" uid="uid://6eyoasclfhjk" path="res://Level-2-Zebastian/flame_trap.tscn" id="26_sab6v"]
 [ext_resource type="PackedScene" uid="uid://d050tfijdo4fy" path="res://Level-2-Zebastian/lamp.tscn" id="26_uyv0f"]
-[ext_resource type="PackedScene" uid="uid://c5il817cmkgnr" path="res://Level-2-Zebastian/glow_worm.tscn" id="27_mac22"]
+[ext_resource type="PackedScene" uid="uid://bc87ajy8mx61n" path="res://Level-2-Zebastian/glow_worm_spawner.tscn" id="29_eblxv"]
 [ext_resource type="PackedScene" uid="uid://coku57xrn7p84" path="res://Player/burning_rexx.tscn" id="32_0pu8p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sab6v"]
@@ -1142,10 +1142,6 @@ position = Vector2(1296, 208)
 [node name="GnomeSafeSpot" parent="." instance=ExtResource("8_davk5")]
 position = Vector2(1248, 208)
 
-[node name="GlowWorm" parent="." instance=ExtResource("27_mac22")]
-position = Vector2(450.41357, 2953.287)
-speed = 50.0
-
 [node name="Floor" parent="." instance=ExtResource("9_g5nbk")]
 
 [node name="YellowBoxes" parent="Floor" index="0"]
@@ -1354,6 +1350,12 @@ position = Vector2(544, 3048)
 [node name="Lamp2" parent="." instance=ExtResource("26_uyv0f")]
 position = Vector2(-704, 3048)
 
+[node name="Lamp3" parent="." instance=ExtResource("26_uyv0f")]
+position = Vector2(-960, 3048)
+
+[node name="Lamp4" parent="." instance=ExtResource("26_uyv0f")]
+position = Vector2(-1152, 3048)
+
 [node name="SpiderWeb" parent="." instance=ExtResource("21_fqw8e")]
 position = Vector2(-960, 3000)
 
@@ -1371,6 +1373,30 @@ curve = SubResource("Curve2D_eblxv")
 
 [node name="PathFollow2D" parent="Ghosty/PathToFollow" index="0"]
 rotation = 1.0899091
+
+[node name="GlowWormSpawner" parent="." instance=ExtResource("29_eblxv")]
+position = Vector2(-704, 2976)
+
+[node name="GlowWormSpawner5" parent="." instance=ExtResource("29_eblxv")]
+position = Vector2(-512, 2976)
+
+[node name="GlowWormSpawner6" parent="." instance=ExtResource("29_eblxv")]
+position = Vector2(-320, 2976)
+
+[node name="GlowWormSpawner7" parent="." instance=ExtResource("29_eblxv")]
+position = Vector2(-128, 2976)
+
+[node name="GlowWormSpawner8" parent="." instance=ExtResource("29_eblxv")]
+position = Vector2(128, 2976)
+
+[node name="GlowWormSpawner2" parent="." instance=ExtResource("29_eblxv")]
+position = Vector2(-832, 2976)
+
+[node name="GlowWormSpawner3" parent="." instance=ExtResource("29_eblxv")]
+position = Vector2(-960, 2968)
+
+[node name="GlowWormSpawner4" parent="." instance=ExtResource("29_eblxv")]
+position = Vector2(-1096, 2976)
 
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]

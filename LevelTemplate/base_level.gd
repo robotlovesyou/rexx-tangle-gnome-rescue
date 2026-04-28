@@ -100,11 +100,6 @@ func _physics_process(delta: float) -> void:
 	hud.update_timer(timer_seconds - floor(_t))
 	if _player_over_exit and Input.is_action_just_pressed("ui_accept"):
 		PMonitor.player.exit(exit)
-
-	if Input.is_action_just_released("instakill_gnomes"):
-		for item in get_tree().get_nodes_in_group("Gnome"):
-			var gnome = item as Gnome
-			_kill_gnome(gnome)
 			
 func _on_player_burned() -> void:
 	_kill_player(Enums.DeathReason.BURNED)

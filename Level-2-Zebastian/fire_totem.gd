@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	if not _projectile:
 		_add_fire_projectile()
 	_t += delta
-	totem_sprite.frame = int(floor((_t / cycle_time_seconds) * FRAME_COUNT))
+	totem_sprite.frame = int(floor((_t / cycle_time_seconds) * (FRAME_COUNT - 1)))
 	if _t >= cycle_time_seconds:
 		_fire()
 		_t = 0.0

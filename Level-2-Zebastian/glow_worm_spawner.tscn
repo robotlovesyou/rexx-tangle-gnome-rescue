@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc87ajy8mx61n"]
+
+[ext_resource type="Script" uid="uid://ck5p2ffjaubkr" path="res://Level-2-Zebastian/glow_worm_spawner.gd" id="1_n0ffp"]
+[ext_resource type="PackedScene" uid="uid://c5il817cmkgnr" path="res://Level-2-Zebastian/glow_worm.tscn" id="2_2kkvy"]
+
+[node name="GlowWormSpawner" type="Node2D"]
+script = ExtResource("1_n0ffp")
+glow_worm_scene = ExtResource("2_2kkvy")
+max_range = 150
+
+[node name="SpawnerCenter" type="Node2D" parent="."]

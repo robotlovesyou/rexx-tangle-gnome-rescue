@@ -10,7 +10,6 @@ func _ready() -> void:
 			child.reparent.call_deferred(get_parent())
 			gnome.prepare_appear()
 			gnome.appear()
-			gnome.connect("died", _on_gnome_died)
 
 
 func _on_gnome_died() -> void:

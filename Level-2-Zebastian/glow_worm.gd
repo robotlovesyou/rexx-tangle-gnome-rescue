@@ -3,17 +3,24 @@ extends Node2D
 
 const EPSILON := 0.0001
 
-@export var speed := 10.0
-@export var min_energy := 0.5
-var _noise := FastNoiseLite.new()
+@export var speed := 50.0
+@export var max_range := 100.0
+var _noise: FastNoiseLite
 var _t := 0.0
 
 var glow: PointLight2D:
 	get: return $Glow
+	
+var worm: Node2D:
+	get: return $Worm
 
 
 func _ready() -> void:
+	_noise = FastNoiseLite.new()
+	_noise.seed = randi_range(-1000,1000)
 	_noise.noise_type = FastNoiseLite.TYPE_PERLIN
+	worm.position = Vector2(randf_range(-max_range/2.0, max_range/2.0), randf_range(-max_range/2.0, max_range/2.0))
+	
 	
 func _curl_noise(at: Vector2) -> Vector2:
 	var y_pos = _noise.get_noise_2dv(at + Vector2(0.0, EPSILON))
@@ -25,8 +32,19 @@ func _curl_noise(at: Vector2) -> Vector2:
 	var d_dx = (x_pos - x_neg) / (2.0 * EPSILON)
 	return Vector2(d_dy, -d_dx)
 	
+func _calculate_outward_component(m: Vector2) -> Vector2:
+	if worm.position == Vector2.ZERO: return m
+	var projection = m.dot(worm.position) / worm.position.dot(worm.position) * worm.position
+	if m.dot(worm.position) > 0.0:
+		return projection
+	return Vector2.ZERO
+	
 func _physics_process(delta: float) -> void:
 	_t += delta
-	var curl_noise = _curl_noise(Vector2(_t, _t))
-	global_position += curl_noise * speed
+	var curl_noise := _curl_noise(Vector2(_t, _t))
+	var m := curl_noise * speed # proposed movement vector
+	var outward := _calculate_outward_component(m)
+	var movement_scale = pow(worm.position.length() / max_range, 2.0)
+	worm.position += m - (outward * movement_scale)
+	
 	
