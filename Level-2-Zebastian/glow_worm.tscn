@@ -4,7 +4,7 @@
 
 [sub_resource type="Gradient" id="Gradient_2i2n4"]
 offsets = PackedFloat32Array(0, 0.6542857, 1)
-colors = PackedColorArray(0.7764706, 1, 0.09019608, 1, 0.7764706, 1, 0.09019608, 0.5019608, 0.7764706, 1, 0.09019608, 0)
+colors = PackedColorArray(0, 0.83137256, 1, 1, 0, 0.83137256, 1, 0.53333336, 0, 0.83137256, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_q2f3j"]
 gradient = SubResource("Gradient_2i2n4")
@@ -19,7 +19,7 @@ script = ExtResource("1_q2f3j")
 
 [node name="Worm" type="Node2D" parent="."]
 
-[node name="Body" type="ColorRect" parent="Worm"]
+[node name="BodyGreen" type="ColorRect" parent="Worm"]
 custom_minimum_size = Vector2(1, 1)
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,6 +32,23 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.7764706, 1, 0.09019608, 1)
 
-[node name="Glow" type="PointLight2D" parent="Worm"]
+[node name="BodyBlue" type="ColorRect" parent="Worm"]
+custom_minimum_size = Vector2(1, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.83137256, 1, 1)
+
+[node name="GlowBlue" type="PointLight2D" parent="Worm"]
+texture = SubResource("GradientTexture2D_q2f3j")
+texture_scale = 0.5
+
+[node name="GlowGreen" type="PointLight2D" parent="Worm"]
 texture = SubResource("GradientTexture2D_q2f3j")
 texture_scale = 0.5

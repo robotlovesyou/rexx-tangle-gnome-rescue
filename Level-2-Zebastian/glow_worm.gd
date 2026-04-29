@@ -8,18 +8,34 @@ const EPSILON := 0.0001
 var _noise: FastNoiseLite
 var _t := 0.0
 
-var glow: PointLight2D:
-	get: return $Glow
+var glow_green: PointLight2D:
+	get: return $Worm/GlowGreen
+	
+var glow_blue: PointLight2D:
+	get: return $Worm/GlowBlue
+	
+var body_green: ColorRect:
+	get: return $Worm/BodyGreen
+	
+var body_blue: ColorRect:
+	get: return $Worm/BodyBlue
 	
 var worm: Node2D:
 	get: return $Worm
-
 
 func _ready() -> void:
 	_noise = FastNoiseLite.new()
 	_noise.seed = randi_range(-1000,1000)
 	_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	worm.position = Vector2(randf_range(-max_range/2.0, max_range/2.0), randf_range(-max_range/2.0, max_range/2.0))
+	if randf() >=0.5:
+		glow_green.enabled = false
+		glow_green.hide()
+		body_green.hide()
+	else:
+		glow_blue.enabled = false
+		glow_blue.hide()
+		body_blue.hide()
 	
 	
 func _curl_noise(at: Vector2) -> Vector2:
