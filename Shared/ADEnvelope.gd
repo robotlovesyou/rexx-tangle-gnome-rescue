@@ -7,15 +7,17 @@ var _t := 0.0
 var _t_at_trigger := 0.0
 var _t_since_trigger := 0.0
 var _sample := 0.0
+var _retrig: bool
 
 enum Phase {IDLE, ATTACK, DECAY}
 var _phase = Phase.IDLE
 
-func _init(a: float, d: float):
+func _init(a: float, d: float, retrig: bool):
 	assert(a > 0.0, "a cannot be zero")
 	assert(d > 0.0, "d cannot be zero" )
 	_attack = a
 	_decay = d
+	_retrig = retrig
 
 func progress(delta: float) -> void:
 	_t += delta
@@ -39,10 +41,9 @@ func _calc_env_value() -> float:
 			return 0.0
 
 func trigger() -> void:
-	if _phase == Phase.IDLE:
+	if _phase == Phase.IDLE || _retrig:
 		_t_at_trigger = _t
 		_phase = Phase.ATTACK
 
 func sample() -> float: return _sample
 	
-

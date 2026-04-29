@@ -12,7 +12,7 @@ signal done_dying
 @export var debug_is_on_wall_only := false
 
 var _strategy: PlayerStrategy
-var _particle_beat_envelope := ADEnvelope.new(0.05, 0.1)
+var _particle_beat_envelope := ADEnvelope.new(0.05, 0.1, true)
 var _min_jump_particle_scale := 0.0
 var _max_jump_particle_scale := 0.0
 var _t := 0.0

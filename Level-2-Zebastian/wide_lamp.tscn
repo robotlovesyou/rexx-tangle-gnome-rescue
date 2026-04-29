@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca454cat81hs1"]
+
+[ext_resource type="Texture2D" uid="uid://dqii6gtpyu00f" path="res://Level-2-Zebastian/WideLamp.png" id="1_c58h8"]
+[ext_resource type="Script" uid="uid://bxeg8mk63px4" path="res://Level-2-Zebastian/wide_lamp.gd" id="1_w8yd8"]
+[ext_resource type="Texture2D" uid="uid://x4f4frjm0oow" path="res://Level-2-Zebastian/WideLight.png" id="2_w8yd8"]
+
+[node name="WideLamp" type="Node2D"]
+script = ExtResource("1_w8yd8")
+
+[node name="LampBody" type="Sprite2D" parent="."]
+z_index = 10
+texture = ExtResource("1_c58h8")
+
+[node name="LampLight" type="PointLight2D" parent="."]
+position = Vector2(0, 144)
+texture = ExtResource("2_w8yd8")
+texture_scale = 4.0
