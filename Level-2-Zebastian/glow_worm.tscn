@@ -1,13 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5il817cmkgnr"]
+[gd_scene load_steps=6 format=3 uid="uid://c5il817cmkgnr"]
 
 [ext_resource type="Script" uid="uid://cpn8y05c75lgr" path="res://Level-2-Zebastian/glow_worm.gd" id="1_q2f3j"]
 
-[sub_resource type="Gradient" id="Gradient_2i2n4"]
+[sub_resource type="Gradient" id="Gradient_q2f3j"]
 offsets = PackedFloat32Array(0, 0.6542857, 1)
 colors = PackedColorArray(0, 0.83137256, 1, 1, 0, 0.83137256, 1, 0.53333336, 0, 0.83137256, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_q2f3j"]
-gradient = SubResource("Gradient_2i2n4")
+gradient = SubResource("Gradient_q2f3j")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.8)
+
+[sub_resource type="Gradient" id="Gradient_k5mx4"]
+offsets = PackedFloat32Array(0, 0.6542857, 1)
+colors = PackedColorArray(0.7764706, 1, 0.09019608, 1, 0.7764706, 1, 0.09019608, 0.53333336, 0.7764706, 1, 0.09019608, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aenh5"]
+gradient = SubResource("Gradient_k5mx4")
 width = 256
 height = 256
 fill = 1
@@ -50,5 +62,5 @@ texture = SubResource("GradientTexture2D_q2f3j")
 texture_scale = 0.5
 
 [node name="GlowGreen" type="PointLight2D" parent="Worm"]
-texture = SubResource("GradientTexture2D_q2f3j")
+texture = SubResource("GradientTexture2D_aenh5")
 texture_scale = 0.5
