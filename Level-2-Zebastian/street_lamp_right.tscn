@@ -7,6 +7,7 @@
 [node name="StreetLamp" type="Node2D"]
 
 [node name="LampBody" type="Sprite2D" parent="."]
+z_index = 20
 texture = ExtResource("1_yp4lj")
 
 [node name="Bulb" type="Sprite2D" parent="."]
