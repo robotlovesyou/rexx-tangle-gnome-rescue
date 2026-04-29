@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=66 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://danj42f0n1wdv" path="res://Level-2-Zebastian/level_2_zebastian.gd" id="1_wprv3"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cm8tcj5dyrq5y" path="res://Gnomes/burning_gnome.tscn" id="5_sab6v"]
 [ext_resource type="PackedScene" uid="uid://djgyhguij8ueu" path="res://Shared/spawn_point.tscn" id="6_ak2hd"]
 [ext_resource type="Shader" uid="uid://tc2w71qak8he" path="res://Level-2-Zebastian/fog.gdshader" id="6_eblxv"]
-[ext_resource type="JSON" path="res://Sounds/DataSources/AskNotForWhomTheCarriageReturns/claps2.json" id="6_rmjhb"]
+[ext_resource type="JSON" path="res://Level-2-Zebastian/kick.json" id="7_4ybp8"]
 [ext_resource type="PackedScene" uid="uid://bpie03cvpmuyt" path="res://Shared/exit.tscn" id="7_73l37"]
 [ext_resource type="PackedScene" uid="uid://d1d8b4dpydja5" path="res://Shared/gnome_safe_spot.tscn" id="8_davk5"]
 [ext_resource type="PackedScene" uid="uid://d0rrvvv6k44gt" path="res://Shared/floor.tscn" id="9_g5nbk"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dxibwhuulkyuc" path="res://Level-2-Zebastian/birb_call.tscn" id="21_3jg50"]
 [ext_resource type="PackedScene" uid="uid://bsqgklrkp8dwv" path="res://Gnomes/gnome_spawner.tscn" id="21_em3ct"]
 [ext_resource type="PackedScene" uid="uid://cn1tejjwxxxe7" path="res://Level-2-Zebastian/SpiderWeb.tscn" id="21_fqw8e"]
+[ext_resource type="AudioStream" uid="uid://dleiku7x3rdh8" path="res://Level-2-Zebastian/BiRbSM1_01.ogg" id="22_4ybp8"]
 [ext_resource type="PackedScene" uid="uid://df6a2eoskdfrt" path="res://Level-2-Zebastian/fire_totem.tscn" id="25_mac22"]
 [ext_resource type="PackedScene" uid="uid://6eyoasclfhjk" path="res://Level-2-Zebastian/flame_trap.tscn" id="26_sab6v"]
 [ext_resource type="PackedScene" uid="uid://d050tfijdo4fy" path="res://Level-2-Zebastian/lamp.tscn" id="26_uyv0f"]
@@ -1872,7 +1873,7 @@ _data = {
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sab6v"]
-size = Vector2(480, 16)
+size = Vector2(128, 16)
 
 [node name="Level2Zebastian" type="Node2D" node_paths=PackedStringArray("hud", "player_sibling_node", "level_music_player")]
 script = ExtResource("1_wprv3")
@@ -1886,7 +1887,7 @@ minimum_gnomes = 2
 timer_seconds = 512
 player_sibling_node = NodePath("LevelFloor")
 level_music_player = NodePath("LevelMusicPlayer")
-level_music_beats = ExtResource("6_rmjhb")
+level_music_beats = ExtResource("7_4ybp8")
 show_gnome_count = true
 show_timer = true
 
@@ -2004,7 +2005,8 @@ position = Vector2(770, 240)
 visible = false
 
 [node name="LevelMusicPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -15.0
+stream = ExtResource("22_4ybp8")
+volume_db = -6.0
 
 [node name="ShaderCompilerCamera" type="Camera2D" parent="."]
 
@@ -2148,6 +2150,9 @@ position = Vector2(448, 3040)
 [node name="Lamp" parent="." instance=ExtResource("26_uyv0f")]
 position = Vector2(544, 3048)
 
+[node name="Lamp5" parent="." instance=ExtResource("26_uyv0f")]
+position = Vector2(1096, 2888)
+
 [node name="Lamp2" parent="." instance=ExtResource("26_uyv0f")]
 position = Vector2(-704, 3048)
 
@@ -2176,7 +2181,7 @@ curve = SubResource("Curve2D_eblxv")
 rotation = 1.0899091
 
 [node name="AmbushSpiderRoot" parent="." instance=ExtResource("30_sab6v")]
-position = Vector2(1104, 3048)
+position = Vector2(1096, 2888)
 
 [node name="CollisionShape2D" parent="AmbushSpiderRoot/DetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_sab6v")

@@ -2,8 +2,8 @@ from mido import MidiFile, tick2second, bpm2tempo
 from json import dumps
 
 def main():
-    midifile = MidiFile('/Users/andrewsmith/rexx-tangle-gnome-rescue/UtilityScripts/MidiAnalyser/data/TrainingDay/TrainingDayBeatData.mid')
-    tempo = bpm2tempo(80)
+    midifile = MidiFile('/Users/andrewsmith/Desktop/RexxMusic/Files/KickMidi.mid')
+    tempo = bpm2tempo(100)
     ticks_per_beat = midifile.ticks_per_beat
     if midifile.type != 0:
         print("File is not type 0. Cannot process it")
