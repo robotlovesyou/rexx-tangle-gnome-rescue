@@ -184,11 +184,6 @@ func _physics_process(delta: float) -> void:
 			break
 
 	debug_rect.visible = debug_is_on_wall_only and is_cast_on_wall_only()
-	if Input.is_action_just_pressed("burn_baby_burn"):
-		#Events.player_burned_async()
-		for itm in get_tree().get_nodes_in_group("Gnome"):
-			var gnome = itm as Gnome
-			Events.gnome_burned_async(gnome)
 
 func is_cast_on_wall() -> bool:
 	# checking each ray individually to get the wall normal at the same time
@@ -226,7 +221,8 @@ func trigger_beat_effect() -> void:
 	_particle_beat_envelope.trigger()
 
 func _on_walk_player_finished() -> void:
-	_walk_effect_player.on_audio_player_finished()
+	pass
+	#_walk_effect_player.on_audio_player_finished()
 		
 func get_flip_h() -> bool:
 	return animated_sprite.flip_h

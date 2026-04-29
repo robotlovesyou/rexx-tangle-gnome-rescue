@@ -1,9 +1,17 @@
-[gd_scene load_steps=26 format=3 uid="uid://b0g16u3s5x4pn"]
+[gd_scene load_steps=47 format=3 uid="uid://b0g16u3s5x4pn"]
 
 [ext_resource type="Texture2D" uid="uid://cohtepet7wa87" path="res://Enemies/AmbushSpider/SpiderIdle.png" id="1_0ksmn"]
-[ext_resource type="Script" uid="uid://bpkc2xpu5aql2" path="res://Level-2-Zebastian/ambush_spider_root.gd" id="1_geptq"]
-[ext_resource type="Script" uid="uid://dbtitoclct5yk" path="res://Level-2-Zebastian/ambush_spider.gd" id="2_5nud6"]
+[ext_resource type="Script" uid="uid://bpkc2xpu5aql2" path="res://Enemies/AmbushSpider/ambush_spider_root.gd" id="1_geptq"]
+[ext_resource type="Script" uid="uid://dbtitoclct5yk" path="res://Enemies/AmbushSpider/ambush_spider.gd" id="2_5nud6"]
 [ext_resource type="Texture2D" uid="uid://c4rhox4qsdpb5" path="res://Enemies/AmbushSpider/SpiderWalk.png" id="2_tr0ki"]
+[ext_resource type="AudioStream" uid="uid://djw42y7ubc4cd" path="res://Enemies/AmbushSpider/hitHurt.wav" id="2_wkgac"]
+[ext_resource type="AudioStream" uid="uid://cl3yt4h1qjnq8" path="res://Enemies/AmbushSpider/hitHurtMinusTwo.wav" id="3_27u4m"]
+[ext_resource type="AudioStream" uid="uid://wvsa8e0k8v6s" path="res://Enemies/AmbushSpider/hitHurtPlus2.wav" id="4_6f3oi"]
+[ext_resource type="Texture2D" uid="uid://di2fpykr1g3qb" path="res://Enemies/AmbushSpider/SpiderSqush.png" id="4_dgjnh"]
+[ext_resource type="AudioStream" uid="uid://djmrluoavkvjq" path="res://Enemies/AmbushSpider/649978__sounddesignforyou__squelching-sfx-9.wav" id="5_dektq"]
+[ext_resource type="AudioStream" uid="uid://dp8od08so3brl" path="res://Enemies/AmbushSpider/649980__sounddesignforyou__squelching-sfx-7.wav" id="6_fxe3t"]
+[ext_resource type="AudioStream" uid="uid://q4o6xgkapf0o" path="res://Enemies/AmbushSpider/649981__sounddesignforyou__squelching-sfx-8.wav" id="7_v2gee"]
+[ext_resource type="AudioStream" uid="uid://b54gcgjeh8j2v" path="res://Enemies/AmbushSpider/649982__sounddesignforyou__squelching-sfx-6.wav" id="8_nl45l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tr0ki"]
 atlas = ExtResource("1_0ksmn")
@@ -48,6 +56,38 @@ region = Rect2(32, 32, 32, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pio8s"]
 atlas = ExtResource("1_0ksmn")
 region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uon0"]
+atlas = ExtResource("4_dgjnh")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w60s"]
+atlas = ExtResource("4_dgjnh")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkgac"]
+atlas = ExtResource("4_dgjnh")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27u4m"]
+atlas = ExtResource("4_dgjnh")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f3oi"]
+atlas = ExtResource("4_dgjnh")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ank8e"]
+atlas = ExtResource("4_dgjnh")
+region = Rect2(64, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dektq"]
+atlas = ExtResource("4_dgjnh")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxe3t"]
+atlas = ExtResource("4_dgjnh")
+region = Rect2(32, 32, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03lfr"]
 atlas = ExtResource("2_tr0ki")
@@ -123,6 +163,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_2uon0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w60s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkgac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27u4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f3oi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ank8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dektq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxe3t")
+}],
+"loop": false,
+"name": &"squish",
+"speed": 21.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_03lfr")
 }, {
 "duration": 1.0,
@@ -151,11 +220,42 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="Curve" id="Curve_dgjnh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.74999994, 0.9922155), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2uon0"]
+curve = SubResource("Curve_dgjnh")
+
+[sub_resource type="Curve" id="Curve_2uon0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7409638, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7w60s"]
+curve = SubResource("Curve_2uon0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dgjnh"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(16, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 20.138
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_max = 2.0
+color = Color(0.53333336, 0.03137255, 0.03137255, 1)
+alpha_curve = SubResource("CurveTexture_2uon0")
+emission_curve = SubResource("CurveTexture_7w60s")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr0ki"]
 size = Vector2(288, 16)
 
 [node name="AmbushSpiderRoot" type="Node2D"]
 script = ExtResource("1_geptq")
+steps = Array[AudioStreamWAV]([ExtResource("2_wkgac"), ExtResource("3_27u4m"), ExtResource("4_6f3oi")])
+death_sounds = Array[AudioStreamWAV]([ExtResource("5_dektq"), ExtResource("6_fxe3t"), ExtResource("7_v2gee"), ExtResource("8_nl45l")])
 
 [node name="AmbushSpider" type="CharacterBody2D" parent="." groups=["Enemy"]]
 collision_layer = 16
@@ -164,16 +264,36 @@ script = ExtResource("2_5nud6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AmbushSpider"]
 sprite_frames = SubResource("SpriteFrames_03lfr")
-animation = &"idle"
+animation = &"squish"
 autoplay = "idle"
+frame = 7
+frame_progress = 1.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AmbushSpider"]
 polygon = PackedVector2Array(-12, 8, -10, 2, -10, -4, 0, -8, 10, -4, 10, 2, 12, 8)
+
+[node name="BloodParticles" type="GPUParticles2D" parent="AmbushSpider"]
+position = Vector2(0, 8)
+emitting = false
+amount = 16
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dgjnh")
+
+[node name="WalkPlayer" type="AudioStreamPlayer2D" parent="AmbushSpider"]
+max_distance = 400.0
+bus = &"SFX"
+
+[node name="DeathPlayer" type="AudioStreamPlayer2D" parent="AmbushSpider"]
+max_distance = 400.0
+bus = &"SFX"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("RectangleShape2D_tr0ki")
 
+[connection signal="died" from="AmbushSpider" to="." method="_on_ambush_spider_died"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

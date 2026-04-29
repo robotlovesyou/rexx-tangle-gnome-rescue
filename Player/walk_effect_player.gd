@@ -3,6 +3,10 @@ extends EffectPlayer
 
 var _playing := false
 
+func _init(audio_player: AudioStreamPlayer2D, sounds: Array[AudioStreamWAV], options: Dictionary[String, float] = {}):
+	super(audio_player, sounds, options)
+	audio_player.finished.connect(on_audio_player_finished)
+
 func play() -> void:
 	if _playing: return
 	_playing = true

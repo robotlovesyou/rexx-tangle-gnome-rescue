@@ -10,11 +10,6 @@ signal died
 
 @onready var death_player := EffectPlayer.new(spark_player, death_sounds)
 
-enum State {
-	ALIVE,
-	DEAD
-}
-
 var _state := State.ALIVE
 
 const SPEED := 300.0

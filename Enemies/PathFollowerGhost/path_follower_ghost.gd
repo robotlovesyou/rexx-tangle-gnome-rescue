@@ -6,11 +6,6 @@ extends Enemy
 @export var number_of_waves := 2.5
 @export var offset_scale := 0.01
 
-enum State {
-	ALIVE,
-	DEAD
-}
-
 var _t := 0.0
 var _state := State.ALIVE
 var _pitch_noise: FastNoiseLite
