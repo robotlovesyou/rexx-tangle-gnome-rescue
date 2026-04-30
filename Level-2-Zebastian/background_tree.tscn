@@ -1,0 +1,43 @@
+[gd_scene load_steps=13 format=3 uid="uid://dtujt7rkktado"]
+
+[ext_resource type="Script" uid="uid://c2bk8icq4x2vn" path="res://tree.gd" id="1_7188d"]
+[ext_resource type="Texture2D" uid="uid://bstb4yc8yqcou" path="res://Level-2-Zebastian/TreeTrunk1.png" id="2_gmtxp"]
+[ext_resource type="Material" uid="uid://dfsruknu2p5jg" path="res://Level-2-Zebastian/tree_darkener_layer_1.tres" id="2_ilcvi"]
+[ext_resource type="Texture2D" uid="uid://bgxcnx4la30wq" path="res://Level-2-Zebastian/TreeTrunk2.png" id="3_t8u25"]
+[ext_resource type="Texture2D" uid="uid://b2c0b0xehm3qb" path="res://Level-2-Zebastian/TreeTrunk3.png" id="4_xijq1"]
+[ext_resource type="Texture2D" uid="uid://5or7cg8v68eo" path="res://Level-2-Zebastian/TreeTrunk4.png" id="5_bfjjp"]
+[ext_resource type="Texture2D" uid="uid://c3cej67bkk78t" path="res://Level-2-Zebastian/TreeTrunk5.png" id="6_xlhao"]
+[ext_resource type="Texture2D" uid="uid://bwnwdh7u4uksk" path="res://Level-2-Zebastian/TreeTrunk6.png" id="7_tddv6"]
+[ext_resource type="Texture2D" uid="uid://b3xdn3jmrtqol" path="res://Level-2-Zebastian/TreeTrunk7.png" id="8_x57jg"]
+[ext_resource type="Texture2D" uid="uid://b0vytysyfoa4i" path="res://Level-2-Zebastian/TreeTrunk8.png" id="9_efbc8"]
+[ext_resource type="Texture2D" uid="uid://busvkebq65xcc" path="res://Level-2-Zebastian/TreeTrunk9.png" id="10_sj8dq"]
+[ext_resource type="Texture2D" uid="uid://f4xkmnbc7rfh" path="res://Level-2-Zebastian/TreeTrunk10.png" id="11_gvycs"]
+
+[node name="BackgroundTree" type="Node2D" node_paths=PackedStringArray("trunks")]
+script = ExtResource("1_7188d")
+tree_textures = Array[CompressedTexture2D]([ExtResource("2_gmtxp"), ExtResource("3_t8u25"), ExtResource("4_xijq1"), ExtResource("5_bfjjp"), ExtResource("6_xlhao"), ExtResource("7_tddv6"), ExtResource("8_x57jg"), ExtResource("9_efbc8"), ExtResource("10_sj8dq"), ExtResource("11_gvycs")])
+trunks = [NodePath("Trunk"), NodePath("Trunk2"), NodePath("Trunk3"), NodePath("Trunk4")]
+
+[node name="Trunk" type="Sprite2D" parent="."]
+light_mask = 2
+material = ExtResource("2_ilcvi")
+position = Vector2(2, -2)
+texture = ExtResource("2_gmtxp")
+
+[node name="Trunk2" type="Sprite2D" parent="."]
+light_mask = 2
+material = ExtResource("2_ilcvi")
+position = Vector2(1, 510)
+texture = ExtResource("2_gmtxp")
+
+[node name="Trunk3" type="Sprite2D" parent="."]
+light_mask = 2
+material = ExtResource("2_ilcvi")
+position = Vector2(0, -512)
+texture = ExtResource("2_gmtxp")
+
+[node name="Trunk4" type="Sprite2D" parent="."]
+light_mask = 2
+material = ExtResource("2_ilcvi")
+position = Vector2(0, -1024)
+texture = ExtResource("2_gmtxp")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=68 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://danj42f0n1wdv" path="res://Level-2-Zebastian/level_2_zebastian.gd" id="1_wprv3"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://tc2w71qak8he" path="res://Level-2-Zebastian/fog.gdshader" id="6_eblxv"]
 [ext_resource type="JSON" path="res://Level-2-Zebastian/kick.json" id="7_4ybp8"]
 [ext_resource type="PackedScene" uid="uid://bpie03cvpmuyt" path="res://Shared/exit.tscn" id="7_73l37"]
+[ext_resource type="PackedScene" uid="uid://dtujt7rkktado" path="res://Level-2-Zebastian/background_tree.tscn" id="8_7moxs"]
 [ext_resource type="PackedScene" uid="uid://d1d8b4dpydja5" path="res://Shared/gnome_safe_spot.tscn" id="8_davk5"]
 [ext_resource type="PackedScene" uid="uid://d0rrvvv6k44gt" path="res://Shared/floor.tscn" id="9_g5nbk"]
 [ext_resource type="Texture2D" uid="uid://bjpqh73qt0sys" path="res://Level-2-Zebastian/EarthAndGrassTiles.png" id="10_fqw8e"]
@@ -1874,7 +1875,7 @@ _data = {
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sab6v"]
-size = Vector2(128, 16)
+size = Vector2(256, 16)
 
 [node name="Level2Zebastian" type="Node2D" node_paths=PackedStringArray("hud", "player_sibling_node", "level_music_player")]
 script = ExtResource("1_wprv3")
@@ -1896,18 +1897,91 @@ show_timer = true
 position = Vector2(-8, 0)
 color = Color(0.27022192, 0.27022192, 0.27022186, 1)
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
-scale = Vector2(1.4402528, 0.98989004)
+[node name="Sky" type="Parallax2D" parent="."]
 repeat_size = Vector2(640, 400)
 
-[node name="ColorRect2" type="ColorRect" parent="Parallax2D"]
+[node name="Sky" type="ColorRect" parent="Sky"]
 light_mask = 2
 custom_minimum_size = Vector2(640, 400)
 offset_right = 640.0
 offset_bottom = 400.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Parallax2D"]
+[node name="BackTrees" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.7, 1)
+
+[node name="BackgroundTree" parent="BackTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(1664, 2690)
+darken_factor = 0.25
+
+[node name="BackgroundTree7" parent="BackTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(640, 2688)
+darken_factor = 0.25
+
+[node name="BackgroundTree8" parent="BackTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(56, 2688)
+darken_factor = 0.25
+
+[node name="BackgroundTree9" parent="BackTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(-720, 2688)
+darken_factor = 0.25
+
+[node name="BackgroundTree2" parent="BackTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(1184, 2688)
+darken_factor = 0.25
+
+[node name="BackgroundTree3" parent="BackTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(952, 2688)
+darken_factor = 0.25
+
+[node name="BackgroundTree4" parent="BackTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(424, 2688)
+darken_factor = 0.25
+
+[node name="BackgroundTree5" parent="BackTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(-408, 2688)
+darken_factor = 0.25
+
+[node name="BackgroundTree6" parent="BackTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(-1048, 2688)
+darken_factor = 0.25
+
+[node name="FrontTrees" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 1)
+
+[node name="BackgroundTree" parent="FrontTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(1883, 2689)
+darken_factor = 0.9
+
+[node name="BackgroundTree2" parent="FrontTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(1456, 2688)
+darken_factor = 0.9
+
+[node name="BackgroundTree3" parent="FrontTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(744, 2688)
+darken_factor = 0.9
+
+[node name="BackgroundTree4" parent="FrontTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(152, 2688)
+darken_factor = 0.9
+
+[node name="BackgroundTree5" parent="FrontTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(-192, 2688)
+darken_factor = 0.9
+
+[node name="BackgroundTree6" parent="FrontTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(-808, 2688)
+darken_factor = 0.9
+
+[node name="BackgroundTree7" parent="FrontTrees" instance=ExtResource("8_7moxs")]
+position = Vector2(-1304, 2688)
+darken_factor = 0.9
+
+[node name="Fog" type="Parallax2D" parent="."]
+scale = Vector2(1.4402528, 0.98989004)
+repeat_size = Vector2(640, 400)
+
+[node name="Fog" type="ColorRect" parent="Fog"]
 material = SubResource("ShaderMaterial_sab6v")
 custom_minimum_size = Vector2(640, 400)
 offset_right = 40.0
@@ -1955,7 +2029,7 @@ tile_map_data = PackedByteArray("AAArALsAAAABAAAAAAAqALsAAAABAAAAAAApALsAAAABAAA
 tile_set = SubResource("TileSet_sab6v")
 
 [node name="Planks" type="TileMapLayer" parent="LevelFloor"]
-tile_map_data = PackedByteArray("AABHALwAAAADAAUAAABHALsAAAAAAAEAAABHALoAAAAAAAEAAABHALkAAAAAAAEAAABHALgAAAAAAAEAAABHALcAAAAAAAEAAABHALYAAAAAAAEAAABHALUAAAADAAQAAABGALwAAAABAAMAAABGALUAAAABAAMAAABFALwAAAABAAMAAABFALUAAAABAAMAAABEALwAAAABAAMAAABEALUAAAABAAMAAABDALwAAAABAAMAAABDALUAAAABAAMAAABCALwAAAABAAMAAABCALUAAAABAAMAAABBALwAAAABAAMAAABBALUAAAABAAMAAABAALwAAAAEAAYAAABAALsAAAADAAEAAABAALoAAAADAAEAAABAALkAAAADAAEAAABAALgAAAADAAEAAABAALcAAAADAAEAAABAALYAAAADAAEAAABAALUAAAAEAAQAAABPALwAAAAGAAYAAABPALsAAAADAAEAAABPALoAAAADAAEAAABPALkAAAADAAEAAABPALgAAAADAAEAAABPALcAAAADAAEAAABPALYAAAADAAEAAABPALUAAAADAAEAAABPALQAAAADAAEAAABPALMAAAAGAAQAAABOALwAAAABAAMAAABOALMAAAABAAMAAABNALwAAAABAAMAAABNALMAAAABAAMAAABMALwAAAABAAMAAABMALMAAAABAAMAAABLALwAAAABAAMAAABLALMAAAABAAMAAABKALwAAAABAAMAAABKALMAAAABAAMAAABJALwAAAABAAMAAABJALMAAAABAAMAAABIALwAAAACAAUAAABIALsAAAACAAEAAABIALoAAAACAAEAAABIALkAAAACAAEAAABIALgAAAACAAEAAABIALcAAAACAAEAAABIALYAAAACAAEAAABIALUAAAABAAUAAABIALQAAAADAAEAAABIALMAAAAEAAQAAAA=")
+tile_map_data = PackedByteArray("AABHALwAAAADAAUAAABHALsAAAAAAAEAAABHALoAAAAAAAEAAABHALkAAAAAAAEAAABHALgAAAAAAAEAAABHALcAAAAAAAEAAABHALYAAAAAAAEAAABHALUAAAADAAQAAABGALwAAAABAAMAAABGALUAAAABAAMAAABFALwAAAABAAMAAABFALUAAAABAAMAAABEALwAAAABAAMAAABEALUAAAABAAMAAABDALwAAAABAAMAAABDALUAAAABAAMAAABCALwAAAABAAMAAABCALUAAAABAAMAAABBALwAAAABAAMAAABBALUAAAABAAMAAABAALwAAAAEAAYAAABAALsAAAADAAEAAABAALoAAAADAAEAAABAALkAAAADAAEAAABAALgAAAADAAEAAABAALcAAAADAAEAAABAALYAAAADAAEAAABAALUAAAAEAAQAAABPALwAAAAGAAYAAABPALsAAAADAAEAAABPALoAAAADAAEAAABPALkAAAADAAEAAABPALgAAAADAAEAAABPALcAAAADAAEAAABPALYAAAADAAEAAABPALUAAAAGAAQAAABOALwAAAABAAMAAABNALwAAAABAAMAAABMALwAAAABAAMAAABLALwAAAABAAMAAABKALwAAAABAAMAAABJALwAAAABAAMAAABIALwAAAACAAUAAABIALsAAAACAAEAAABIALoAAAACAAEAAABIALkAAAACAAEAAABIALgAAAACAAEAAABIALcAAAACAAEAAABIALYAAAACAAEAAABIALUAAAACAAQAAABOALUAAAABAAMAAABNALUAAAABAAMAAABMALUAAAABAAMAAABLALUAAAABAAMAAABKALUAAAABAAMAAABJALUAAAABAAMAAAA=")
 tile_set = SubResource("TileSet_io5ok")
 
 [node name="Grass" type="TileMapLayer" parent="LevelFloor"]
@@ -2170,6 +2244,7 @@ rotation = 1.0899091
 position = Vector2(1096, 2888)
 
 [node name="CollisionShape2D" parent="AmbushSpiderRoot/DetectionArea" index="0"]
+position = Vector2(56, 0)
 shape = SubResource("RectangleShape2D_sab6v")
 
 [node name="GlowWormSpawner5" parent="." instance=ExtResource("29_eblxv")]

@@ -4,6 +4,7 @@ extends Node2D
 const MIN_PITCH := 0.5
 const MAX_PITCH := 2.0
 
+@export var break_distance := 100.0
 var _caught_at: Vector2
 var _player_caught := false
 var _strands: Array[Line2D] = []
@@ -62,6 +63,7 @@ func release_player() -> void:
 		_player_caught = false
 		stretch.stop()
 		_strands = []
+		Events.player_broke_web.disconnect(_broke_web)
 	
 func _init_strands(to: Vector2) -> void:
 	var closest = _find_closest_anchor_point(to)
@@ -86,7 +88,7 @@ func _physics_process(_delta: float) -> void:
 	var player_anchor_points := PMonitor.player.anchor_points
 	if _player_caught:
 		var distance_from_catch = _caught_at.distance_to(to_local(PMonitor.player.global_position))
-		var new_pitch = remap(distance_from_catch / WebbedStrategy.BREAK_DISTANCE, 0.0, 1.0, MIN_PITCH, MAX_PITCH)
+		var new_pitch = remap(distance_from_catch / break_distance, 0.0, 1.0, MIN_PITCH, MAX_PITCH)
 		stretch.pitch_scale = new_pitch
 		for i in range(player_anchor_points.size()):
 			_strands[i].remove_point(1)

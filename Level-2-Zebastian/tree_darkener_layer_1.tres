@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dfsruknu2p5jg"]
+
+[ext_resource type="Shader" uid="uid://dc8pp8lo5pc0x" path="res://Level-2-Zebastian/tree_darkener.gdshader" id="1_bnq38"]
+
+[resource]
+shader = ExtResource("1_bnq38")
+shader_parameter/darken_factor = 0.7999999821184

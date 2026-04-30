@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://4ih6sgij2r5y"]
+
+[ext_resource type="Shader" uid="uid://dc8pp8lo5pc0x" path="res://Level-2-Zebastian/tree_darkener.gdshader" id="1_tkcx6"]
+
+[resource]
+shader = ExtResource("1_tkcx6")

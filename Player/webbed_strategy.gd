@@ -1,7 +1,6 @@
 class_name WebbedStrategy
 extends AliveStrategy
 
-const BREAK_DISTANCE := 200.0
 const MAX_SLOWDOWN_FACTOR := 2.0
 
 var _caught_at: Vector2
@@ -20,8 +19,9 @@ func on_exit() -> void:
 	_web.release_player()
 
 func _modify_velocity(velocity: Vector2) -> Vector2:
-	if _parent.global_position.distance_to(_caught_at) > BREAK_DISTANCE:
+	if _parent.global_position.distance_to(_caught_at) > _web.break_distance:
 		Events.player_broke_web_sync()
+		_parent.broke_web()
 		return velocity
 		
-	return velocity / min(1.0 + _parent.global_position.distance_to(_caught_at) / BREAK_DISTANCE, MAX_SLOWDOWN_FACTOR)
+	return velocity / min(1.0 + _parent.global_position.distance_to(_caught_at) / _web.break_distance, MAX_SLOWDOWN_FACTOR)
