@@ -268,3 +268,6 @@ func start_falling() -> void:
 	
 func stop_falling() -> void:
 	_switch_to_strategy(AliveStrategy.new(self))
+	
+func append_to_history(delta: float, action: Enums.Action) -> void:
+	MovementHistory.append(global_position, get_platform_velocity() * delta, action, animated_sprite.flip_h)

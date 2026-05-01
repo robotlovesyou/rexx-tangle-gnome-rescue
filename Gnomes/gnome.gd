@@ -182,6 +182,8 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 					_switch_to_strategy(GnomeOrphanedStrategy.new(self))
 				Enums.GnomeEvent.DIED:
 					_switch_to_strategy(GnomeDyingStrategy.new(self))
+				Enums.GnomeEvent.FALLING_FATALLY:
+					_switch_to_strategy(GnomeFallingDeathStrategy.new(self))
 		GnomeStrategy.StateID.STRAY:
 			match event: 
 				Enums.GnomeEvent.PLAYER_STOPPED_IDLING:
@@ -238,6 +240,10 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 			match event: 
 				Enums.GnomeEvent.PLAYER_COLLECTED:
 					_switch_to_strategy(GnomeCollectedStrategy.new(self))
+				Enums.GnomeEvent.DIED:
+					_switch_to_strategy(GnomeDyingStrategy.new(self))
+		GnomeStrategy.StateID.FALLING_DEATH:
+			match event:
 				Enums.GnomeEvent.DIED:
 					_switch_to_strategy(GnomeDyingStrategy.new(self))
 
@@ -357,3 +363,6 @@ func prepare_appear() -> void:
 	
 func appear() -> void:
 	appear_player.play("appear")
+	
+func falling_fatally() -> void:
+	_handle_gnome_event(Enums.GnomeEvent.FALLING_FATALLY)

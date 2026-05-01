@@ -2226,10 +2226,10 @@ position = Vector2(-1152, 3048)
 position = Vector2(-1152, 3000)
 
 [node name="GnomeSpawner" parent="." instance=ExtResource("21_em3ct")]
-position = Vector2(272, 3040)
+position = Vector2(1592, 1520)
 
 [node name="GnomeSpawner2" parent="." instance=ExtResource("21_em3ct")]
-position = Vector2(312, 3040)
+position = Vector2(1696, 1520)
 
 [node name="Ghosty" parent="." instance=ExtResource("18_eblxv")]
 position = Vector2(-768, 3032)

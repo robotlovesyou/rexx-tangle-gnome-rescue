@@ -16,6 +16,7 @@ func on_animate(animated_sprite: AnimatedSprite2D) -> void:
 func on_physics_process(delta: float) -> void:
 	_parent.velocity += _parent.get_gravity() * delta
 	_parent.move_and_slide()
+	_parent.append_to_history(delta, Enums.Action.FALLING)
 	if _parent.velocity.y > _parent.movement_config.FATAL_FALL_SPEED and not _fatal:
 		_fatal = true
 		_parent.play_scream()

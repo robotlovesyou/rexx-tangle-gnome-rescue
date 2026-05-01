@@ -58,6 +58,7 @@ func _ready() -> void:
 	Events.player_exited_level.connect(_on_player_exited_level)
 	Events.gnome_hit_spike_trap.connect(_on_gnome_hit_spike_trap)
 	Events.gnome_hit_drop_trap.connect(_on_gnome_hit_drop_trap)
+	Events.gnome_hit_floor_fatally.connect(_on_gnome_hit_floor_fatally)
 	Events.gnome_rescued.connect(_on_gnome_rescued)
 	Events.gnome_hit_projectile.connect(_on_gnome_hit_projectile)
 	Events.gnome_reported_position.connect(hud.report_gnome_location)
@@ -112,7 +113,13 @@ func _on_player_hit_emeny(_enemy: Enemy) -> void:
 	_kill_player(Enums.DeathReason.PIERCED)
 	
 func _on_player_hit_floor_fatally() -> void:
+	for gnome in FollowersMonitor.all:
+		gnome.falling_fatally()
 	_kill_player(Enums.DeathReason.PIERCED)
+	
+func _on_gnome_hit_floor_fatally(gnome: Gnome) -> void:
+	_spawn_dismembered_gnome(gnome)
+	_kill_gnome(gnome)
 
 func _spawn_broken_player(at: Vector2, initial_velocity: Vector2) -> void:
 	(_spawn_dead_player(at, broken_player_scene) as BrokenRexx).set_initial_velocity(initial_velocity)
@@ -205,7 +212,6 @@ func _update_gnome_count_in_hud() -> void:
 
 func _on_player_entered_exit() -> void:
 	_player_over_exit = true
-
 
 func _on_player_exited_exit() -> void:
 	_player_over_exit = false

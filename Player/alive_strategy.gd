@@ -215,7 +215,7 @@ func on_animate(animated_sprite: AnimatedSprite2D) -> void:
 	_parent.jump_particles.emitting = jump_emitting
 
 func _append_to_history(delta: float) -> void:
-	MovementHistory.append(_parent.position, _parent.get_platform_velocity() * delta, _action, _parent.animated_sprite.flip_h)
+	_parent.append_to_history(delta, _action)
 
 func _play_action() -> void:
 	if _is_skidding():

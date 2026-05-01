@@ -8,6 +8,7 @@ signal gnome_hit_spike_trap(SpikeTrap, Gnome)
 signal player_hit_drop_trap(DropTrap)
 signal gnome_hit_drop_trap(DropTrap, Gnome)
 signal player_hit_floor_fatally
+signal gnome_hit_floor_fatally(Gnome)
 signal player_hit_projectile()
 signal gnome_hit_projectile(Gnome)
 signal gnome_rescued(Gnome)
@@ -47,6 +48,12 @@ func gnome_hit_spike_trap_sync(trap: SpikeTrap, gnome: Gnome) -> void:
 
 func gnome_hit_spike_trap_async(trap: SpikeTrap, gnome: Gnome) -> void:
 	gnome_hit_spike_trap.emit.call_deferred(trap, gnome)
+	
+func gnome_hit_floor_fatally_sync(gnome: Gnome) -> void:
+	gnome_hit_floor_fatally.emit(gnome)
+	
+func gnome_hit_floor_fatally_async(gnome: Gnome) -> void:
+	gnome_hit_floor_fatally.emit.call_deferred(gnome)
 
 func player_hit_drop_trap_sync(trap: DropTrap) -> void:
 	player_hit_drop_trap.emit(trap)

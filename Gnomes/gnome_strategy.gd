@@ -4,6 +4,7 @@ extends RefCounted
 enum StateID {
 	COLLECTED, 
 	DYING,
+	FALLING_DEATH,
 	FOLLOW,
 	LERP_FOLLOW, 
 	NONE,
@@ -15,7 +16,7 @@ enum StateID {
 	STRAY,
 	STUCK,
 	WAITING,
-	WANDER,
+	WANDER
 }
 
 func state_id() -> StateID:
