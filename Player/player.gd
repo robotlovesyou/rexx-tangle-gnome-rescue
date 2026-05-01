@@ -265,3 +265,6 @@ func stop_scream() -> void:
 	
 func start_falling() -> void:
 	_switch_to_strategy(FallingStrategy.new(self))
+	
+func stop_falling() -> void:
+	_switch_to_strategy(AliveStrategy.new(self))

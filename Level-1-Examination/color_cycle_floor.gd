@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-var _beat_envelope := ADEnvelope.new(0.05, 0.1)
+var _beat_envelope := ADEnvelope.new(0.05, 0.1, false)
 
 func _ready() -> void:
 	Events.beat_channel_1.connect(_trigger_beat_effect)
