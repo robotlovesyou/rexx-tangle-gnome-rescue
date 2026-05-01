@@ -30,6 +30,7 @@ fill_to = Vector2(0.8, 0.8)
 script = ExtResource("1_q2f3j")
 
 [node name="Worm" type="Node2D" parent="."]
+z_index = 30
 
 [node name="BodyGreen" type="ColorRect" parent="Worm"]
 custom_minimum_size = Vector2(1, 1)

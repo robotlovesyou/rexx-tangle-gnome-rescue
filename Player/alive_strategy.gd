@@ -37,9 +37,19 @@ func on_physics_process(delta: float) -> void:
 	
 	_parent.velocity = _modify_velocity(_parent.velocity)
 	_parent.move_and_slide()
+	_check_falling()
 	_check_for_enemy_collision()
 	_handle_coyote_timer(was_on_floor)
 	_append_to_history(delta)
+	_show_debug_message()
+	
+func _check_falling() -> void:
+	if _parent.velocity.y > _parent.movement_config.MAX_SAFE_FALL_SPEED:
+		_parent.start_falling()
+	
+func _show_debug_message() -> void:
+	pass
+	#_parent.set_debug_text("%s" % _parent.velocity.y)
 
 func _begin_action(action: Enums.Action) -> void:
 	if action == _action: return

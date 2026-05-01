@@ -7,6 +7,7 @@ signal player_hit_spike_trap(SpikeTrap)
 signal gnome_hit_spike_trap(SpikeTrap, Gnome)
 signal player_hit_drop_trap(DropTrap)
 signal gnome_hit_drop_trap(DropTrap, Gnome)
+signal player_hit_floor_fatally
 signal player_hit_projectile()
 signal gnome_hit_projectile(Gnome)
 signal gnome_rescued(Gnome)
@@ -76,6 +77,12 @@ func player_hit_enemy_sync(enemy: Enemy) -> void:
 
 func player_hit_enemy_async(enemy: Enemy) -> void:
 	player_hit_enemy.emit.call_deferred(enemy)
+	
+func player_hit_floor_fatally_sync() -> void:
+	player_hit_floor_fatally.emit()
+	
+func player_hit_floor_fatally_async() -> void:
+	player_hit_floor_fatally.emit.call_deferred()
 
 func player_killed_enemy_sync(enemy: Enemy) -> void:
 	player_killed_enemy.emit(enemy)

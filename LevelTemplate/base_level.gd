@@ -53,6 +53,7 @@ func _ready() -> void:
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
 	Events.player_hit_drop_trap.connect(_on_player_hit_drop_trap)
 	Events.player_hit_projectile.connect(_on_player_hit_projectile)
+	Events.player_hit_floor_fatally.connect(_on_player_hit_floor_fatally)
 	Events.player_killed_enemy.connect(_on_player_killed_enemy)
 	Events.player_exited_level.connect(_on_player_exited_level)
 	Events.gnome_hit_spike_trap.connect(_on_gnome_hit_spike_trap)
@@ -108,6 +109,9 @@ func _on_player_hit_spike_trap(_trap: SpikeTrap) -> void:
 	_kill_player(Enums.DeathReason.PIERCED)
 
 func _on_player_hit_emeny(_enemy: Enemy) -> void:
+	_kill_player(Enums.DeathReason.PIERCED)
+	
+func _on_player_hit_floor_fatally() -> void:
 	_kill_player(Enums.DeathReason.PIERCED)
 
 func _spawn_broken_player(at: Vector2, initial_velocity: Vector2) -> void:

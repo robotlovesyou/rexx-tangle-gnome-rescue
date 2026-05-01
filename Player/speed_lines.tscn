@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://by5pocw5fqghd"]
+
+[ext_resource type="Shader" uid="uid://w44qf0m1pgpt" path="res://speed_lines.gdshader" id="1_6lgkr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ll5x2"]
+shader = ExtResource("1_6lgkr")
+shader_parameter/frequency = 17.60000026226112
+shader_parameter/y_stretch = 2.60000003874312
+shader_parameter/speed = 8.60000012815032
+shader_parameter/brightness = 0.30000001937155996
+shader_parameter/contrast = 1.90000002831228
+
+[node name="SpeedLinesRoot" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ll5x2")
+custom_minimum_size = Vector2(128, 128)
+offset_top = -1.0
+offset_right = 128.0
+offset_bottom = 127.0

@@ -93,6 +93,15 @@ var _anchor_point_br: Node2D:
 
 var _anchor_point_bl: Node2D:
 	get: return $AnchorPointBL
+	
+var _debug_label: Label:
+	get: return $DebugLabel
+	
+var vertical_speed_lines:
+	get: return $VerticleSpeedLinesRoot
+	
+func set_debug_text(text: String) -> void:
+	_debug_label.text = text
 
 func play_walk() -> void:
 	_walk_effect_player.play()
@@ -230,14 +239,29 @@ func get_flip_h() -> bool:
 func fade_scream(time: float) -> void:
 	var base_volume = scream_player.volume_linear
 	await create_tween().tween_property(scream_player, "volume_linear", 0.0, time).finished
-	scream_player.stop()
+	stop_scream()
 	scream_player.volume_linear = base_volume
 	
 func scare(source: Vector2) -> void:
 	if _strategy is ScaredStrategy: return
 	var direction = sign(global_position.x - source.x)
-	scream_player.play()
+	play_scream()
 	_switch_to_strategy(ScaredStrategy.new(self, direction))
 	
 func done_being_scared() -> void:
 	_switch_to_strategy(AliveStrategy.new(self))
+	
+func show_speed_lines() -> void:
+	vertical_speed_lines.show()
+	
+func hide_speed_lines() -> void:
+	vertical_speed_lines.hide()
+	
+func play_scream() -> void:
+	scream_player.play()
+	
+func stop_scream() -> void:
+	scream_player.stop()
+	
+func start_falling() -> void:
+	_switch_to_strategy(FallingStrategy.new(self))

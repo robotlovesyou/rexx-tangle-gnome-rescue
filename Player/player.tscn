@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://cenujiplxkpem"]
+[gd_scene load_steps=102 format=3 uid="uid://cenujiplxkpem"]
 
 [ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://Player/player.gd" id="1_vtle1"]
@@ -24,10 +24,12 @@
 [ext_resource type="AudioStream" uid="uid://pthcq3riq252" path="res://Sounds/FX/SkidMarks Skid Three.wav" id="19_sm0op"]
 [ext_resource type="Texture2D" uid="uid://bn2u1dwaetlmu" path="res://RexxArt/Rexx/BubblesAreSquareNow.png" id="20_8viyr"]
 [ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="20_sm0op"]
+[ext_resource type="PackedScene" uid="uid://by5pocw5fqghd" path="res://Player/speed_lines.tscn" id="22_bbimk"]
 [ext_resource type="Texture2D" uid="uid://cnc207pfe8r4y" path="res://RexxArt/Rexx/BigJumpV2Squish.png" id="22_qemgg"]
 [ext_resource type="Material" uid="uid://bhme48noym83x" path="res://Player/player_shader.tres" id="23_755ss"]
 [ext_resource type="Texture2D" uid="uid://joff5ga1xsej" path="res://RexxArt/Rexx/BigFaceSquishCrop.png" id="24_8viyr"]
 [ext_resource type="Texture2D" uid="uid://ckotlqcab70bj" path="res://RexxArt/Rexx/TheFear.png" id="24_efx54"]
+[ext_resource type="Texture2D" uid="uid://c0bqjcd007apm" path="res://RexxArt/Rexx/FallingRex.png" id="25_m0h3t"]
 [ext_resource type="Material" uid="uid://c2ep71hehrit7" path="res://Player/appear_particles_process_material.tres" id="27_sm0op"]
 [ext_resource type="AudioStream" uid="uid://d4iegm8bjat2i" path="res://Player/rexxhelm_scream.wav" id="30_755ss"]
 
@@ -109,6 +111,30 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8mwp6"]
 atlas = ExtResource("3_od3ui")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x5p2"]
+atlas = ExtResource("25_m0h3t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eb1q"]
+atlas = ExtResource("25_m0h3t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvbyc"]
+atlas = ExtResource("25_m0h3t")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvnt1"]
+atlas = ExtResource("25_m0h3t")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kmt7"]
+atlas = ExtResource("25_m0h3t")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4i3b"]
+atlas = ExtResource("25_m0h3t")
+region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ynux"]
 atlas = ExtResource("24_efx54")
@@ -305,6 +331,29 @@ animations = [{
 "loop": false,
 "name": &"disappear",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x5p2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eb1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvbyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvnt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kmt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4i3b")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -505,12 +554,16 @@ scale_amount_min = 0.1
 scale_amount_curve = SubResource("Curve_8viyr")
 color_ramp = SubResource("Gradient_qemgg")
 
+[node name="VerticleSpeedLinesRoot" parent="." instance=ExtResource("22_bbimk")]
+visible = false
+position = Vector2(-64, -64)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = ExtResource("23_755ss")
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"fear"
+animation = &"falling"
 autoplay = "idle"
-frame_progress = 0.33462626
+frame_progress = 0.61505985
 
 [node name="DebugRect" type="ColorRect" parent="."]
 visible = false
@@ -614,5 +667,10 @@ position = Vector2(-16, 8)
 
 [node name="AnchorPointBL" type="Node2D" parent="."]
 position = Vector2(16, 8)
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = -17.0
 
 [connection signal="finished" from="WalkPlayer" to="." method="_on_walk_player_finished"]
