@@ -563,7 +563,7 @@ material = ExtResource("23_755ss")
 sprite_frames = SubResource("SpriteFrames_2hs0m")
 animation = &"falling"
 autoplay = "idle"
-frame_progress = 0.61505985
+frame_progress = 0.3401292
 
 [node name="DebugRect" type="ColorRect" parent="."]
 visible = false

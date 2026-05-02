@@ -17,6 +17,7 @@ signal player_hit_ghost(PathFollowerGhost)
 signal player_killed_enemy(Enemy)
 signal player_exited_level()
 signal beat_channel_1
+signal beat_channel_2
 signal gnome_reported_position(id: int, position: Vector2)
 signal player_waiting_for_birbs
 signal player_collected_by_birbs
@@ -108,7 +109,13 @@ func beat_channel_1_fired_sync() -> void:
 
 func beat_channel_1_fired_async() -> void:
 	beat_channel_1.emit.call_deferred()
+	
+func beat_channel_2_fired_sync() -> void:
+	beat_channel_2.emit()
 
+func beat_channel_2_fired_async() -> void:
+	beat_channel_2.emit.call_deferred()
+	
 func player_hit_projectile_sync() -> void:
 	player_hit_projectile.emit()
 

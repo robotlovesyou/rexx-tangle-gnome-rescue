@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=69 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://danj42f0n1wdv" path="res://Level-2-Zebastian/level_2_zebastian.gd" id="1_wprv3"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bpie03cvpmuyt" path="res://Shared/exit.tscn" id="7_73l37"]
 [ext_resource type="PackedScene" uid="uid://dtujt7rkktado" path="res://Level-2-Zebastian/background_tree.tscn" id="8_7moxs"]
 [ext_resource type="PackedScene" uid="uid://d1d8b4dpydja5" path="res://Shared/gnome_safe_spot.tscn" id="8_davk5"]
+[ext_resource type="JSON" path="res://Level-2-Zebastian/melody.json" id="8_s13ap"]
 [ext_resource type="PackedScene" uid="uid://d0rrvvv6k44gt" path="res://Shared/floor.tscn" id="9_g5nbk"]
 [ext_resource type="Texture2D" uid="uid://bjpqh73qt0sys" path="res://Level-2-Zebastian/EarthAndGrassTiles.png" id="10_fqw8e"]
 [ext_resource type="PackedScene" uid="uid://cepvnfljrn4by" path="res://Shared/hud.tscn" id="10_q7tf0"]
@@ -1886,10 +1887,11 @@ burning_player_scene = ExtResource("32_0pu8p")
 burning_gnome_scene = ExtResource("5_sab6v")
 hud = NodePath("HUD")
 minimum_gnomes = 2
-timer_seconds = 512
+timer_seconds = 312
 player_sibling_node = NodePath("LevelFloor")
 level_music_player = NodePath("LevelMusicPlayer")
 level_music_beats = ExtResource("7_4ybp8")
+level_music_beats2 = ExtResource("8_s13ap")
 show_gnome_count = true
 show_timer = true
 
@@ -2248,7 +2250,7 @@ position = Vector2(56, 0)
 shape = SubResource("RectangleShape2D_sab6v")
 
 [node name="GlowWormSpawner5" parent="." instance=ExtResource("29_eblxv")]
-position = Vector2(1024, 2816)
+position = Vector2(1639.3163, 1435.3661)
 glow_worm_count = 4
 max_range = 200
 min_range = 40.0

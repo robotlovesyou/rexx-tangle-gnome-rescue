@@ -16,7 +16,7 @@
 [node name="BackgroundTree" type="Node2D" node_paths=PackedStringArray("trunks")]
 script = ExtResource("1_7188d")
 tree_textures = Array[CompressedTexture2D]([ExtResource("2_gmtxp"), ExtResource("3_t8u25"), ExtResource("4_xijq1"), ExtResource("5_bfjjp"), ExtResource("6_xlhao"), ExtResource("7_tddv6"), ExtResource("8_x57jg"), ExtResource("9_efbc8"), ExtResource("10_sj8dq"), ExtResource("11_gvycs")])
-trunks = [NodePath("Trunk"), NodePath("Trunk2"), NodePath("Trunk3"), NodePath("Trunk4")]
+trunks = [NodePath("Trunk"), NodePath("Trunk2"), NodePath("Trunk3"), NodePath("Trunk4"), NodePath("Trunk5"), NodePath("Trunk6"), NodePath("Trunk7"), NodePath("Trunk8")]
 
 [node name="Trunk" type="Sprite2D" parent="."]
 light_mask = 2
@@ -40,4 +40,28 @@ texture = ExtResource("2_gmtxp")
 light_mask = 2
 material = ExtResource("2_ilcvi")
 position = Vector2(0, -1024)
+texture = ExtResource("2_gmtxp")
+
+[node name="Trunk5" type="Sprite2D" parent="."]
+light_mask = 2
+material = ExtResource("2_ilcvi")
+position = Vector2(0, -1536)
+texture = ExtResource("2_gmtxp")
+
+[node name="Trunk6" type="Sprite2D" parent="."]
+light_mask = 2
+material = ExtResource("2_ilcvi")
+position = Vector2(0, -2048)
+texture = ExtResource("2_gmtxp")
+
+[node name="Trunk7" type="Sprite2D" parent="."]
+light_mask = 2
+material = ExtResource("2_ilcvi")
+position = Vector2(0, -2560)
+texture = ExtResource("2_gmtxp")
+
+[node name="Trunk8" type="Sprite2D" parent="."]
+light_mask = 2
+material = ExtResource("2_ilcvi")
+position = Vector2(0, -3072)
 texture = ExtResource("2_gmtxp")

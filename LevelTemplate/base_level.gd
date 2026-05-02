@@ -17,6 +17,7 @@ const GNOME_BURN_TIME = 1.0
 @export var player_sibling_node: Node
 @export var level_music_player: AudioStreamPlayer
 @export var level_music_beats: JSON
+@export var level_music_beats2: JSON
 @export var game_over_scene_path: String
 @export var mission_successful_scene_path: String
 @export var show_gnome_count: bool
@@ -28,7 +29,9 @@ var _rescue_count := 0
 var _current_gnome_count := 0
 var _player_over_exit := false
 var _beats: Array[float] = []
+var _beats2: Array[float] = []
 var _current_beat := 0
+var _current_beat2 := 0
 var _time_begin := 0.0
 var _time_delay := 0.0
 
@@ -64,7 +67,10 @@ func _ready() -> void:
 	Events.gnome_reported_position.connect(hud.report_gnome_location)
 	_update_gnome_count_in_hud()
 	hud.update_timer(timer_seconds)
-	_beats.assign(level_music_beats.data["beats"])
+	if level_music_beats:
+		_beats.assign(level_music_beats.data["beats"])
+	if level_music_beats2:
+		_beats2.assign(level_music_beats2.data["beats"])
 	_time_begin = _time_seconds()
 	_time_delay = AudioServer.get_output_latency() + AudioServer.get_time_to_next_mix()
 	level_music_player.play()
@@ -94,7 +100,12 @@ func _physics_process(delta: float) -> void:
 		var next_beat = _beats[_current_beat]
 		if time >= next_beat:
 			_current_beat += 1
-			Events.beat_channel_1_fired_sync()
+			Events.beat_channel_1_fired_async()
+	if len(_beats2) > _current_beat2:
+		var next_beat = _beats2[_current_beat2]
+		if time > next_beat:
+			_current_beat2 += 1
+			Events.beat_channel_2_fired_async()
 	
 	if timer_seconds - floor(_t) <= 0.0:
 		game_over(GameOverScreen.Reason.TIMED_OUT)

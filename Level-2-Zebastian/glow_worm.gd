@@ -2,11 +2,16 @@ class_name GlowWorm
 extends Node2D
 
 const EPSILON := 0.0001
+const BEAT_TRIGGER_PROB := 0.5
 
 @export var speed := 50.0
 @export var max_range := 100.0
 var _noise: FastNoiseLite
 var _t := 0.0
+var _triggered_on_last_beat := false
+var _beat_envelope := ADEnvelope.new(0.05, 0.1, false)
+var _active_light: PointLight2D
+var _base_light_scale: float
 
 var glow_green: PointLight2D:
 	get: return $Worm/GlowGreen
@@ -28,14 +33,26 @@ func _ready() -> void:
 	_noise.seed = randi_range(-1000,1000)
 	_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	worm.position = Vector2(randf_range(-max_range/2.0, max_range/2.0), randf_range(-max_range/2.0, max_range/2.0))
+	Events.beat_channel_2.connect(_on_beat_event)
 	if randf() >=0.5:
 		glow_green.enabled = false
 		glow_green.hide()
+		_active_light = glow_blue
 		body_green.hide()
 	else:
 		glow_blue.enabled = false
 		glow_blue.hide()
+		_active_light = glow_green
 		body_blue.hide()
+		
+	_base_light_scale = _active_light.texture_scale
+		
+func _on_beat_event() -> void:
+	if (not _triggered_on_last_beat and randf() <= BEAT_TRIGGER_PROB):
+		_beat_envelope.trigger()
+		_triggered_on_last_beat = true
+	else:
+		_triggered_on_last_beat = false
 	
 	
 func _curl_noise(at: Vector2) -> Vector2:
@@ -62,5 +79,7 @@ func _physics_process(delta: float) -> void:
 	var outward := _calculate_outward_component(m)
 	var movement_scale = pow(worm.position.length() / max_range, 2.0)
 	worm.position += m - (outward * movement_scale)
+	_beat_envelope.progress(delta)
+	_active_light.texture_scale = _base_light_scale + _beat_envelope.sample()
 	
 	
