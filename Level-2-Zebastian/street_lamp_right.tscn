@@ -7,10 +7,11 @@
 [node name="StreetLamp" type="Node2D"]
 
 [node name="LampBody" type="Sprite2D" parent="."]
-z_index = 20
+z_index = 5
 texture = ExtResource("1_yp4lj")
 
 [node name="Bulb" type="Sprite2D" parent="."]
+z_index = 5
 position = Vector2(20, -87)
 texture = ExtResource("2_67ay4")
 
