@@ -259,7 +259,7 @@ death_sounds = Array[AudioStreamWAV]([ExtResource("5_dektq"), ExtResource("6_fxe
 
 [node name="AmbushSpider" type="CharacterBody2D" parent="." groups=["Enemy"]]
 collision_layer = 16
-collision_mask = 7
+collision_mask = 5
 script = ExtResource("2_5nud6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AmbushSpider"]

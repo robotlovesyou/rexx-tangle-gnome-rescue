@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxq7ib3maf0vh"]
+
+[ext_resource type="Script" uid="uid://bg1a8aqlhlsid" path="res://Shared/Traps/spike_trap.gd" id="1_42ac1"]
+[ext_resource type="Shader" uid="uid://d2q0ydrdk4k18" path="res://Shared/Traps/spike_trap.gdshader" id="2_f4tu1"]
+[ext_resource type="Texture2D" uid="uid://d4kgatdmymo2g" path="res://Shared/Traps/SmallerSpikeTrap.png" id="3_42ac1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fd7bo"]
+shader = ExtResource("2_f4tu1")
+shader_parameter/highlight_color = Color(0.78431374, 0.78431374, 0.78431374, 1)
+
+[node name="SpikeTrapDown" type="Node2D"]
+script = ExtResource("1_42ac1")
+
+[node name="Area2D" type="Area2D" parent="."]
+rotation = 3.1415927
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(7.0000014, 14.999999)
+polygon = PackedVector2Array(-5, -0.99999905, -2.000001, -6.9999995, -1.000001, -9, -1.4305115e-06, -13, 1.9999986, -13, 2.9999995, -9, 3.9999995, -7, 7.0000005, -1.0000005)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_fd7bo")
+rotation = 3.1415927
+texture = ExtResource("3_42ac1")
+centered = false
+flip_h = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

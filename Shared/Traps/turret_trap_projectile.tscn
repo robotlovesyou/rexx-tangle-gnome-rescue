@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://4r6gcnphm7jj"]
+
+[ext_resource type="Texture2D" uid="uid://2d8ldben2vab" path="res://Shared/Traps/BulletTemp.png" id="1_q1g3i"]
+[ext_resource type="Script" uid="uid://iddhlqv843a6" path="res://Shared/Traps/turret_trap_projectile.gd" id="1_wg3sd"]
+[ext_resource type="Shader" uid="uid://bj1nt3xpme468" path="res://Shared/Traps/turret_trap_projectile.gdshader" id="2_fa0a7"]
+[ext_resource type="PackedScene" uid="uid://cwq57r7v4dtc4" path="res://Shared/Traps/turret_trap_projectile_explosion.tscn" id="2_l5bcx"]
+[ext_resource type="Texture2D" uid="uid://culwdubr31njt" path="res://Shared/Traps/turret_trap_projectile_gradient.tres" id="3_kact3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wg3sd"]
+radius = 8.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kact3"]
+shader = ExtResource("2_fa0a7")
+shader_parameter/gradient = ExtResource("3_kact3")
+shader_parameter/charge = 1.0
+
+[node name="TurretTrapProjectile" type="CharacterBody2D" groups=["Projectile"]]
+collision_layer = 16
+collision_mask = 199
+script = ExtResource("1_wg3sd")
+explosion_scene = ExtResource("2_l5bcx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wg3sd")
+
+[node name="BulletTemp" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_kact3")
+texture = ExtResource("1_q1g3i")

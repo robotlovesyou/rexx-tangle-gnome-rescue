@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn1tejjwxxxe7"]
+
+[ext_resource type="Script" uid="uid://dr0p1tnwrl8a8" path="res://Shared/Traps/spider_web.gd" id="1_2glfo"]
+[ext_resource type="Texture2D" uid="uid://tapcaoji4xx4" path="res://Shared/Traps/SpiderWeb.png" id="1_56ng3"]
+[ext_resource type="AudioStream" uid="uid://ryyet0r6nnjp" path="res://Level-2-Zebastian/boing.wav" id="3_pet2s"]
+[ext_resource type="AudioStream" uid="uid://cc7s64uya2xe0" path="res://Shared/Traps/long_boing.wav" id="4_vhk0l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2glfo"]
+size = Vector2(128, 128)
+
+[node name="SpiderWeb" type="Node2D"]
+script = ExtResource("1_2glfo")
+
+[node name="SpiderWebSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_56ng3")
+
+[node name="CatchArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchArea"]
+shape = SubResource("RectangleShape2D_2glfo")
+
+[node name="Boing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_pet2s")
+max_distance = 600.0
+bus = &"SFX"
+
+[node name="Stretch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vhk0l")
+max_distance = 600.0
+bus = &"SFX"
+
+[node name="AnchorPoints" type="Node" parent="."]
+
+[node name="AnchorPoint" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-47.552612, -47.491714)
+
+[node name="AnchorPoint2" type="Node2D" parent="AnchorPoints"]
+position = Vector2(48, -48)
+
+[node name="AnchorPoint3" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-64, 0)
+
+[node name="AnchorPoint4" type="Node2D" parent="AnchorPoints"]
+position = Vector2(64, 0)
+
+[node name="AnchorPoint5" type="Node2D" parent="AnchorPoints"]
+position = Vector2(0, -64)
+
+[node name="AnchorPoint6" type="Node2D" parent="AnchorPoints"]
+position = Vector2(48, 48)
+
+[node name="AnchorPoint7" type="Node2D" parent="AnchorPoints"]
+position = Vector2(0, 64)
+
+[node name="AnchorPoint8" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-48, 48)
+
+[node name="AnchorPoint9" type="Node2D" parent="AnchorPoints"]
+
+[node name="AnchorPoint10" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-32, -32)
+
+[node name="AnchorPoint11" type="Node2D" parent="AnchorPoints"]
+position = Vector2(0, -48)
+
+[node name="AnchorPoint12" type="Node2D" parent="AnchorPoints"]
+position = Vector2(32, -32)
+
+[node name="AnchorPoint13" type="Node2D" parent="AnchorPoints"]
+position = Vector2(48, 0)
+
+[node name="AnchorPoint14" type="Node2D" parent="AnchorPoints"]
+position = Vector2(32, 32)
+
+[node name="AnchorPoint15" type="Node2D" parent="AnchorPoints"]
+position = Vector2(0, 48)
+
+[node name="AnchorPoint16" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-32, 32)
+
+[node name="AnchorPoint17" type="Node2D" parent="AnchorPoints"]
+position = Vector2(-48, 0)
+
+[connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]

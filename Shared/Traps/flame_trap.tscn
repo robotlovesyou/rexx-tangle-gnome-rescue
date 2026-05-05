@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=3 uid="uid://6eyoasclfhjk"]
+
+[ext_resource type="Shader" uid="uid://cyeveai6q7cqv" path="res://Shared/Traps/fire.gdshader" id="1_5s2d6"]
+[ext_resource type="Script" uid="uid://c01vfovrg4eh" path="res://Shared/Traps/flame_trap.gd" id="1_p0mhn"]
+[ext_resource type="NoiseTexture3D" uid="uid://c4h72na62k22l" path="res://Shared/Traps/fire_noise.tres" id="2_p0mhn"]
+[ext_resource type="Texture2D" uid="uid://8xj2qn0id04v" path="res://Shared/Traps/fire_color_ramp.tres" id="3_7kyev"]
+[ext_resource type="Texture2D" uid="uid://d4kgatdmymo2g" path="res://Shared/Traps/SmallerSpikeTrap.png" id="4_134e4"]
+[ext_resource type="Script" uid="uid://b2spfkp40uilt" path="res://Shared/Traps/fire.gd" id="5_0hhmt"]
+[ext_resource type="Texture2D" uid="uid://cijc6o6d4lc45" path="res://Shared/Traps/flame_trap_light_x1.png" id="7_ud8i5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tcuij"]
+noise_type = 3
+seed = 3
+frequency = 0.1467
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_cshrt"]
+width = 32
+height = 32
+depth = 32
+noise = SubResource("FastNoiseLite_tcuij")
+seamless = true
+seamless_blend_skirt = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_agxck"]
+shader = ExtResource("1_5s2d6")
+shader_parameter/noise = ExtResource("2_p0mhn")
+shader_parameter/noise2 = SubResource("NoiseTexture3D_cshrt")
+shader_parameter/ramp = ExtResource("3_7kyev")
+shader_parameter/v_speed = 0.499999988824
+shader_parameter/d_speed = 0.0999999977648
+shader_parameter/offset = 0.0
+
+[node name="FlameTrap" type="Node2D"]
+script = ExtResource("1_p0mhn")
+
+[node name="Fire" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_agxck")
+texture = ExtResource("4_134e4")
+script = ExtResource("5_0hhmt")
+
+[node name="PointLight2D" type="PointLight2D" parent="Fire"]
+texture = ExtResource("7_ud8i5")
+texture_scale = 2.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-6, 8, 0, -8, 6, 8)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

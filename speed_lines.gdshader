@@ -1,6 +1,6 @@
 shader_type canvas_item;
-#include "Level-2-Zebastian/classic_noise2D.gdshaderinc"
-#include "Level-2-Zebastian/center_quantized_uv.gdshaderinc"
+#include "Shared/ShaderIncludes/classic_noise2D.gdshaderinc"
+#include "Shared/ShaderIncludes/center_quantized_uv.gdshaderinc"
 
 uniform float frequency: hint_range(0.0, 100.0, 0.1) = 1.0;
 uniform float y_stretch: hint_range(0.0, 100.0, 0.1) = 1.0;

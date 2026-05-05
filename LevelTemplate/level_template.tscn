@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bpie03cvpmuyt" path="res://Shared/exit.tscn" id="7_4evms"]
 [ext_resource type="PackedScene" uid="uid://d1d8b4dpydja5" path="res://Shared/gnome_safe_spot.tscn" id="8_fgqrj"]
 [ext_resource type="PackedScene" uid="uid://y4tb8v4fvs66" path="res://Gnomes/gnome.tscn" id="9_boc5u"]
-[ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="10_4evms"]
+[ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Shared/Traps/spike_trap.tscn" id="10_4evms"]
 [ext_resource type="PackedScene" uid="uid://blysyve0sampw" path="res://LevelTemplate/game_over_message.tscn" id="12_boc5u"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4evms"]

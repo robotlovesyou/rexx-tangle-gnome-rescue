@@ -1,6 +1,6 @@
 shader_type canvas_item;
-#include "classic_noise3D.gdshaderinc"
-#include "center_quantized_uv.gdshaderinc"
+#include "res://Shared/ShaderIncludes/classic_noise3D.gdshaderinc"
+#include "res://Shared/ShaderIncludes/center_quantized_uv.gdshaderinc"
 
 uniform float speed = 0.1;
 uniform float frequency = 10.0;

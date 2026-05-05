@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bix6n3guv2xvp" path="res://Level-0-Training/up_arrow_raised_beginning.tscn" id="15_suax4"]
 [ext_resource type="PackedScene" uid="uid://b2o3i46ibefxt" path="res://Level-0-Training/down_arrow_raised_beginning.tscn" id="17_0jpfa"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="17_2xdl0"]
-[ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Level-0-Training/spike_trap.tscn" id="18_6p1ko"]
+[ext_resource type="PackedScene" uid="uid://cllkatieh7t34" path="res://Shared/Traps/spike_trap.tscn" id="18_6p1ko"]
 [ext_resource type="PackedScene" uid="uid://cf3cdfhc41ane" path="res://Level-0-Training/down_arrow_raised_middle.tscn" id="18_suax4"]
 [ext_resource type="PackedScene" uid="uid://djgyhguij8ueu" path="res://Shared/spawn_point.tscn" id="19_7ctbl"]
 [ext_resource type="Script" uid="uid://b1c7pmiu4kgif" path="res://Level-0-Training/activate_spike_trap_spawn_point.gd" id="19_iouky"]

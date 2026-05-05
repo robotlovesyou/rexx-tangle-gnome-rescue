@@ -3,16 +3,12 @@
 # TO DO
 
 ## Next Up
-* Do a little layout and experiment with 2D lighting
-* Flame Traps
-* Leaves with player visibility shader
-* Misty Background
 * Lay out level
-* Draw Big Old Trees
-* Add a wheeeeee sound effect for rexx when flown by birbs (not sure about this)
-
 
 ## Backlog
+* optimise lighting for flame traps by adding some lighting toggles, and creating some pre-built lights for 2/3/4/5/6 traps using a single point light
+* Add a wheeeeee sound effect for rexx when flown by birbs (not sure about this)
+* Leaves with player visibility shader
 * Move the camera out of the player to fix jumps and glitches on death and scene transitions
 * Add spawning indicators to the minimap to show gnomes respawning.
 * Use instance ids to re-use minimap children rather than recrating each physics tick
@@ -22,6 +18,10 @@
 * Add continue/new game buttons to the title screen
 
 ## Done
+* ~~Draw Big Old Trees~~
+* ~~Misty Background~~
+* ~~Flame Traps~~
+* ~~Do a little layout and experiment with 2D lighting~~
 * ~~Spider Web Mechanic~~
 * ~~Add a seed pour sound to the birb feeder~~
 * ~~Add a birb flock sound effect~~

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cscyrpnp2ymxb"]
+
+[ext_resource type="Texture2D" uid="uid://cgw4x2jdssv38" path="res://Shared/Traps/flame_trap_light_x4.png" id="1_70nvl"]
+
+[node name="FlameTrapMultiLight_X4" type="PointLight2D"]
+texture = ExtResource("1_70nvl")
+texture_scale = 2.0

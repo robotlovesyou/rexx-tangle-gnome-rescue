@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://df7mbjqn1xeib"]
+
+[ext_resource type="Texture2D" uid="uid://4pcenepatny" path="res://Shared/Traps/SkyBlueDropTrap.png" id="1_twjxr"]
+[ext_resource type="Script" uid="uid://cd6py15q7x4e6" path="res://Shared/Traps/drop_trap.gd" id="1_wgvpv"]
+[ext_resource type="AudioStream" uid="uid://b3ns50xw66rbb" path="res://Sounds/FX/DropTrapHit.wav" id="4_lersg"]
+
+[sub_resource type="Curve2D" id="Curve2D_hu4ui"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192)
+}
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_lersg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.90839696, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i170g"]
+curve = SubResource("Curve_lersg")
+
+[sub_resource type="Gradient" id="Gradient_lersg"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0.9843137, 0.52156866, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i170g"]
+gradient = SubResource("Gradient_lersg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r20u5"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(30, 0, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = -200.0
+initial_velocity_max = -100.0
+gravity = Vector3(0, 98, 0)
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_i170g")
+alpha_curve = SubResource("CurveTexture_i170g")
+
+[node name="DropTrap" type="Node2D" groups=["UsesShaders"]]
+script = ExtResource("1_wgvpv")
+hit_sounds = Array[AudioStreamWAV]([ExtResource("4_lersg")])
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_hu4ui")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = 1.5707964
+
+[node name="TrapBody" type="AnimatableBody2D" parent="."]
+collision_layer = 64
+collision_mask = 3
+sync_to_physics = false
+
+[node name="Sprite2D" type="Sprite2D" parent="TrapBody"]
+position = Vector2(0, -32)
+texture = ExtResource("1_twjxr")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TrapBody"]
+position = Vector2(0, -32)
+polygon = PackedVector2Array(-24, 28, -21, -31, 20, -31, 24, 28)
+
+[node name="HitParticles" type="GPUParticles2D" parent="TrapBody"]
+emitting = false
+amount = 16
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_r20u5")
+
+[node name="HitPlayer" type="AudioStreamPlayer2D" parent="."]
+max_distance = 600.0
+bus = &"SFX"
