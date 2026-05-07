@@ -29,7 +29,7 @@ position = Vector2(-9.951384e-07, -1.9073485e-06)
 
 [node name="PathFollowerGhost" type="CharacterBody2D" parent="." node_paths=PackedStringArray("path_follower", "sprite") groups=["Ghost", "UsesShaders"]]
 collision_layer = 16
-collision_mask = 7
+collision_mask = 5
 script = ExtResource("1_dd0w7")
 path_follower = NodePath("../PathToFollow/PathFollow2D")
 sprite = NodePath("Ghosty")
