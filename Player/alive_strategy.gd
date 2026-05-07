@@ -24,6 +24,7 @@ func _modify_velocity(velocity: Vector2) -> Vector2:
 
 func on_physics_process(delta: float) -> void:
 	_action_did_change = false
+	var previous_velocity = _parent.velocity
 	var was_on_floor = _parent.is_on_floor()
 
 	_determine_direction()
@@ -38,7 +39,7 @@ func on_physics_process(delta: float) -> void:
 	_parent.velocity = _modify_velocity(_parent.velocity)
 	_parent.move_and_slide()
 	_check_falling()
-	_check_for_enemy_collision()
+	_check_for_enemy_collision(previous_velocity)
 	_handle_coyote_timer(was_on_floor)
 	_append_to_history(delta)
 	_show_debug_message()
@@ -68,7 +69,7 @@ func _is_skidding() -> bool:
 func _has_direction() -> bool:
 	return _direction != 0.0
 
-func _check_for_enemy_collision():
+func _check_for_enemy_collision(velocity_before_collision: Vector2):
 	for i in _parent.get_slide_collision_count():
 		var collision = _parent.get_slide_collision(i)
 		var collider = collision.get_collider()
@@ -77,8 +78,8 @@ func _check_for_enemy_collision():
 			var point_relative_to_enemy = _parent.position - collider.global_position
 			# print(point_relative_to_enemy)
 			# if abs(angle) < 0.5: #45º
-			# SUPER HACKY!!!
-			if point_relative_to_enemy.y < -10.0:
+			# SUPER HACKY, am I above the enemy and moving down. Works so far...
+			if point_relative_to_enemy.y < -10.0 and velocity_before_collision.y > 0.0:
 				_killed_enemy_last_frame = true
 				Events.player_killed_enemy_async(collider as CharacterBody2D)
 			else:

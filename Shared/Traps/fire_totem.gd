@@ -51,9 +51,6 @@ func _pre_fire() -> void:
 				_t_delay = delay_time_seconds
 				_t += pretime
 			pretime = 0.0
-		
-		
-	print("delay_time: %f, _t_delay: %f, _t: %f" % [delay_time_seconds, _t_delay, _t])
 	
 func _physics_process(delta: float) -> void:
 	if _t_delay < delay_time_seconds:
