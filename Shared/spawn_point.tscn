@@ -45,7 +45,6 @@ fill_to = Vector2(0.8, 0.8)
 
 [node name="SpawnPoint" type="Node2D" groups=["SpawnPoint"]]
 script = ExtResource("1_00gca")
-lit = null
 
 [node name="SpawnPointActive" type="Sprite2D" parent="."]
 visible = false

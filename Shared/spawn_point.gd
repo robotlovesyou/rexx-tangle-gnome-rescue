@@ -31,8 +31,6 @@ func _ready() -> void:
 		_activate_self()
 	else:
 		_deactivate_self()
-	if lit:
-		_glow.show()
 	
 
 func _deactivate_other_spawn_points() -> void:
@@ -42,6 +40,13 @@ func _deactivate_other_spawn_points() -> void:
 	for point in get_tree().get_nodes_in_group("SpawnPoint"):
 		if not point == self:
 			(point as SpawnPoint).active = false
+			
+func _show_light_if_lit() -> void:
+	if lit:
+		_glow.show()
+		
+func _hide_light() -> void:
+	_glow.hide()
 
 func _activate_self() -> void:
 	_active = true
@@ -49,6 +54,7 @@ func _activate_self() -> void:
 	_inactive_sprite.visible = false
 	_active_particles.emitting = true
 	_deactivate_other_spawn_points()
+	_show_light_if_lit()
 	if !Engine.is_editor_hint():
 		Level.spawn_point = self
 
@@ -57,6 +63,7 @@ func _deactivate_self() -> void:
 	_active_sprite.visible = false
 	_inactive_sprite.visible = true
 	_active_particles.emitting = false
+	_hide_light()
 
 
 func _on_activation_area_body_entered(body: Node2D) -> void:
