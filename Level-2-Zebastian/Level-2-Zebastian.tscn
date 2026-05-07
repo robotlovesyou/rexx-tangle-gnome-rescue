@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=72 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://danj42f0n1wdv" path="res://Level-2-Zebastian/level_2_zebastian.gd" id="1_wprv3"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://d2a20d1sgenan" path="res://Enemies/PathFollowerGhost/path_follower_ghost.tscn" id="14_7moxs"]
 [ext_resource type="Texture2D" uid="uid://cm1rya8qbtxja" path="res://Level-2-Zebastian/TreeTileMapFlat.png" id="14_rmjhb"]
 [ext_resource type="Texture2D" uid="uid://clf536ovoew23" path="res://Level-2-Zebastian/PlankTileMap.png" id="15_0pu8p"]
+[ext_resource type="Material" uid="uid://ba20usvxasrd6" path="res://Level-1-Examination/DirectionIndicatorParticles.tres" id="18_s13ap"]
 [ext_resource type="PackedScene" uid="uid://cn1tejjwxxxe7" path="res://Shared/Traps/SpiderWeb.tscn" id="20_4ybp8"]
 [ext_resource type="PackedScene" uid="uid://d050tfijdo4fy" path="res://Level-2-Zebastian/lamp.tscn" id="20_eblxv"]
 [ext_resource type="PackedScene" uid="uid://bsxvn8g7fhig3" path="res://Shared/Traps/drop_trap_wood.tscn" id="20_mac22"]
@@ -821,6 +822,17 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "BlueFloor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_o5dvu")
+
+[sub_resource type="Gradient" id="Gradient_s13ap"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ymo16"]
+gradient = SubResource("Gradient_s13ap")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.8)
 
 [sub_resource type="Curve2D" id="Curve2D_rmjhb"]
 _data = {
@@ -2241,6 +2253,21 @@ tile_set = SubResource("TileSet_uhfjv")
 [node name="BlueBoxes" parent="Floor" index="3"]
 tile_map_data = PackedByteArray()
 tile_set = SubResource("TileSet_g5is0")
+
+[node name="Directions" type="Node" parent="."]
+
+[node name="DirectionIndicatorParticlesRight" type="GPUParticles2D" parent="Directions" groups=["UsesShaders"]]
+light_mask = 4
+position = Vector2(3820.917, 2726.6104)
+amount = 16
+lifetime = 4.0
+process_material = ExtResource("18_s13ap")
+
+[node name="PointLight2D" type="PointLight2D" parent="Directions/DirectionIndicatorParticlesRight"]
+light_mask = 4
+range_item_cull_mask = 4
+texture = SubResource("GradientTexture2D_ymo16")
+texture_scale = 4.7
 
 [node name="StreetLamps" type="Node" parent="."]
 

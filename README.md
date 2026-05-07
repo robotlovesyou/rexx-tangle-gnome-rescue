@@ -4,9 +4,12 @@
 
 ## Next Up
 * Lay out level
+* Add the surface leaves tilemap layers so large platform blocks can be broken u p.
+* Add wormies and other bugs to break up large platform blocks even more.
+
 
 ## Backlog
-* optimise lighting for flame traps by adding some lighting toggles, and creating some pre-built lights for 2/3/4/5/6 traps using a single point light
+* Gnome appear shaders should be duplicated per gnome so they do not show on all gnomes when one gnome appears
 * Add a wheeeeee sound effect for rexx when flown by birbs (not sure about this)
 * Leaves with player visibility shader
 * Move the camera out of the player to fix jumps and glitches on death and scene transitions
@@ -18,6 +21,7 @@
 * Add continue/new game buttons to the title screen
 
 ## Done
+* ~~optimise lighting for flame traps by adding some lighting toggles, and creating some pre-built lights for 2/3/4/5/6 traps using a single point light~~
 * ~~Draw Big Old Trees~~
 * ~~Misty Background~~
 * ~~Flame Traps~~
