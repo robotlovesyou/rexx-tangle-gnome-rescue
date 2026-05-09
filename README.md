@@ -3,8 +3,9 @@
 # TO DO
 
 ## Next Up
+* Try using global illumination instead of point lights on the layer for things like particles
 * Lay out level
-* Add the surface leaves tilemap layers so large platform blocks can be broken u p.
+* Add the surface leaves tilemap layers so large platform blocks can be broken up.
 * Add wormies and other bugs to break up large platform blocks even more.
 
 
