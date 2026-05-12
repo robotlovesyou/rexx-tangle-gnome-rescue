@@ -37,6 +37,7 @@ anim_offset_max = 1.0
 script = ExtResource("1_fbf6e")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+light_mask = 4
 material = SubResource("CanvasItemMaterial_vnjwv")
 emitting = false
 amount = 1

@@ -2408,6 +2408,36 @@ position = Vector2(2447.964, 4256)
 [node name="Coin24" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
 position = Vector2(2399.964, 4256)
 
+[node name="Coin25" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(3695.5315, 2879.3374)
+
+[node name="Coin26" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(3600, 2944)
+
+[node name="Coin27" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(3696, 3072)
+
+[node name="Coin28" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(3600, 3136)
+
+[node name="Coin29" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(3600, 3136)
+
+[node name="Coin30" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(3696, 3264)
+
+[node name="Coin31" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(3600, 3328)
+
+[node name="Coin32" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(3688, 3456)
+
+[node name="Coin33" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(3600, 3520)
+
+[node name="Coin34" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(3600, 3520)
+
 [node name="Sandwiches" type="Node" parent="Bonuses"]
 
 [node name="SudoSandwich" parent="Bonuses/Sandwiches" instance=ExtResource("39_63jit")]
@@ -2421,6 +2451,18 @@ position = Vector2(3008, 4216)
 [node name="SudoSandwich3" parent="Bonuses/Sandwiches" instance=ExtResource("39_63jit")]
 z_index = 40
 position = Vector2(3063.359, 4217.4443)
+
+[node name="SudoSandwich4" parent="Bonuses/Sandwiches" instance=ExtResource("39_63jit")]
+z_index = 40
+position = Vector2(3969.4722, 2704.9963)
+
+[node name="SudoSandwich5" parent="Bonuses/Sandwiches" instance=ExtResource("39_63jit")]
+z_index = 40
+position = Vector2(4416, 2704)
+
+[node name="SudoSandwich6" parent="Bonuses/Sandwiches" instance=ExtResource("39_63jit")]
+z_index = 40
+position = Vector2(4864, 2704)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("6_ak2hd")]
 position = Vector2(1152, 4304)

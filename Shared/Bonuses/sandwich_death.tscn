@@ -22,6 +22,7 @@ gravity = Vector3(0, 98, 0)
 alpha_curve = SubResource("CurveTexture_3mj8e")
 
 [node name="SandwichDeath" type="GPUParticles2D"]
+light_mask = 4
 emitting = false
 amount = 1
 texture = ExtResource("1_d42xj")

@@ -20,6 +20,7 @@ gravity = Vector3(0, 98, 0)
 alpha_curve = SubResource("CurveTexture_gkjup")
 
 [node name="CoinDeath" type="GPUParticles2D"]
+light_mask = 4
 emitting = false
 amount = 1
 texture = ExtResource("1_4vplq")

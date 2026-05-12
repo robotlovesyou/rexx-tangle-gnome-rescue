@@ -552,6 +552,7 @@ nomnoms = Array[AudioStreamWAV]([ExtResource("20_8ynux"), ExtResource("21_d30e8"
 movement_config = SubResource("Resource_76lrf")
 
 [node name="CPUJumpParticles" type="CPUParticles2D" parent="."]
+light_mask = 4
 emitting = false
 amount = 32
 texture = ExtResource("20_8viyr")

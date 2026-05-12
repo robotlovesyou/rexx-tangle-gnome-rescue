@@ -63,12 +63,14 @@ script = ExtResource("1_v41ko")
 coin_collected_effect = ExtResource("2_a2ll4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 4
 sprite_frames = SubResource("SpriteFrames_5c6ea")
 autoplay = "default"
 
 [node name="CollectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionArea"]
+light_mask = 4
 shape = SubResource("CircleShape2D_gk0sa")
 
 [connection signal="body_entered" from="CollectionArea" to="." method="_on_collection_area_body_entered"]
