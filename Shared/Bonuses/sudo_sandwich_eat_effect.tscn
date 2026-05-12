@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://bj5xdivj22np"]
+
+[ext_resource type="Texture2D" uid="uid://chn44wtu56vlj" path="res://Shared/Bonuses/SandwichParticles.png" id="1_mvfc1"]
+[ext_resource type="Script" uid="uid://dnmso0sdy1atg" path="res://Shared/Bonuses/sudo_sandwich_eat_effect.gd" id="1_va4v4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_us56a"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va4v4"]
+atlas = ExtResource("1_mvfc1")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="Curve" id="Curve_a7i0k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.753012, 0.99999994), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cby5x"]
+curve = SubResource("Curve_a7i0k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_us56a"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 16, 1)
+velocity_pivot = Vector3(0, 1, 0)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = -98.0
+initial_velocity_max = -98.0
+gravity = Vector3(0, 98, 0)
+alpha_curve = SubResource("CurveTexture_cby5x")
+anim_offset_max = 1.0
+
+[node name="SudoSandwichEatEffect" type="Node2D"]
+script = ExtResource("1_va4v4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_us56a")
+emitting = false
+amount = 64
+texture = SubResource("AtlasTexture_va4v4")
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_us56a")

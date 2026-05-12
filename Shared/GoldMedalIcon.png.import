@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0u23j3al15j0"
-path="res://.godot/imported/BrokenStrands.png-18f0f3cc8c53aeb57a6c20744ff526c4.ctex"
+uid="uid://cm7vb0airitv0"
+path="res://.godot/imported/GoldMedalIcon.png-81f9b1a7adff6167f1c555babba759df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level-2-Zebastian/BrokenStrands.png"
-dest_files=["res://.godot/imported/BrokenStrands.png-18f0f3cc8c53aeb57a6c20744ff526c4.ctex"]
+source_file="res://Shared/GoldMedalIcon.png"
+dest_files=["res://.godot/imported/GoldMedalIcon.png-81f9b1a7adff6167f1c555babba759df.ctex"]
 
 [params]
 

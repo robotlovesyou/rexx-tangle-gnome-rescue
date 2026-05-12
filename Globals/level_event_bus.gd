@@ -24,7 +24,10 @@ signal player_collected_by_birbs
 signal birbs_moved_player(position: Vector2)
 signal player_deposited_by_birbs
 signal player_caught_in_web(web: SpiderWeb)
-signal player_broke_web()
+signal player_broke_web
+signal player_collected_sandwich(sandwich: SudoSandwich)
+signal player_collected_coin(coin: Coin)
+
 
 func player_burned_sync() -> void:
 	player_burned.emit()
@@ -134,38 +137,50 @@ func gnome_reported_position_sync(id: int, position: Vector2) -> void:
 func gnome_reported_position_async(id: int, position: Vector2) -> void:
 	gnome_reported_position.emit.call_deferred(id, position)
 	
-func player_waiting_for_birbs_sync():
+func player_waiting_for_birbs_sync() -> void:
 	player_waiting_for_birbs.emit()
 	
-func player_waiting_for_birbs_async():
+func player_waiting_for_birbs_async() -> void:
 	player_waiting_for_birbs.emit.call_deferred()
 	
-func player_collected_by_birbs_sync():
+func player_collected_by_birbs_sync() -> void:
 	player_collected_by_birbs.emit()
 	
-func player_collected_by_birbs_async():
+func player_collected_by_birbs_async() -> void:
 	player_collected_by_birbs.emit.call_deferred()
 	
-func birbs_moved_player_sync(to: Vector2):
+func birbs_moved_player_sync(to: Vector2) -> void:
 	birbs_moved_player.emit(to)
 	
-func birbs_moved_player_async(to: Vector2):
+func birbs_moved_player_async(to: Vector2) -> void:
 	birbs_moved_player.emit.call_deferred(to)
 	
-func player_deposited_by_birbs_sync():
+func player_deposited_by_birbs_sync() -> void:
 	player_deposited_by_birbs.emit()
 	
-func player_deposited_by_birbs_async():
+func player_deposited_by_birbs_async() -> void:
 	player_deposited_by_birbs.emit.call_deferred()
 	
-func player_caught_in_web_sync(web: SpiderWeb):
+func player_caught_in_web_sync(web: SpiderWeb) -> void:
 	player_caught_in_web.emit(web)
 	
-func player_caught_in_web_async(web: SpiderWeb):
+func player_caught_in_web_async(web: SpiderWeb) -> void:
 	player_caught_in_web.emit.call_deferred(web)
 	
-func player_broke_web_sync():
+func player_broke_web_sync() -> void:
 	player_broke_web.emit()
 	
-func player_broke_web_async():
+func player_broke_web_async() -> void:
 	player_broke_web.emit.call_deferred()
+	
+func player_collected_sandwich_sync(sandwich: SudoSandwich) -> void:
+	player_collected_sandwich.emit(sandwich)
+	
+func player_collected_sandwich_async(sandwich: SudoSandwich) -> void:
+	player_collected_sandwich.emit.call_deferred(sandwich)
+	
+func player_collected_coin_sync(coin: Coin) -> void:
+	player_collected_coin.emit(coin)
+	
+func player_collected_coin_async(coin: Coin) -> void:
+	player_collected_coin.emit.call_deferred(coin)

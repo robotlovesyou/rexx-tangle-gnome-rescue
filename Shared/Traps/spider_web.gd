@@ -8,7 +8,7 @@ const MAX_PITCH := 2.0
 var _caught_at: Vector2
 var _player_caught := false
 var _strands: Array[Line2D] = []
-var broken_strand_scene := preload("res://Level-2-Zebastian/broken_strand.tscn")
+var broken_strand_scene := preload("res://Shared/Traps/broken_strand.tscn")
 
 var boing: AudioStreamPlayer2D:
 	get: return $Boing

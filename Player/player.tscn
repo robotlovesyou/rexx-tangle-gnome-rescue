@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://cenujiplxkpem"]
+[gd_scene load_steps=111 format=3 uid="uid://cenujiplxkpem"]
 
 [ext_resource type="Texture2D" uid="uid://dim5o8tvmtjrm" path="res://RexxArt/Rexx/BigIdle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bpoqfytoa0ehm" path="res://Player/player.gd" id="1_vtle1"]
@@ -23,15 +23,24 @@
 [ext_resource type="AudioStream" uid="uid://cww2nwgp32dda" path="res://Sounds/FX/SkidMarks Skid Two.wav" id="18_8viyr"]
 [ext_resource type="AudioStream" uid="uid://pthcq3riq252" path="res://Sounds/FX/SkidMarks Skid Three.wav" id="19_sm0op"]
 [ext_resource type="Texture2D" uid="uid://bn2u1dwaetlmu" path="res://RexxArt/Rexx/BubblesAreSquareNow.png" id="20_8viyr"]
+[ext_resource type="AudioStream" uid="uid://5sta5m42jxjl" path="res://Player/nomnomnoms_2.wav" id="20_8ynux"]
 [ext_resource type="Script" uid="uid://scj8vyjnp7sq" path="res://Player/player_movement_config.gd" id="20_sm0op"]
+[ext_resource type="AudioStream" uid="uid://coo7pf87b3ree" path="res://Player/nomnomnoms_3.wav" id="21_d30e8"]
+[ext_resource type="AudioStream" uid="uid://df0p3sl336ge2" path="res://Player/nomnomnoms_4.wav" id="22_6pogt"]
 [ext_resource type="PackedScene" uid="uid://by5pocw5fqghd" path="res://Player/speed_lines.tscn" id="22_bbimk"]
 [ext_resource type="Texture2D" uid="uid://cnc207pfe8r4y" path="res://RexxArt/Rexx/BigJumpV2Squish.png" id="22_qemgg"]
 [ext_resource type="Material" uid="uid://bhme48noym83x" path="res://Player/player_shader.tres" id="23_755ss"]
+[ext_resource type="AudioStream" uid="uid://c1fi51se3yxv4" path="res://Player/nomnomnoms_5.wav" id="23_ie76m"]
 [ext_resource type="Texture2D" uid="uid://joff5ga1xsej" path="res://RexxArt/Rexx/BigFaceSquishCrop.png" id="24_8viyr"]
+[ext_resource type="AudioStream" uid="uid://d3ll1vm5qklg5" path="res://Player/nomnomnoms_6.wav" id="24_dy65m"]
 [ext_resource type="Texture2D" uid="uid://ckotlqcab70bj" path="res://RexxArt/Rexx/TheFear.png" id="24_efx54"]
 [ext_resource type="Texture2D" uid="uid://c0bqjcd007apm" path="res://RexxArt/Rexx/FallingRex.png" id="25_m0h3t"]
+[ext_resource type="AudioStream" uid="uid://d1qce41s5vhrh" path="res://Player/nomnomnoms_7.wav" id="25_maysp"]
+[ext_resource type="AudioStream" uid="uid://l4etn3nagrmd" path="res://Player/nomnomnoms_8.wav" id="26_1l10g"]
+[ext_resource type="AudioStream" uid="uid://cswtjt8lyqx7u" path="res://Player/nomnomnoms_9.wav" id="27_6rl0i"]
 [ext_resource type="Material" uid="uid://c2ep71hehrit7" path="res://Player/appear_particles_process_material.tres" id="27_sm0op"]
 [ext_resource type="AudioStream" uid="uid://d4iegm8bjat2i" path="res://Player/rexxhelm_scream.wav" id="30_755ss"]
+[ext_resource type="AudioStream" uid="uid://bbi3dxn34xggx" path="res://Player/coin_pickup_01.wav" id="40_d30e8"]
 
 [sub_resource type="Resource" id="Resource_76lrf"]
 script = ExtResource("20_sm0op")
@@ -539,6 +548,7 @@ jumps = Array[AudioStreamWAV]([ExtResource("6_n471f"), ExtResource("7_7emwf"), E
 deaths = Array[AudioStreamWAV]([ExtResource("14_hshwv"), ExtResource("15_gpjlu")])
 exits = Array[AudioStreamWAV]([ExtResource("16_gpjlu")])
 skids = Array[AudioStreamWAV]([ExtResource("17_qemgg"), ExtResource("18_8viyr"), ExtResource("19_sm0op")])
+nomnoms = Array[AudioStreamWAV]([ExtResource("20_8ynux"), ExtResource("21_d30e8"), ExtResource("22_6pogt"), ExtResource("23_ie76m"), ExtResource("24_dy65m"), ExtResource("25_maysp"), ExtResource("26_1l10g"), ExtResource("27_6rl0i")])
 movement_config = SubResource("Resource_76lrf")
 
 [node name="CPUJumpParticles" type="CPUParticles2D" parent="."]
@@ -623,6 +633,11 @@ amount = 32
 trail_enabled = true
 trail_lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_od3ui")
+
+[node name="NomNomPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="CoinPickupPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("40_d30e8")
 
 [node name="WalkPlayer" type="AudioStreamPlayer2D" parent="."]
 bus = &"Level"

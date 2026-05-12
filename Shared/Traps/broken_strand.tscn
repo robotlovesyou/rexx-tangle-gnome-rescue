@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://i74ic8lbdm81"]
 
-[ext_resource type="Texture2D" uid="uid://0u23j3al15j0" path="res://Level-2-Zebastian/BrokenStrands.png" id="1_c4cae"]
+[ext_resource type="Texture2D" uid="uid://0u23j3al15j0" path="res://Shared/Traps/BrokenStrands.png" id="1_w8fh3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gwvwr"]
 particles_animation = true
@@ -9,7 +9,7 @@ particles_anim_v_frames = 3
 particles_anim_loop = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mq56p"]
-atlas = ExtResource("1_c4cae")
+atlas = ExtResource("1_w8fh3")
 region = Rect2(0, 0, 96, 96)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a4maa"]

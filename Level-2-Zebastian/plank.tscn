@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dapsoiovmhh58"]
+
+[ext_resource type="Script" uid="uid://cgxymyfvbg1qf" path="res://Level-2-Zebastian/plank.gd" id="1_n733v"]
+[ext_resource type="Texture2D" uid="uid://da2ttkyt34odj" path="res://Level-2-Zebastian/Plank.png" id="1_nh8go"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n733v"]
+size = Vector2(32, 8)
+
+[node name="Plank" type="AnimatableBody2D"]
+script = ExtResource("1_n733v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nh8go")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n733v")

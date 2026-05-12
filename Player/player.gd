@@ -8,6 +8,7 @@ signal done_dying
 @export var deaths: Array[AudioStreamWAV]
 @export var exits: Array[AudioStreamWAV]
 @export var skids: Array[AudioStreamWAV]
+@export var nomnoms: Array[AudioStreamWAV]
 @export var movement_config: PlayerMovementConfig
 @export var debug_is_on_wall_only := false
 
@@ -23,6 +24,14 @@ var _cast_wall_normal := Vector2.ZERO
 @onready var _death_effect_player := EffectPlayer.new(death_player, deaths)
 @onready var _exit_effect_player := EffectPlayer.new(exit_player, exits)
 @onready var _skid_effect_player := EffectPlayer.new(skid_player, skids)
+@onready var _nomnom_effect_player := EffectPlayer.new(
+	nomnom_player, 
+	nomnoms, 
+	{
+		EffectPlayer.MIN_PITCH: 1.0, 
+		EffectPlayer.MAX_PITCH: 1.1, 
+		EffectPlayer.MIN_VOLUME: -1.5
+	})
 
 
 var wall_jump_timer: Timer:
@@ -57,6 +66,12 @@ var exit_player: AudioStreamPlayer2D:
 
 var skid_player: AudioStreamPlayer2D:
 	get: return $SkidPlayer
+	
+var nomnom_player: AudioStreamPlayer2D:
+	get: return $NomNomPlayer
+	
+var coin_pickup_player: AudioStreamPlayer2D:
+	get: return $CoinPickupPlayer
 
 var skid_particles: GPUParticles2D:
 	get: return $SkidParticles
@@ -271,3 +286,10 @@ func stop_falling() -> void:
 	
 func append_to_history(delta: float, action: Enums.Action) -> void:
 	MovementHistory.append(global_position, get_platform_velocity() * delta, action, animated_sprite.flip_h)
+	
+func play_nonom() -> void:
+	_nomnom_effect_player.play()
+	
+func play_coin_pickup() -> void:
+	coin_pickup_player.stop()
+	coin_pickup_player.play()

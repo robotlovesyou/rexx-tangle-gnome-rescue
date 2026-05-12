@@ -15,6 +15,10 @@ signal hilight_minimap_done
 @export var minimap: ColorRect
 @export var minimap_default_color: Color = Color.BLACK
 @export var minimap_flash_color: Color = Color.WHITE
+@export var flash_sandwich:  ColorRect
+@export var sandwich_label: RichTextLabel
+@export var flash_coins: ColorRect
+@export var coins_label: RichTextLabel
 
 var _flashing_gnome_count := false
 var _time_flashing_gnome_count := 0.0
@@ -48,6 +52,12 @@ func update_timer(seconds: int) -> void:
 	var minutes := maxi(0, int(floor(seconds / 60.0)))
 	var remaining_seconds = maxi(0, seconds - (minutes * 60))
 	timer_label.text = "[color=\"%s\"]%d:%02d[/color]" % [timer_color, minutes, remaining_seconds]
+	
+func update_sandwich_count(count: int) -> void:
+	sandwich_label.text = "[color=\"green\"]%d[/color]" % [count]
+	
+func update_coin_count(count: int) -> void:
+	coins_label.text = "[color=\"green\"]%d[/color]" % [count]
 
 func hide_gnome_count() -> void:
 	gnome_count.modulate.a = 0.0

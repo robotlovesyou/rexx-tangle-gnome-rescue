@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://fkueudimmfop"]
+
+[ext_resource type="Texture2D" uid="uid://bonjovvx3rb5e" path="res://Shared/SandwichIcon.png" id="1_d42xj"]
+[ext_resource type="Script" uid="uid://c0jbexiibeklr" path="res://Shared/Bonuses/sandwich_death.gd" id="2_3mj8e"]
+
+[sub_resource type="Curve" id="Curve_d42xj"]
+_data = [Vector2(0.021084338, 1), 0.0, 0.0, 0, 0, Vector2(0.7409638, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3mj8e"]
+curve = SubResource("Curve_d42xj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d42xj"]
+particle_flag_disable_z = true
+velocity_pivot = Vector3(0, 1, 0)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = -98.0
+initial_velocity_max = -98.0
+angular_velocity_min = -360.0
+angular_velocity_max = 359.99997
+gravity = Vector3(0, 98, 0)
+alpha_curve = SubResource("CurveTexture_3mj8e")
+
+[node name="SandwichDeath" type="GPUParticles2D"]
+emitting = false
+amount = 1
+texture = ExtResource("1_d42xj")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_d42xj")
+script = ExtResource("2_3mj8e")

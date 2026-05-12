@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=86 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://danj42f0n1wdv" path="res://Level-2-Zebastian/level_2_zebastian.gd" id="1_wprv3"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -9,8 +9,10 @@
 [ext_resource type="Shader" uid="uid://tc2w71qak8he" path="res://Level-2-Zebastian/fog.gdshader" id="6_eblxv"]
 [ext_resource type="JSON" path="res://Level-2-Zebastian/kick.json" id="7_4ybp8"]
 [ext_resource type="PackedScene" uid="uid://bpie03cvpmuyt" path="res://Shared/exit.tscn" id="7_73l37"]
+[ext_resource type="PackedScene" uid="uid://fkueudimmfop" path="res://Shared/Bonuses/sandwich_death.tscn" id="7_wyrqx"]
 [ext_resource type="PackedScene" uid="uid://dtujt7rkktado" path="res://Level-2-Zebastian/background_tree.tscn" id="8_7moxs"]
 [ext_resource type="PackedScene" uid="uid://d1d8b4dpydja5" path="res://Shared/gnome_safe_spot.tscn" id="8_davk5"]
+[ext_resource type="PackedScene" uid="uid://b0cw4pso1ysln" path="res://Shared/Bonuses/coin_death.tscn" id="8_qjcvm"]
 [ext_resource type="JSON" path="res://Level-2-Zebastian/melody.json" id="8_s13ap"]
 [ext_resource type="PackedScene" uid="uid://d0rrvvv6k44gt" path="res://Shared/floor.tscn" id="9_g5nbk"]
 [ext_resource type="Texture2D" uid="uid://bjpqh73qt0sys" path="res://Level-2-Zebastian/EarthAndGrassTiles.png" id="10_fqw8e"]
@@ -18,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://csmkddyfsbnkf" path="res://Level-2-Zebastian/EarthTiles.png" id="11_wprv3"]
 [ext_resource type="PackedScene" uid="uid://uhluke1y0dyv" path="res://Level-2-Zebastian/street_lamp_right.tscn" id="11_yml5u"]
 [ext_resource type="PackedScene" uid="uid://dphol1hlxje11" path="res://Level-2-Zebastian/street_lamp_left.tscn" id="12_kkjpk"]
+[ext_resource type="PackedScene" uid="uid://cac36348xgnct" path="res://Shared/Bonuses/coin.tscn" id="13_3dvyn"]
 [ext_resource type="PackedScene" uid="uid://blysyve0sampw" path="res://LevelTemplate/game_over_message.tscn" id="13_s1qii"]
 [ext_resource type="PackedScene" uid="uid://d2a20d1sgenan" path="res://Enemies/PathFollowerGhost/path_follower_ghost.tscn" id="14_7moxs"]
 [ext_resource type="Texture2D" uid="uid://cm1rya8qbtxja" path="res://Level-2-Zebastian/TreeTileMapFlat.png" id="14_rmjhb"]
@@ -39,12 +42,21 @@
 [ext_resource type="PackedScene" uid="uid://coku57xrn7p84" path="res://Player/burning_rexx.tscn" id="32_0pu8p"]
 [ext_resource type="Texture2D" uid="uid://cwufrw2wcqj0m" path="res://Level-2-Zebastian/LeafTiles.png" id="32_ymo16"]
 [ext_resource type="PackedScene" uid="uid://ca454cat81hs1" path="res://Level-2-Zebastian/wide_lamp.tscn" id="34_io5ok"]
+[ext_resource type="PackedScene" uid="uid://cy58yjdnyluak" path="res://Shared/Bonuses/sudo_sandwich.tscn" id="39_63jit"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sab6v"]
 shader = ExtResource("6_eblxv")
 shader_parameter/speed = 0.02
 shader_parameter/frequency = 30.0
 shader_parameter/influence = 0.999999977648
+
+[sub_resource type="Gradient" id="Gradient_63jit"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wyrqx"]
+gradient = SubResource("Gradient_63jit")
+width = 256
+height = 256
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uyv0f"]
 size = Vector2(784, 16)
@@ -2065,6 +2077,8 @@ broken_player_scene = ExtResource("3_nybii")
 dismembered_gnome_scene = ExtResource("4_t31wk")
 burning_player_scene = ExtResource("32_0pu8p")
 burning_gnome_scene = ExtResource("5_sab6v")
+sandwich_death_scene = ExtResource("7_wyrqx")
+coin_death_scene = ExtResource("8_qjcvm")
 hud = NodePath("HUD")
 minimum_gnomes = 2
 timer_seconds = 312
@@ -2312,13 +2326,109 @@ offset_right = 40.0
 offset_bottom = 40.0
 color = Color(1, 1, 1, 0.21568628)
 
+[node name="Layer3Light" type="PointLight2D" parent="."]
+position = Vector2(6000, 1500)
+range_item_cull_mask = 4
+texture = SubResource("GradientTexture2D_wyrqx")
+texture_scale = 50.0
+
+[node name="Bonuses" type="Node" parent="."]
+
+[node name="Coins" type="Node" parent="Bonuses"]
+
+[node name="Coin" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1328, 4257.123)
+
+[node name="Coin2" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1471.9641, 4256)
+
+[node name="Coin3" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1423.9641, 4256)
+
+[node name="Coin4" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1375.9641, 4256)
+
+[node name="Coin5" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1584, 4257.123)
+
+[node name="Coin6" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1727.9641, 4256)
+
+[node name="Coin7" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1679.9641, 4256)
+
+[node name="Coin8" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1631.9641, 4256)
+
+[node name="Coin9" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1840, 4257.123)
+
+[node name="Coin10" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1983.9641, 4256)
+
+[node name="Coin11" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1935.9641, 4256)
+
+[node name="Coin12" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(1887.9641, 4256)
+
+[node name="Coin13" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2096, 4257.123)
+
+[node name="Coin14" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2239.964, 4256)
+
+[node name="Coin15" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2191.964, 4256)
+
+[node name="Coin16" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2143.964, 4256)
+
+[node name="Coin17" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2352, 4257.123)
+
+[node name="Coin18" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2495.964, 4256)
+
+[node name="Coin19" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2447.964, 4256)
+
+[node name="Coin20" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2399.964, 4256)
+
+[node name="Coin21" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2352, 4257.123)
+
+[node name="Coin22" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2495.964, 4256)
+
+[node name="Coin23" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2447.964, 4256)
+
+[node name="Coin24" parent="Bonuses/Coins" instance=ExtResource("13_3dvyn")]
+position = Vector2(2399.964, 4256)
+
+[node name="Sandwiches" type="Node" parent="Bonuses"]
+
+[node name="SudoSandwich" parent="Bonuses/Sandwiches" instance=ExtResource("39_63jit")]
+z_index = 40
+position = Vector2(2944, 4216)
+
+[node name="SudoSandwich2" parent="Bonuses/Sandwiches" instance=ExtResource("39_63jit")]
+z_index = 40
+position = Vector2(3008, 4216)
+
+[node name="SudoSandwich3" parent="Bonuses/Sandwiches" instance=ExtResource("39_63jit")]
+z_index = 40
+position = Vector2(3063.359, 4217.4443)
+
 [node name="SpawnPoint" parent="." instance=ExtResource("6_ak2hd")]
 position = Vector2(1152, 4304)
+active = true
 lit = true
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("6_ak2hd")]
 position = Vector2(3328, 3640)
-active = true
 lit = true
 
 [node name="Exit" parent="." instance=ExtResource("7_73l37")]
@@ -2341,7 +2451,7 @@ position = Vector2(160, 0)
 shape = SubResource("RectangleShape2D_4ybp8")
 
 [node name="PathFollowerRoot" parent="Enemies" instance=ExtResource("14_7moxs")]
-position = Vector2(5552, 2784)
+position = Vector2(5552, 2782)
 
 [node name="PathToFollow" parent="Enemies/PathFollowerRoot" index="0"]
 curve = SubResource("Curve2D_7moxs")
@@ -2388,6 +2498,7 @@ process_material = ExtResource("18_s13ap")
 
 [node name="PointLight2D" type="PointLight2D" parent="Directions/DirectionIndicatorParticlesRight"]
 light_mask = 4
+enabled = false
 range_item_cull_mask = 4
 texture = SubResource("GradientTexture2D_ymo16")
 texture_scale = 4.7

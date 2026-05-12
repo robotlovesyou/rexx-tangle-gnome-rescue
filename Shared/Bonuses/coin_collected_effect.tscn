@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dn1fhdrt3ogs4"]
+
+[ext_resource type="Script" uid="uid://dotd321r7yh26" path="res://Shared/Bonuses/coin_collected_effect.gd" id="1_fbf6e"]
+[ext_resource type="Texture2D" uid="uid://b83t3nqy0kp8l" path="res://Shared/Bonuses/SmallCoin.png" id="2_fbf6e"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vnjwv"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 3
+particles_anim_loop = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g620"]
+atlas = ExtResource("2_fbf6e")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="Curve" id="Curve_07n8c"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.74999994, 0.99999994), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fbf6e"]
+curve = SubResource("Curve_07n8c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fbf6e"]
+particle_flag_disable_z = true
+velocity_pivot = Vector3(0, 1, 0)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = -98.0
+initial_velocity_max = -98.0
+gravity = Vector3(0, 98, 0)
+alpha_curve = SubResource("CurveTexture_fbf6e")
+anim_speed_min = 6.0
+anim_speed_max = 6.0
+anim_offset_max = 1.0
+
+[node name="CoinCollectedEffect" type="Node2D"]
+script = ExtResource("1_fbf6e")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_vnjwv")
+emitting = false
+amount = 1
+texture = SubResource("AtlasTexture_3g620")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_fbf6e")

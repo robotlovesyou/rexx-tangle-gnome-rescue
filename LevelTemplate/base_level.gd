@@ -9,6 +9,8 @@ const GNOME_BURN_TIME = 1.0
 @export var dismembered_gnome_scene: PackedScene
 @export var burning_player_scene: PackedScene
 @export var burning_gnome_scene: PackedScene
+@export var sandwich_death_scene: PackedScene
+@export var coin_death_scene: PackedScene
 @export var next_level: String
 @export var exit: Exit
 @export var hud: HUD
@@ -25,8 +27,11 @@ const GNOME_BURN_TIME = 1.0
 
 
 var _t := 0.0
+var _deaths := 0
 var _rescue_count := 0
 var _current_gnome_count := 0
+var _sandwich_count := 0
+var _coin_count := 0
 var _player_over_exit := false
 var _beats: Array[float] = []
 var _beats2: Array[float] = []
@@ -65,7 +70,11 @@ func _ready() -> void:
 	Events.gnome_rescued.connect(_on_gnome_rescued)
 	Events.gnome_hit_projectile.connect(_on_gnome_hit_projectile)
 	Events.gnome_reported_position.connect(hud.report_gnome_location)
+	Events.player_collected_sandwich.connect(_on_player_collected_sandwich)
+	Events.player_collected_coin.connect(_on_player_collected_coin)
 	_update_gnome_count_in_hud()
+	_update_sandwich_count_in_hud()
+	_update_coin_count_in_hud()
 	hud.update_timer(timer_seconds)
 	if level_music_beats:
 		_beats.assign(level_music_beats.data["beats"])
@@ -164,17 +173,44 @@ func _on_gnome_hit_spike_trap(_trap: SpikeTrap, gnome: Gnome) -> void:
 	_kill_gnome(gnome)
 	
 func _kill_player(reason: Enums.DeathReason) -> void:
+	_deaths += 1
+	var at = PMonitor.player.global_position
+	
 	match reason:
 		Enums.DeathReason.PIERCED:
-			_spawn_broken_player(PMonitor.player.global_position, PMonitor.player.velocity)
+			_spawn_broken_player(at, PMonitor.player.velocity)
 		Enums.DeathReason.BURNED:
-			_spawn_burning_player(PMonitor.player.global_position)
+			_spawn_burning_player(at)
+	
+	var sandwich_loss = randi_range(0, min(_deaths, _sandwich_count))
+	if sandwich_loss > 0:
+		_sandwich_count -= sandwich_loss
+		_spawn_sandwich_death(sandwich_loss, at)
+		_update_sandwich_count_in_hud()
 		
+	var coin_loss = randi_range(0, min(_deaths, _coin_count))
+	if coin_loss > 0:
+		_coin_count -= coin_loss
+		_spawn_coin_death(coin_loss, at)
+		_update_coin_count_in_hud()
 		
+	
 	PMonitor.player.die(reason)
 	await PMonitor.player.done_dying
 	_despawn_player()
 	_spawn_player(self, player_sibling_node)
+	
+func _spawn_sandwich_death(count: int, at: Vector2) -> void:
+	var sandwich_death = sandwich_death_scene.instantiate() as SandwichDeath
+	add_child(sandwich_death)
+	sandwich_death.global_position = at
+	sandwich_death.play(count)
+	
+func _spawn_coin_death(count: int, at: Vector2) -> void:
+	var coin_death = coin_death_scene.instantiate() as CoinDeath
+	add_child(coin_death)
+	coin_death.global_position = at
+	coin_death.play(count)
 
 func _kill_enemy(enemy: Enemy) -> void:
 	enemy.die()
@@ -220,6 +256,12 @@ func _on_gnome_rescued(gnome: Gnome) -> void:
 func _update_gnome_count_in_hud() -> void:
 	_current_gnome_count = get_tree().get_nodes_in_group("Gnome").size()
 	hud.update_gnome_count(_rescue_count, minimum_gnomes, _current_gnome_count)
+	
+func _update_sandwich_count_in_hud() -> void:
+	hud.update_sandwich_count(_sandwich_count)
+	
+func _update_coin_count_in_hud() -> void:
+	hud.update_coin_count(_coin_count)
 
 func _on_player_entered_exit() -> void:
 	_player_over_exit = true
@@ -238,6 +280,18 @@ func _on_player_hit_projectile() -> void:
 
 func _on_gnome_hit_projectile(gnome: Gnome) -> void:
 	_dismember_gnome(gnome)
+	
+func _on_player_collected_sandwich(sandwich: SudoSandwich) -> void:
+	sandwich.eat()
+	_sandwich_count += 1
+	_update_sandwich_count_in_hud()
+	PMonitor.player.play_nonom()
+	
+func _on_player_collected_coin(coin: Coin) -> void:
+	coin.collected()
+	_coin_count += 1
+	_update_coin_count_in_hud()
+	PMonitor.player.play_coin_pickup()
 	
 func _find_level_bounds() -> Rect2:
 	# find all the tilemaps and get their bounds
