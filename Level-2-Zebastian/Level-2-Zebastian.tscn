@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=91 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://danj42f0n1wdv" path="res://Level-2-Zebastian/level_2_zebastian.gd" id="1_wprv3"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://tc2w71qak8he" path="res://Level-2-Zebastian/fog.gdshader" id="6_eblxv"]
 [ext_resource type="JSON" path="res://Level-2-Zebastian/kick.json" id="7_4ybp8"]
 [ext_resource type="PackedScene" uid="uid://bpie03cvpmuyt" path="res://Shared/exit.tscn" id="7_73l37"]
+[ext_resource type="PackedScene" uid="uid://ddnh5q3v288gl" path="res://Player/poisoned_rexx.tscn" id="7_atg5g"]
 [ext_resource type="PackedScene" uid="uid://fkueudimmfop" path="res://Shared/Bonuses/sandwich_death.tscn" id="7_wyrqx"]
 [ext_resource type="PackedScene" uid="uid://dtujt7rkktado" path="res://Level-2-Zebastian/background_tree.tscn" id="8_7moxs"]
 [ext_resource type="PackedScene" uid="uid://d1d8b4dpydja5" path="res://Shared/gnome_safe_spot.tscn" id="8_davk5"]
@@ -2086,6 +2087,7 @@ broken_player_scene = ExtResource("3_nybii")
 dismembered_gnome_scene = ExtResource("4_t31wk")
 burning_player_scene = ExtResource("32_0pu8p")
 burning_gnome_scene = ExtResource("5_sab6v")
+poisoned_player_scene = ExtResource("7_atg5g")
 sandwich_death_scene = ExtResource("7_wyrqx")
 coin_death_scene = ExtResource("8_qjcvm")
 hud = NodePath("HUD")

@@ -9,6 +9,7 @@ const GNOME_BURN_TIME = 1.0
 @export var dismembered_gnome_scene: PackedScene
 @export var burning_player_scene: PackedScene
 @export var burning_gnome_scene: PackedScene
+@export var poisoned_player_scene: PackedScene
 @export var sandwich_death_scene: PackedScene
 @export var coin_death_scene: PackedScene
 @export var next_level: String
@@ -57,6 +58,7 @@ func _ready() -> void:
 	FollowersMonitor.reset()
 	Events.player_burned.connect(_on_player_burned)
 	Events.gnome_burned.connect(_burn_gnome)
+	Events.player_poisoned.connect(_on_player_poisoned)
 	Events.player_hit_spike_trap.connect(_on_player_hit_spike_trap)
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
 	Events.player_hit_drop_trap.connect(_on_player_hit_drop_trap)
@@ -122,6 +124,9 @@ func _physics_process(delta: float) -> void:
 	hud.update_timer(timer_seconds - floor(_t))
 	if _player_over_exit and Input.is_action_just_pressed("ui_accept"):
 		PMonitor.player.exit(exit)
+		
+func _on_player_poisoned() -> void:
+	_kill_player(Enums.DeathReason.POISONED)
 			
 func _on_player_burned() -> void:
 	_kill_player(Enums.DeathReason.BURNED)
@@ -146,6 +151,9 @@ func _spawn_broken_player(at: Vector2, initial_velocity: Vector2) -> void:
 	
 func _spawn_burning_player(at: Vector2) -> void:
 	(_spawn_dead_player(at, burning_player_scene) as BurningRexx).flip_h = PMonitor.player.get_flip_h()
+	
+func _spawn_poisoned_player(at: Vector2) -> void:
+	(_spawn_dead_player(at, poisoned_player_scene) as PoisonedRexx).flip_h = PMonitor.player.get_flip_h()
 	
 func _spawn_dead_player(at: Vector2, scene: PackedScene) -> Variant:
 	var dead_player = scene.instantiate()
@@ -181,6 +189,8 @@ func _kill_player(reason: Enums.DeathReason) -> void:
 			_spawn_broken_player(at, PMonitor.player.velocity)
 		Enums.DeathReason.BURNED:
 			_spawn_burning_player(at)
+		Enums.DeathReason.POISONED:
+			_spawn_poisoned_player(at)
 	
 	var sandwich_loss = randi_range(0, min(_deaths, _sandwich_count))
 	if sandwich_loss > 0:

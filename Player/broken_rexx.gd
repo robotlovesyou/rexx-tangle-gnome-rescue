@@ -1,8 +1,5 @@
 class_name BrokenRexx
-extends Node2D
-
-const LIFE_TIME_SECONDS := 2.0
-
+extends DyingRexx
 
 var top_left: RigidBody2D:
 	get: return $TopLeftBody
@@ -22,8 +19,6 @@ var leg_1: RigidBody2D:
 var leg_2: RigidBody2D:
 	get: return $Leg2Body
 
-var _t := 0.0
-
 func set_initial_velocity(velocity: Vector2) -> void:
 	var scaled_velocity = velocity / (Engine.physics_ticks_per_second / 2.0)
 	_apply_body_impulse(top_left, scaled_velocity)
@@ -39,7 +34,5 @@ func _apply_body_impulse(body: RigidBody2D, scaled_velocity: Vector2):
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	_t += delta
-	if _t >= LIFE_TIME_SECONDS:
-		self.queue_free()
+func _physics_process(delta: float) -> void:
+	super(delta)

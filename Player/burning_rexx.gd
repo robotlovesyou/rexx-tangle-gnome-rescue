@@ -1,11 +1,9 @@
 class_name BurningRexx
-extends Node2D
+extends DyingRexx
 
 const FRAME_HEIGHT := 32.0
 const BURN_TIME := 0.8
-const TIME_UNTIL_DONE := 8.0 * BURN_TIME
 const BURN_WIDTH := 0.05
-var _t := 0.0
 var _done := false
 
 var animation: AnimatedSprite2D:
@@ -58,10 +56,7 @@ func _ready() -> void:
 	set_hide_amount(0.0)
 	
 func _physics_process(delta: float) -> void:
-	_t += delta
-	
-	if _done and _t >= TIME_UNTIL_DONE:
-		queue_free()
+	super(delta)
 		
 	if _done: return
 	

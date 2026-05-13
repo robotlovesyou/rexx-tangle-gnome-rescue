@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://ddnh5q3v288gl"]
+
+[ext_resource type="Script" uid="uid://l0r8dxscpvjt" path="res://poisoned_rexx.gd" id="1_x6ugb"]
+[ext_resource type="Texture2D" uid="uid://brr34ogqsd5vd" path="res://Player/PoisonedRex.png" id="2_tps5p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67n3g"]
+atlas = ExtResource("2_tps5p")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mypri"]
+atlas = ExtResource("2_tps5p")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxnxi"]
+atlas = ExtResource("2_tps5p")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkds3"]
+atlas = ExtResource("2_tps5p")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63el6"]
+atlas = ExtResource("2_tps5p")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtupu"]
+atlas = ExtResource("2_tps5p")
+region = Rect2(128, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpnwj"]
+atlas = ExtResource("2_tps5p")
+region = Rect2(0, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1icw"]
+atlas = ExtResource("2_tps5p")
+region = Rect2(64, 64, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vhcrf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67n3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mypri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxnxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkds3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63el6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtupu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpnwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1icw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vq72v"]
+size = Vector2(32, 32)
+
+[node name="PoisonedRexx" type="Node2D"]
+script = ExtResource("1_x6ugb")
+
+[node name="PoisonedBody" type="CharacterBody2D" parent="."]
+collision_mask = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PoisonedBody"]
+sprite_frames = SubResource("SpriteFrames_vhcrf")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoisonedBody"]
+shape = SubResource("RectangleShape2D_vq72v")

@@ -45,7 +45,8 @@ static func gnome_event_name(event: GnomeEvent) -> String: return GnomeEvent.fin
 
 enum DeathReason {
 	PIERCED,
-	BURNED
+	BURNED,
+	POISONED
 }
 
 static func death_reason_name(reason: DeathReason) -> String: return DeathReason.find_key((int(reason)))

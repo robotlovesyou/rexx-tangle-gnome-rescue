@@ -168,9 +168,7 @@ func _handle_gnome_event(event: Enums.GnomeEvent) -> void:
 				Enums.GnomeEvent.BECAME_ABANDONED:
 					_switch_to_strategy(GnomeWanderStrategy.new(self))
 				Enums.GnomeEvent.BECAME_GROUNDED, Enums.GnomeEvent.PLAYER_COLLECTED, Enums.GnomeEvent.PLAYER_BECAME_IDLE:
-					print("should I stray?")
 					if _should_enter_stray():
-						print("yes, I should")
 						_switch_to_strategy(GnomeStrayStrategy.new(self))
 				Enums.GnomeEvent.BECAME_STUCK:
 					_switch_to_strategy(GnomeStuckStrategy.new(self))

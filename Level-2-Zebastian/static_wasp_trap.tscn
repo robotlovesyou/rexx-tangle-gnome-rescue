@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bukbgikksd0j"]
+[gd_scene load_steps=11 format=3 uid="uid://bukbgikksd0j"]
 
+[ext_resource type="Script" uid="uid://bd4xyx40wdrco" path="res://Level-2-Zebastian/static_wasp_trap.gd" id="1_nbdg8"]
 [ext_resource type="Texture2D" uid="uid://eodmtbw7q1ln" path="res://RexxArt/CommercialAssets/wayward wasp (eyes) v01.png" id="1_qpa6r"]
 [ext_resource type="AudioStream" uid="uid://bma0jxg1y0lbl" path="res://Level-2-Zebastian/StaticWasp.wav" id="2_4w810"]
+[ext_resource type="AudioStream" uid="uid://clomnapglxjwj" path="res://Level-2-Zebastian/StaticWaspSting.wav" id="4_uw26d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4w810"]
 atlas = ExtResource("1_qpa6r")
@@ -39,15 +41,33 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_itnhd"]
+radius = 12.0415945
+
 [node name="StaticWaspTrap" type="Node2D"]
+script = ExtResource("1_nbdg8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_itnhd")
 autoplay = "default"
-frame_progress = 0.7053031
+frame_progress = 0.6438309
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="FlyingPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_4w810")
 autoplay = true
 max_distance = 400.0
 bus = &"SFX"
+
+[node name="StingPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_uw26d")
+volume_db = 3.0
+pitch_scale = 2.0
+max_distance = 400.0
+bus = &"SFX"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_itnhd")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

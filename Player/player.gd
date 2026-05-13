@@ -141,12 +141,14 @@ func stop_skid() -> void:
 
 func die(reason: Enums.DeathReason) -> void:
 	walk_player.stop()
+	_switch_to_strategy(DyingStrategy.new(self))
 	match reason:
 		Enums.DeathReason.PIERCED:
-			_switch_to_strategy(DyingStrategy.new(self))
 			_death_effect_player.play()
 		Enums.DeathReason.BURNED:
-			_switch_to_strategy(DyingStrategy.new(self))
+			pass
+		Enums.DeathReason.POISONED:
+			pass
 			
 func wait_for_birbs() -> void:
 	_switch_to_strategy(WaitingForBirbsStrategy.new(self))
