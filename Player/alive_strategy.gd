@@ -2,7 +2,7 @@ class_name AliveStrategy
 extends PlayerStrategy
 
 var _action: Enums.Action = Enums.Action.NONE
-var _action_did_change := false
+var _previous_action: Enums.Action = Enums.Action.NONE
 var _direction: float = 1.0
 var _last_direction: float = 1.0
 var _has_jumped: bool = false
@@ -23,7 +23,7 @@ func _modify_velocity(velocity: Vector2) -> Vector2:
 	return velocity
 
 func on_physics_process(delta: float) -> void:
-	_action_did_change = false
+	_previous_action = _action
 	var previous_velocity = _parent.velocity
 	var was_on_floor = _parent.is_on_floor()
 
@@ -51,12 +51,17 @@ func _check_falling() -> void:
 func _show_debug_message() -> void:
 	pass
 	#_parent.set_debug_text("%s" % _parent.velocity.y)
+	
+func _action_did_change() -> bool: return _action != _previous_action
+
+func _action_still_walking() -> bool:
+	const _walking_actions = [Enums.Action.WALKING, Enums.Action.PLATFORM_WALKING]
+	return _previous_action in _walking_actions and _action in _walking_actions
 
 func _begin_action(action: Enums.Action) -> void:
 	if action == _action: return
 	# print("%s => %s" % [Enums.action_name(_action), Enums.action_name(action)])
 	_action = action
-	_action_did_change = true
 	ActionMonitor.action = _action
 
 func _is_jumping() -> bool:
@@ -203,12 +208,12 @@ func on_animate(animated_sprite: AnimatedSprite2D) -> void:
 		Enums.Action.WALKING, Enums.Action.PLATFORM_WALKING:
 			animated_sprite.play( "walk")
 		Enums.Action.JUMPING, Enums.Action.DOUBLE_JUMPING, Enums.Action.DOUBLE_JUMPED, Enums.Action.WALL_JUMPING, Enums.Action.FALLING:
-			if _action_did_change:
+			if _action_did_change():
 				animated_sprite.stop()
 			animated_sprite.play("jump")
 			jump_emitting = true
 		Enums.Action.WALL_SLIDING:
-			if _action_did_change:
+			if _action_did_change():
 				animated_sprite.play("wall_hit")
 		_:
 			animated_sprite.play("idle")
@@ -224,9 +229,9 @@ func _play_action() -> void:
 	else:
 		_parent.stop_skid()
 
-	if !_action_did_change: return
-	_parent.stop_playing_walk()
-	print(Enums.action_name(_action))
+	if !_action_did_change(): return
+	if !_action_still_walking():
+		_parent.stop_playing_walk()
 	match _action:
 		Enums.Action.WALKING, Enums.Action.PLATFORM_WALKING:
 			_parent.play_walk()
