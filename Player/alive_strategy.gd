@@ -226,8 +226,9 @@ func _play_action() -> void:
 
 	if !_action_did_change: return
 	_parent.stop_playing_walk()
+	print(Enums.action_name(_action))
 	match _action:
-		Enums.Action.WALKING:
+		Enums.Action.WALKING, Enums.Action.PLATFORM_WALKING:
 			_parent.play_walk()
 		Enums.Action.JUMPING, Enums.Action.DOUBLE_JUMPING, Enums.Action.WALL_JUMPING:
 			_parent.play_jump()

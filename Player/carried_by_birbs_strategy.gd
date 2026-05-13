@@ -1,27 +1,27 @@
 class_name CarriedByBirbsStrategy
 extends PlayerStrategy
 
-var _collision_mask := 0
-var _collision_layer := 0
 var _last_position := Vector2.ZERO
-
-const EMPY_MASK := 0
 
 func _init(parent: Player):
 	_parent = parent
 
 func on_enter() -> void:
 	Events.birbs_moved_player.connect(birbs_moved_player)
-	_collision_mask = _parent.collision_mask
-	_parent.collision_mask = EMPY_MASK
-	_collision_layer = _parent.collision_layer
-	_parent.collision_layer = EMPY_MASK
+	_parent.set_collision_layer_value(LayerConstants.PLAYER, false)
+	_parent.set_collision_mask_value(LayerConstants.TERRAIN, false)
+	_parent.set_collision_mask_value(LayerConstants.ENEMY, false)
+	_parent.set_collision_mask_value(LayerConstants.DROP_TRAP, false)
+	_parent.set_collision_mask_value(LayerConstants.GNOMEPAQUE_TERRAIN, false)
 	_last_position = _parent.global_position
 	
 func on_exit() -> void:
 	Events.birbs_moved_player.disconnect(birbs_moved_player)
-	_parent.collision_mask = _collision_mask
-	_parent.collision_layer = _collision_layer
+	_parent.set_collision_layer_value(LayerConstants.PLAYER, true)
+	_parent.set_collision_mask_value(LayerConstants.TERRAIN, true)
+	_parent.set_collision_mask_value(LayerConstants.ENEMY, true)
+	_parent.set_collision_mask_value(LayerConstants.DROP_TRAP, true)
+	_parent.set_collision_mask_value(LayerConstants.GNOMEPAQUE_TERRAIN, true)
 	
 	
 func on_physics_process(delta: float) -> void:

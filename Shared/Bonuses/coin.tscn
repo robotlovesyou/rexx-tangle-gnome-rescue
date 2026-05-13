@@ -68,6 +68,8 @@ sprite_frames = SubResource("SpriteFrames_5c6ea")
 autoplay = "default"
 
 [node name="CollectionArea" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionArea"]
 light_mask = 4

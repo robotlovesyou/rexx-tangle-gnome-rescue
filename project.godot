@@ -78,6 +78,8 @@ burn_baby_burn={
 2d_physics/layer_6="Furniture"
 2d_physics/layer_7="DropTrap"
 2d_physics/layer_8="GnomepaqueTerrain"
+2d_physics/layer_9="BonusCollector"
+2d_physics/layer_10="Bonus"
 
 [physics]
 

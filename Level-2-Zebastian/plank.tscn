@@ -6,7 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n733v"]
 size = Vector2(32, 8)
 
-[node name="Plank" type="AnimatableBody2D"]
+[node name="Plank" type="AnimatableBody2D" groups=["MovingPlatform"]]
+collision_layer = 4
 script = ExtResource("1_n733v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

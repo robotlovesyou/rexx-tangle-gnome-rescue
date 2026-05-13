@@ -539,6 +539,7 @@ gravity = Vector3(0, 98, 0)
 alpha_curve = SubResource("CurveTexture_8viyr")
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 257
 collision_mask = 212
 floor_snap_length = 4.0
 safe_margin = 0.8
@@ -636,9 +637,11 @@ trail_lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_od3ui")
 
 [node name="NomNomPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
 
 [node name="CoinPickupPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("40_d30e8")
+bus = &"SFX"
 
 [node name="WalkPlayer" type="AudioStreamPlayer2D" parent="."]
 bus = &"Level"
