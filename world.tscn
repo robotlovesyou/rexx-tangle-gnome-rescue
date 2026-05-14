@@ -1,11 +1,19 @@
-[gd_scene load_steps=14 format=4 uid="uid://dn38w2ha0ewsy"]
+[gd_scene load_steps=14 format=4 uid="uid://bwexd6yvbtcge"]
 
 [ext_resource type="PackedScene" uid="uid://bj8nksu43vylw" path="res://floor_terrain.tscn" id="1_f3sb7"]
-[ext_resource type="Script" uid="uid://bqo5wugngriaa" path="res://world.gd" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://y4tb8v4fvs66" path="res://Gnomes/gnome.tscn" id="4_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://4vps187bfj4v" path="res://GnomeNope.png" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://cvqug7c3bild7" path="res://moving_platform.tscn" id="6_dwbse"]
+
+[sub_resource type="GDScript" id="GDScript_036b0"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	MovementHistory.reset($Player.position, Enums.Action.IDLING)
+"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fj7yv"]
 load_path = "res://.godot/imported/Brick.png-86a2cfd0e3bd8893356a06e9b84aa48c.ctex"
@@ -48,7 +56,7 @@ _data = {
 point_count = 2
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_tlwt5")
+script = SubResource("GDScript_036b0")
 
 [node name="FloorTerrain" parent="." instance=ExtResource("1_f3sb7")]
 

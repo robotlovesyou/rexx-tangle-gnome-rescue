@@ -56,9 +56,6 @@ var safe_spot: GnomeSafeSpot:
 var hello_player: AudioStreamPlayer2D:
 	get: return $HelloPlayer
 	
-var death_player: AudioStreamPlayer2D:
-	get: return $DeathPlayer
-	
 var rescue_player: AudioStreamPlayer2D:
 	get: return $RescuePlayer
 	
@@ -82,9 +79,6 @@ var ghost_gnome: Node2D:
 	
 var appear_player: AnimationPlayer:
 	get: return $AppearPlayer
-	
-var burn_effect_player: AudioStreamPlayer2D:
-	get: return $BurnEffectPlayer
 
 func _ready() -> void:
 	_default_collision_mask = collision_mask
@@ -129,7 +123,7 @@ func _handle_player_on_platform() -> void:
 
 func _switch_to_strategy(strategy: GnomeStrategy) -> void:
 	if _strategy: _strategy.on_exit_state()
-	if _strategy: print("%s ==> %s" % [_strategy.state_name(), strategy.state_name()])
+	#if _strategy: print("%s ==> %s" % [_strategy.state_name(), strategy.state_name()])
 	_strategy = strategy
 	_strategy.on_enter_state()
 
@@ -328,9 +322,11 @@ func die() -> void:
 	
 func gnome_has_died() -> void:
 	if _saved:
+		print("saved gnome died")
 		Events.saved_gnome_died_async()
 	else:
-		died.emit()
+		died.emit.call_deferred()
+		print("gnome died")
 
 func _on_hello_player_finished() -> void:
 	gnome_speech.hide()

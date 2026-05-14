@@ -17,5 +17,6 @@ var burn_effect_player: AudioStreamPlayer2D:
 	get: return $BurnEffectPlayer
 	
 func _ready() -> void:
+	$AnimatedSprite2D.material = $AnimatedSprite2D.material.duplicate()
 	animation_player.play("burn")
 	burn_effect_player.play()

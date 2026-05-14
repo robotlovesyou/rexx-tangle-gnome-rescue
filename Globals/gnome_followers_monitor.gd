@@ -10,6 +10,7 @@ func _ready() -> void:
 	# EventsManager.player_off_moving_platform.connect(handle_player_off_moving_platform)
 
 func reset() -> void:
+	print("resetting")
 	_followers_dict.clear()
 	_followers_index.clear()
 
@@ -18,6 +19,7 @@ func add(gnome: Gnome) -> int:
 	var offset = _followers_index.size()
 	_followers_dict[gnome.get_instance_id()] = offset
 	_followers_index.append(gnome)
+	print("added. size is now %d" % _followers_index.size())
 	return offset
 
 func remove(gnome: Gnome) -> void:
@@ -27,6 +29,7 @@ func remove(gnome: Gnome) -> void:
 	_followers_index.remove_at(offset)
 	for i in range(offset, _followers_index.size()):
 		_followers_dict[_followers_index[i].get_instance_id()] = i
+	print("removed. size is now %d" % _followers_index.size())
 		
 var all: Array[Gnome]:
 	get: return _followers_index.duplicate()

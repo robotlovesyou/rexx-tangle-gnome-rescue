@@ -95,12 +95,14 @@ func _despawn_player() -> void:
 		await PMonitor.player.tree_exited
 
 func _spawn_player(root: Node, immediate_sibling: Node) -> Player:
+	MovementHistory.reset(Level.spawn_point.global_position, Enums.Action.NONE)
 	var player = player_scene.instantiate()
 	root.add_child(player)
 	root.move_child(player, immediate_sibling.get_index()+1)
 	player.global_position = Level.spawn_point.global_position
 	player.get_camera().make_current()
 	PMonitor.player = player
+	print("spawned player")
 	return player
 	
 func _spawn_saved_gnome() -> void:
@@ -110,6 +112,7 @@ func _spawn_saved_gnome() -> void:
 	gnome.global_position = Level.spawn_point.global_position
 	gnome.save()
 	gnome.appear()
+	print("spawned saved gnome")
 	
 func _time_seconds() -> float:
 	return Time.get_ticks_msec() / 1000.0

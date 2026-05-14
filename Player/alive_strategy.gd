@@ -104,7 +104,7 @@ func _determine_direction() -> void:
 
 func _determine_has_jumped_or_stopped() -> void:
 	_has_jumped = _input_strategy.just_pressed_jump()
-	_has_stopped_jump = _input_strategy.just_released_jump() and not _parent.is_on_floor()
+	_has_stopped_jump = _input_strategy.just_released_jump() and not _parent.is_on_floor() and _parent.velocity.y <= 0
 	# if Input.is_action_just_pressed("ui_accept"):
 	# 	_has_jumped = is_on_wall_only() or is_on_floor() or _action == Enums.Action.JUMPING or _action == Enums.Action.FALLING
 	# else:

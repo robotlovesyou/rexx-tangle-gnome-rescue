@@ -63,7 +63,7 @@ func release_player() -> void:
 		_player_caught = false
 		stretch.stop()
 		_strands = []
-		Events.player_broke_web.disconnect(_broke_web)
+	Events.player_broke_web.disconnect(_broke_web)
 	
 func _init_strands(to: Vector2) -> void:
 	var closest = _find_closest_anchor_point(to)
