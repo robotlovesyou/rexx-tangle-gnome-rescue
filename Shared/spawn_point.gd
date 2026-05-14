@@ -57,6 +57,8 @@ func _activate_self() -> void:
 	_show_light_if_lit()
 	if !Engine.is_editor_hint():
 		Level.spawn_point = self
+		for gnome in FollowersMonitor.all:
+			gnome.save()
 
 func _deactivate_self() -> void:
 	_active = false

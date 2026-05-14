@@ -6,6 +6,7 @@ const GNOME_BURN_TIME = 1.0
 
 @export var player_scene: PackedScene
 @export var broken_player_scene: PackedScene
+@export var gnome_scene: PackedScene
 @export var dismembered_gnome_scene: PackedScene
 @export var burning_player_scene: PackedScene
 @export var burning_gnome_scene: PackedScene
@@ -72,6 +73,7 @@ func _ready() -> void:
 	Events.gnome_rescued.connect(_on_gnome_rescued)
 	Events.gnome_hit_projectile.connect(_on_gnome_hit_projectile)
 	Events.gnome_reported_position.connect(hud.report_gnome_location)
+	Events.saved_gnome_died.connect(_on_saved_gnome_died)
 	Events.player_collected_sandwich.connect(_on_player_collected_sandwich)
 	Events.player_collected_coin.connect(_on_player_collected_coin)
 	_update_gnome_count_in_hud()
@@ -100,6 +102,14 @@ func _spawn_player(root: Node, immediate_sibling: Node) -> Player:
 	player.get_camera().make_current()
 	PMonitor.player = player
 	return player
+	
+func _spawn_saved_gnome() -> void:
+	var gnome = gnome_scene.instantiate() as Gnome
+	gnome.prepare_appear()
+	add_child(gnome)
+	gnome.global_position = Level.spawn_point.global_position
+	gnome.save()
+	gnome.appear()
 	
 func _time_seconds() -> float:
 	return Time.get_ticks_msec() / 1000.0
@@ -302,6 +312,9 @@ func _on_player_collected_coin(coin: Coin) -> void:
 	_coin_count += 1
 	_update_coin_count_in_hud()
 	PMonitor.player.play_coin_pickup()
+	
+func _on_saved_gnome_died() -> void:
+	_spawn_saved_gnome()
 	
 func _find_level_bounds() -> Rect2:
 	# find all the tilemaps and get their bounds

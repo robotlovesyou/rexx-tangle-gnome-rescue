@@ -1,6 +1,7 @@
 class_name LevelEventBus
 extends Node
 
+signal saved_gnome_died
 signal player_burned
 signal gnome_burned(Gnome)
 signal player_poisoned
@@ -29,6 +30,11 @@ signal player_broke_web
 signal player_collected_sandwich(sandwich: SudoSandwich)
 signal player_collected_coin(coin: Coin)
 
+func saved_gnome_died_sync():
+	saved_gnome_died.emit()
+	
+func saved_gnome_died_async():
+	saved_gnome_died.emit.call_deferred()
 
 func player_burned_sync() -> void:
 	player_burned.emit()

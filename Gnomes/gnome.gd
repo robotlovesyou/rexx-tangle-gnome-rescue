@@ -28,6 +28,7 @@ const TRAP_ONLY_COLLISION_MASK = 7
 	EffectPlayer.MAX_VOLUME: 0.0
 	})
 
+var _saved := false
 var _action: Enums.GnomeAction
 var _player_action: Enums.Action
 var _strategy: GnomeStrategy
@@ -36,6 +37,8 @@ var _safe_spot: GnomeSafeSpot
 var _has_said_hello := false
 var _default_collision_mask := 0
 
+var saved: bool:
+	get: return _saved
 
 var follow_index: int:
 	get:
@@ -324,7 +327,10 @@ func die() -> void:
 	_handle_gnome_event(Enums.GnomeEvent.DIED)
 	
 func gnome_has_died() -> void:
-	died.emit()
+	if _saved:
+		Events.saved_gnome_died_async()
+	else:
+		died.emit()
 
 func _on_hello_player_finished() -> void:
 	gnome_speech.hide()
@@ -364,3 +370,6 @@ func appear() -> void:
 	
 func falling_fatally() -> void:
 	_handle_gnome_event(Enums.GnomeEvent.FALLING_FATALLY)
+	
+func save() -> void:
+	_saved = true

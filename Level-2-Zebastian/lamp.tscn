@@ -24,4 +24,4 @@ texture = ExtResource("1_xu4lx")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture = SubResource("GradientTexture2D_b6hyt")
-texture_scale = 4.11
+texture_scale = 8.0
