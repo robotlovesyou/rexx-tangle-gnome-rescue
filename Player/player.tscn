@@ -542,6 +542,7 @@ alpha_curve = SubResource("CurveTexture_8viyr")
 collision_layer = 257
 collision_mask = 212
 floor_snap_length = 4.0
+platform_on_leave = 2
 safe_margin = 0.8
 script = ExtResource("1_vtle1")
 steps = Array[AudioStreamWAV]([ExtResource("3_5htga"), ExtResource("4_p5o4e"), ExtResource("5_gu6f8"), ExtResource("6_dkpta")])

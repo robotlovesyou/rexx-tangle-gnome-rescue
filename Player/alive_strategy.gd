@@ -168,7 +168,8 @@ func _handle_jump() -> void:
 			_parent.wall_jump_timer.start()
 		elif _parent.is_on_floor() or _parent.coyote_jump_timer.time_left > 0.0:
 			_parent.velocity.y = _parent.movement_config.JUMP_VELOCITY
-			_parent.velocity += _parent.get_platform_velocity()
+			if _is_on_platform():
+				_parent.velocity += _parent.get_platform_velocity()
 		elif not _parent.is_on_floor() and _action == Enums.Action.DOUBLE_JUMPING:
 			_parent.velocity.y = _parent.movement_config.JUMP_VELOCITY * _parent.movement_config.DOUBLE_JUMP_SCALE
 	elif _has_stopped_jump:

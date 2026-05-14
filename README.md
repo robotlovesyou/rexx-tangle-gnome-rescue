@@ -3,9 +3,8 @@
 # TO DO
 
 ## Next Up
-* Try using global illumination instead of point lights on the layer for things like particles
+* Remove the collision mask and add an area2d to the drop traps, so they don't push the player/gnomes through the floor
 * Lay out level
-* Add the surface leaves tilemap layers so large platform blocks can be broken up.
 * Add wormies and other bugs to break up large platform blocks even more.
 
 
@@ -22,6 +21,8 @@
 * Add continue/new game buttons to the title screen
 
 ## Done
+* ~~Add the surface leaves tilemap layers so large platform blocks can be broken up.~~
+* ~~Try using global illumination instead of point lights on the layer for things like particles~~
 * ~~optimise lighting for flame traps by adding some lighting toggles, and creating some pre-built lights for 2/3/4/5/6 traps using a single point light~~
 * ~~Draw Big Old Trees~~
 * ~~Misty Background~~

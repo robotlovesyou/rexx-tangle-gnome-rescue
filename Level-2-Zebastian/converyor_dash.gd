@@ -35,7 +35,8 @@ func _physics_process(delta: float) -> void:
 		var follower = _followers_queue[i]
 		var plank = _planks_queue[i]
 		follower.progress_ratio += delta/travel_time_seconds
-		plank.global_position.x = follower.global_position.x
+		plank.frame_velocity = follower.global_position - plank.global_position
+		#plank.global_position.x = follower.global_position.x
 		
 	if _followers_queue.front().progress_ratio >= 1.0:
 		(_followers_queue.pop_front()).queue_free()

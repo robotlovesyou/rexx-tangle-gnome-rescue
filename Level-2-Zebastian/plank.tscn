@@ -8,6 +8,7 @@ size = Vector2(32, 8)
 
 [node name="Plank" type="AnimatableBody2D" groups=["MovingPlatform"]]
 collision_layer = 4
+sync_to_physics = false
 script = ExtResource("1_n733v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

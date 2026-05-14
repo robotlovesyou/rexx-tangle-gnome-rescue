@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=126 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://danj42f0n1wdv" path="res://Level-2-Zebastian/level_2_zebastian.gd" id="1_wprv3"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -843,16 +843,185 @@ terrain_set_0/terrain_0/name = "BlueFloor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_o5dvu")
 
-[sub_resource type="Gradient" id="Gradient_s13ap"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="Curve" id="Curve_cqaoe"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.091603056, 1), 0.0, 0.0, 0, 0, Vector2(0.7319149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ymo16"]
-gradient = SubResource("Gradient_s13ap")
-width = 128
-height = 128
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.8, 0.8)
+[sub_resource type="CurveTexture" id="CurveTexture_2go6y"]
+curve = SubResource("Curve_cqaoe")
+
+[sub_resource type="Gradient" id="Gradient_njlbc"]
+colors = PackedColorArray(0.19310254, 0.30628648, 0.7774328, 1, 0.49, 0.6854999, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hphnu"]
+gradient = SubResource("Gradient_njlbc")
+
+[sub_resource type="Curve" id="Curve_qoqep"]
+_data = [Vector2(0, 0.9438202), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_frdl8"]
+curve = SubResource("Curve_qoqep")
+
+[sub_resource type="Curve" id="Curve_b35c1"]
+_data = [Vector2(0.31751823, 0), 0.0, 0.0, 0, 0, Vector2(0.5109489, 0.77382755), 0.0, 0.0, 0, 0, Vector2(0.76277375, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_s503m"]
+curve = SubResource("Curve_b35c1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_neube"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(64, 64, 0)
+gravity = Vector3(-200, -80, 0)
+scale_min = 2.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_hphnu")
+alpha_curve = SubResource("CurveTexture_2go6y")
+emission_curve = SubResource("CurveTexture_frdl8")
+turbulence_enabled = true
+turbulence_noise_strength = 0.05
+turbulence_noise_scale = 10.0
+turbulence_noise_speed = Vector3(1, 0, 0)
+turbulence_noise_speed_random = 0.1
+turbulence_influence_min = 0.05
+turbulence_influence_over_life = SubResource("CurveTexture_s503m")
+
+[sub_resource type="Curve" id="Curve_tg548"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.091603056, 1), 0.0, 0.0, 0, 0, Vector2(0.7319149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_5q52l"]
+curve = SubResource("Curve_tg548")
+
+[sub_resource type="Gradient" id="Gradient_acvqa"]
+colors = PackedColorArray(0.19310254, 0.30628648, 0.7774328, 1, 0.49, 0.6854999, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t0ca4"]
+gradient = SubResource("Gradient_acvqa")
+
+[sub_resource type="Curve" id="Curve_ipom0"]
+_data = [Vector2(0, 0.9438202), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_3mj5d"]
+curve = SubResource("Curve_ipom0")
+
+[sub_resource type="Curve" id="Curve_xnuk4"]
+_data = [Vector2(0.31751823, 0), 0.0, 0.0, 0, 0, Vector2(0.5109489, 0.77382755), 0.0, 0.0, 0, 0, Vector2(0.76277375, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8dwy0"]
+curve = SubResource("Curve_xnuk4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qfbd"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(64, 64, 0)
+gravity = Vector3(-140, -120, 0)
+scale_min = 2.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_t0ca4")
+alpha_curve = SubResource("CurveTexture_5q52l")
+emission_curve = SubResource("CurveTexture_3mj5d")
+turbulence_enabled = true
+turbulence_noise_strength = 0.05
+turbulence_noise_scale = 10.0
+turbulence_noise_speed = Vector3(1, 0, 0)
+turbulence_noise_speed_random = 0.1
+turbulence_influence_min = 0.05
+turbulence_influence_over_life = SubResource("CurveTexture_8dwy0")
+
+[sub_resource type="Curve" id="Curve_4gy7s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.091603056, 1), 0.0, 0.0, 0, 0, Vector2(0.7319149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_2rb3r"]
+curve = SubResource("Curve_4gy7s")
+
+[sub_resource type="Gradient" id="Gradient_1xtmn"]
+colors = PackedColorArray(0.19310254, 0.30628648, 0.7774328, 1, 0.49, 0.6854999, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uf8m2"]
+gradient = SubResource("Gradient_1xtmn")
+
+[sub_resource type="Curve" id="Curve_doelw"]
+_data = [Vector2(0, 0.9438202), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_xwe3k"]
+curve = SubResource("Curve_doelw")
+
+[sub_resource type="Curve" id="Curve_sxlcd"]
+_data = [Vector2(0.31751823, 0), 0.0, 0.0, 0, 0, Vector2(0.5109489, 0.77382755), 0.0, 0.0, 0, 0, Vector2(0.76277375, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h814u"]
+curve = SubResource("Curve_sxlcd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jeim0"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(64, 64, 0)
+gravity = Vector3(-220, -30, 0)
+scale_min = 2.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_uf8m2")
+alpha_curve = SubResource("CurveTexture_2rb3r")
+emission_curve = SubResource("CurveTexture_xwe3k")
+turbulence_enabled = true
+turbulence_noise_strength = 0.05
+turbulence_noise_scale = 10.0
+turbulence_noise_speed = Vector3(1, 0, 0)
+turbulence_noise_speed_random = 0.1
+turbulence_influence_min = 0.05
+turbulence_influence_over_life = SubResource("CurveTexture_h814u")
+
+[sub_resource type="Curve" id="Curve_2go6y"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.091603056, 1), 0.0, 0.0, 0, 0, Vector2(0.7319149, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_njlbc"]
+curve = SubResource("Curve_2go6y")
+
+[sub_resource type="Gradient" id="Gradient_hphnu"]
+colors = PackedColorArray(0.19310254, 0.30628648, 0.7774328, 1, 0.49, 0.6854999, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qoqep"]
+gradient = SubResource("Gradient_hphnu")
+
+[sub_resource type="Curve" id="Curve_frdl8"]
+_data = [Vector2(0, 0.9438202), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_b35c1"]
+curve = SubResource("Curve_frdl8")
+
+[sub_resource type="Curve" id="Curve_s503m"]
+_data = [Vector2(0.31751823, 0), 0.0, 0.0, 0, 0, Vector2(0.5109489, 0.77382755), 0.0, 0.0, 0, 0, Vector2(0.76277375, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_neube"]
+curve = SubResource("Curve_s503m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tg548"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(64, 64, 0)
+gravity = Vector3(-240, -200, 0)
+scale_min = 2.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_qoqep")
+alpha_curve = SubResource("CurveTexture_njlbc")
+emission_curve = SubResource("CurveTexture_b35c1")
+turbulence_enabled = true
+turbulence_noise_strength = 0.05
+turbulence_noise_scale = 10.0
+turbulence_noise_speed = Vector3(1, 0, 0)
+turbulence_noise_speed_random = 0.1
+turbulence_influence_min = 0.05
+turbulence_influence_over_life = SubResource("CurveTexture_neube")
 
 [sub_resource type="Curve2D" id="Curve2D_rmjhb"]
 _data = {
@@ -2775,7 +2944,7 @@ position = Vector2(3328, 3640)
 lit = true
 
 [node name="SpawnPoint3" parent="." instance=ExtResource("6_ak2hd")]
-position = Vector2(224, 1480)
+position = Vector2(223, 1480)
 active = true
 lit = true
 
@@ -2845,14 +3014,40 @@ light_mask = 4
 position = Vector2(3820.917, 2726.6104)
 amount = 16
 lifetime = 4.0
+visibility_rect = Rect2(-64.947266, -177.40845, 638.6206, 302.59546)
 process_material = ExtResource("18_s13ap")
 
-[node name="PointLight2D" type="PointLight2D" parent="Directions/DirectionIndicatorParticlesRight"]
+[node name="FlightDecoration" type="GPUParticles2D" parent="Directions" groups=["UsesShaders"]]
 light_mask = 4
-enabled = false
-range_item_cull_mask = 4
-texture = SubResource("GradientTexture2D_ymo16")
-texture_scale = 4.7
+position = Vector2(3190.7014, 3322.2715)
+amount = 16
+lifetime = 4.0
+visibility_rect = Rect2(-480, -280, 1012.339, 612.031)
+process_material = SubResource("ParticleProcessMaterial_neube")
+
+[node name="FlightDecoration2" type="GPUParticles2D" parent="Directions" groups=["UsesShaders"]]
+light_mask = 4
+position = Vector2(2520, 3056)
+amount = 16
+lifetime = 4.0
+visibility_rect = Rect2(-435, -175, 939.399, 418.644)
+process_material = SubResource("ParticleProcessMaterial_8qfbd")
+
+[node name="FlightDecoration3" type="GPUParticles2D" parent="Directions" groups=["UsesShaders"]]
+light_mask = 4
+position = Vector2(2048, 2512)
+amount = 16
+lifetime = 4.0
+visibility_rect = Rect2(-700, -100, 1467.23, 589.657)
+process_material = SubResource("ParticleProcessMaterial_jeim0")
+
+[node name="FlightDecoration4" type="GPUParticles2D" parent="Directions" groups=["UsesShaders"]]
+light_mask = 4
+position = Vector2(1000, 2376)
+amount = 16
+lifetime = 4.0
+visibility_rect = Rect2(-600, -450, 1296.46, 959.089)
+process_material = SubResource("ParticleProcessMaterial_tg548")
 
 [node name="Lights" type="Node" parent="."]
 
@@ -3561,20 +3756,6 @@ max_center_offset = 32.0
 
 [node name="GlowWormSpawner6" parent="GlowWorms" instance=ExtResource("29_eblxv")]
 position = Vector2(2560.661, 1216.504)
-glow_worm_count = 6
-max_range = 256
-min_range = 64.0
-max_center_offset = 64.0
-
-[node name="GlowWormSpawner7" parent="GlowWorms" instance=ExtResource("29_eblxv")]
-position = Vector2(2905, 3157)
-glow_worm_count = 6
-max_range = 256
-min_range = 64.0
-max_center_offset = 64.0
-
-[node name="GlowWormSpawner8" parent="GlowWorms" instance=ExtResource("29_eblxv")]
-position = Vector2(2040, 2632)
 glow_worm_count = 6
 max_range = 256
 min_range = 64.0
