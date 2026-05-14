@@ -2768,7 +2768,6 @@ position = Vector2(5112.339, 1211.6692)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("6_ak2hd")]
 position = Vector2(1152, 4296)
-active = true
 lit = true
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("6_ak2hd")]
@@ -2777,6 +2776,7 @@ lit = true
 
 [node name="SpawnPoint3" parent="." instance=ExtResource("6_ak2hd")]
 position = Vector2(224, 1480)
+active = true
 lit = true
 
 [node name="Exit" parent="." instance=ExtResource("7_73l37")]
@@ -3179,7 +3179,7 @@ position = Vector2(24, -71)
 lit = false
 
 [node name="WoodenDropTrap4" parent="Traps" instance=ExtResource("20_mac22")]
-position = Vector2(2944, 1400)
+position = Vector2(3008, 1400)
 attack = 0.2
 
 [node name="Path2D" parent="Traps/WoodenDropTrap4" index="0"]
@@ -3203,7 +3203,7 @@ position = Vector2(24, -71)
 lit = false
 
 [node name="WoodenDropTrap5" parent="Traps" instance=ExtResource("20_mac22")]
-position = Vector2(3328, 1400)
+position = Vector2(3264, 1400)
 attack = 0.2
 
 [node name="Path2D" parent="Traps/WoodenDropTrap5" index="0"]
