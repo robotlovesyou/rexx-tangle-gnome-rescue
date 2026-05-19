@@ -3,9 +3,9 @@
 # TO DO
 
 ## Next Up
-* BUG: collecting a gnome whilst webbed causes an index out of bounds error
 * Lay out level
-* All the player's gnomes should die when they do so that they can't get stuck in dumb places
+* BUG: collecting a gnome whilst webbed causes an index out of bounds error
+* Whenever either the player or one of their gnomes dies, the death, and cause of death, should chain along all the gnomes and the player.
 * All the lights should react to beat2 or beat1. Use different approaches for each light (energy or area modulation. Color modulation etc)
 * Remove the collision mask and add an area2d to the drop traps, so they don't push the player/gnomes through the floor
 * Add wormies and other bugs to break up large platform blocks even more.

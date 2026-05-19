@@ -10,6 +10,8 @@ func _init(parent: Player, web: SpiderWeb):
 	super(parent)
 	_web = web
 	
+func _check_falling() -> void:
+	pass
 	
 func on_enter() -> void:
 	_caught_at = _parent.global_position

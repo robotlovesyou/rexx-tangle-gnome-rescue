@@ -181,7 +181,6 @@ func _ready() -> void:
 	Events.player_collected_by_birbs.connect(collected_by_birbs)
 	Events.player_deposited_by_birbs.connect(deposited_by_birbs)
 	Events.player_caught_in_web.connect(caught_in_web)
-	#Events.player_broke_web.connect(broke_web)
 
 func done_appearing() -> void:
 	_switch_to_strategy(AliveStrategy.new(self))
