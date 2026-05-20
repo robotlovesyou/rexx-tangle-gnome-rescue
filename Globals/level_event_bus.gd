@@ -5,6 +5,7 @@ signal saved_gnome_died
 signal player_burned
 signal gnome_burned(Gnome)
 signal player_poisoned
+signal gnome_poisoned(Gnome)
 signal player_hit_spike_trap(SpikeTrap)
 signal gnome_hit_spike_trap(SpikeTrap, Gnome)
 signal player_hit_drop_trap(DropTrap)
@@ -47,6 +48,12 @@ func player_poisoned_sync() -> void:
 	
 func player_poisoned_async() -> void:
 	player_poisoned.emit.call_deferred()
+	
+func gnome_poisoned_sync(gnome: Gnome) -> void:
+	gnome_poisoned.emit(gnome)
+	
+func gnome_poisoned_async(gnome: Gnome) -> void:
+	gnome_poisoned.emit.call_deferred(gnome)
 	
 func gnome_burned_sync(gnome: Gnome) -> void:
 	gnome_burned.emit(gnome)

@@ -1,0 +1,126 @@
+[gd_scene load_steps=18 format=3 uid="uid://dkcjkcahutw3a"]
+
+[ext_resource type="Script" uid="uid://datg4eeddjti0" path="res://Gnomes/poisoned_gnome.gd" id="1_mmirr"]
+[ext_resource type="Shader" uid="uid://bvancdxkbbtqi" path="res://poisoned.gdshader" id="2_c2vvt"]
+[ext_resource type="Texture2D" uid="uid://dvifkf3nuc52h" path="res://RexxArt/Gnomes/idle.png" id="3_puvhl"]
+[ext_resource type="AudioStream" uid="uid://bglj80htxbopg" path="res://Player/burn_fx_01.wav" id="4_6mswh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_puvhl"]
+frequency = 0.0639
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6mswh"]
+noise = SubResource("FastNoiseLite_puvhl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ir1x"]
+shader = ExtResource("2_c2vvt")
+shader_parameter/noise = SubResource("NoiseTexture2D_6mswh")
+shader_parameter/amount = 0.999999977648
+shader_parameter/threshold = 0.1
+shader_parameter/edge_color = Color(0.5411765, 0.6039216, 0.35686275, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quao2"]
+atlas = ExtResource("3_puvhl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgy4u"]
+atlas = ExtResource("3_puvhl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p88ma"]
+atlas = ExtResource("3_puvhl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgtbi"]
+atlas = ExtResource("3_puvhl")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u3yb"]
+atlas = ExtResource("3_puvhl")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaeyg"]
+atlas = ExtResource("3_puvhl")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wwoms"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quao2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgy4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p88ma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgtbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u3yb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaeyg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_njd2j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.999999977648]
+}
+
+[sub_resource type="Animation" id="Animation_rvbd0"]
+resource_name = "poison"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.999999977648, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_82fbk"]
+_data = {
+&"RESET": SubResource("Animation_njd2j"),
+&"poison": SubResource("Animation_rvbd0")
+}
+
+[node name="PoisonedGnome" type="Node2D"]
+script = ExtResource("1_mmirr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_1ir1x")
+sprite_frames = SubResource("SpriteFrames_wwoms")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_82fbk")
+}
+
+[node name="BurnEffectPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_6mswh")
+pitch_scale = 1.2
+max_distance = 400.0
+bus = &"SFX"

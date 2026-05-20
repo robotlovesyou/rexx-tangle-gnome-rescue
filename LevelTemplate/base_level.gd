@@ -3,6 +3,7 @@ extends Node2D
 
 const CHUNK_DURATION = 1.0/60.1
 const GNOME_BURN_TIME = 1.0
+const DEATH_CHAIN_DELAY_SECONDS := 0.25
 
 @export var player_scene: PackedScene
 @export var broken_player_scene: PackedScene
@@ -11,6 +12,7 @@ const GNOME_BURN_TIME = 1.0
 @export var burning_player_scene: PackedScene
 @export var burning_gnome_scene: PackedScene
 @export var poisoned_player_scene: PackedScene
+@export var poisoned_gnome_scene: PackedScene
 @export var sandwich_death_scene: PackedScene
 @export var coin_death_scene: PackedScene
 @export var next_level: String
@@ -58,7 +60,6 @@ func _ready() -> void:
 	MovementHistory.reset($Player.position, Enums.Action.IDLING)
 	FollowersMonitor.reset()
 	Events.player_burned.connect(_on_player_burned)
-	Events.gnome_burned.connect(_burn_gnome)
 	Events.player_poisoned.connect(_on_player_poisoned)
 	Events.player_hit_spike_trap.connect(_on_player_hit_spike_trap)
 	Events.player_hit_enemy.connect(_on_player_hit_emeny)
@@ -67,6 +68,8 @@ func _ready() -> void:
 	Events.player_hit_floor_fatally.connect(_on_player_hit_floor_fatally)
 	Events.player_killed_enemy.connect(_on_player_killed_enemy)
 	Events.player_exited_level.connect(_on_player_exited_level)
+	Events.gnome_burned.connect(_on_gnome_burned)
+	Events.gnome_poisoned.connect(_on_gnome_poisoned)
 	Events.gnome_hit_spike_trap.connect(_on_gnome_hit_spike_trap)
 	Events.gnome_hit_drop_trap.connect(_on_gnome_hit_drop_trap)
 	Events.gnome_hit_floor_fatally.connect(_on_gnome_hit_floor_fatally)
@@ -139,25 +142,22 @@ func _physics_process(delta: float) -> void:
 		PMonitor.player.exit(exit)
 		
 func _on_player_poisoned() -> void:
-	_kill_player(Enums.DeathReason.POISONED)
+	_kill_everyone(Enums.DeathReason.POISONED)
 			
 func _on_player_burned() -> void:
-	_kill_player(Enums.DeathReason.BURNED)
+	_kill_everyone(Enums.DeathReason.BURNED)
 
 func _on_player_hit_spike_trap(_trap: SpikeTrap) -> void:
-	_kill_player(Enums.DeathReason.PIERCED)
+	_kill_everyone(Enums.DeathReason.PIERCED)
 
 func _on_player_hit_emeny(_enemy: Enemy) -> void:
-	_kill_player(Enums.DeathReason.PIERCED)
+	_kill_everyone(Enums.DeathReason.PIERCED)
 	
 func _on_player_hit_floor_fatally() -> void:
-	for gnome in FollowersMonitor.all:
-		gnome.falling_fatally()
-	_kill_player(Enums.DeathReason.PIERCED)
+	_kill_everyone(Enums.DeathReason.PIERCED)
 	
-func _on_gnome_hit_floor_fatally(gnome: Gnome) -> void:
-	_spawn_dismembered_gnome(gnome)
-	_kill_gnome(gnome)
+func _on_gnome_hit_floor_fatally(_gnome: Gnome) -> void:
+	_kill_everyone(Enums.DeathReason.PIERCED)
 
 func _spawn_broken_player(at: Vector2, initial_velocity: Vector2) -> void:
 	(_spawn_dead_player(at, broken_player_scene) as BrokenRexx).set_initial_velocity(initial_velocity)
@@ -188,10 +188,24 @@ func _spawn_dismembered_gnome(gnome: Gnome) -> void:
 func _spawn_burning_gnome(gnome: Gnome) -> void:
 	_spawn_dead_gnome(gnome, burning_gnome_scene)
 	
+func _spawn_poisoned_gnome(gnome: Gnome) -> void:
+	_spawn_dead_gnome(gnome, poisoned_gnome_scene)
+	
+func _on_gnome_burned(_gnome: Gnome):
+	_kill_everyone(Enums.DeathReason.BURNED)
+	
+func _on_gnome_poisoned(_gnome: Gnome):
+	_kill_everyone(Enums.DeathReason.POISONED)
 
-func _on_gnome_hit_spike_trap(_trap: SpikeTrap, gnome: Gnome) -> void:
-	_spawn_dismembered_gnome(gnome)
-	_kill_gnome(gnome)
+func _on_gnome_hit_spike_trap(_trap: SpikeTrap, _gnome: Gnome) -> void:
+	_kill_everyone(Enums.DeathReason.PIERCED)
+	
+func _kill_everyone(reason: Enums.DeathReason) -> void:
+	var followers = FollowersMonitor.all.duplicate()
+	for gnome in followers:
+		_kill_gnome(gnome, reason)
+		
+	_kill_player(reason)
 	
 func _kill_player(reason: Enums.DeathReason) -> void:
 	_deaths += 1
@@ -222,6 +236,22 @@ func _kill_player(reason: Enums.DeathReason) -> void:
 	await PMonitor.player.done_dying
 	_despawn_player()
 	_spawn_player(self, player_sibling_node)
+		
+func _kill_gnome(gnome: Gnome, reason: Enums.DeathReason) -> void:
+	match reason:
+		Enums.DeathReason.PIERCED:
+			_spawn_dismembered_gnome(gnome)
+		Enums.DeathReason.BURNED:
+			_spawn_burning_gnome(gnome)
+		Enums.DeathReason.POISONED:
+			_spawn_poisoned_gnome(gnome)
+			
+	gnome.die()
+	await get_tree().create_timer(0).timeout
+	_update_gnome_count_in_hud()
+	# This has a race condition. It will be needed for hard mode but it is not currently needed
+	#if _current_gnome_count + _rescue_count < minimum_gnomes:
+		#game_over(GameOverScreen.Reason.NOT_ENOUGH_GNOMES)
 	
 func _spawn_sandwich_death(count: int, at: Vector2) -> void:
 	var sandwich_death = sandwich_death_scene.instantiate() as SandwichDeath
@@ -244,22 +274,6 @@ func _on_player_killed_enemy(enemy: Enemy) -> void:
 func _on_player_exited_level() -> void:
 	Level.replace_level_with(next_level)
 	
-func _dismember_gnome(gnome: Gnome) -> void:
-	_spawn_dismembered_gnome(gnome)
-	_kill_gnome(gnome)
-	
-func _burn_gnome(gnome: Gnome) -> void:
-	_spawn_burning_gnome(gnome)
-	_kill_gnome(gnome)
-
-func _kill_gnome(gnome: Gnome) -> void:
-	gnome.die()
-	await get_tree().create_timer(0).timeout
-	_update_gnome_count_in_hud()
-	# This has a race condition. It will be needed for hard mode but it is not currently needed
-	#if _current_gnome_count + _rescue_count < minimum_gnomes:
-		#game_over(GameOverScreen.Reason.NOT_ENOUGH_GNOMES)
-
 func game_over(reason: GameOverScreen.Reason) -> void:
 	var scene = load(game_over_scene_path)
 	var instance = scene.instantiate()
@@ -293,16 +307,16 @@ func _on_player_exited_exit() -> void:
 	_player_over_exit = false
 
 func _on_player_hit_drop_trap(_trap: DropTrap) -> void:
-	_kill_player(Enums.DeathReason.PIERCED)
+	_kill_everyone(Enums.DeathReason.PIERCED)
 
-func _on_gnome_hit_drop_trap(_trap: DropTrap, gnome: Gnome) -> void:
-	_dismember_gnome(gnome)
+func _on_gnome_hit_drop_trap(_trap: DropTrap, _gnome: Gnome) -> void:
+	_kill_everyone(Enums.DeathReason.PIERCED)
 
 func _on_player_hit_projectile() -> void:
-	_kill_player(Enums.DeathReason.PIERCED)
+	_kill_everyone(Enums.DeathReason.PIERCED)
 
-func _on_gnome_hit_projectile(gnome: Gnome) -> void:
-	_dismember_gnome(gnome)
+func _on_gnome_hit_projectile(_gnome: Gnome) -> void:
+	_kill_everyone(Enums.DeathReason.PIERCED)
 	
 func _on_player_collected_sandwich(sandwich: SudoSandwich) -> void:
 	sandwich.eat()

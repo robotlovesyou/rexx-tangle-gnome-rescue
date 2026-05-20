@@ -96,5 +96,10 @@ func _physics_process(_delta: float) -> void:
 			
 		var gnomes := FollowersMonitor.all
 		for i in range(gnomes.size()):
+			# if the player captures a gnome while webbed this will go out of bounds so 
+			# we add a guard condition
+			if i + player_anchor_points.size() >= _strands.size():
+				print("breaking")
+				break
 			_strands[i + player_anchor_points.size()].remove_point(1)
 			_strands[i + player_anchor_points.size()].add_point(to_local(gnomes[i].global_position))

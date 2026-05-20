@@ -3,12 +3,10 @@
 # TO DO
 
 ## Next Up
-* Lay out level
-* BUG: collecting a gnome whilst webbed causes an index out of bounds error
-* Whenever either the player or one of their gnomes dies, the death, and cause of death, should chain along all the gnomes and the player.
 * All the lights should react to beat2 or beat1. Use different approaches for each light (energy or area modulation. Color modulation etc)
 * Remove the collision mask and add an area2d to the drop traps, so they don't push the player/gnomes through the floor
 * Add wormies and other bugs to break up large platform blocks even more.
+* Better flown by birbs animation. Try creating a kinematic rope.
 
 
 ## Backlog
@@ -24,6 +22,9 @@
 * Add continue/new game buttons to the title screen
 
 ## Done
+* ~~Whenever either the player or one of their gnomes dies, the death, and cause of death, should chain along all the gnomes and the player.~~
+* ~~BUG: collecting a gnome whilst webbed causes an index out of bounds error~~
+* ~~Lay out level~~
 * ~~Add the surface leaves tilemap layers so large platform blocks can be broken up.~~
 * ~~Try using global illumination instead of point lights on the layer for things like particles~~
 * ~~optimise lighting for flame traps by adding some lighting toggles, and creating some pre-built lights for 2/3/4/5/6 traps using a single point light~~

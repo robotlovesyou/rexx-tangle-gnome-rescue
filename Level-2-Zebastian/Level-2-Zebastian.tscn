@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=4 uid="uid://rmhhkw6ds5ng"]
+[gd_scene load_steps=144 format=4 uid="uid://rmhhkw6ds5ng"]
 
 [ext_resource type="Script" uid="uid://danj42f0n1wdv" path="res://Level-2-Zebastian/level_2_zebastian.gd" id="1_wprv3"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_1cnoy"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b0cw4pso1ysln" path="res://Shared/Bonuses/coin_death.tscn" id="8_qjcvm"]
 [ext_resource type="JSON" path="res://Level-2-Zebastian/melody.json" id="8_s13ap"]
 [ext_resource type="PackedScene" uid="uid://d0rrvvv6k44gt" path="res://Shared/floor.tscn" id="9_g5nbk"]
+[ext_resource type="PackedScene" uid="uid://dkcjkcahutw3a" path="res://Gnomes/poisoned_gnome.tscn" id="9_qoqep"]
 [ext_resource type="Texture2D" uid="uid://bjpqh73qt0sys" path="res://Level-2-Zebastian/EarthAndGrassTiles.png" id="10_fqw8e"]
 [ext_resource type="PackedScene" uid="uid://cepvnfljrn4by" path="res://Shared/hud.tscn" id="10_q7tf0"]
 [ext_resource type="Texture2D" uid="uid://csmkddyfsbnkf" path="res://Level-2-Zebastian/EarthTiles.png" id="11_wprv3"]
@@ -2332,6 +2333,7 @@ dismembered_gnome_scene = ExtResource("4_t31wk")
 burning_player_scene = ExtResource("32_0pu8p")
 burning_gnome_scene = ExtResource("5_sab6v")
 poisoned_player_scene = ExtResource("7_atg5g")
+poisoned_gnome_scene = ExtResource("9_qoqep")
 sandwich_death_scene = ExtResource("7_wyrqx")
 coin_death_scene = ExtResource("8_qjcvm")
 exit = NodePath("Exit")

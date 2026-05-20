@@ -32,7 +32,6 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body is not Player: return
 	_player_detected = true
 
-
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	if body is not Player: return
 	_player_detected = false
