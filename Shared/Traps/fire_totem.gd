@@ -19,6 +19,7 @@ var projectile_anchor: Node2D:
 @export var projectile_scene: PackedScene
 @export var face_right := false
 @export var pre_fire := true
+@export var active := true
 
 func _add_fire_projectile() -> void:
 	_projectile = projectile_scene.instantiate() as FireProjectile
@@ -32,7 +33,7 @@ func _ready() -> void:
 		totem_sprite.flip_h = true
 		projectile_anchor.position.x *= -1.0
 		fire_vector *= -1.0
-	if pre_fire:
+	if pre_fire and active:
 		_pre_fire()
 		
 func _pre_fire() -> void:
@@ -53,6 +54,7 @@ func _pre_fire() -> void:
 			pretime = 0.0
 	
 func _physics_process(delta: float) -> void:
+	if not active: return
 	if _t_delay < delay_time_seconds:
 		_t_delay += delta
 	else:
