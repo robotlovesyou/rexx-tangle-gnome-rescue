@@ -1,15 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://ca454cat81hs1"]
+[gd_scene load_steps=8 format=3 uid="uid://ca454cat81hs1"]
 
 [ext_resource type="Script" uid="uid://bxeg8mk63px4" path="res://Level-2-Zebastian/wide_lamp.gd" id="1_w8yd8"]
 [ext_resource type="Texture2D" uid="uid://x4f4frjm0oow" path="res://Level-2-Zebastian/WideLight.png" id="2_w8yd8"]
 [ext_resource type="Texture2D" uid="uid://do3j6ok1njcvc" path="res://Level-2-Zebastian/WideLamp2.png" id="2_yoout"]
 [ext_resource type="Shader" uid="uid://cdc1x24qj0bjm" path="res://Level-2-Zebastian/wide_lamp.gdshader" id="3_yoout"]
 
+[sub_resource type="Gradient" id="Gradient_yoout"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.33333334, 0.6666667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 3
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y221i"]
+gradient = SubResource("Gradient_yoout")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y221i"]
 shader = ExtResource("3_yoout")
 
 [node name="WideLamp" type="Node2D"]
 script = ExtResource("1_w8yd8")
+color_gradient = SubResource("GradientTexture2D_y221i")
 
 [node name="LampBody" type="Sprite2D" parent="."]
 z_index = 10
