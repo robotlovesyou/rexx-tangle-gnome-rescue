@@ -3322,7 +3322,7 @@ position = Vector2(2655.9097, 3760.2778)
 position = Vector2(2400, 3760)
 
 [node name="WideLamp5" parent="Lights/WideLamps" instance=ExtResource("34_io5ok")]
-position = Vector2(3072, 3600)
+position = Vector2(3076, 3600)
 
 [node name="WideLamp6" parent="Lights/WideLamps" instance=ExtResource("34_io5ok")]
 position = Vector2(3560, 3600)

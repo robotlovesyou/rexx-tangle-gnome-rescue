@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsxvn8g7fhig3"]
+[gd_scene load_steps=11 format=3 uid="uid://bsxvn8g7fhig3"]
 
-[ext_resource type="Script" uid="uid://cd6py15q7x4e6" path="res://Shared/Traps/drop_trap.gd" id="1_sdrfk"]
+[ext_resource type="Script" uid="uid://drlxx4qmei6dt" path="res://Shared/Traps/drop_trap_wood.gd" id="1_luqwg"]
 [ext_resource type="AudioStream" uid="uid://b3ns50xw66rbb" path="res://Sounds/FX/DropTrapHit.wav" id="2_6t02o"]
 [ext_resource type="Texture2D" uid="uid://da4t0bcxcii2a" path="res://Shared/Traps/WoodenDropTrap.png" id="3_sdrfk"]
 
@@ -38,8 +38,11 @@ scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_prqsn")
 alpha_curve = SubResource("CurveTexture_6t02o")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdrfk"]
+size = Vector2(56, 3)
+
 [node name="WoodenDropTrap" type="Node2D" groups=["UsesShaders"]]
-script = ExtResource("1_sdrfk")
+script = ExtResource("1_luqwg")
 hit_sounds = Array[AudioStreamWAV]([ExtResource("2_6t02o")])
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -69,6 +72,12 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_cud3r")
 
+[node name="ShapeCast2D" type="ShapeCast2D" parent="TrapBody"]
+shape = SubResource("RectangleShape2D_sdrfk")
+target_position = Vector2(0, 10)
+collision_mask = 3
+
 [node name="HitPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_6t02o")
 max_distance = 600.0
 bus = &"SFX"
