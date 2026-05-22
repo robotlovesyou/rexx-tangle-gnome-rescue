@@ -5,14 +5,13 @@ signal rescued
 signal died
 
 const TRAP_ONLY_COLLISION_MASK = 7
+const ROPE_PATH := "res://Gnomes/birb_rope.tscn"
 
 @export var movement_config: PlayerMovementConfig
 @export var hello_sounds: Array[AudioStreamWAV]
 @export var rescue_sounds: Array[AudioStreamWAV]
 @export var appear_edge_color: Color
 @export var debug := false
-
-
 
 @onready var hellos := EffectPlayer.new(hello_player, hello_sounds, {
 	EffectPlayer.MAX_PITCH: 1.2, 

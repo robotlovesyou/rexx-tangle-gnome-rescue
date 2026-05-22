@@ -29,7 +29,6 @@ func remove(gnome: Gnome) -> void:
 	_followers_index.remove_at(offset)
 	for i in range(offset, _followers_index.size()):
 		_followers_dict[_followers_index[i].get_instance_id()] = i
-	print("removed. size is now %d" % _followers_index.size())
 		
 var all: Array[Gnome]:
 	get: return _followers_index.duplicate()
