@@ -1,0 +1,39 @@
+[gd_scene load_steps=10 format=3 uid="uid://2sku646pqos8"]
+
+[ext_resource type="Script" uid="uid://bxeg8mk63px4" path="res://Level-2-Zebastian/wide_lamp.gd" id="1_0goqu"]
+[ext_resource type="Shader" uid="uid://d2q0ydrdk4k18" path="res://Shared/Traps/spike_trap.gdshader" id="2_lx0gg"]
+[ext_resource type="Shader" uid="uid://cdc1x24qj0bjm" path="res://Level-2-Zebastian/wide_lamp.gdshader" id="3_l6brr"]
+[ext_resource type="Texture2D" uid="uid://bmmlwnkuwo6pi" path="res://Level-1-Examination/WideLampCleanV2.png" id="3_lx0gg"]
+[ext_resource type="Texture2D" uid="uid://x4f4frjm0oow" path="res://Level-2-Zebastian/WideLight.png" id="4_tu3pk"]
+
+[sub_resource type="Gradient" id="Gradient_yoout"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.33333334, 0.6666667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 3
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y221i"]
+gradient = SubResource("Gradient_yoout")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6a2d3"]
+shader = ExtResource("2_lx0gg")
+shader_parameter/highlight_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y221i"]
+shader = ExtResource("3_l6brr")
+
+[node name="WideLamp" type="Node2D"]
+script = ExtResource("1_0goqu")
+color_gradient = SubResource("GradientTexture2D_y221i")
+
+[node name="LampBody" type="Sprite2D" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_6a2d3")
+texture = ExtResource("3_lx0gg")
+
+[node name="LampLight" type="PointLight2D" parent="."]
+material = SubResource("ShaderMaterial_y221i")
+position = Vector2(0, 141)
+texture = ExtResource("4_tu3pk")
+texture_scale = 4.0

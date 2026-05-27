@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=4 uid="uid://iqpwyxksj3rh"]
+[gd_scene load_steps=134 format=4 uid="uid://iqpwyxksj3rh"]
 
 [ext_resource type="Script" uid="uid://dlbbfb18u54hm" path="res://Level-1-Examination/level_1_examination.gd" id="1_xcvpb"]
 [ext_resource type="PackedScene" uid="uid://cenujiplxkpem" path="res://Player/player.tscn" id="2_lpkm8"]
@@ -45,6 +45,17 @@
 [ext_resource type="PackedScene" uid="uid://bsqgklrkp8dwv" path="res://Gnomes/gnome_spawner.tscn" id="37_0yjuw"]
 [ext_resource type="PackedScene" uid="uid://cac36348xgnct" path="res://Shared/Bonuses/coin.tscn" id="44_8qd5p"]
 [ext_resource type="PackedScene" uid="uid://cy58yjdnyluak" path="res://Shared/Bonuses/sudo_sandwich.tscn" id="45_aaqni"]
+[ext_resource type="PackedScene" uid="uid://2sku646pqos8" path="res://Level-1-Examination/wide_lamp_clean.tscn" id="46_swevn"]
+[ext_resource type="PackedScene" uid="uid://cqybr3pduywx1" path="res://Level-1-Examination/wall_lamp_left.tscn" id="47_vpwbx"]
+[ext_resource type="PackedScene" uid="uid://hbuu2t2u6oqf" path="res://Level-1-Examination/wall_lamp_right.tscn" id="48_ohqft"]
+
+[sub_resource type="Gradient" id="Gradient_63jit"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vpwbx"]
+gradient = SubResource("Gradient_63jit")
+width = 256
+height = 256
 
 [sub_resource type="Curve2D" id="Curve2D_d4fbk"]
 _data = {
@@ -3637,6 +3648,10 @@ mission_successful_scene_path = "res://Level-1-Examination/mission_success_scree
 show_gnome_count = true
 show_timer = true
 
+[node name="BaseLightLevel" type="CanvasModulate" parent="."]
+position = Vector2(-8, 0)
+color = Color(0.73300546, 0.7330054, 0.7330054, 1)
+
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.5, 0.5)
 scroll_offset = Vector2(-1, 0)
@@ -3645,6 +3660,12 @@ repeat_size = Vector2(640, 400)
 [node name="ParallaxBackground" parent="Parallax2D" instance=ExtResource("20_0y2ya")]
 position = Vector2(1, 0)
 tile_h_count = 32
+
+[node name="Layer3Light" type="PointLight2D" parent="."]
+position = Vector2(6000, 1500)
+range_item_cull_mask = 4
+texture = SubResource("GradientTexture2D_vpwbx")
+texture_scale = 50.0
 
 [node name="DropTraps" type="Node" parent="."]
 
@@ -3685,9 +3706,11 @@ texture = ExtResource("9_poek4")
 [node name="SpawnPoint" parent="." instance=ExtResource("5_0jkmi")]
 position = Vector2(0, 1160)
 active = true
+lit = true
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("5_0jkmi")]
 position = Vector2(3496, -56)
+lit = true
 
 [node name="Exit" parent="." instance=ExtResource("6_yegac")]
 position = Vector2(64, 1152)
@@ -3759,36 +3782,42 @@ position = Vector2(3196, -2848)
 shape = SubResource("RectangleShape2D_m1waf")
 
 [node name="DirectionIndicatorParticlesRight" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
+light_mask = 4
 position = Vector2(2512, -128)
 amount = 16
 lifetime = 4.0
 process_material = ExtResource("23_0yjuw")
 
 [node name="DirectionIndicatorParticlesRight2" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
+light_mask = 4
 position = Vector2(1888, -48)
 amount = 16
 lifetime = 4.0
 process_material = ExtResource("23_0yjuw")
 
 [node name="DirectionIndicatorParticlesLeft" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
+light_mask = 4
 position = Vector2(3696, -912)
 amount = 16
 lifetime = 4.0
 process_material = SubResource("ParticleProcessMaterial_eru2w")
 
 [node name="DirectionIndicatorParticlesLeft2" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
+light_mask = 4
 position = Vector2(3312, -912)
 amount = 16
 lifetime = 4.0
 process_material = ExtResource("25_jr1ga")
 
 [node name="DirectionIndicatorParticlesUp" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
+light_mask = 4
 position = Vector2(2096, -1040)
 amount = 16
 lifetime = 4.0
 process_material = SubResource("ParticleProcessMaterial_vpwbx")
 
 [node name="DirectionIndicatorParticlesUp2" type="GPUParticles2D" parent="LevelFloor" groups=["UsesShaders"]]
+light_mask = 4
 position = Vector2(1536, 240)
 amount = 16
 lifetime = 4.0
@@ -3979,51 +4008,6 @@ position = Vector2(1200, 736)
 
 [node name="SpikeTrapRight10" parent="SpikeTraps" instance=ExtResource("28_fyiql")]
 position = Vector2(1200, 720)
-
-[node name="SpikeTrapDown" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(904, 464)
-
-[node name="SpikeTrapDown2" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(920, 464)
-
-[node name="SpikeTrapDown3" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(936, 464)
-
-[node name="SpikeTrapDown4" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(952, 464)
-
-[node name="SpikeTrapDown5" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(968, 464)
-
-[node name="SpikeTrapDown6" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(968, 464)
-
-[node name="SpikeTrapDown7" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(1096, 464)
-
-[node name="SpikeTrapDown8" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(1112, 464)
-
-[node name="SpikeTrapDown9" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(1128, 464)
-
-[node name="SpikeTrapDown10" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(1144, 464)
-
-[node name="SpikeTrapDown11" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(1160, 464)
-
-[node name="SpikeTrapDown12" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(1160, 464)
-
-[node name="SpikeTrapDown14" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(3344, -112)
-
-[node name="SpikeTrapDown15" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(3376, -112)
-
-[node name="SpikeTrapDown16" parent="SpikeTraps" instance=ExtResource("22_d4fbk")]
-position = Vector2(3360, -112)
 
 [node name="SpikeTrapRight" parent="SpikeTraps" instance=ExtResource("28_fyiql")]
 position = Vector2(3456, -464)
@@ -4401,7 +4385,7 @@ shape = SubResource("CircleShape2D_5wwgy")
 [node name="Coins" type="Node" parent="Bonuses"]
 
 [node name="Coin" parent="Bonuses/Coins" instance=ExtResource("44_8qd5p")]
-position = Vector2(192, 1056)
+position = Vector2(192, 1072)
 
 [node name="Coin91" parent="Bonuses/Coins" instance=ExtResource("44_8qd5p")]
 position = Vector2(3608, -232)
@@ -4452,19 +4436,19 @@ position = Vector2(4080, -184)
 position = Vector2(4104, -184)
 
 [node name="Coin2" parent="Bonuses/Coins" instance=ExtResource("44_8qd5p")]
-position = Vector2(224, 1056)
+position = Vector2(224, 1072)
 
 [node name="Coin3" parent="Bonuses/Coins" instance=ExtResource("44_8qd5p")]
-position = Vector2(256, 1056)
+position = Vector2(256, 1072)
 
 [node name="Coin4" parent="Bonuses/Coins" instance=ExtResource("44_8qd5p")]
-position = Vector2(192, 1088)
+position = Vector2(192, 1104)
 
 [node name="Coin5" parent="Bonuses/Coins" instance=ExtResource("44_8qd5p")]
-position = Vector2(224, 1088)
+position = Vector2(224, 1104)
 
 [node name="Coin6" parent="Bonuses/Coins" instance=ExtResource("44_8qd5p")]
-position = Vector2(256, 1088)
+position = Vector2(256, 1104)
 
 [node name="Coin27" parent="Bonuses/Coins" instance=ExtResource("44_8qd5p")]
 position = Vector2(2184, 96)
@@ -4788,6 +4772,110 @@ position = Vector2(2624, 784)
 
 [node name="SudoSandwich10" parent="Bonuses/Sandwiches" instance=ExtResource("45_aaqni")]
 position = Vector2(2672, 784)
+
+[node name="Lights" type="Node" parent="."]
+
+[node name="WideLamp" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(0, 1040)
+
+[node name="WideLamp2" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(224, 1040)
+
+[node name="WideLamp3" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(640, 560)
+
+[node name="WideLamp4" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(944, 464)
+
+[node name="WideLamp5" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(1136, 464)
+
+[node name="WideLamp6" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(1488, 464)
+
+[node name="WideLamp7" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(1888, 288)
+
+[node name="WideLamp8" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(2216, -176)
+
+[node name="WideLamp9" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(2624, -272)
+
+[node name="WideLamp10" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(3316, -112)
+
+[node name="WideLamp11" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(4448, -528)
+
+[node name="WideLamp13" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(4320, -1040)
+
+[node name="WideLamp15" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(3936, -1040)
+
+[node name="WideLamp17" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(3552, -1040)
+
+[node name="WideLamp18" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(2144, -1216)
+
+[node name="WideLamp19" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(3168, -1040)
+
+[node name="WideLamp20" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(2464, -1040)
+
+[node name="WideLamp21" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(2784, -1040)
+
+[node name="WideLamp22" parent="Lights" instance=ExtResource("46_swevn")]
+position = Vector2(2272, -1724)
+
+[node name="WallLampLeft" parent="Lights" instance=ExtResource("47_vpwbx")]
+position = Vector2(476, 984)
+
+[node name="WallLampLeft3" parent="Lights" instance=ExtResource("47_vpwbx")]
+position = Vector2(3532, -136)
+
+[node name="WallLampLeft2" parent="Lights" instance=ExtResource("47_vpwbx")]
+position = Vector2(1660, 52)
+
+[node name="WallLampLeft4" parent="Lights" instance=ExtResource("47_vpwbx")]
+position = Vector2(4588, -128)
+
+[node name="WallLampLeft5" parent="Lights" instance=ExtResource("47_vpwbx")]
+position = Vector2(4588, 256)
+
+[node name="WallLampLeft6" parent="Lights" instance=ExtResource("47_vpwbx")]
+position = Vector2(4204, 0)
+
+[node name="WallLampLeft7" parent="Lights" instance=ExtResource("47_vpwbx")]
+position = Vector2(4204, 192)
+
+[node name="WallLampLeft8" parent="Lights" instance=ExtResource("47_vpwbx")]
+position = Vector2(5036, -544)
+
+[node name="WallLampLeft9" parent="Lights" instance=ExtResource("47_vpwbx")]
+position = Vector2(5036, -736)
+
+[node name="WallLampRight" parent="Lights" instance=ExtResource("48_ohqft")]
+position = Vector2(1476, -172)
+
+[node name="WallLampRight2" parent="Lights" instance=ExtResource("48_ohqft")]
+position = Vector2(3444, -368)
+
+[node name="WallLampRight3" parent="Lights" instance=ExtResource("48_ohqft")]
+position = Vector2(4228, -204)
+
+[node name="WallLampRight4" parent="Lights" instance=ExtResource("48_ohqft")]
+position = Vector2(4228, 0)
+
+[node name="WallLampRight5" parent="Lights" instance=ExtResource("48_ohqft")]
+position = Vector2(3588, 192)
+
+[node name="WallLampRight6" parent="Lights" instance=ExtResource("48_ohqft")]
+position = Vector2(3588, -96)
 
 [connection signal="player_entered" from="Exit" to="." method="_on_player_entered_exit"]
 [connection signal="player_exited" from="Exit" to="." method="_on_player_exited_exit"]

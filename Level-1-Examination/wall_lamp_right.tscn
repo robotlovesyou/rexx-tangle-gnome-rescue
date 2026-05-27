@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://hbuu2t2u6oqf"]
+
+[ext_resource type="Script" uid="uid://bxeg8mk63px4" path="res://Level-2-Zebastian/wide_lamp.gd" id="1_2kbak"]
+[ext_resource type="Texture2D" uid="uid://bhcomfewx1laf" path="res://Level-1-Examination/WallLamp.png" id="2_2kbak"]
+[ext_resource type="Shader" uid="uid://cdc1x24qj0bjm" path="res://Level-2-Zebastian/wide_lamp.gdshader" id="3_3hl0h"]
+[ext_resource type="Texture2D" uid="uid://bk8p0mpj4lbse" path="res://Level-1-Examination/WallLightBeam.png" id="4_o1b38"]
+
+[sub_resource type="Gradient" id="Gradient_yoout"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.33333334, 0.6666667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 3
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y221i"]
+gradient = SubResource("Gradient_yoout")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y221i"]
+shader = ExtResource("3_3hl0h")
+
+[node name="WallLampRight" type="Node2D"]
+script = ExtResource("1_2kbak")
+color_gradient = SubResource("GradientTexture2D_y221i")
+
+[node name="LampBody" type="Sprite2D" parent="."]
+z_index = 10
+texture = ExtResource("2_2kbak")
+
+[node name="LampLight" type="PointLight2D" parent="."]
+material = SubResource("ShaderMaterial_y221i")
+position = Vector2(130, 0)
+texture = ExtResource("4_o1b38")
+texture_scale = 4.0

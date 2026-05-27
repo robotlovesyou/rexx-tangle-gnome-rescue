@@ -25,10 +25,4 @@ void fragment() {
 	vec4 base_color = texture(TEXTURE, uv);
 	vec2 reflection_point = vec2(UV.x, unary_tri(0.125, TIME, 0.1));
 	COLOR = mix(base_color, base_color*base_color, distance(uv, reflection_point));
-	//if (base_color == highlight_color) {
-		////COLOR = vec4(1.0,0.0,0.0,1.0);
-		//
-	//} else {
-		//COLOR = base_color;
-	//}
 }
